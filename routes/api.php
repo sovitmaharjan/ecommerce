@@ -18,7 +18,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware' => []], function () {
+Route::group(['middleware' => [
+    // 'cors',
+    // 'json.response'
+]], function () {
 
     // ...
 

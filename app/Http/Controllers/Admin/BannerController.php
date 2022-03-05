@@ -140,9 +140,9 @@ class BannerController extends Controller
                     unlink($file_path);
                 }
             }
-            dd('success');
+            return 'success';
         } catch (\Exception $e) {
-            dd($e);
+            return $e;
         }
     }
 }

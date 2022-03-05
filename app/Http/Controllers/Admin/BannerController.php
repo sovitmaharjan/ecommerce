@@ -19,8 +19,8 @@ class BannerController extends Controller
     public function index()
     {
         $banner = Banner::all();
-        dd($banner);
-        return view('banner.index', compact('banner'));
+        // dd($banner);
+        return view('admin.banner.index', compact('banner'));
     }
 
     /**
@@ -30,7 +30,7 @@ class BannerController extends Controller
      */
     public function create()
     {
-        return view('banner.create');
+        return view('admin.banner.create');
     }
 
     /**

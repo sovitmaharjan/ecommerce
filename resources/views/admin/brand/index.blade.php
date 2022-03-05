@@ -1,0 +1,1 @@
+resources/views/admin/brand/index.blade.php

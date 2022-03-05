@@ -46,7 +46,7 @@ class CreateCommand extends Command
         $this->create_file("resources/views/admin/". strtolower($name). "/index.blade.php");
         $this->create_file("resources/views/admin/". strtolower($name). "/show.blade.php");
 
-        Artisan::call("make:model Admin/{$name} -mfs");
+        Artisan::call("make:model Admin/{$name} -mf");
         $this->info("Model Admin/{$name} created.");
         Artisan::call("make:controller Admin/{$name}Controller --model=Admin/{$name} -r --requests");
         $this->info(Artisan::output());

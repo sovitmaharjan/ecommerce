@@ -19,7 +19,7 @@ class CreateBannersTable extends Migration
             $table->string('slug')->unique();
             $table->string('image');
             $table->text('description');
-            $table->enum('status',['active', 'inactive'])->default('inactive');
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

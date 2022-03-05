@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBannerRequest;
 use App\Http\Requests\UpdateBannerRequest;
 use App\Models\Admin\Banner;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
@@ -18,8 +20,9 @@ class BannerController extends Controller
      */
     public function index()
     {
+        return Auth::guard('api')->user();
         $banner = Banner::all();
-        // dd($banner);
+        dd($banner);
         return view('admin.banner.index', compact('banner'));
     }
 
@@ -49,7 +52,8 @@ class BannerController extends Controller
         $data['slug'] = $slug;
         if ($file = $request->image) {
             $filename = rand() . time() . '.' . $file->extension();
-            $file->move(storage_path('uploads'), $filename);
+            $path = $path = 'uploads/' . Carbon::now()->format('Y') . '/' . Carbon::now()->format('M') . '/';
+            $file->move(storage_path($path), $filename);
             $data['image'] = $filename;
         } else {
             $data['image'] = '';
@@ -72,7 +76,7 @@ class BannerController extends Controller
     {
         dd($banner);
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -81,6 +85,7 @@ class BannerController extends Controller
      */
     public function edit(Banner $banner)
     {
+        dd('here');
         dd($banner);
     }
 

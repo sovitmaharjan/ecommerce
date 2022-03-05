@@ -16,32 +16,37 @@ class UserSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        DB::table('users')->insert([
-            [
-                'name' => 'Admin',
-                // 'username' => 'admin',
-                'email' => 'admin@email.com',
-                'password' => Hash::make('123'),
-                // 'image' => $faker->image(public_path('uploads'), 200, 200),
-                // 'role' => 'admin',
-                // 'status' => 'active',
-            ],
-            [
-                'name' => 'Vendor',
-                // 'username' => 'vendor',
-                'email' => 'vendor@email.com',
-                'password' => Hash::make('123'),
-                // 'role' => 'vendor',
-                // 'status' => 'active',
-            ],
-            [
-                'name' => 'Customer',
-                // 'username' => 'customer',
-                'email' => 'customer@email.com',
-                'password' => Hash::make('123'),
-                // 'role' => 'customer',
-                // 'status' => 'active',
-            ]
+        DB::table('users')->where('id', 1)->update([
+            'name' => 'Admin',
+            'email' => 'admin@email.com',
+            'password' => Hash::make('123'),
         ]);
+        // DB::table('users')->insert([
+        //     [
+        //         'name' => 'Admin',
+        //         // 'username' => 'admin',
+        //         'email' => 'admin@email.com',
+        //         'password' => Hash::make('123'),
+        //         // 'image' => $faker->image(public_path('uploads'), 200, 200),
+        //         // 'role' => 'admin',
+        //         // 'status' => 'active',
+        //     ],
+        //     [
+        //         'name' => 'Vendor',
+        //         // 'username' => 'vendor',
+        //         'email' => 'vendor@email.com',
+        //         'password' => Hash::make('123'),
+        //         // 'role' => 'vendor',
+        //         // 'status' => 'active',
+        //     ],
+        //     [
+        //         'name' => 'Customer',
+        //         // 'username' => 'customer',
+        //         'email' => 'customer@email.com',
+        //         'password' => Hash::make('123'),
+        //         // 'role' => 'customer',
+        //         // 'status' => 'active',
+        //     ]
+        // ]);
     }
 }

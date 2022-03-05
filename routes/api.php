@@ -1,10 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\AttributeController;
-use App\Http\Controllers\Admin\BannerController;
-use App\Http\Controllers\Admin\BrandController;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\Api\BannerController;
 use App\Http\Controllers\Auth\ApiAuthController;
 use App\Http\Controllers\PassportAuthController;
 use Illuminate\Http\Request;
@@ -22,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware' => ['cors', 'json.response']], function () {
+Route::group(['middleware' => []], function () {
 
     // ...
 
@@ -34,7 +30,7 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
     // ...
     Route::group([
         'prefix' => 'admin',
-        'middleware' => 'auth:api'
+        // 'middleware' => 'auth:api'
     ], function () {
         //
         Route::get('/user', function(Request $request) {
@@ -42,10 +38,10 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
         });
 
         Route::resource('banner', BannerController::class);
-        Route::resource('category', CategoryController::class);
-        Route::resource('brand', BrandController::class);
-        Route::resource('attribute', AttributeController::class);
-        Route::resource('product', ProductController::class);
+        // Route::resource('category', CategoryController::class);
+        // Route::resource('brand', BrandController::class);
+        // Route::resource('attribute', AttributeController::class);
+        // Route::resource('product', ProductController::class);
     });
 
 });

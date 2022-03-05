@@ -20,7 +20,6 @@ class BannerController extends Controller
      */
     public function index()
     {
-        return Auth::guard('api')->user();
         $banner = Banner::all();
         dd($banner);
         return view('admin.banner.index', compact('banner'));

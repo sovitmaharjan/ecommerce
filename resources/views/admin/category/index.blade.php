@@ -1,0 +1,1 @@
+resources/views/admin/category/index.blade.php

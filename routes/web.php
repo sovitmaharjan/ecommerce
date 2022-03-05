@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -35,14 +37,14 @@ Route::group([
     //dashboard page
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
     
-    // // update status
-    // Route::post('/status/{id}', [HomeController::class, 'updateStatus'])->name('status.update');
+    // update status
+    Route::post('/status/{id}', [HomeController::class, 'updateStatus'])->name('status.update');
     
-    // // users
-    // Route::resource('user', UserController::class);
+    // users
+    Route::resource('user', UserController::class);
 
-    // // banner
-    // Route::resource('banner', BannerController::class);
+    // banner
+    Route::resource('banner', BannerController::class);
 
     // // brand
     // Route::resource('brand', BrandController::class);

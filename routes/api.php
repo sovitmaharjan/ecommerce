@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Api\BannerController;
+use App\Http\Controllers\Admin\Api\BrandController;
 use App\Http\Controllers\Auth\ApiAuthController;
 use App\Http\Controllers\PassportAuthController;
 use Illuminate\Http\Request;
@@ -42,7 +43,7 @@ Route::group(['middleware' => [
 
         Route::resource('banner', BannerController::class);
         // Route::resource('category', CategoryController::class);
-        // Route::resource('brand', BrandController::class);
+        Route::resource('brand', BrandController::class);
         // Route::resource('attribute', AttributeController::class);
         // Route::resource('product', ProductController::class);
     });

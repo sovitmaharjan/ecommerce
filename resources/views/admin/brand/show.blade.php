@@ -1,1 +1,0 @@
-resources/views/admin/brand/show.blade.php

@@ -1,0 +1,1 @@
+resources/views/admin/productspecification/show.blade.php

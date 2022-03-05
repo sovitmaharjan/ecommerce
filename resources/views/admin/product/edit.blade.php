@@ -1,0 +1,1 @@
+resources/views/admin/product/edit.blade.php

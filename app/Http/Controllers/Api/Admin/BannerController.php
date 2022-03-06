@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Api;
+namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Brand;
+use App\Models\Admin\Banner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
-class BrandController extends Controller
+class BannerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +18,8 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brand = Brand::all();
-        return $brand->toArray();
+        $banner = Banner::all();
+        return $banner->toArray();
     }
 
     /**
@@ -42,7 +42,7 @@ class BrandController extends Controller
     {
         $data = $request->except('image');
         $slug = Str::slug($data['title']);
-        if (Brand::where('slug', $slug)->first()) {
+        if (Banner::where('slug', $slug)->first()) {
             $slug = $slug . '-' . rand() . time();
         }
         $data['slug'] = $slug;
@@ -50,10 +50,10 @@ class BrandController extends Controller
             $filename = rand() . time() . '.' . $file->extension();
             $path = $path = 'uploads/' . Carbon::now()->format('Y') . '/' . Carbon::now()->format('M') . '/';
             $file->move(storage_path($path), $filename);
-            $data['image'] = $path. $filename;
+            $data['image'] = $path . $filename;
         }
         try {
-            $result = Brand::create($data);
+            $result = Banner::create($data);
             return $result;
         } catch (\Exception $e) {
             return $e;
@@ -68,11 +68,11 @@ class BrandController extends Controller
      */
     public function show($id)
     {
-        $brand = Brand::where('id', $id)->first();
-        if ($brand == '') {
+        $banner = Banner::where('id', $id)->first();
+        if ($banner == '') {
             return 'No data';
         }
-        return $brand;
+        return $banner;
     }
 
     /**
@@ -95,13 +95,13 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $brand = Brand::where('id', $id)->first();
-        if ($brand == '') {
+        $banner = Banner::where('id', $id)->first();
+        if ($banner == '') {
             return 'No data';
         }
         $data = $request->except('image', '_method');
         $slug = Str::slug($data['title']);
-        if (Brand::where('slug', $slug)->first()) {
+        if (Banner::where('slug', $slug)->first()) {
             $slug = $slug . '-' . rand() . time();
         }
         $data['slug'] = $slug;
@@ -109,23 +109,17 @@ class BrandController extends Controller
             $filename = rand() . time() . '.' . $file->extension();
             $path = $path = 'uploads/' . Carbon::now()->format('Y') . '/' . Carbon::now()->format('M') . '/';
             $file->move(storage_path($path), $filename);
-            $data['image'] = $path. $filename;
-        }
-        if ($brand->image) {
-            $file_path = storage_path($brand->image);
-            if (File::exists($file_path)) {
-                unlink($file_path);
-            }
-        }
-        try {
-            $result = Brand::where('id', $id)->update($data);
-            if ($brand->image) {
-                $file_path = storage_path($brand->image);
+            $data['image'] = $path . $filename;
+            if ($banner->image) {
+                $file_path = storage_path($banner->image);
                 if (File::exists($file_path)) {
                     unlink($file_path);
                 }
             }
-            $result =  Brand::where('id', $id)->first();
+        }
+        try {
+            $result = Banner::where('id', $id)->update($data);
+            $result =  Banner::where('id', $id)->first();
             return $result;
         } catch (\Exception $e) {
             return $e;
@@ -140,14 +134,14 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        $brand = Brand::where('id', $id)->first();
-        if ($brand == '') {
+        $banner = Banner::where('id', $id)->first();
+        if ($banner == '') {
             return 'No data';
         }
         try {
-            $result = $brand->delete();
-            if ($brand->image) {
-                $file_path = storage_path($brand->image);
+            $result = $banner->delete();
+            if ($banner->image) {
+                $file_path = storage_path($banner->image);
                 if (File::exists($file_path)) {
                     unlink($file_path);
                 }

@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Api;
+namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Banner;
+use App\Http\Resources\CategoryResource;
+use App\Models\Admin\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
-class BannerController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +17,8 @@ class BannerController extends Controller
      */
     public function index()
     {
-        $banner = Banner::all();
-        return $banner->toArray();
+        $category = Category::all();
+        return CategoryResource::collection($category);
     }
 
     /**
@@ -40,21 +39,16 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->except('image');
+        $data = $request->all();
         $slug = Str::slug($data['title']);
-        if (Banner::where('slug', $slug)->first()) {
+        if (Category::where('slug', $slug)->first()) {
             $slug = $slug . '-' . rand() . time();
         }
         $data['slug'] = $slug;
-        if ($file = $request->image) {
-            $filename = rand() . time() . '.' . $file->extension();
-            $path = $path = 'uploads/' . Carbon::now()->format('Y') . '/' . Carbon::now()->format('M') . '/';
-            $file->move(storage_path($path), $filename);
-            $data['image'] = $path . $filename;
-        }
         try {
-            $result = Banner::create($data);
-            return $result;
+            $result = Category::create($data);
+            return new CategoryResource($result);
+
         } catch (\Exception $e) {
             return $e;
         }
@@ -68,11 +62,11 @@ class BannerController extends Controller
      */
     public function show($id)
     {
-        $banner = Banner::where('id', $id)->first();
-        if ($banner == '') {
+        $category = Category::where('id', $id)->first();
+        if ($category == '') {
             return 'No data';
         }
-        return $banner;
+        return new CategoryResource($category);
     }
 
     /**
@@ -95,32 +89,20 @@ class BannerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $banner = Banner::where('id', $id)->first();
-        if ($banner == '') {
+        $category = Category::where('id', $id)->first();
+        if ($category == '') {
             return 'No data';
         }
-        $data = $request->except('image', '_method');
+        $data = $request->except('_method');
         $slug = Str::slug($data['title']);
-        if (Banner::where('slug', $slug)->first()) {
+        if (Category::where('slug', $slug)->first()) {
             $slug = $slug . '-' . rand() . time();
         }
         $data['slug'] = $slug;
-        if ($file = $request->image) {
-            $filename = rand() . time() . '.' . $file->extension();
-            $path = $path = 'uploads/' . Carbon::now()->format('Y') . '/' . Carbon::now()->format('M') . '/';
-            $file->move(storage_path($path), $filename);
-            $data['image'] = $path . $filename;
-            if ($banner->image) {
-                $file_path = storage_path($banner->image);
-                if (File::exists($file_path)) {
-                    unlink($file_path);
-                }
-            }
-        }
         try {
-            $result = Banner::where('id', $id)->update($data);
-            $result =  Banner::where('id', $id)->first();
-            return $result;
+            $result = Category::where('id', $id)->update($data);
+            $result =  Category::where('id', $id)->first();
+            return new CategoryResource($result);
         } catch (\Exception $e) {
             return $e;
         }
@@ -134,18 +116,12 @@ class BannerController extends Controller
      */
     public function destroy($id)
     {
-        $banner = Banner::where('id', $id)->first();
-        if ($banner == '') {
+        $category = Category::where('id', $id)->first();
+        if ($category == '') {
             return 'No data';
         }
         try {
-            $result = $banner->delete();
-            if ($banner->image) {
-                $file_path = storage_path($banner->image);
-                if (File::exists($file_path)) {
-                    unlink($file_path);
-                }
-            }
+            $result = $category->delete();
             return 'success';
         } catch (\Exception $e) {
             return $e;

@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Api;
+namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CategoryResource;
-use App\Models\Admin\Category;
+use App\Http\Resources\ProductResource;
+use App\Models\Admin\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
-class CategoryController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +18,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::all();
-        return CategoryResource::collection($category);
+        $product = Product::all();
+        return ProductResource::collection($product);
     }
 
     /**
@@ -43,13 +42,14 @@ class CategoryController extends Controller
     {
         $data = $request->all();
         $slug = Str::slug($data['title']);
-        if (Category::where('slug', $slug)->first()) {
+        if (Product::where('slug', $slug)->first()) {
             $slug = $slug . '-' . rand() . time();
         }
         $data['slug'] = $slug;
+        $data['user_id'] = Auth::user()->id;
         try {
-            $result = Category::create($data);
-            return new CategoryResource($result);
+            $result = Product::create($data);
+            return new ProductResource($result);
 
         } catch (\Exception $e) {
             return $e;
@@ -64,11 +64,11 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = Category::where('id', $id)->first();
-        if ($category == '') {
+        $product = Product::where('id', $id)->first();
+        if ($product == '') {
             return 'No data';
         }
-        return new CategoryResource($category);
+        return new ProductResource($product);
     }
 
     /**
@@ -91,20 +91,22 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = Category::where('id', $id)->first();
-        if ($category == '') {
+        $product = Product::where('id', $id)->first();
+        if ($product == '') {
             return 'No data';
         }
         $data = $request->except('_method');
         $slug = Str::slug($data['title']);
-        if (Category::where('slug', $slug)->first()) {
+        if (Product::where('slug', $slug)->first()) {
             $slug = $slug . '-' . rand() . time();
         }
         $data['slug'] = $slug;
+        $data['user_id'] = Auth::user()->id;
+        return $data;
         try {
-            $result = Category::where('id', $id)->update($data);
-            $result =  Category::where('id', $id)->first();
-            return new CategoryResource($result);
+            $result = Product::where('id', $id)->update($data);
+            $result =  Product::where('id', $id)->first();
+            return new ProductResource($result);
         } catch (\Exception $e) {
             return $e;
         }
@@ -118,12 +120,12 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::where('id', $id)->first();
-        if ($category == '') {
+        $product = Product::where('id', $id)->first();
+        if ($product == '') {
             return 'No data';
         }
         try {
-            $result = $category->delete();
+            $result = $product->delete();
             return 'success';
         } catch (\Exception $e) {
             return $e;

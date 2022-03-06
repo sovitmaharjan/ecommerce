@@ -18,15 +18,15 @@ class CreateProductsTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->foreignId('category_id')->constrained();
-            $table->foreignId('sub_category_id')->constrained('categories');
-            $table->foreignId('sub_sub_category_id')->constrained('categories');
-            $table->text('video_url');
+            $table->foreignId('sub_category_id')->constrained('categories')->nullable();
+            $table->foreignId('sub_sub_category_id')->constrained('categories')->nullable();
+            $table->text('video_url')->nullable();
             $table->longText('description');
-            $table->string('seo_title');
-            $table->longText('seo_description');
+            $table->string('seo_title')->nullable();
+            $table->longText('seo_description')->nullable();
             $table->float('base_price');
             $table->enum('status', ['draft', 'published', 'inactive', 'suspended'])->default('Draft');
-            $table->unsignedBigInteger('vendor_id');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

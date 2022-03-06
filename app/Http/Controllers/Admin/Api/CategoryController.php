@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CategoryResource;
 use App\Models\Admin\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -19,7 +20,7 @@ class CategoryController extends Controller
     public function index()
     {
         $category = Category::all();
-        return $category->toArray();
+        return CategoryResource::collection($category);
     }
 
     /**
@@ -40,21 +41,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->except('image');
+        $data = $request->all();
         $slug = Str::slug($data['title']);
         if (Category::where('slug', $slug)->first()) {
             $slug = $slug . '-' . rand() . time();
         }
         $data['slug'] = $slug;
-        if ($file = $request->image) {
-            $filename = rand() . time() . '.' . $file->extension();
-            $path = $path = 'uploads/' . Carbon::now()->format('Y') . '/' . Carbon::now()->format('M') . '/';
-            $file->move(storage_path($path), $filename);
-            $data['image'] = $path . $filename;
-        }
         try {
             $result = Category::create($data);
-            return $result;
+            return new CategoryResource($result);
+
         } catch (\Exception $e) {
             return $e;
         }
@@ -72,7 +68,7 @@ class CategoryController extends Controller
         if ($category == '') {
             return 'No data';
         }
-        return $category;
+        return new CategoryResource($category);
     }
 
     /**
@@ -99,28 +95,16 @@ class CategoryController extends Controller
         if ($category == '') {
             return 'No data';
         }
-        $data = $request->except('image', '_method');
+        $data = $request->except('_method');
         $slug = Str::slug($data['title']);
         if (Category::where('slug', $slug)->first()) {
             $slug = $slug . '-' . rand() . time();
         }
         $data['slug'] = $slug;
-        if ($file = $request->image) {
-            $filename = rand() . time() . '.' . $file->extension();
-            $path = $path = 'uploads/' . Carbon::now()->format('Y') . '/' . Carbon::now()->format('M') . '/';
-            $file->move(storage_path($path), $filename);
-            $data['image'] = $path . $filename;
-            if ($category->image) {
-                $file_path = storage_path($category->image);
-                if (File::exists($file_path)) {
-                    unlink($file_path);
-                }
-            }
-        }
         try {
             $result = Category::where('id', $id)->update($data);
             $result =  Category::where('id', $id)->first();
-            return $result;
+            return new CategoryResource($result);
         } catch (\Exception $e) {
             return $e;
         }
@@ -140,12 +124,6 @@ class CategoryController extends Controller
         }
         try {
             $result = $category->delete();
-            if ($category->image) {
-                $file_path = storage_path($category->image);
-                if (File::exists($file_path)) {
-                    unlink($file_path);
-                }
-            }
             return 'success';
         } catch (\Exception $e) {
             return $e;

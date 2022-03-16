@@ -16,4 +16,9 @@ class Banner extends Model
         'description',
         'status'
     ];
+
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
 }

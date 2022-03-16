@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductVariantAttributesTable extends Migration
+class CreateProductAttributeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateProductVariantAttributesTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_variant_attributes', function (Blueprint $table) {
+        Schema::create('product_attribute', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_variant_id')->constrained()->onDelete('cascade');
+            $table->foreignId('product_id')->constrained();
             $table->foreignId('attribute_id')->constrained();
-            $table->string('attribute_value');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateProductVariantAttributesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_variant_attributes');
+        Schema::dropIfExists('product_attribute');
     }
 }

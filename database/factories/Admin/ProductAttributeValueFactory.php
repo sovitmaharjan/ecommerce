@@ -4,7 +4,7 @@ namespace Database\Factories\Admin;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ProductVariantAttributeFactory extends Factory
+class ProductAttributeValueFactory extends Factory
 {
     /**
      * Define the model's default state.

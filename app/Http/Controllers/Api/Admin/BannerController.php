@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Admin;
 
+use App\Custom\ImageUpload;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Banner;
 use Illuminate\Http\Request;
@@ -11,15 +12,17 @@ use Illuminate\Support\Str;
 
 class BannerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $imageUpload;
+
+    public function __construct(ImageUpload $imageUpload)
+    {
+        $this->imageUpload = $imageUpload;
+    }
+
     public function index()
     {
         $banner = Banner::all();
-        return $banner->toArray();
+        return $banner->image;
     }
 
     /**
@@ -46,14 +49,11 @@ class BannerController extends Controller
             $slug = $slug . '-' . rand() . time();
         }
         $data['slug'] = $slug;
-        if ($file = $request->image) {
-            $filename = rand() . time() . '.' . $file->extension();
-            $path = $path = 'uploads/' . Carbon::now()->format('Y') . '/' . Carbon::now()->format('M') . '/';
-            $file->move(storage_path($path), $filename);
-            $data['image'] = $path . $filename;
-        }
         try {
             $result = Banner::create($data);
+            if ($file = $request->image) {
+                $this->imageUpload->upload($result, $file);
+            }
             return $result;
         } catch (\Exception $e) {
             return $e;

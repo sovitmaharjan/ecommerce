@@ -1,1 +1,0 @@
-resources/views/admin/productvariantattribute/index.blade.php

@@ -22,6 +22,7 @@ class CreateImagesTable extends Migration
             $table->unsignedBigInteger('uploadable_id');
             $table->string('uploadable_type');
             $table->string('type')->nullable();
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\Admin;
 
-use App\Custom\ImageUpload;
+use App\Custom\ImageService;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Banner;
 use Illuminate\Http\Request;
@@ -12,17 +12,17 @@ use Illuminate\Support\Str;
 
 class BannerController extends Controller
 {
-    protected $imageUpload;
+    protected $imageService;
 
-    public function __construct(ImageUpload $imageUpload)
+    public function __construct(ImageService $imageService)
     {
-        $this->imageUpload = $imageUpload;
+        $this->imageService = $imageService;
     }
 
     public function index()
     {
-        $banner = Banner::all();
-        return $banner->image;
+        $banner = Banner::with('image')->get();
+        return $banner;
     }
 
     /**
@@ -44,15 +44,10 @@ class BannerController extends Controller
     public function store(Request $request)
     {
         $data = $request->except('image');
-        $slug = Str::slug($data['title']);
-        if (Banner::where('slug', $slug)->first()) {
-            $slug = $slug . '-' . rand() . time();
-        }
-        $data['slug'] = $slug;
         try {
             $result = Banner::create($data);
             if ($file = $request->image) {
-                $this->imageUpload->upload($result, $file);
+                $this->imageService->upload($result, $file);
             }
             return $result;
         } catch (\Exception $e) {
@@ -68,7 +63,7 @@ class BannerController extends Controller
      */
     public function show($id)
     {
-        $banner = Banner::where('id', $id)->first();
+        $banner = Banner::where('id', $id)->with('image')->first();
         if ($banner == '') {
             return 'No data';
         }
@@ -100,26 +95,12 @@ class BannerController extends Controller
             return 'No data';
         }
         $data = $request->except('image', '_method');
-        $slug = Str::slug($data['title']);
-        if (Banner::where('slug', $slug)->first()) {
-            $slug = $slug . '-' . rand() . time();
-        }
-        $data['slug'] = $slug;
-        if ($file = $request->image) {
-            $filename = rand() . time() . '.' . $file->extension();
-            $path = $path = 'uploads/' . Carbon::now()->format('Y') . '/' . Carbon::now()->format('M') . '/';
-            $file->move(storage_path($path), $filename);
-            $data['image'] = $path . $filename;
-            if ($banner->image) {
-                $file_path = storage_path($banner->image);
-                if (File::exists($file_path)) {
-                    unlink($file_path);
-                }
-            }
-        }
         try {
             $result = Banner::where('id', $id)->update($data);
-            $result =  Banner::where('id', $id)->first();
+            if ($file = $request->image) {
+                $this->imageService->upload($banner, $file, $oldFile = $banner->image->path);
+            }
+            $result =  Banner::where('id', $id)->with('image')->first();
             return $result;
         } catch (\Exception $e) {
             return $e;
@@ -140,11 +121,8 @@ class BannerController extends Controller
         }
         try {
             $result = $banner->delete();
-            if ($banner->image) {
-                $file_path = storage_path($banner->image);
-                if (File::exists($file_path)) {
-                    unlink($file_path);
-                }
+            if ($banner) {
+                $this->imageService->delete($banner);
             }
             return 'success';
         } catch (\Exception $e) {

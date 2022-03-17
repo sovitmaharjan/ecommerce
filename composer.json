@@ -28,7 +28,7 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "app/Custom/ImageUpload.php"
+            "app/Custom/ImageService.php"
         ]
     },
     "autoload-dev": {

@@ -20,7 +20,7 @@ class Image extends Model
         'status',
     ];
 
-    public function getUrlAttribute()
+    public function getUrl()
     {
         return url('storage/' . $this->path);
     }

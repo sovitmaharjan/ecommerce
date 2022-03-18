@@ -11,7 +11,7 @@ class ImageService
 {
     public static function upload($model, $file, $oldFile = null, $type = 'default')
     {
-        if ($oldFile !== null) {
+        if ($oldFile !== null && Storage::exists($oldFile)) {
             Storage::delete($oldFile);
         }
         $fileName = rand() . time() . '.' . $file->extension();
@@ -35,23 +35,18 @@ class ImageService
                 'type' => $type,
             ]
         );
-        return $image->id;
+        return 1;
     }
 
-    public function delete($model)
+    public function delete($model, $oldFile = null)
     {
-        $image = Image::where(['imageable_id' => $model->id, 'imageable_type' => get_class($model)])->first();
-        if ($image) {
-            // dd(auth()->user()->id, $image->uploaded_by_id);
-            if (auth()->user()->id != $image->uploaded_by_id) {
-                return 'mismatch';
-            }
-            if ($image->path != '') {
-                Storage::delete($image->path);
-            }
-            $image->delete();
-            return true;
+        if ($oldFile !== null && Storage::exists($oldFile)) {
+            Storage::delete($oldFile);
         }
-        return 0;
+        Image::where([
+            'imageable_id' => $model->id,
+            'imageable_type' => get_class($model)
+        ])->delete();
+        return 1;
     }
 }

@@ -1,22 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\Api\Admin;
+namespace App\Http\Controllers\Admin\Api;
 
+use App\Contracts\BannerInterface;
 use App\Custom\ImageService;
+use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\BannerRequest;
+use App\Http\Resources\BannerResource;
 use App\Models\Admin\Banner;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
 
 class BannerController extends Controller
 {
-    protected $imageService;
+    protected $interface, $response;
 
-    public function __construct(ImageService $imageService)
+    public function __construct(BannerInterface $interface, ResponseService $response, ImageService $imageService)
     {
-        $this->imageService = $imageService;
+        $this->interface = $interface;
+        $this->response = $response;
     }
 
     public function index()
@@ -25,42 +27,24 @@ class BannerController extends Controller
         return $banner;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(BannerRequest $request)
     {
-        $data = $request->except('image');
         try {
-            $result = Banner::create($data);
-            if ($file = $request->image) {
-                $this->imageService->upload($result, $file);
-            }
-            return $result;
+            $result = $this->interface->store($request);
+            $data = new BannerResource($result);
+            return $this->response->responseSuccess([
+                'banner' => $data,
+            ], '', 200);
         } catch (\Exception $e) {
             return $e;
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $banner = Banner::where('id', $id)->with('image')->first();
@@ -70,24 +54,11 @@ class BannerController extends Controller
         return $banner;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $banner = Banner::where('id', $id)->first();
@@ -107,12 +78,6 @@ class BannerController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $banner = Banner::where('id', $id)->first();
@@ -122,7 +87,7 @@ class BannerController extends Controller
         try {
             $result = $banner->delete();
             if ($banner) {
-                $this->imageService->delete($banner);
+                $this->imageService->delete($banner, $banner->image->path ?? null);
             }
             return 'success';
         } catch (\Exception $e) {

@@ -1,9 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\Admin\BannerController;
-use App\Http\Controllers\Api\Admin\BrandController;
-use App\Http\Controllers\Api\Admin\CategoryController;
-use App\Http\Controllers\Api\Admin\ProductController;
+use App\Http\Controllers\Admin\Api\BannerController;
 use App\Http\Controllers\Auth\ApiAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -42,10 +39,10 @@ Route::group(['middleware' => [
         });
 
         Route::resource('banner', BannerController::class);
-        Route::resource('category', CategoryController::class);
-        Route::resource('brand', BrandController::class);
-        // Route::resource('attribute', AttributeController::class);
-        Route::resource('product', ProductController::class);
+        // Route::resource('category', CategoryController::class);
+        // Route::resource('brand', BrandController::class);
+        // // Route::resource('attribute', AttributeController::class);
+        // Route::resource('product', ProductController::class);
     });
 
 });

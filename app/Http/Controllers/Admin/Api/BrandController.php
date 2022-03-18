@@ -1,17 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreBannerRequest;
-use App\Http\Requests\UpdateBannerRequest;
-use App\Models\Admin\Banner;
+use App\Models\Admin\Brand;
+use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
-class BannerController extends Controller
+class BrandController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,9 +18,8 @@ class BannerController extends Controller
      */
     public function index()
     {
-        $banner = Banner::all();
-        dd($banner);
-        return view('admin.banner.index', compact('banner'));
+        $brand = Brand::all();
+        return $brand->toArray();
     }
 
     /**
@@ -32,20 +29,20 @@ class BannerController extends Controller
      */
     public function create()
     {
-        return view('admin.banner.create');
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreBannerRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBannerRequest $request)
+    public function store(Request $request)
     {
         $data = $request->except('image');
         $slug = Str::slug($data['title']);
-        if (Banner::where('slug', $slug)->first()) {
+        if (Brand::where('slug', $slug)->first()) {
             $slug = $slug . '-' . rand() . time();
         }
         $data['slug'] = $slug;
@@ -53,89 +50,104 @@ class BannerController extends Controller
             $filename = rand() . time() . '.' . $file->extension();
             $path = $path = 'uploads/' . Carbon::now()->format('Y') . '/' . Carbon::now()->format('M') . '/';
             $file->move(storage_path($path), $filename);
-            $data['image'] = $filename;
-        } else {
-            $data['image'] = '';
+            $data['image'] = $path. $filename;
         }
         try {
-            $result = Banner::create($data);
-            dd('success');
+            $result = Brand::create($data);
+            return $result;
         } catch (\Exception $e) {
-            dd($e);
+            return $e;
         }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Admin\Banner  $banner
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Banner $banner)
+    public function show($id)
     {
-        dd($banner);
+        $brand = Brand::where('id', $id)->first();
+        if ($brand == '') {
+            return 'No data';
+        }
+        return $brand;
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Admin\Banner  $banner
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Banner $banner)
+    public function edit($id)
     {
-        dd('here');
-        dd($banner);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateBannerRequest  $request
-     * @param  \App\Models\Admin\Banner  $banner
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBannerRequest $request, Banner $banner)
+    public function update(Request $request, $id)
     {
+        $brand = Brand::where('id', $id)->first();
+        if ($brand == '') {
+            return 'No data';
+        }
         $data = $request->except('image', '_method');
         $slug = Str::slug($data['title']);
-        if (Banner::where('slug', $slug)->first()) {
+        if (Brand::where('slug', $slug)->first()) {
             $slug = $slug . '-' . rand() . time();
         }
         $data['slug'] = $slug;
         if ($file = $request->image) {
             $filename = rand() . time() . '.' . $file->extension();
-            $file->move(storage_path('uploads/'), $filename);
-            $data['image'] = $filename;
-        } else {
-            $data['image'] = '';
+            $path = $path = 'uploads/' . Carbon::now()->format('Y') . '/' . Carbon::now()->format('M') . '/';
+            $file->move(storage_path($path), $filename);
+            $data['image'] = $path. $filename;
+        }
+        if ($brand->image) {
+            $file_path = storage_path($brand->image);
+            if (File::exists($file_path)) {
+                unlink($file_path);
+            }
         }
         try {
-            $result = Banner::where('id', $banner->id)->update($data);
-            if ($banner->image) {
-                $file_path = storage_path('uploads/' . $banner->image);
+            $result = Brand::where('id', $id)->update($data);
+            if ($brand->image) {
+                $file_path = storage_path($brand->image);
                 if (File::exists($file_path)) {
                     unlink($file_path);
                 }
             }
-            dd('success');
+            $result =  Brand::where('id', $id)->first();
+            return $result;
         } catch (\Exception $e) {
-            dd($e);
+            return $e;
         }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Admin\Banner  $banner
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Banner $banner)
+    public function destroy($id)
     {
+        $brand = Brand::where('id', $id)->first();
+        if ($brand == '') {
+            return 'No data';
+        }
         try {
-            $result = $banner->delete();
-            if ($banner->image) {
-                $file_path = storage_path('uploads/' . $banner->image);
+            $result = $brand->delete();
+            if ($brand->image) {
+                $file_path = storage_path($brand->image);
                 if (File::exists($file_path)) {
                     unlink($file_path);
                 }

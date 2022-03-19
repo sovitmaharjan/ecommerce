@@ -2,13 +2,14 @@
 
 namespace App\Models\Admin;
 
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Banner extends Model
 {
-    use HasFactory, Sluggable;
+    use HasFactory, HasSlug;
 
     protected $fillable = [
         'title',
@@ -17,13 +18,11 @@ class Banner extends Model
         'status'
     ];
 
-    public function sluggable(): array
+    public function getSlugOptions() : SlugOptions
     {
-        return [
-            'slug' => [
-                'source' => 'title'
-            ]
-        ];
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
     }
 
     public function image()

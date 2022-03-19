@@ -23,8 +23,17 @@ class BannerController extends Controller
 
     public function index()
     {
-        $banner = Banner::with('image')->get();
-        return $banner;
+        try{
+            $result = $this->interface->index();
+            if($result == null){
+                return $this->response->responseSuccessMsg('No Data', 200);
+            }
+            return $this->response->responseSuccess([
+                'banner' => BannerResource::collection($result),
+            ], '', 200);
+        } catch (\Exception $e) {
+            return $e;
+        }
     }
 
     public function create()
@@ -36,10 +45,9 @@ class BannerController extends Controller
     {
         try {
             $result = $this->interface->store($request);
-            $data = new BannerResource($result);
             return $this->response->responseSuccess([
-                'banner' => $data,
-            ], '', 200);
+                'banner' => new BannerResource($result),
+            ], 'Saved Successful', 200);
         } catch (\Exception $e) {
             return $e;
         }
@@ -47,11 +55,17 @@ class BannerController extends Controller
 
     public function show($id)
     {
-        $banner = Banner::where('id', $id)->with('image')->first();
-        if ($banner == '') {
-            return 'No data';
+        try{
+            $result = $this->interface->show($id);
+            if($result == null){
+                return $this->response->responseSuccessMsg('No Data', 200);
+            }
+            return $this->response->responseSuccess([
+                'banner' => new BannerResource($result),
+            ], '', 200);
+        } catch (\Exception $e) {
+            return $e;
         }
-        return $banner;
     }
 
     public function edit($id)
@@ -61,18 +75,14 @@ class BannerController extends Controller
 
     public function update(Request $request, $id)
     {
-        $banner = Banner::where('id', $id)->first();
-        if ($banner == '') {
-            return 'No data';
-        }
-        $data = $request->except('image', '_method');
         try {
-            $result = Banner::where('id', $id)->update($data);
-            if ($file = $request->image) {
-                $this->imageService->upload($banner, $file, $oldFile = $banner->image->path);
+            $result = $this->interface->update($request, $id);
+            if($result == null){
+                return $this->response->responseSuccessMsg('No Data', 200);
             }
-            $result =  Banner::where('id', $id)->with('image')->first();
-            return $result;
+            return $this->response->responseSuccess([
+                'banner' => new BannerResource($result),
+            ], 'Update Successful', 200);
         } catch (\Exception $e) {
             return $e;
         }
@@ -80,16 +90,12 @@ class BannerController extends Controller
 
     public function destroy($id)
     {
-        $banner = Banner::where('id', $id)->first();
-        if ($banner == '') {
-            return 'No data';
-        }
         try {
-            $result = $banner->delete();
-            if ($banner) {
-                $this->imageService->delete($banner, $banner->image->path ?? null);
+            $result = $this->interface->destroy($id);
+            if($result == null){
+                return $this->response->responseSuccessMsg('No Data', 200);
             }
-            return 'success';
+            return $this->response->responseSuccessMsg('Delete Successful', 200);
         } catch (\Exception $e) {
             return $e;
         }

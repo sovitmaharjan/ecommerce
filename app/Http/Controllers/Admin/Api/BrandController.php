@@ -2,157 +2,97 @@
 
 namespace App\Http\Controllers\Admin\Api;
 
+use App\Contracts\BrandInterface;
+use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Brand;
-use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
+use App\Http\Requests\Api\BannerRequest;
+use App\Http\Resources\BrandResource;
 
 class BrandController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    protected $interface, $response;
+
+    public function __construct(BrandInterface $interface, ResponseService $response)
     {
-        $brand = Brand::all();
-        return $brand->toArray();
+        $this->interface = $interface;
+        $this->response = $response;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function index()
+    {
+        try {
+            $result = $this->interface->index();
+            if ($result == null) {
+                return $this->response->responseSuccessMsg('No Data', 200);
+            }
+            return $this->response->responseSuccess([
+                'banner' => BrandResource::collection($result),
+            ], '', 200);
+        } catch (\Exception $e) {
+            return $e;
+        }
+    }
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(BannerRequest $request)
     {
-        $data = $request->except('image');
-        $slug = Str::slug($data['title']);
-        if (Brand::where('slug', $slug)->first()) {
-            $slug = $slug . '-' . rand() . time();
-        }
-        $data['slug'] = $slug;
-        if ($file = $request->image) {
-            $filename = rand() . time() . '.' . $file->extension();
-            $path = $path = 'uploads/' . Carbon::now()->format('Y') . '/' . Carbon::now()->format('M') . '/';
-            $file->move(storage_path($path), $filename);
-            $data['image'] = $path. $filename;
-        }
         try {
-            $result = Brand::create($data);
-            return $result;
+            $result = $this->interface->store($request);
+            return $this->response->responseSuccess([
+                'banner' => new BrandResource($result),
+            ], 'Saved Successful', 200);
         } catch (\Exception $e) {
             return $e;
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        $brand = Brand::where('id', $id)->first();
-        if ($brand == '') {
-            return 'No data';
+        try {
+            $result = $this->interface->show($id);
+            if ($result == null) {
+                return $this->response->responseSuccessMsg('No Data', 200);
+            }
+            return $this->response->responseSuccess([
+                'banner' => new BrandResource($result),
+            ], '', 200);
+        } catch (\Exception $e) {
+            return $e;
         }
-        return $brand;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(BannerRequest $request, $id)
     {
-        $brand = Brand::where('id', $id)->first();
-        if ($brand == '') {
-            return 'No data';
-        }
-        $data = $request->except('image', '_method');
-        $slug = Str::slug($data['title']);
-        if (Brand::where('slug', $slug)->first()) {
-            $slug = $slug . '-' . rand() . time();
-        }
-        $data['slug'] = $slug;
-        if ($file = $request->image) {
-            $filename = rand() . time() . '.' . $file->extension();
-            $path = $path = 'uploads/' . Carbon::now()->format('Y') . '/' . Carbon::now()->format('M') . '/';
-            $file->move(storage_path($path), $filename);
-            $data['image'] = $path. $filename;
-        }
-        if ($brand->image) {
-            $file_path = storage_path($brand->image);
-            if (File::exists($file_path)) {
-                unlink($file_path);
-            }
-        }
         try {
-            $result = Brand::where('id', $id)->update($data);
-            if ($brand->image) {
-                $file_path = storage_path($brand->image);
-                if (File::exists($file_path)) {
-                    unlink($file_path);
-                }
+            $result = $this->interface->update($request, $id);
+            if ($result == null) {
+                return $this->response->responseSuccessMsg('No Data', 200);
             }
-            $result =  Brand::where('id', $id)->first();
-            return $result;
+            return $this->response->responseSuccess([
+                'banner' => new BrandResource($result),
+            ], 'Update Successful', 200);
         } catch (\Exception $e) {
             return $e;
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        $brand = Brand::where('id', $id)->first();
-        if ($brand == '') {
-            return 'No data';
-        }
         try {
-            $result = $brand->delete();
-            if ($brand->image) {
-                $file_path = storage_path($brand->image);
-                if (File::exists($file_path)) {
-                    unlink($file_path);
-                }
+            $result = $this->interface->destroy($id);
+            if ($result == null) {
+                return $this->response->responseSuccessMsg('No Data', 200);
             }
-            return 'success';
+            return $this->response->responseSuccessMsg('Delete Successful', 200);
         } catch (\Exception $e) {
             return $e;
         }

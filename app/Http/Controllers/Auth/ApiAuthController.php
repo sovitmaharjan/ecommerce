@@ -35,8 +35,7 @@ class ApiAuthController extends Controller
             'email' => 'required|string|email|max:255',
             'password' => 'required|string',
         ]);
-        if ($validator->fails())
-        {
+        if ($validator->fails()) {
             return response(['errors'=>$validator->errors()->all()], 422);
         }
         $user = User::where('email', $request->email)->first();

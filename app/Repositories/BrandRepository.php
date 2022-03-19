@@ -2,11 +2,11 @@
 
 namespace App\Repositories;
 
-use App\Contracts\BannerInterface;
+use App\Contracts\BrandInterface;
 use App\Custom\ImageService;
-use App\Models\Admin\Banner;
+use App\Models\Admin\Brand;
 
-class BannerRepository implements BannerInterface
+class BrandRepository implements BrandInterface
 {
     protected $image;
     public function __construct(ImageService $image)
@@ -16,7 +16,7 @@ class BannerRepository implements BannerInterface
 
     public function index()
     {
-        $banner = Banner::all();
+        $banner = Brand::all();
         if ($banner) {
             return $banner;
         }
@@ -25,7 +25,7 @@ class BannerRepository implements BannerInterface
 
     public function show($id)
     {
-        $banner = Banner::where('id', $id)->with('image')->first();
+        $banner = Brand::where('id', $id)->with('image')->first();
         if ($banner) {
             return $banner;
         }
@@ -35,7 +35,7 @@ class BannerRepository implements BannerInterface
     public function store($request)
     {
         $data = $request->except('image');
-        $banner = Banner::create($data);
+        $banner = Brand::create($data);
         if ($file = $request->image) {
             $this->image->upload($banner, $file);
         }
@@ -44,7 +44,7 @@ class BannerRepository implements BannerInterface
 
     public function update($request, $id)
     {
-        $banner = Banner::find($id);
+        $banner = Brand::find($id);
         if ($banner) {
             $data = $request->except('image', '_method');
             $banner->update($data);
@@ -58,7 +58,7 @@ class BannerRepository implements BannerInterface
 
     public function destroy($id)
     {
-        $banner = Banner::where('id', $id)->first();
+        $banner = Brand::where('id', $id)->first();
         if ($banner) {
             $result = $banner->delete();
             $this->image->delete($banner, $banner->image->path ?? null);

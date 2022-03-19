@@ -2,7 +2,7 @@
 
 namespace App\Contracts;
 
-interface BannerInterface
+interface BrandInterface
 {
     public function index();
     public function show($id);

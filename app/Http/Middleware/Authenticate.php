@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Support\Str;
 
 class Authenticate extends Middleware
 {
@@ -16,6 +17,30 @@ class Authenticate extends Middleware
     {
         if (! $request->expectsJson()) {
             return route('login');
+        }
+    }
+
+    // Add new method
+    protected function unauthenticated($request, array $guards)
+    {
+        $header = $request->server('HTTP_AUTHORIZATION');
+        if (Str::startsWith($header, 'Bearer ')) {
+            $token = Str::substr($header, 7);
+            abort(response()->json(
+                [
+                    'status' => 'error',
+                    'message' => 'Invalid token.',
+                ],
+                401
+            ));
+        }
+        if ($request->is('api/*') || $request->is('vendor/*')) {
+            abort(response()->json([
+                'status' => 'error',
+                'message' => 'Unauthenticated.',
+            ], 401));
+        } else {
+            return redirect('/login');
         }
     }
 }

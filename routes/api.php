@@ -21,15 +21,11 @@ Route::group(['middleware' => [
     // 'cors',
     // 'json.response'
 ]], function () {
-
-    // ...
-
     // public routes
     Route::post('/login', [ApiAuthController::class, 'login']);
     Route::post('/register', [ApiAuthController::class, 'register']);
     Route::post('/logout', [ApiAuthController::class, 'logout']);
 
-    // ...
     Route::group([
         'prefix' => 'admin',
         'middleware' => 'auth:api'
@@ -46,17 +42,3 @@ Route::group(['middleware' => [
         // Route::resource('product', ProductController::class);
     });
 });
-
-// Route::post('register', [PassportAuthController::class, 'register']);
-// Route::post('login', [PassportAuthController::class, 'login']);
-
-// Route::prefix('admin')->group(function () {
-//     Route::middleware('auth:api')->group(function () {
-//         //
-//         Route::resource('banner', BannerController::class);
-//         Route::resource('category', CategoryController::class);
-//         Route::resource('brand', BrandController::class);
-//         Route::resource('attribute', AttributeController::class);
-//         Route::resource('product', ProductController::class);
-//     });
-// });

@@ -25,7 +25,7 @@ class BannerRepository implements BannerInterface
 
     public function show($id)
     {
-        $banner = Banner::where('id', $id)->with('image')->first();
+        $banner = Banner::where('id', $id)->first();
         if ($banner) {
             return $banner;
         }

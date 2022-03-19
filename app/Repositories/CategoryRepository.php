@@ -3,17 +3,10 @@
 namespace App\Repositories;
 
 use App\Contracts\CategoryInterface;
-use App\Custom\ImageService;
 use App\Models\Admin\Category;
 
 class CategoryRepository implements CategoryInterface
 {
-    protected $image;
-    public function __construct(ImageService $image)
-    {
-        $this->image = $image;
-    }
-
     public function index()
     {
         $banner = Category::all();
@@ -25,7 +18,7 @@ class CategoryRepository implements CategoryInterface
 
     public function show($id)
     {
-        $banner = Category::where('id', $id)->with('image')->first();
+        $banner = Category::where('id', $id)->first();
         if ($banner) {
             return $banner;
         }
@@ -34,11 +27,8 @@ class CategoryRepository implements CategoryInterface
 
     public function store($request)
     {
-        $data = $request->except('image');
+        $data = $request->all();
         $banner = Category::create($data);
-        if ($file = $request->image) {
-            $this->image->upload($banner, $file);
-        }
         return $banner;
     }
 
@@ -46,11 +36,8 @@ class CategoryRepository implements CategoryInterface
     {
         $banner = Category::find($id);
         if ($banner) {
-            $data = $request->except('image', '_method');
+            $data = $request->except('_method');
             $banner->update($data);
-            if ($file = $request->image) {
-                $this->image->upload($banner, $file, $banner->image->path ?? null);
-            }
             return $banner->refresh();
         }
         return null;
@@ -61,7 +48,6 @@ class CategoryRepository implements CategoryInterface
         $banner = Category::where('id', $id)->first();
         if ($banner) {
             $result = $banner->delete();
-            $this->image->delete($banner, $banner->image->path ?? null);
             return $result;
         }
         return null;

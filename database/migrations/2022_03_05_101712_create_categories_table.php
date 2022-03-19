@@ -18,12 +18,12 @@ class CreateCategoriesTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->integer('order_level')->nullable();
-            $table->tinyInteger('featured')->default(0);
-            $table->tinyInteger('status')->default(1);
+            $table->tinyInteger('featured')->nullable();
             $table->integer('parent_id')->nullable();
             $table->text('description')->nullable();
             $table->string('meta_title')->nullable();
             $table->text('meta_description')->nullable();
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

@@ -26,7 +26,7 @@ class BrandController extends Controller
                 return $this->response->responseSuccessMsg('No Data', 200);
             }
             return $this->response->responseSuccess([
-                'banner' => BrandResource::collection($result),
+                'brand' => BrandResource::collection($result),
             ], '', 200);
         } catch (\Exception $e) {
             return $e;
@@ -43,7 +43,7 @@ class BrandController extends Controller
         try {
             $result = $this->interface->store($request);
             return $this->response->responseSuccess([
-                'banner' => new BrandResource($result),
+                'brand' => new BrandResource($result),
             ], 'Saved Successful', 200);
         } catch (\Exception $e) {
             return $e;
@@ -58,7 +58,7 @@ class BrandController extends Controller
                 return $this->response->responseSuccessMsg('No Data', 200);
             }
             return $this->response->responseSuccess([
-                'banner' => new BrandResource($result),
+                'brand' => new BrandResource($result),
             ], '', 200);
         } catch (\Exception $e) {
             return $e;
@@ -78,7 +78,7 @@ class BrandController extends Controller
                 return $this->response->responseSuccessMsg('No Data', 200);
             }
             return $this->response->responseSuccess([
-                'banner' => new BrandResource($result),
+                'brand' => new BrandResource($result),
             ], 'Update Successful', 200);
         } catch (\Exception $e) {
             return $e;

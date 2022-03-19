@@ -26,7 +26,7 @@ class CategoryController extends Controller
                 return $this->response->responseSuccessMsg('No Data', 200);
             }
             return $this->response->responseSuccess([
-                'banner' => CategoryResource::collection($result),
+                'category' => CategoryResource::collection($result),
             ], '', 200);
         } catch (\Exception $e) {
             return $e;
@@ -43,7 +43,7 @@ class CategoryController extends Controller
         try {
             $result = $this->interface->store($request);
             return $this->response->responseSuccess([
-                'banner' => new CategoryResource($result),
+                'category' => new CategoryResource($result),
             ], 'Saved Successful', 200);
         } catch (\Exception $e) {
             return $e;
@@ -58,7 +58,7 @@ class CategoryController extends Controller
                 return $this->response->responseSuccessMsg('No Data', 200);
             }
             return $this->response->responseSuccess([
-                'banner' => new CategoryResource($result),
+                'category' => new CategoryResource($result),
             ], '', 200);
         } catch (\Exception $e) {
             return $e;
@@ -78,7 +78,7 @@ class CategoryController extends Controller
                 return $this->response->responseSuccessMsg('No Data', 200);
             }
             return $this->response->responseSuccess([
-                'banner' => new CategoryResource($result),
+                'category' => new CategoryResource($result),
             ], 'Update Successful', 200);
         } catch (\Exception $e) {
             return $e;

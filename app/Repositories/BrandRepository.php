@@ -25,7 +25,7 @@ class BrandRepository implements BrandInterface
 
     public function show($id)
     {
-        $banner = Brand::where('id', $id)->with('image')->first();
+        $banner = Brand::where('id', $id)->first();
         if ($banner) {
             return $banner;
         }

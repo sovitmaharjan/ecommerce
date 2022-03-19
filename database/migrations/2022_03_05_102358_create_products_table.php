@@ -18,8 +18,6 @@ class CreateProductsTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->foreignId('category_id')->constrained();
-            $table->foreignId('sub_category_id')->constrained('categories')->nullable();
-            $table->foreignId('sub_sub_category_id')->constrained('categories')->nullable();
             $table->text('video_url')->nullable();
             $table->longText('description');
             $table->string('seo_title')->nullable();

@@ -31,7 +31,7 @@ Route::group(['middleware' => [
 
     Route::group([
         'prefix' => 'admin',
-        // 'middleware' => 'auth:api'
+        'middleware' => 'auth:api'
     ], function () {
         //
         Route::get('/user', function (Request $request) {

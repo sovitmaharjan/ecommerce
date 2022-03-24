@@ -3,9 +3,9 @@
 @section('style')
 
     <!--begin::Page Vendor Stylesheets(used by this page)-->
-    <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet"
+    <link href="{{ asset('assets/admin/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet"
         type="text/css" />
-    <link href="{{ asset('assets/plugins/custom/vis-timeline/vis-timeline.bundle.css') }}" rel="stylesheet"
+    <link href="{{ asset('assets/admin/plugins/custom/vis-timeline/vis-timeline.bundle.css') }}" rel="stylesheet"
         type="text/css" />
     <!--end::Page Vendor Stylesheets-->
 
@@ -284,7 +284,7 @@
                                     </div>
                                     <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"
                                         title="Michael Eberon">
-                                        <img alt="Pic" src="{{ asset('assets/media/avatars/300-11.jpg') }}" />
+                                        <img alt="Pic" src="{{ asset('assets/admin/media/avatars/300-11.jpg') }}" />
                                     </div>
                                     <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"
                                         title="Susan Redwood">
@@ -292,7 +292,7 @@
                                     </div>
                                     <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"
                                         title="Melody Macy">
-                                        <img alt="Pic" src="{{ asset('assets/media/avatars/300-2.jpg') }}" />
+                                        <img alt="Pic" src="{{ asset('assets/admin/media/avatars/300-2.jpg') }}" />
                                     </div>
                                     <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"
                                         title="Perry Matthew">
@@ -300,7 +300,7 @@
                                     </div>
                                     <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"
                                         title="Barry Walter">
-                                        <img alt="Pic" src="{{ asset('assets/media/avatars/300-12.jpg') }}" />
+                                        <img alt="Pic" src="{{ asset('assets/admin/media/avatars/300-12.jpg') }}" />
                                     </div>
                                     <a href="#" class="symbol symbol-35px symbol-circle" data-bs-toggle="modal"
                                         data-bs-target="#kt_modal_view_users">
@@ -470,7 +470,7 @@
                                             <!--begin::Icon-->
                                             <div class="nav-icon">
                                                 <img alt=""
-                                                    src="{{ asset('assets/media/svg/products-categories/t-shirt.svg') }}"
+                                                    src="{{ asset('assets/admin/media/svg/products-categories/t-shirt.svg') }}"
                                                     class="" />
                                             </div>
                                             <!--end::Icon-->
@@ -493,7 +493,7 @@
                                             <!--begin::Icon-->
                                             <div class="nav-icon">
                                                 <img alt=""
-                                                    src="{{ asset('assets/media/svg/products-categories/gaming.svg') }}"
+                                                    src="{{ asset('assets/admin/media/svg/products-categories/gaming.svg') }}"
                                                     class="" />
                                             </div>
                                             <!--end::Icon-->
@@ -516,7 +516,7 @@
                                             <!--begin::Icon-->
                                             <div class="nav-icon">
                                                 <img alt=""
-                                                    src="{{ asset('assets/media/svg/products-categories/watch.svg') }}"
+                                                    src="{{ asset('assets/admin/media/svg/products-categories/watch.svg') }}"
                                                     class="" />
                                             </div>
                                             <!--end::Icon-->
@@ -539,7 +539,7 @@
                                             <!--begin::Icon-->
                                             <div class="nav-icon">
                                                 <img alt=""
-                                                    src="{{ asset('assets/media/svg/products-categories/gloves.svg') }}"
+                                                    src="{{ asset('assets/admin/media/svg/products-categories/gloves.svg') }}"
                                                     class="nav-icon" />
                                             </div>
                                             <!--end::Icon-->
@@ -562,7 +562,7 @@
                                             <!--begin::Icon-->
                                             <div class="nav-icon">
                                                 <img alt=""
-                                                    src="{{ asset('assets/media/svg/products-categories/shoes.svg') }}"
+                                                    src="{{ asset('assets/admin/media/svg/products-categories/shoes.svg') }}"
                                                     class="nav-icon" />
                                             </div>
                                             <!--end::Icon-->
@@ -602,7 +602,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>
-                                                            <img src="{{ asset('assets/media/stock/ecommerce/210.gif') }}"
+                                                            <img src="{{ asset('assets/admin/media/stock/ecommerce/210.gif') }}"
                                                                 class="w-50px ms-n1" alt="" />
                                                         </td>
                                                         <td class="ps-0">
@@ -628,7 +628,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <img src="{{ asset('assets/media/stock/ecommerce/215.gif') }}"
+                                                            <img src="{{ asset('assets/admin/media/stock/ecommerce/215.gif') }}"
                                                                 class="w-50px ms-n1" alt="" />
                                                         </td>
                                                         <td class="ps-0">
@@ -654,7 +654,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <img src="{{ asset('assets/media/stock/ecommerce/209.gif') }}"
+                                                            <img src="{{ asset('assets/admin/media/stock/ecommerce/209.gif') }}"
                                                                 class="w-50px ms-n1" alt="" />
                                                         </td>
                                                         <td class="ps-0">
@@ -705,7 +705,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>
-                                                            <img src="{{ asset('assets/media/stock/ecommerce/197.gif') }}"
+                                                            <img src="{{ asset('assets/admin/media/stock/ecommerce/197.gif') }}"
                                                                 class="w-50px ms-n1" alt="" />
                                                         </td>
                                                         <td class="ps-0">
@@ -731,7 +731,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <img src="{{ asset('assets/media/stock/ecommerce/178.gif') }}"
+                                                            <img src="{{ asset('assets/admin/media/stock/ecommerce/178.gif') }}"
                                                                 class="w-50px ms-n1" alt="" />
                                                         </td>
                                                         <td class="ps-0">
@@ -757,7 +757,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <img src="{{ asset('assets/media/stock/ecommerce/22.gif') }}"
+                                                            <img src="{{ asset('assets/admin/media/stock/ecommerce/22.gif') }}"
                                                                 class="w-50px ms-n1" alt="" />
                                                         </td>
                                                         <td class="ps-0">
@@ -808,7 +808,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>
-                                                            <img src="{{ asset('assets/media/stock/ecommerce/1.gif') }}"
+                                                            <img src="{{ asset('assets/admin/media/stock/ecommerce/1.gif') }}"
                                                                 class="w-50px ms-n1" alt="" />
                                                         </td>
                                                         <td class="ps-0">
@@ -834,7 +834,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <img src="{{ asset('assets/media/stock/ecommerce/24.gif') }}"
+                                                            <img src="{{ asset('assets/admin/media/stock/ecommerce/24.gif') }}"
                                                                 class="w-50px ms-n1" alt="" />
                                                         </td>
                                                         <td class="ps-0">
@@ -860,7 +860,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <img src="{{ asset('assets/media/stock/ecommerce/71.gif') }}"
+                                                            <img src="{{ asset('assets/admin/media/stock/ecommerce/71.gif') }}"
                                                                 class="w-50px ms-n1" alt="" />
                                                         </td>
                                                         <td class="ps-0">
@@ -911,7 +911,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>
-                                                            <img src="{{ asset('assets/media/stock/ecommerce/41.gif') }}"
+                                                            <img src="{{ asset('assets/admin/media/stock/ecommerce/41.gif') }}"
                                                                 class="w-50px ms-n1" alt="" />
                                                         </td>
                                                         <td class="ps-0">
@@ -937,7 +937,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <img src="{{ asset('assets/media/stock/ecommerce/63.gif') }}"
+                                                            <img src="{{ asset('assets/admin/media/stock/ecommerce/63.gif') }}"
                                                                 class="w-50px ms-n1" alt="" />
                                                         </td>
                                                         <td class="ps-0">
@@ -963,7 +963,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <img src="{{ asset('assets/media/stock/ecommerce/59.gif') }}"
+                                                            <img src="{{ asset('assets/admin/media/stock/ecommerce/59.gif') }}"
                                                                 class="w-50px ms-n1" alt="" />
                                                         </td>
                                                         <td class="ps-0">
@@ -1014,7 +1014,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>
-                                                            <img src="{{ asset('assets/media/stock/ecommerce/10.gif') }}"
+                                                            <img src="{{ asset('assets/admin/media/stock/ecommerce/10.gif') }}"
                                                                 class="w-50px ms-n1" alt="" />
                                                         </td>
                                                         <td class="ps-0">
@@ -1039,7 +1039,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <img src="{{ asset('assets/media/stock/ecommerce/96.gif') }}"
+                                                            <img src="{{ asset('assets/admin/media/stock/ecommerce/96.gif') }}"
                                                                 class="w-50px ms-n1" alt="" />
                                                         </td>
                                                         <td class="ps-0">
@@ -1064,7 +1064,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <img src="{{ asset('assets/media/stock/ecommerce/13.gif') }}"
+                                                            <img src="{{ asset('assets/admin/media/stock/ecommerce/13.gif') }}"
                                                                 class="w-50px ms-n1" alt="" />
                                                         </td>
                                                         <td class="ps-0">
@@ -1402,7 +1402,7 @@
                                                 <div class="d-flex align-items-center gap-3">
                                                     <a href="#"
                                                         class="symbol symbol-50px bg-secondary bg-opacity-25 rounded">
-                                                        <img src="{{ asset('assets/media/stock/ecommerce/') }}"
+                                                        <img src="{{ asset('assets/admin/media/stock/ecommerce/') }}"
                                                             alt="" data-kt-table-widget-4="template_image" />
                                                     </a>
                                                     <div class="d-flex flex-column text-muted">
@@ -1769,7 +1769,7 @@
                                             <!--begin::Wrapper-->
                                             <div class="me-3">
                                                 <!--begin::Icon-->
-                                                <img src="{{ asset('assets/media/stock/ecommerce/210.gif') }}"
+                                                <img src="{{ asset('assets/admin/media/stock/ecommerce/210.gif') }}"
                                                     class="w-50px ms-n1 me-1" alt="" />
                                                 <!--end::Icon-->
                                                 <!--begin::Title-->
@@ -1899,7 +1899,7 @@
                                             <!--begin::Wrapper-->
                                             <div class="me-3">
                                                 <!--begin::Icon-->
-                                                <img src="{{ asset('assets/media/stock/ecommerce/209.gif') }}"
+                                                <img src="{{ asset('assets/admin/media/stock/ecommerce/209.gif') }}"
                                                     class="w-50px ms-n1 me-1" alt="" />
                                                 <!--end::Icon-->
                                                 <!--begin::Title-->
@@ -2029,7 +2029,7 @@
                                             <!--begin::Wrapper-->
                                             <div class="me-3">
                                                 <!--begin::Icon-->
-                                                <img src="{{ asset('assets/media/stock/ecommerce/214.gif') }}"
+                                                <img src="{{ asset('assets/admin/media/stock/ecommerce/214.gif') }}"
                                                     class="w-50px ms-n1 me-1" alt="" />
                                                 <!--end::Icon-->
                                                 <!--begin::Title-->
@@ -2159,7 +2159,7 @@
                                             <!--begin::Wrapper-->
                                             <div class="me-3">
                                                 <!--begin::Icon-->
-                                                <img src="{{ asset('assets/media/stock/ecommerce/211.gif') }}"
+                                                <img src="{{ asset('assets/admin/media/stock/ecommerce/211.gif') }}"
                                                     class="w-50px ms-n1 me-1" alt="" />
                                                 <!--end::Icon-->
                                                 <!--begin::Title-->
@@ -2289,7 +2289,7 @@
                                             <!--begin::Wrapper-->
                                             <div class="me-3">
                                                 <!--begin::Icon-->
-                                                <img src="{{ asset('assets/media/stock/ecommerce/215.gif') }}"
+                                                <img src="{{ asset('assets/admin/media/stock/ecommerce/215.gif') }}"
                                                     class="w-50px ms-n1 me-1" alt="" />
                                                 <!--end::Icon-->
                                                 <!--begin::Title-->
@@ -2418,7 +2418,7 @@
                                             <!--begin::Wrapper-->
                                             <div class="me-3">
                                                 <!--begin::Icon-->
-                                                <img src="{{ asset('assets/media/stock/ecommerce/192.gif') }}"
+                                                <img src="{{ asset('assets/admin/media/stock/ecommerce/192.gif') }}"
                                                     class="w-50px ms-n1 me-1" alt="" />
                                                 <!--end::Icon-->
                                                 <!--begin::Title-->
@@ -2845,15 +2845,15 @@
 @section('script')
 
     <!--begin::Page Vendors Javascript(used by this page)-->
-    <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
-    <script src="{{ asset('assets/plugins/custom/vis-timeline/vis-timeline.bundle.js') }}"></script>
+    <script src="{{ asset('assets/admin/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+    <script src="{{ asset('assets/admin/plugins/custom/vis-timeline/vis-timeline.bundle.js') }}"></script>
     <!--end::Page Vendors Javascript-->
     <!--begin::Page Custom Javascript(used by this page)-->
-    <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/apps/chat/chat.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/utilities/modals/users-search.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/widgets.bundle.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/custom/widgets.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/custom/apps/chat/chat.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/custom/utilities/modals/users-search.js') }}"></script>
     <!--end::Page Custom Javascript-->
 
 @endsection

@@ -97,7 +97,7 @@
                             <!--begin::Card body-->
                             <div class="card-body text-center pt-0">
                                 <!--begin::Image input-->
-                                <div class="image-input image-input-outline image-input-empty" data-kt-image-input="true" style="background-image: url({{ asset('assets/media/svg/avatars/blank.svg') }})">
+                                <div class="image-input image-input-outline image-input-empty" data-kt-image-input="true" style="background-image: url({{ asset('assets/admin/media/svg/avatars/blank.svg') }})">
                                     <!--begin::Preview existing avatar-->
                                     <div class="image-input-wrapper w-125px h-125px"></div>
                                     <!--end::Preview existing avatar-->
@@ -235,6 +235,6 @@
 
 @section('script')
 
-    <script src="{{ asset('assets/js/custom/apps/ecommerce/catalog/save-category.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/custom/apps/ecommerce/catalog/save-category.js') }}"></script>
 
 @endSection

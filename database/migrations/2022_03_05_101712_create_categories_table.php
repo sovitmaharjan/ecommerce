@@ -23,6 +23,7 @@ class CreateCategoriesTable extends Migration
             $table->text('description')->nullable();
             $table->string('meta_title')->nullable();
             $table->text('meta_description')->nullable();
+            $table->string('meta_keyword')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });

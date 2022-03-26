@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
@@ -33,6 +34,7 @@ Route::group([
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::resource('banner', BannerController::class);
+    Route::resource('category', CategoryController::class);
     // Route::post('/status/{id}', [HomeController::class, 'updateStatus'])->name('status.update');
     // Route::resource('user', UserController::class);
     // Route::resource('brand', BrandController::class);

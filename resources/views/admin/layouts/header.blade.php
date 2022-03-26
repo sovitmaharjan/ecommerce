@@ -1,11 +1,8 @@
 <div id="kt_header" style="" class="header align-items-stretch">
-    <!--begin::Container-->
     <div class="container-fluid d-flex align-items-stretch justify-content-between">
-        <!--begin::Aside mobile toggle-->
         <div class="d-flex align-items-center d-lg-none ms-n2 me-2" title="Show aside menu">
             <div class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-40px h-md-40px"
                 id="kt_aside_mobile_toggle">
-                <!--begin::Svg Icon | path: icons/duotune/abstract/abs015.svg-->
                 <span class="svg-icon svg-icon-1">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path d="M21 7H3C2.4 7 2 6.6 2 6V4C2 3.4 2.4 3 3 3H21C21.6 3 22 3.4 22 4V6C22 6.6 21.6 7 21 7Z"
@@ -15,28 +12,20 @@
                             fill="black" />
                     </svg>
                 </span>
-                <!--end::Svg Icon-->
             </div>
         </div>
-        <!--end::Aside mobile toggle-->
-        <!--begin::Mobile logo-->
         <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
             <a href="../../demo1/dist/index.html" class="d-lg-none">
                 <img alt="Logo" src="{{ asset('assets/admin/media/logos/logo-2.svg') }}" class="h-30px" />
             </a>
         </div>
-        <!--end::Mobile logo-->
-        <!--begin::Wrapper-->
         <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1">
-            <!--begin::Navbar-->
             <div class="d-flex align-items-stretch" id="kt_header_nav">
-                <!--begin::Menu wrapper-->
                 <div class="header-menu align-items-stretch" data-kt-drawer="true" data-kt-drawer-name="header-menu"
                     data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true"
                     data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="end"
                     data-kt-drawer-toggle="#kt_header_menu_mobile_toggle" data-kt-swapper="true"
                     data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav'}">
-                    <!--begin::Menu-->
                     <div class="menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-700 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-400 fw-bold my-5 my-lg-0 align-items-stretch"
                         id="#kt_header_menu" data-kt-menu="true">
                         <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start"
@@ -125,7 +114,6 @@
                                     data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
                                     <span class="menu-link py-3">
                                         <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm007.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
@@ -140,7 +128,6 @@
                                                         fill="black" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-title">Pages</span>
                                         <span class="menu-arrow"></span>
@@ -391,7 +378,6 @@
                                     data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
                                     <span class="menu-link py-3">
                                         <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/communication/com013.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
@@ -402,7 +388,6 @@
                                                         fill="black" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-title">Account</span>
                                         <span class="menu-arrow"></span>
@@ -479,7 +464,6 @@
                                     data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
                                     <span class="menu-link py-3">
                                         <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/technology/teh004.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
@@ -491,7 +475,6 @@
                                                         fill="black" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-title">Authentication</span>
                                         <span class="menu-arrow"></span>
@@ -856,7 +839,6 @@
                                     data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
                                     <span class="menu-link py-3">
                                         <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/art/art009.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
@@ -868,7 +850,6 @@
                                                         fill="black" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-title">Utilities</span>
                                         <span class="menu-arrow"></span>
@@ -1251,7 +1232,6 @@
                                     data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
                                     <span class="menu-link py-3">
                                         <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
@@ -1269,7 +1249,6 @@
                                                         fill="black" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-title">Widgets</span>
                                         <span class="menu-arrow"></span>
@@ -1340,7 +1319,6 @@
                                     data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
                                     <span class="menu-link py-3">
                                         <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/general/gen002.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
@@ -1352,7 +1330,6 @@
                                                         fill="black" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-title">Projects</span>
                                         <span class="menu-arrow"></span>
@@ -1434,7 +1411,6 @@
                                     data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
                                     <span class="menu-link py-3">
                                         <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm001.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
@@ -1452,7 +1428,6 @@
                                                         fill="black" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-title">eCommerce</span>
                                         <span class="menu-arrow"></span>
@@ -1615,7 +1590,6 @@
                                     data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
                                     <span class="menu-link py-3">
                                         <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/graphs/gra006.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
@@ -1627,7 +1601,6 @@
                                                         fill="black" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-title">Support Center</span>
                                         <span class="menu-arrow"></span>
@@ -1742,7 +1715,6 @@
                                     data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
                                     <span class="menu-link py-3">
                                         <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/general/gen051.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
@@ -1754,7 +1726,6 @@
                                                         fill="black" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-title">User Management</span>
                                         <span class="menu-arrow"></span>
@@ -1840,7 +1811,6 @@
                                     data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
                                     <span class="menu-link py-3">
                                         <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm002.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
@@ -1855,7 +1825,6 @@
                                                         fill="black" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-title">Subscriptions</span>
                                         <span class="menu-arrow"></span>
@@ -1904,7 +1873,6 @@
                                     data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
                                     <span class="menu-link py-3">
                                         <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/finance/fin006.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
@@ -1916,7 +1884,6 @@
                                                         fill="black" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-title">Customers</span>
                                         <span class="menu-arrow"></span>
@@ -1954,7 +1921,6 @@
                                     data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
                                     <span class="menu-link py-3">
                                         <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/finance/fin002.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
@@ -1964,7 +1930,6 @@
                                                         fill="black" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-title">Invoice Management</span>
                                         <span class="menu-arrow"></span>
@@ -2027,7 +1992,6 @@
                                     data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
                                     <span class="menu-link py-3">
                                         <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/files/fil025.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
@@ -2040,7 +2004,6 @@
                                                         fill="black" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-title">File Manager</span>
                                         <span class="menu-arrow"></span>
@@ -2089,7 +2052,6 @@
                                     data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
                                     <span class="menu-link py-3">
                                         <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/communication/com011.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
@@ -2101,7 +2063,6 @@
                                                         fill="black" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-title">Inbox</span>
                                         <span class="menu-arrow"></span>
@@ -2138,7 +2099,6 @@
                                     data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
                                     <span class="menu-link py-3">
                                         <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/communication/com012.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
@@ -2149,7 +2109,6 @@
                                                     <rect x="6" y="7" width="12" height="2" rx="1" fill="black" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-title">Chat</span>
                                         <span class="menu-arrow"></span>
@@ -2185,7 +2144,6 @@
                                 <div class="menu-item">
                                     <a class="menu-link py-3" href="../../demo1/dist/apps/calendar.html">
                                         <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
@@ -2200,7 +2158,6 @@
                                                         fill="black" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-title">Calendar</span>
                                     </a>
@@ -2219,7 +2176,6 @@
                                     data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion">
                                     <span class="menu-link py-3">
                                         <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/abstract/abs042.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
@@ -2231,7 +2187,6 @@
                                                         fill="black" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-title">Toolbars</span>
                                         <span class="menu-arrow"></span>
@@ -2298,7 +2253,6 @@
                                     data-kt-menu-placement="right-start" class="menu-item menu-lg-dropdown">
                                     <span class="menu-link py-3">
                                         <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/general/gen009.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
@@ -2310,7 +2264,6 @@
                                                         fill="black" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-title">Aside</span>
                                         <span class="menu-arrow"></span>
@@ -2362,7 +2315,6 @@
                                         data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click"
                                         data-bs-placement="right">
                                         <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
@@ -2374,7 +2326,6 @@
                                                         fill="black" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-title">Layout Builder</span>
                                     </a>
@@ -2396,7 +2347,6 @@
                                         data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click"
                                         data-bs-placement="right">
                                         <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: /icons/duotune/general/gen002.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
@@ -2408,7 +2358,6 @@
                                                         fill="black" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-title">Components</span>
                                     </a>
@@ -2420,7 +2369,6 @@
                                         data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click"
                                         data-bs-placement="right">
                                         <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
@@ -2432,7 +2380,6 @@
                                                         fill="black" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-title">Layout Builder</span>
                                     </a>
@@ -2443,7 +2390,6 @@
                                         title="Check out the complete documentation" data-bs-toggle="tooltip"
                                         data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
                                         <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
@@ -2455,7 +2401,6 @@
                                                         fill="black" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-title">Documentation</span>
                                     </a>
@@ -2464,7 +2409,6 @@
                                     <a class="menu-link py-3"
                                         href="../../demo1/dist/documentation/getting-started/changelog.html">
                                         <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/coding/cod003.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
@@ -2476,7 +2420,6 @@
                                                         fill="black" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-title">Changelog v8.0.34</span>
                                     </a>
@@ -2491,9 +2434,7 @@
                             </span>
                             <div
                                 class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown w-100 w-lg-600px p-5 p-lg-5">
-                                <!--begin:Row-->
                                 <div class="row" data-kt-menu-dismiss="true">
-                                    <!--begin:Col-->
                                     <div class="col-lg-4 border-left-lg-1">
                                         <div class="menu-inline menu-column menu-active-bg">
                                             <div class="menu-item">
@@ -2538,8 +2479,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!--end:Col-->
-                                    <!--begin:Col-->
                                     <div class="col-lg-4 border-left-lg-1">
                                         <div class="menu-inline menu-column menu-active-bg">
                                             <div class="menu-item">
@@ -2584,8 +2523,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!--end:Col-->
-                                    <!--begin:Col-->
                                     <div class="col-lg-4 border-left-lg-1">
                                         <div class="menu-inline menu-column menu-active-bg">
                                             <div class="menu-item">
@@ -2630,32 +2567,22 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!--end:Col-->
                                 </div>
-                                <!--end:Row-->
                             </div>
                         </div>
                     </div>
-                    <!--end::Menu-->
                 </div>
-                <!--end::Menu wrapper-->
             </div>
-            <!--end::Navbar-->
-            <!--begin::Toolbar wrapper-->
             <div class="d-flex align-items-stretch flex-shrink-0">
-                <!--begin::Search-->
                 <div class="d-flex align-items-stretch ms-1 ms-lg-3">
-                    <!--begin::Search-->
                     <div id="kt_header_search" class="d-flex align-items-stretch" data-kt-search-keypress="true"
                         data-kt-search-min-length="2" data-kt-search-enter="enter" data-kt-search-layout="menu"
                         data-kt-menu-trigger="auto" data-kt-menu-overflow="false" data-kt-menu-permanent="true"
                         data-kt-menu-placement="bottom-end">
-                        <!--begin::Search toggle-->
                         <div class="d-flex align-items-center" data-kt-search-element="toggle"
                             id="kt_header_search_toggle">
                             <div
                                 class="btn btn-icon btn-icon-muted btn-active-light btn-active-color-primary w-30px h-30px w-md-40px h-md-40px">
-                                <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
                                 <span class="svg-icon svg-icon-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none">
@@ -2666,20 +2593,13 @@
                                             fill="black" />
                                     </svg>
                                 </span>
-                                <!--end::Svg Icon-->
                             </div>
                         </div>
-                        <!--end::Search toggle-->
-                        <!--begin::Menu-->
                         <div data-kt-search-element="content"
                             class="menu menu-sub menu-sub-dropdown p-7 w-325px w-md-375px">
-                            <!--begin::Wrapper-->
                             <div data-kt-search-element="wrapper">
-                                <!--begin::Form-->
                                 <form data-kt-search-element="form" class="w-100 position-relative mb-3"
                                     autocomplete="off">
-                                    <!--begin::Icon-->
-                                    <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
                                     <span
                                         class="svg-icon svg-icon-2 svg-icon-lg-1 svg-icon-gray-500 position-absolute top-50 translate-middle-y ms-0">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -2691,23 +2611,15 @@
                                                 fill="black" />
                                         </svg>
                                     </span>
-                                    <!--end::Svg Icon-->
-                                    <!--end::Icon-->
-                                    <!--begin::Input-->
                                     <input type="text" class="search-input form-control form-control-flush ps-10"
                                         name="search" value="" placeholder="Search..." data-kt-search-element="input" />
-                                    <!--end::Input-->
-                                    <!--begin::Spinner-->
                                     <span class="position-absolute top-50 end-0 translate-middle-y lh-0 d-none me-1"
                                         data-kt-search-element="spinner">
                                         <span class="spinner-border h-15px w-15px align-middle text-gray-400"></span>
                                     </span>
-                                    <!--end::Spinner-->
-                                    <!--begin::Reset-->
                                     <span
                                         class="btn btn-flush btn-active-color-primary position-absolute top-50 end-0 translate-middle-y lh-0 d-none"
                                         data-kt-search-element="clear">
-                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                                         <span class="svg-icon svg-icon-2 svg-icon-lg-1 me-0">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none">
@@ -2717,17 +2629,12 @@
                                                     transform="rotate(45 7.41422 6)" fill="black" />
                                             </svg>
                                         </span>
-                                        <!--end::Svg Icon-->
                                     </span>
-                                    <!--end::Reset-->
-                                    <!--begin::Toolbar-->
                                     <div class="position-absolute top-50 end-0 translate-middle-y"
                                         data-kt-search-element="toolbar">
-                                        <!--begin::Preferences toggle-->
                                         <div data-kt-search-element="preferences-show"
                                             class="btn btn-icon w-20px btn-sm btn-active-color-primary me-1"
                                             data-bs-toggle="tooltip" title="Show search preferences">
-                                            <!--begin::Svg Icon | path: icons/duotune/coding/cod001.svg-->
                                             <span class="svg-icon svg-icon-1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
@@ -2739,14 +2646,10 @@
                                                         fill="black" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->
                                         </div>
-                                        <!--end::Preferences toggle-->
-                                        <!--begin::Advanced search toggle-->
                                         <div data-kt-search-element="advanced-options-form-show"
                                             class="btn btn-icon w-20px btn-sm btn-active-color-primary"
                                             data-bs-toggle="tooltip" title="Show more search options">
-                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
@@ -2755,117 +2658,78 @@
                                                         fill="black" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->
                                         </div>
-                                        <!--end::Advanced search toggle-->
                                     </div>
-                                    <!--end::Toolbar-->
                                 </form>
-                                <!--end::Form-->
-                                <!--begin::Separator-->
                                 <div class="separator border-gray-200 mb-6"></div>
-                                <!--end::Separator-->
-                                <!--begin::Recently viewed-->
                                 <div data-kt-search-element="results" class="d-none">
-                                    <!--begin::Items-->
                                     <div class="scroll-y mh-200px mh-lg-350px">
-                                        <!--begin::Category title-->
                                         <h3 class="fs-5 text-muted m-0 pb-5" data-kt-search-element="category-title">
                                             Users</h3>
-                                        <!--end::Category title-->
-                                        <!--begin::Item-->
                                         <a href="#"
                                             class="d-flex text-dark text-hover-primary align-items-center mb-5">
-                                            <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
-                                                <img src="{{ asset('assets/admin/media/avatars/300-6.jpg') }}" alt="" />
+                                                <img src="{{ asset('assets/admin/media/avatars/300-6.jpg') }}"
+                                                    alt="" />
                                             </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Title-->
                                             <div class="d-flex flex-column justify-content-start fw-bold">
                                                 <span class="fs-6 fw-bold">Karina Clark</span>
                                                 <span class="fs-7 fw-bold text-muted">Marketing
                                                     Manager</span>
                                             </div>
-                                            <!--end::Title-->
                                         </a>
-                                        <!--end::Item-->
-                                        <!--begin::Item-->
                                         <a href="#"
                                             class="d-flex text-dark text-hover-primary align-items-center mb-5">
-                                            <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
-                                                <img src="{{ asset('assets/admin/media/avatars/300-2.jpg') }}" alt="" />
+                                                <img src="{{ asset('assets/admin/media/avatars/300-2.jpg') }}"
+                                                    alt="" />
                                             </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Title-->
                                             <div class="d-flex flex-column justify-content-start fw-bold">
                                                 <span class="fs-6 fw-bold">Olivia Bold</span>
                                                 <span class="fs-7 fw-bold text-muted">Software
                                                     Engineer</span>
                                             </div>
-                                            <!--end::Title-->
                                         </a>
-                                        <!--end::Item-->
-                                        <!--begin::Item-->
                                         <a href="#"
                                             class="d-flex text-dark text-hover-primary align-items-center mb-5">
-                                            <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
-                                                <img src="{{ asset('assets/admin/media/avatars/300-9.jpg') }}" alt="" />
+                                                <img src="{{ asset('assets/admin/media/avatars/300-9.jpg') }}"
+                                                    alt="" />
                                             </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Title-->
                                             <div class="d-flex flex-column justify-content-start fw-bold">
                                                 <span class="fs-6 fw-bold">Ana Clark</span>
                                                 <span class="fs-7 fw-bold text-muted">UI/UX
                                                     Designer</span>
                                             </div>
-                                            <!--end::Title-->
                                         </a>
-                                        <!--end::Item-->
-                                        <!--begin::Item-->
                                         <a href="#"
                                             class="d-flex text-dark text-hover-primary align-items-center mb-5">
-                                            <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
-                                                <img src="{{ asset('assets/admin/media/avatars/300-14.jpg') }}" alt="" />
+                                                <img src="{{ asset('assets/admin/media/avatars/300-14.jpg') }}"
+                                                    alt="" />
                                             </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Title-->
                                             <div class="d-flex flex-column justify-content-start fw-bold">
                                                 <span class="fs-6 fw-bold">Nick Pitola</span>
                                                 <span class="fs-7 fw-bold text-muted">Art
                                                     Director</span>
                                             </div>
-                                            <!--end::Title-->
                                         </a>
-                                        <!--end::Item-->
-                                        <!--begin::Item-->
                                         <a href="#"
                                             class="d-flex text-dark text-hover-primary align-items-center mb-5">
-                                            <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
-                                                <img src="{{ asset('assets/admin/media/avatars/300-11.jpg') }}" alt="" />
+                                                <img src="{{ asset('assets/admin/media/avatars/300-11.jpg') }}"
+                                                    alt="" />
                                             </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Title-->
                                             <div class="d-flex flex-column justify-content-start fw-bold">
                                                 <span class="fs-6 fw-bold">Edward Kulnic</span>
                                                 <span class="fs-7 fw-bold text-muted">System
                                                     Administrator</span>
                                             </div>
-                                            <!--end::Title-->
                                         </a>
-                                        <!--end::Item-->
-                                        <!--begin::Category title-->
                                         <h3 class="fs-5 text-muted m-0 pt-5 pb-5"
                                             data-kt-search-element="category-title">Customers</h3>
-                                        <!--end::Category title-->
-                                        <!--begin::Item-->
                                         <a href="#"
                                             class="d-flex text-dark text-hover-primary align-items-center mb-5">
-                                            <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
                                                 <span class="symbol-label bg-light">
                                                     <img class="w-20px h-20px"
@@ -2873,19 +2737,13 @@
                                                         alt="" />
                                                 </span>
                                             </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Title-->
                                             <div class="d-flex flex-column justify-content-start fw-bold">
                                                 <span class="fs-6 fw-bold">Company Rbranding</span>
                                                 <span class="fs-7 fw-bold text-muted">UI Design</span>
                                             </div>
-                                            <!--end::Title-->
                                         </a>
-                                        <!--end::Item-->
-                                        <!--begin::Item-->
                                         <a href="#"
                                             class="d-flex text-dark text-hover-primary align-items-center mb-5">
-                                            <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
                                                 <span class="symbol-label bg-light">
                                                     <img class="w-20px h-20px"
@@ -2893,21 +2751,15 @@
                                                         alt="" />
                                                 </span>
                                             </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Title-->
                                             <div class="d-flex flex-column justify-content-start fw-bold">
                                                 <span class="fs-6 fw-bold">Company
                                                     Re-branding</span>
                                                 <span class="fs-7 fw-bold text-muted">Web
                                                     Development</span>
                                             </div>
-                                            <!--end::Title-->
                                         </a>
-                                        <!--end::Item-->
-                                        <!--begin::Item-->
                                         <a href="#"
                                             class="d-flex text-dark text-hover-primary align-items-center mb-5">
-                                            <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
                                                 <span class="symbol-label bg-light">
                                                     <img class="w-20px h-20px"
@@ -2915,20 +2767,14 @@
                                                         alt="" />
                                                 </span>
                                             </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Title-->
                                             <div class="d-flex flex-column justify-content-start fw-bold">
                                                 <span class="fs-6 fw-bold">Business Analytics
                                                     App</span>
                                                 <span class="fs-7 fw-bold text-muted">Administration</span>
                                             </div>
-                                            <!--end::Title-->
                                         </a>
-                                        <!--end::Item-->
-                                        <!--begin::Item-->
                                         <a href="#"
                                             class="d-flex text-dark text-hover-primary align-items-center mb-5">
-                                            <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
                                                 <span class="symbol-label bg-light">
                                                     <img class="w-20px h-20px"
@@ -2936,19 +2782,13 @@
                                                         alt="" />
                                                 </span>
                                             </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Title-->
                                             <div class="d-flex flex-column justify-content-start fw-bold">
                                                 <span class="fs-6 fw-bold">EcoLeaf App Launch</span>
                                                 <span class="fs-7 fw-bold text-muted">Marketing</span>
                                             </div>
-                                            <!--end::Title-->
                                         </a>
-                                        <!--end::Item-->
-                                        <!--begin::Item-->
                                         <a href="#"
                                             class="d-flex text-dark text-hover-primary align-items-center mb-5">
-                                            <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
                                                 <span class="symbol-label bg-light">
                                                     <img class="w-20px h-20px"
@@ -2956,28 +2796,19 @@
                                                         alt="" />
                                                 </span>
                                             </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Title-->
                                             <div class="d-flex flex-column justify-content-start fw-bold">
                                                 <span class="fs-6 fw-bold">Tower Group
                                                     Website</span>
                                                 <span class="fs-7 fw-bold text-muted">Google
                                                     Adwords</span>
                                             </div>
-                                            <!--end::Title-->
                                         </a>
-                                        <!--end::Item-->
-                                        <!--begin::Category title-->
                                         <h3 class="fs-5 text-muted m-0 pt-5 pb-5"
                                             data-kt-search-element="category-title">Projects</h3>
-                                        <!--end::Category title-->
-                                        <!--begin::Item-->
                                         <a href="#"
                                             class="d-flex text-dark text-hover-primary align-items-center mb-5">
-                                            <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
                                                 <span class="symbol-label bg-light">
-                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen005.svg-->
                                                     <span class="svg-icon svg-icon-2 svg-icon-primary">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                             viewBox="0 0 24 24" fill="none">
@@ -2994,26 +2825,18 @@
                                                                 fill="black" />
                                                         </svg>
                                                     </span>
-                                                    <!--end::Svg Icon-->
                                                 </span>
                                             </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Title-->
                                             <div class="d-flex flex-column">
                                                 <span class="fs-6 fw-bold">Si-Fi Project by AU
                                                     Themes</span>
                                                 <span class="fs-7 fw-bold text-muted">#45670</span>
                                             </div>
-                                            <!--end::Title-->
                                         </a>
-                                        <!--end::Item-->
-                                        <!--begin::Item-->
                                         <a href="#"
                                             class="d-flex text-dark text-hover-primary align-items-center mb-5">
-                                            <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
                                                 <span class="symbol-label bg-light">
-                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen032.svg-->
                                                     <span class="svg-icon svg-icon-2 svg-icon-primary">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                             viewBox="0 0 24 24" fill="none">
@@ -3027,26 +2850,18 @@
                                                                 fill="black" />
                                                         </svg>
                                                     </span>
-                                                    <!--end::Svg Icon-->
                                                 </span>
                                             </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Title-->
                                             <div class="d-flex flex-column">
                                                 <span class="fs-6 fw-bold">Shopix Mobile App
                                                     Planning</span>
                                                 <span class="fs-7 fw-bold text-muted">#45690</span>
                                             </div>
-                                            <!--end::Title-->
                                         </a>
-                                        <!--end::Item-->
-                                        <!--begin::Item-->
                                         <a href="#"
                                             class="d-flex text-dark text-hover-primary align-items-center mb-5">
-                                            <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
                                                 <span class="symbol-label bg-light">
-                                                    <!--begin::Svg Icon | path: icons/duotune/communication/com012.svg-->
                                                     <span class="svg-icon svg-icon-2 svg-icon-primary">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                             viewBox="0 0 24 24" fill="none">
@@ -3059,26 +2874,18 @@
                                                                 fill="black" />
                                                         </svg>
                                                     </span>
-                                                    <!--end::Svg Icon-->
                                                 </span>
                                             </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Title-->
                                             <div class="d-flex flex-column">
                                                 <span class="fs-6 fw-bold">Finance Monitoring SAAS
                                                     Discussion</span>
                                                 <span class="fs-7 fw-bold text-muted">#21090</span>
                                             </div>
-                                            <!--end::Title-->
                                         </a>
-                                        <!--end::Item-->
-                                        <!--begin::Item-->
                                         <a href="#"
                                             class="d-flex text-dark text-hover-primary align-items-center mb-5">
-                                            <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
                                                 <span class="symbol-label bg-light">
-                                                    <!--begin::Svg Icon | path: icons/duotune/communication/com006.svg-->
                                                     <span class="svg-icon svg-icon-2 svg-icon-primary">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                             viewBox="0 0 24 24" fill="none">
@@ -3090,40 +2897,24 @@
                                                                 fill="black" />
                                                         </svg>
                                                     </span>
-                                                    <!--end::Svg Icon-->
                                                 </span>
                                             </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Title-->
                                             <div class="d-flex flex-column">
                                                 <span class="fs-6 fw-bold">Dashboard Analitics
                                                     Launch</span>
                                                 <span class="fs-7 fw-bold text-muted">#34560</span>
                                             </div>
-                                            <!--end::Title-->
                                         </a>
-                                        <!--end::Item-->
                                     </div>
-                                    <!--end::Items-->
                                 </div>
-                                <!--end::Recently viewed-->
-                                <!--begin::Recently viewed-->
                                 <div class="mb-5" data-kt-search-element="main">
-                                    <!--begin::Heading-->
                                     <div class="d-flex flex-stack fw-bold mb-4">
-                                        <!--begin::Label-->
                                         <span class="text-muted fs-6 me-2">Recently Searched:</span>
-                                        <!--end::Label-->
                                     </div>
-                                    <!--end::Heading-->
-                                    <!--begin::Items-->
                                     <div class="scroll-y mh-200px mh-lg-325px">
-                                        <!--begin::Item-->
                                         <div class="d-flex align-items-center mb-5">
-                                            <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
                                                 <span class="symbol-label bg-light">
-                                                    <!--begin::Svg Icon | path: icons/duotune/electronics/elc004.svg-->
                                                     <span class="svg-icon svg-icon-2 svg-icon-primary">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                             viewBox="0 0 24 24" fill="none">
@@ -3136,26 +2927,18 @@
                                                             <path opacity="0.3" d="M15 17H9V20H15V17Z" fill="black" />
                                                         </svg>
                                                     </span>
-                                                    <!--end::Svg Icon-->
                                                 </span>
                                             </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Title-->
                                             <div class="d-flex flex-column">
                                                 <a href="#"
                                                     class="fs-6 text-gray-800 text-hover-primary fw-bold">BoomApp
                                                     by Keenthemes</a>
                                                 <span class="fs-7 text-muted fw-bold">#45789</span>
                                             </div>
-                                            <!--end::Title-->
                                         </div>
-                                        <!--end::Item-->
-                                        <!--begin::Item-->
                                         <div class="d-flex align-items-center mb-5">
-                                            <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
                                                 <span class="symbol-label bg-light">
-                                                    <!--begin::Svg Icon | path: icons/duotune/graphs/gra001.svg-->
                                                     <span class="svg-icon svg-icon-2 svg-icon-primary">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                             viewBox="0 0 24 24" fill="none">
@@ -3167,26 +2950,18 @@
                                                                 fill="black" />
                                                         </svg>
                                                     </span>
-                                                    <!--end::Svg Icon-->
                                                 </span>
                                             </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Title-->
                                             <div class="d-flex flex-column">
                                                 <a href="#"
                                                     class="fs-6 text-gray-800 text-hover-primary fw-bold">"Kept
                                                     API Project Meeting</a>
                                                 <span class="fs-7 text-muted fw-bold">#84050</span>
                                             </div>
-                                            <!--end::Title-->
                                         </div>
-                                        <!--end::Item-->
-                                        <!--begin::Item-->
                                         <div class="d-flex align-items-center mb-5">
-                                            <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
                                                 <span class="symbol-label bg-light">
-                                                    <!--begin::Svg Icon | path: icons/duotune/graphs/gra006.svg-->
                                                     <span class="svg-icon svg-icon-2 svg-icon-primary">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                             viewBox="0 0 24 24" fill="none">
@@ -3198,25 +2973,17 @@
                                                                 fill="black" />
                                                         </svg>
                                                     </span>
-                                                    <!--end::Svg Icon-->
                                                 </span>
                                             </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Title-->
                                             <div class="d-flex flex-column">
                                                 <a href="#" class="fs-6 text-gray-800 text-hover-primary fw-bold">"KPI
                                                     Monitoring App Launch</a>
                                                 <span class="fs-7 text-muted fw-bold">#84250</span>
                                             </div>
-                                            <!--end::Title-->
                                         </div>
-                                        <!--end::Item-->
-                                        <!--begin::Item-->
                                         <div class="d-flex align-items-center mb-5">
-                                            <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
                                                 <span class="symbol-label bg-light">
-                                                    <!--begin::Svg Icon | path: icons/duotune/graphs/gra002.svg-->
                                                     <span class="svg-icon svg-icon-2 svg-icon-primary">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                             viewBox="0 0 24 24" fill="none">
@@ -3227,26 +2994,18 @@
                                                                 fill="black" />
                                                         </svg>
                                                     </span>
-                                                    <!--end::Svg Icon-->
                                                 </span>
                                             </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Title-->
                                             <div class="d-flex flex-column">
                                                 <a href="#"
                                                     class="fs-6 text-gray-800 text-hover-primary fw-bold">Project
                                                     Reference FAQ</a>
                                                 <span class="fs-7 text-muted fw-bold">#67945</span>
                                             </div>
-                                            <!--end::Title-->
                                         </div>
-                                        <!--end::Item-->
-                                        <!--begin::Item-->
                                         <div class="d-flex align-items-center mb-5">
-                                            <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
                                                 <span class="symbol-label bg-light">
-                                                    <!--begin::Svg Icon | path: icons/duotune/communication/com010.svg-->
                                                     <span class="svg-icon svg-icon-2 svg-icon-primary">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                             viewBox="0 0 24 24" fill="none">
@@ -3258,26 +3017,18 @@
                                                                 fill="black" />
                                                         </svg>
                                                     </span>
-                                                    <!--end::Svg Icon-->
                                                 </span>
                                             </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Title-->
                                             <div class="d-flex flex-column">
                                                 <a href="#"
                                                     class="fs-6 text-gray-800 text-hover-primary fw-bold">"FitPro
                                                     App Development</a>
                                                 <span class="fs-7 text-muted fw-bold">#84250</span>
                                             </div>
-                                            <!--end::Title-->
                                         </div>
-                                        <!--end::Item-->
-                                        <!--begin::Item-->
                                         <div class="d-flex align-items-center mb-5">
-                                            <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
                                                 <span class="symbol-label bg-light">
-                                                    <!--begin::Svg Icon | path: icons/duotune/finance/fin001.svg-->
                                                     <span class="svg-icon svg-icon-2 svg-icon-primary">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                             viewBox="0 0 24 24" fill="none">
@@ -3289,26 +3040,18 @@
                                                                 fill="black" />
                                                         </svg>
                                                     </span>
-                                                    <!--end::Svg Icon-->
                                                 </span>
                                             </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Title-->
                                             <div class="d-flex flex-column">
                                                 <a href="#"
                                                     class="fs-6 text-gray-800 text-hover-primary fw-bold">Shopix
                                                     Mobile App</a>
                                                 <span class="fs-7 text-muted fw-bold">#45690</span>
                                             </div>
-                                            <!--end::Title-->
                                         </div>
-                                        <!--end::Item-->
-                                        <!--begin::Item-->
                                         <div class="d-flex align-items-center mb-5">
-                                            <!--begin::Symbol-->
                                             <div class="symbol symbol-40px me-4">
                                                 <span class="symbol-label bg-light">
-                                                    <!--begin::Svg Icon | path: icons/duotune/graphs/gra002.svg-->
                                                     <span class="svg-icon svg-icon-2 svg-icon-primary">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                             viewBox="0 0 24 24" fill="none">
@@ -3319,29 +3062,19 @@
                                                                 fill="black" />
                                                         </svg>
                                                     </span>
-                                                    <!--end::Svg Icon-->
                                                 </span>
                                             </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Title-->
                                             <div class="d-flex flex-column">
                                                 <a href="#"
                                                     class="fs-6 text-gray-800 text-hover-primary fw-bold">"Landing
                                                     UI Design" Launch</a>
                                                 <span class="fs-7 text-muted fw-bold">#24005</span>
                                             </div>
-                                            <!--end::Title-->
                                         </div>
-                                        <!--end::Item-->
                                     </div>
-                                    <!--end::Items-->
                                 </div>
-                                <!--end::Recently viewed-->
-                                <!--begin::Empty-->
                                 <div data-kt-search-element="empty" class="text-center d-none">
-                                    <!--begin::Icon-->
                                     <div class="pt-10 pb-10">
-                                        <!--begin::Svg Icon | path: icons/duotune/files/fil024.svg-->
                                         <span class="svg-icon svg-icon-4x opacity-50">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none">
@@ -3356,107 +3089,71 @@
                                                     fill="black" />
                                             </svg>
                                         </span>
-                                        <!--end::Svg Icon-->
                                     </div>
-                                    <!--end::Icon-->
-                                    <!--begin::Message-->
                                     <div class="pb-15 fw-bold">
                                         <h3 class="text-gray-600 fs-5 mb-2">No result found</h3>
                                         <div class="text-muted fs-7">Please try again with a different
                                             query</div>
                                     </div>
-                                    <!--end::Message-->
                                 </div>
-                                <!--end::Empty-->
                             </div>
-                            <!--end::Wrapper-->
-                            <!--begin::Preferences-->
                             <form data-kt-search-element="advanced-options-form" class="pt-1 d-none">
-                                <!--begin::Heading-->
                                 <h3 class="fw-bold text-dark mb-7">Advanced Search</h3>
-                                <!--end::Heading-->
-                                <!--begin::Input group-->
                                 <div class="mb-5">
                                     <input type="text" class="form-control form-control-sm form-control-solid"
                                         placeholder="Contains the word" name="query" />
                                 </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
                                 <div class="mb-5">
-                                    <!--begin::Radio group-->
                                     <div class="nav-group nav-group-fluid">
-                                        <!--begin::Option-->
                                         <label>
                                             <input type="radio" class="btn-check" name="type" value="has"
                                                 checked="checked" />
                                             <span
                                                 class="btn btn-sm btn-color-muted btn-active btn-active-primary">All</span>
                                         </label>
-                                        <!--end::Option-->
-                                        <!--begin::Option-->
                                         <label>
                                             <input type="radio" class="btn-check" name="type" value="users" />
                                             <span
                                                 class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4">Users</span>
                                         </label>
-                                        <!--end::Option-->
-                                        <!--begin::Option-->
                                         <label>
                                             <input type="radio" class="btn-check" name="type" value="orders" />
                                             <span
                                                 class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4">Orders</span>
                                         </label>
-                                        <!--end::Option-->
-                                        <!--begin::Option-->
                                         <label>
                                             <input type="radio" class="btn-check" name="type" value="projects" />
                                             <span
                                                 class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4">Projects</span>
                                         </label>
-                                        <!--end::Option-->
                                     </div>
-                                    <!--end::Radio group-->
                                 </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
                                 <div class="mb-5">
                                     <input type="text" name="assignedto"
                                         class="form-control form-control-sm form-control-solid"
                                         placeholder="Assigned to" value="" />
                                 </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
                                 <div class="mb-5">
                                     <input type="text" name="collaborators"
                                         class="form-control form-control-sm form-control-solid"
                                         placeholder="Collaborators" value="" />
                                 </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
                                 <div class="mb-5">
-                                    <!--begin::Radio group-->
                                     <div class="nav-group nav-group-fluid">
-                                        <!--begin::Option-->
                                         <label>
                                             <input type="radio" class="btn-check" name="attachment" value="has"
                                                 checked="checked" />
                                             <span class="btn btn-sm btn-color-muted btn-active btn-active-primary">Has
                                                 attachment</span>
                                         </label>
-                                        <!--end::Option-->
-                                        <!--begin::Option-->
                                         <label>
                                             <input type="radio" class="btn-check" name="attachment"
                                                 value="any" />
                                             <span
                                                 class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4">Any</span>
                                         </label>
-                                        <!--end::Option-->
                                     </div>
-                                    <!--end::Radio group-->
                                 </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
                                 <div class="mb-5">
                                     <select name="timezone" aria-label="Select a Timezone" data-control="select2"
                                         data-placeholder="date_period"
@@ -3467,17 +3164,12 @@
                                         <option value="on">On</option>
                                     </select>
                                 </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
                                 <div class="row mb-8">
-                                    <!--begin::Col-->
                                     <div class="col-6">
                                         <input type="number" name="date_number"
                                             class="form-control form-control-sm form-control-solid"
                                             placeholder="Lenght" value="" />
                                     </div>
-                                    <!--end::Col-->
-                                    <!--begin::Col-->
                                     <div class="col-6">
                                         <select name="date_typer" aria-label="Select a Timezone" data-control="select2"
                                             data-placeholder="Period"
@@ -3488,10 +3180,7 @@
                                             <option value="years">Years</option>
                                         </select>
                                     </div>
-                                    <!--end::Col-->
                                 </div>
-                                <!--end::Input group-->
-                                <!--begin::Actions-->
                                 <div class="d-flex justify-content-end">
                                     <button type="reset"
                                         class="btn btn-sm btn-light fw-bolder btn-active-light-primary me-2"
@@ -3500,15 +3189,9 @@
                                         class="btn btn-sm fw-bolder btn-primary"
                                         data-kt-search-element="advanced-options-form-search">Search</a>
                                 </div>
-                                <!--end::Actions-->
                             </form>
-                            <!--end::Preferences-->
-                            <!--begin::Preferences-->
                             <form data-kt-search-element="preferences" class="pt-1 d-none">
-                                <!--begin::Heading-->
                                 <h3 class="fw-bold text-dark mb-7">Search Preferences</h3>
-                                <!--end::Heading-->
-                                <!--begin::Input group-->
                                 <div class="pb-4 border-bottom">
                                     <label
                                         class="form-check form-switch form-switch-sm form-check-custom form-check-solid flex-stack">
@@ -3517,8 +3200,6 @@
                                         <input class="form-check-input" type="checkbox" value="1" checked="checked" />
                                     </label>
                                 </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
                                 <div class="py-4 border-bottom">
                                     <label
                                         class="form-check form-switch form-switch-sm form-check-custom form-check-solid flex-stack">
@@ -3527,8 +3208,6 @@
                                         <input class="form-check-input" type="checkbox" value="1" checked="checked" />
                                     </label>
                                 </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
                                 <div class="py-4 border-bottom">
                                     <label
                                         class="form-check form-switch form-switch-sm form-check-custom form-check-solid flex-stack">
@@ -3537,8 +3216,6 @@
                                         <input class="form-check-input" type="checkbox" value="1" />
                                     </label>
                                 </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
                                 <div class="py-4 border-bottom">
                                     <label
                                         class="form-check form-switch form-switch-sm form-check-custom form-check-solid flex-stack">
@@ -3547,8 +3224,6 @@
                                         <input class="form-check-input" type="checkbox" value="1" checked="checked" />
                                     </label>
                                 </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
                                 <div class="py-4 border-bottom">
                                     <label
                                         class="form-check form-switch form-switch-sm form-check-custom form-check-solid flex-stack">
@@ -3557,8 +3232,6 @@
                                         <input class="form-check-input" type="checkbox" value="1" />
                                     </label>
                                 </div>
-                                <!--end::Input group-->
-                                <!--begin::Actions-->
                                 <div class="d-flex justify-content-end pt-7">
                                     <button type="reset"
                                         class="btn btn-sm btn-light fw-bolder btn-active-light-primary me-2"
@@ -3566,21 +3239,13 @@
                                     <button type="submit" class="btn btn-sm fw-bolder btn-primary">Save
                                         Changes</button>
                                 </div>
-                                <!--end::Actions-->
                             </form>
-                            <!--end::Preferences-->
                         </div>
-                        <!--end::Menu-->
                     </div>
-                    <!--end::Search-->
                 </div>
-                <!--end::Search-->
-                <!--begin::Activities-->
                 <div class="d-flex align-items-center ms-1 ms-lg-3">
-                    <!--begin::Drawer toggle-->
                     <div class="btn btn-icon btn-icon-muted btn-active-light btn-active-color-primary w-30px h-30px w-md-40px h-md-40px"
                         id="kt_activities_toggle">
-                        <!--begin::Svg Icon | path: icons/duotune/general/gen032.svg-->
                         <span class="svg-icon svg-icon-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none">
@@ -3590,17 +3255,11 @@
                                 <rect x="3" y="13" width="3" height="6" rx="1.5" fill="black" />
                             </svg>
                         </span>
-                        <!--end::Svg Icon-->
                     </div>
-                    <!--end::Drawer toggle-->
                 </div>
-                <!--end::Activities-->
-                <!--begin::Notifications-->
                 <div class="d-flex align-items-center ms-1 ms-lg-3">
-                    <!--begin::Menu- wrapper-->
                     <div class="btn btn-icon btn-icon-muted btn-active-light btn-active-color-primary w-30px h-30px w-md-40px h-md-40px"
                         data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-                        <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
                         <span class="svg-icon svg-icon-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none">
@@ -3618,19 +3277,13 @@
                                     fill="black" />
                             </svg>
                         </span>
-                        <!--end::Svg Icon-->
                     </div>
-                    <!--begin::Menu-->
                     <div class="menu menu-sub menu-sub-dropdown menu-column w-350px w-lg-375px" data-kt-menu="true">
-                        <!--begin::Heading-->
                         <div class="d-flex flex-column bgi-no-repeat rounded-top"
                             style="background-image:url('assets/media/misc/pattern-1.jpg')">
-                            <!--begin::Title-->
                             <h3 class="text-white fw-bold px-9 mt-10 mb-6">Notifications
                                 <span class="fs-8 opacity-75 ps-3">24 reports</span>
                             </h3>
-                            <!--end::Title-->
-                            <!--begin::Tabs-->
                             <ul class="nav nav-line-tabs nav-line-tabs-2x nav-stretch fw-bold px-9">
                                 <li class="nav-item">
                                     <a class="nav-link text-white opacity-75 opacity-state-100 pb-4"
@@ -3645,23 +3298,14 @@
                                         data-bs-toggle="tab" href="#kt_topbar_notifications_3">Logs</a>
                                 </li>
                             </ul>
-                            <!--end::Tabs-->
                         </div>
-                        <!--end::Heading-->
-                        <!--begin::Tab content-->
                         <div class="tab-content">
-                            <!--begin::Tab panel-->
                             <div class="tab-pane fade" id="kt_topbar_notifications_1" role="tabpanel">
-                                <!--begin::Items-->
                                 <div class="scroll-y mh-325px my-5 px-8">
-                                    <!--begin::Item-->
                                     <div class="d-flex flex-stack py-4">
-                                        <!--begin::Section-->
                                         <div class="d-flex align-items-center">
-                                            <!--begin::Symbol-->
                                             <div class="symbol symbol-35px me-4">
                                                 <span class="symbol-label bg-light-primary">
-                                                    <!--begin::Svg Icon | path: icons/duotune/technology/teh008.svg-->
                                                     <span class="svg-icon svg-icon-2 svg-icon-primary">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                             viewBox="0 0 24 24" fill="none">
@@ -3673,11 +3317,8 @@
                                                                 fill="black" />
                                                         </svg>
                                                     </span>
-                                                    <!--end::Svg Icon-->
                                                 </span>
                                             </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Title-->
                                             <div class="mb-0 me-2">
                                                 <a href="#"
                                                     class="fs-6 text-gray-800 text-hover-primary fw-bolder">Project
@@ -3685,22 +3326,13 @@
                                                 <div class="text-gray-400 fs-7">Phase 1 development
                                                 </div>
                                             </div>
-                                            <!--end::Title-->
                                         </div>
-                                        <!--end::Section-->
-                                        <!--begin::Label-->
                                         <span class="badge badge-light fs-8">1 hr</span>
-                                        <!--end::Label-->
                                     </div>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
                                     <div class="d-flex flex-stack py-4">
-                                        <!--begin::Section-->
                                         <div class="d-flex align-items-center">
-                                            <!--begin::Symbol-->
                                             <div class="symbol symbol-35px me-4">
                                                 <span class="symbol-label bg-light-danger">
-                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
                                                     <span class="svg-icon svg-icon-2 svg-icon-danger">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                             viewBox="0 0 24 24" fill="none">
@@ -3712,33 +3344,21 @@
                                                                 transform="rotate(-90 11 17)" fill="black" />
                                                         </svg>
                                                     </span>
-                                                    <!--end::Svg Icon-->
                                                 </span>
                                             </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Title-->
                                             <div class="mb-0 me-2">
                                                 <a href="#" class="fs-6 text-gray-800 text-hover-primary fw-bolder">HR
                                                     Confidential</a>
                                                 <div class="text-gray-400 fs-7">Confidential staff
                                                     documents</div>
                                             </div>
-                                            <!--end::Title-->
                                         </div>
-                                        <!--end::Section-->
-                                        <!--begin::Label-->
                                         <span class="badge badge-light fs-8">2 hrs</span>
-                                        <!--end::Label-->
                                     </div>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
                                     <div class="d-flex flex-stack py-4">
-                                        <!--begin::Section-->
                                         <div class="d-flex align-items-center">
-                                            <!--begin::Symbol-->
                                             <div class="symbol symbol-35px me-4">
                                                 <span class="symbol-label bg-light-warning">
-                                                    <!--begin::Svg Icon | path: icons/duotune/finance/fin006.svg-->
                                                     <span class="svg-icon svg-icon-2 svg-icon-warning">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                             viewBox="0 0 24 24" fill="none">
@@ -3750,11 +3370,8 @@
                                                                 fill="black" />
                                                         </svg>
                                                     </span>
-                                                    <!--end::Svg Icon-->
                                                 </span>
                                             </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Title-->
                                             <div class="mb-0 me-2">
                                                 <a href="#"
                                                     class="fs-6 text-gray-800 text-hover-primary fw-bolder">Company
@@ -3762,22 +3379,13 @@
                                                 <div class="text-gray-400 fs-7">Corporeate staff
                                                     profiles</div>
                                             </div>
-                                            <!--end::Title-->
                                         </div>
-                                        <!--end::Section-->
-                                        <!--begin::Label-->
                                         <span class="badge badge-light fs-8">5 hrs</span>
-                                        <!--end::Label-->
                                     </div>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
                                     <div class="d-flex flex-stack py-4">
-                                        <!--begin::Section-->
                                         <div class="d-flex align-items-center">
-                                            <!--begin::Symbol-->
                                             <div class="symbol symbol-35px me-4">
                                                 <span class="symbol-label bg-light-success">
-                                                    <!--begin::Svg Icon | path: icons/duotune/files/fil023.svg-->
                                                     <span class="svg-icon svg-icon-2 svg-icon-success">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                             viewBox="0 0 24 24" fill="none">
@@ -3795,11 +3403,8 @@
                                                                 fill="black" />
                                                         </svg>
                                                     </span>
-                                                    <!--end::Svg Icon-->
                                                 </span>
                                             </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Title-->
                                             <div class="mb-0 me-2">
                                                 <a href="#"
                                                     class="fs-6 text-gray-800 text-hover-primary fw-bolder">Project
@@ -3807,22 +3412,13 @@
                                                 <div class="text-gray-400 fs-7">New frontend admin
                                                     theme</div>
                                             </div>
-                                            <!--end::Title-->
                                         </div>
-                                        <!--end::Section-->
-                                        <!--begin::Label-->
                                         <span class="badge badge-light fs-8">2 days</span>
-                                        <!--end::Label-->
                                     </div>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
                                     <div class="d-flex flex-stack py-4">
-                                        <!--begin::Section-->
                                         <div class="d-flex align-items-center">
-                                            <!--begin::Symbol-->
                                             <div class="symbol symbol-35px me-4">
                                                 <span class="symbol-label bg-light-primary">
-                                                    <!--begin::Svg Icon | path: icons/duotune/maps/map001.svg-->
                                                     <span class="svg-icon svg-icon-2 svg-icon-primary">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                             viewBox="0 0 24 24" fill="none">
@@ -3834,11 +3430,8 @@
                                                                 fill="black" />
                                                         </svg>
                                                     </span>
-                                                    <!--end::Svg Icon-->
                                                 </span>
                                             </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Title-->
                                             <div class="mb-0 me-2">
                                                 <a href="#"
                                                     class="fs-6 text-gray-800 text-hover-primary fw-bolder">Project
@@ -3846,22 +3439,13 @@
                                                 <div class="text-gray-400 fs-7">Product launch status
                                                     update</div>
                                             </div>
-                                            <!--end::Title-->
                                         </div>
-                                        <!--end::Section-->
-                                        <!--begin::Label-->
                                         <span class="badge badge-light fs-8">21 Jan</span>
-                                        <!--end::Label-->
                                     </div>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
                                     <div class="d-flex flex-stack py-4">
-                                        <!--begin::Section-->
                                         <div class="d-flex align-items-center">
-                                            <!--begin::Symbol-->
                                             <div class="symbol symbol-35px me-4">
                                                 <span class="symbol-label bg-light-info">
-                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen006.svg-->
                                                     <span class="svg-icon svg-icon-2 svg-icon-info">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                             viewBox="0 0 24 24" fill="none">
@@ -3873,11 +3457,8 @@
                                                                 fill="black" />
                                                         </svg>
                                                     </span>
-                                                    <!--end::Svg Icon-->
                                                 </span>
                                             </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Title-->
                                             <div class="mb-0 me-2">
                                                 <a href="#"
                                                     class="fs-6 text-gray-800 text-hover-primary fw-bolder">Banner
@@ -3885,22 +3466,13 @@
                                                 <div class="text-gray-400 fs-7">Collection of banner
                                                     images</div>
                                             </div>
-                                            <!--end::Title-->
                                         </div>
-                                        <!--end::Section-->
-                                        <!--begin::Label-->
                                         <span class="badge badge-light fs-8">21 Jan</span>
-                                        <!--end::Label-->
                                     </div>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
                                     <div class="d-flex flex-stack py-4">
-                                        <!--begin::Section-->
                                         <div class="d-flex align-items-center">
-                                            <!--begin::Symbol-->
                                             <div class="symbol symbol-35px me-4">
                                                 <span class="symbol-label bg-light-warning">
-                                                    <!--begin::Svg Icon | path: icons/duotune/art/art002.svg-->
                                                     <span class="svg-icon svg-icon-2 svg-icon-warning">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25"
                                                             viewBox="0 0 24 25" fill="none">
@@ -3912,11 +3484,8 @@
                                                                 fill="black" />
                                                         </svg>
                                                     </span>
-                                                    <!--end::Svg Icon-->
                                                 </span>
                                             </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Title-->
                                             <div class="mb-0 me-2">
                                                 <a href="#"
                                                     class="fs-6 text-gray-800 text-hover-primary fw-bolder">Icon
@@ -3924,22 +3493,14 @@
                                                 <div class="text-gray-400 fs-7">Collection of SVG
                                                     icons</div>
                                             </div>
-                                            <!--end::Title-->
                                         </div>
-                                        <!--end::Section-->
-                                        <!--begin::Label-->
                                         <span class="badge badge-light fs-8">20 March</span>
-                                        <!--end::Label-->
                                     </div>
-                                    <!--end::Item-->
                                 </div>
-                                <!--end::Items-->
-                                <!--begin::View more-->
                                 <div class="py-3 text-center border-top">
                                     <a href="../../demo1/dist/pages/user-profile/activity.html"
                                         class="btn btn-color-gray-600 btn-active-color-primary">View
                                         All
-                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                                         <span class="svg-icon svg-icon-5">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none">
@@ -3950,285 +3511,143 @@
                                                     fill="black" />
                                             </svg>
                                         </span>
-                                        <!--end::Svg Icon-->
                                     </a>
                                 </div>
-                                <!--end::View more-->
                             </div>
-                            <!--end::Tab panel-->
-                            <!--begin::Tab panel-->
                             <div class="tab-pane fade show active" id="kt_topbar_notifications_2" role="tabpanel">
-                                <!--begin::Wrapper-->
                                 <div class="d-flex flex-column px-9">
-                                    <!--begin::Section-->
                                     <div class="pt-10 pb-0">
-                                        <!--begin::Title-->
                                         <h3 class="text-dark text-center fw-bolder">Get Pro Access
                                         </h3>
-                                        <!--end::Title-->
-                                        <!--begin::Text-->
                                         <div class="text-center text-gray-600 fw-bold pt-1">Outlines
                                             keep you honest. They stoping you from amazing poorly about
                                             drive</div>
-                                        <!--end::Text-->
-                                        <!--begin::Action-->
                                         <div class="text-center mt-5 mb-9">
                                             <a href="#" class="btn btn-sm btn-primary px-6" data-bs-toggle="modal"
                                                 data-bs-target="#kt_modal_upgrade_plan">Upgrade</a>
                                         </div>
-                                        <!--end::Action-->
                                     </div>
-                                    <!--end::Section-->
-                                    <!--begin::Illustration-->
                                     <div class="text-center px-4">
                                         <img class="mw-100 mh-200px" alt="image"
                                             src="{{ asset('assets/admin/media/illustrations/sketchy-1/1.png') }}" />
                                     </div>
-                                    <!--end::Illustration-->
                                 </div>
-                                <!--end::Wrapper-->
                             </div>
-                            <!--end::Tab panel-->
-                            <!--begin::Tab panel-->
                             <div class="tab-pane fade" id="kt_topbar_notifications_3" role="tabpanel">
-                                <!--begin::Items-->
                                 <div class="scroll-y mh-325px my-5 px-8">
-                                    <!--begin::Item-->
                                     <div class="d-flex flex-stack py-4">
-                                        <!--begin::Section-->
                                         <div class="d-flex align-items-center me-2">
-                                            <!--begin::Code-->
                                             <span class="w-70px badge badge-light-success me-4">200
                                                 OK</span>
-                                            <!--end::Code-->
-                                            <!--begin::Title-->
                                             <a href="#" class="text-gray-800 text-hover-primary fw-bold">New
                                                 order</a>
-                                            <!--end::Title-->
                                         </div>
-                                        <!--end::Section-->
-                                        <!--begin::Label-->
                                         <span class="badge badge-light fs-8">Just now</span>
-                                        <!--end::Label-->
                                     </div>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
                                     <div class="d-flex flex-stack py-4">
-                                        <!--begin::Section-->
                                         <div class="d-flex align-items-center me-2">
-                                            <!--begin::Code-->
                                             <span class="w-70px badge badge-light-danger me-4">500
                                                 ERR</span>
-                                            <!--end::Code-->
-                                            <!--begin::Title-->
                                             <a href="#" class="text-gray-800 text-hover-primary fw-bold">New
                                                 customer</a>
-                                            <!--end::Title-->
                                         </div>
-                                        <!--end::Section-->
-                                        <!--begin::Label-->
                                         <span class="badge badge-light fs-8">2 hrs</span>
-                                        <!--end::Label-->
                                     </div>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
                                     <div class="d-flex flex-stack py-4">
-                                        <!--begin::Section-->
                                         <div class="d-flex align-items-center me-2">
-                                            <!--begin::Code-->
                                             <span class="w-70px badge badge-light-success me-4">200
                                                 OK</span>
-                                            <!--end::Code-->
-                                            <!--begin::Title-->
                                             <a href="#" class="text-gray-800 text-hover-primary fw-bold">Payment
                                                 process</a>
-                                            <!--end::Title-->
                                         </div>
-                                        <!--end::Section-->
-                                        <!--begin::Label-->
                                         <span class="badge badge-light fs-8">5 hrs</span>
-                                        <!--end::Label-->
                                     </div>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
                                     <div class="d-flex flex-stack py-4">
-                                        <!--begin::Section-->
                                         <div class="d-flex align-items-center me-2">
-                                            <!--begin::Code-->
                                             <span class="w-70px badge badge-light-warning me-4">300
                                                 WRN</span>
-                                            <!--end::Code-->
-                                            <!--begin::Title-->
                                             <a href="#" class="text-gray-800 text-hover-primary fw-bold">Search
                                                 query</a>
-                                            <!--end::Title-->
                                         </div>
-                                        <!--end::Section-->
-                                        <!--begin::Label-->
                                         <span class="badge badge-light fs-8">2 days</span>
-                                        <!--end::Label-->
                                     </div>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
                                     <div class="d-flex flex-stack py-4">
-                                        <!--begin::Section-->
                                         <div class="d-flex align-items-center me-2">
-                                            <!--begin::Code-->
                                             <span class="w-70px badge badge-light-success me-4">200
                                                 OK</span>
-                                            <!--end::Code-->
-                                            <!--begin::Title-->
                                             <a href="#" class="text-gray-800 text-hover-primary fw-bold">API
                                                 connection</a>
-                                            <!--end::Title-->
                                         </div>
-                                        <!--end::Section-->
-                                        <!--begin::Label-->
                                         <span class="badge badge-light fs-8">1 week</span>
-                                        <!--end::Label-->
                                     </div>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
                                     <div class="d-flex flex-stack py-4">
-                                        <!--begin::Section-->
                                         <div class="d-flex align-items-center me-2">
-                                            <!--begin::Code-->
                                             <span class="w-70px badge badge-light-success me-4">200
                                                 OK</span>
-                                            <!--end::Code-->
-                                            <!--begin::Title-->
                                             <a href="#" class="text-gray-800 text-hover-primary fw-bold">Database
                                                 restore</a>
-                                            <!--end::Title-->
                                         </div>
-                                        <!--end::Section-->
-                                        <!--begin::Label-->
                                         <span class="badge badge-light fs-8">Mar 5</span>
-                                        <!--end::Label-->
                                     </div>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
                                     <div class="d-flex flex-stack py-4">
-                                        <!--begin::Section-->
                                         <div class="d-flex align-items-center me-2">
-                                            <!--begin::Code-->
                                             <span class="w-70px badge badge-light-warning me-4">300
                                                 WRN</span>
-                                            <!--end::Code-->
-                                            <!--begin::Title-->
                                             <a href="#" class="text-gray-800 text-hover-primary fw-bold">System
                                                 update</a>
-                                            <!--end::Title-->
                                         </div>
-                                        <!--end::Section-->
-                                        <!--begin::Label-->
                                         <span class="badge badge-light fs-8">May 15</span>
-                                        <!--end::Label-->
                                     </div>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
                                     <div class="d-flex flex-stack py-4">
-                                        <!--begin::Section-->
                                         <div class="d-flex align-items-center me-2">
-                                            <!--begin::Code-->
                                             <span class="w-70px badge badge-light-warning me-4">300
                                                 WRN</span>
-                                            <!--end::Code-->
-                                            <!--begin::Title-->
                                             <a href="#" class="text-gray-800 text-hover-primary fw-bold">Server
                                                 OS update</a>
-                                            <!--end::Title-->
                                         </div>
-                                        <!--end::Section-->
-                                        <!--begin::Label-->
                                         <span class="badge badge-light fs-8">Apr 3</span>
-                                        <!--end::Label-->
                                     </div>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
                                     <div class="d-flex flex-stack py-4">
-                                        <!--begin::Section-->
                                         <div class="d-flex align-items-center me-2">
-                                            <!--begin::Code-->
                                             <span class="w-70px badge badge-light-warning me-4">300
                                                 WRN</span>
-                                            <!--end::Code-->
-                                            <!--begin::Title-->
                                             <a href="#" class="text-gray-800 text-hover-primary fw-bold">API
                                                 rollback</a>
-                                            <!--end::Title-->
                                         </div>
-                                        <!--end::Section-->
-                                        <!--begin::Label-->
                                         <span class="badge badge-light fs-8">Jun 30</span>
-                                        <!--end::Label-->
                                     </div>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
                                     <div class="d-flex flex-stack py-4">
-                                        <!--begin::Section-->
                                         <div class="d-flex align-items-center me-2">
-                                            <!--begin::Code-->
                                             <span class="w-70px badge badge-light-danger me-4">500
                                                 ERR</span>
-                                            <!--end::Code-->
-                                            <!--begin::Title-->
                                             <a href="#" class="text-gray-800 text-hover-primary fw-bold">Refund
                                                 process</a>
-                                            <!--end::Title-->
                                         </div>
-                                        <!--end::Section-->
-                                        <!--begin::Label-->
                                         <span class="badge badge-light fs-8">Jul 10</span>
-                                        <!--end::Label-->
                                     </div>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
                                     <div class="d-flex flex-stack py-4">
-                                        <!--begin::Section-->
                                         <div class="d-flex align-items-center me-2">
-                                            <!--begin::Code-->
                                             <span class="w-70px badge badge-light-danger me-4">500
                                                 ERR</span>
-                                            <!--end::Code-->
-                                            <!--begin::Title-->
                                             <a href="#" class="text-gray-800 text-hover-primary fw-bold">Withdrawal
                                                 process</a>
-                                            <!--end::Title-->
                                         </div>
-                                        <!--end::Section-->
-                                        <!--begin::Label-->
                                         <span class="badge badge-light fs-8">Sep 10</span>
-                                        <!--end::Label-->
                                     </div>
-                                    <!--end::Item-->
-                                    <!--begin::Item-->
                                     <div class="d-flex flex-stack py-4">
-                                        <!--begin::Section-->
                                         <div class="d-flex align-items-center me-2">
-                                            <!--begin::Code-->
                                             <span class="w-70px badge badge-light-danger me-4">500
                                                 ERR</span>
-                                            <!--end::Code-->
-                                            <!--begin::Title-->
                                             <a href="#" class="text-gray-800 text-hover-primary fw-bold">Mail
                                                 tasks</a>
-                                            <!--end::Title-->
                                         </div>
-                                        <!--end::Section-->
-                                        <!--begin::Label-->
                                         <span class="badge badge-light fs-8">Dec 10</span>
-                                        <!--end::Label-->
                                     </div>
-                                    <!--end::Item-->
                                 </div>
-                                <!--end::Items-->
-                                <!--begin::View more-->
                                 <div class="py-3 text-center border-top">
                                     <a href="../../demo1/dist/pages/user-profile/activity.html"
                                         class="btn btn-color-gray-600 btn-active-color-primary">View
                                         All
-                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                                         <span class="svg-icon svg-icon-5">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none">
@@ -4239,25 +3658,15 @@
                                                     fill="black" />
                                             </svg>
                                         </span>
-                                        <!--end::Svg Icon-->
                                     </a>
                                 </div>
-                                <!--end::View more-->
                             </div>
-                            <!--end::Tab panel-->
                         </div>
-                        <!--end::Tab content-->
                     </div>
-                    <!--end::Menu-->
-                    <!--end::Menu wrapper-->
                 </div>
-                <!--end::Notifications-->
-                <!--begin::Chat-->
                 <div class="d-flex align-items-center ms-1 ms-lg-3">
-                    <!--begin::Menu wrapper-->
                     <div class="btn btn-icon btn-icon-muted btn-active-light btn-active-color-primary w-30px h-30px w-md-40px h-md-40px position-relative"
                         id="kt_drawer_chat_toggle">
-                        <!--begin::Svg Icon | path: icons/duotune/communication/com012.svg-->
                         <span class="svg-icon svg-icon-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none">
@@ -4268,19 +3677,13 @@
                                 <rect x="6" y="7" width="12" height="2" rx="1" fill="black" />
                             </svg>
                         </span>
-                        <!--end::Svg Icon-->
                         <span
                             class="bullet bullet-dot bg-success h-6px w-6px position-absolute translate-middle top-0 start-50 animation-blink"></span>
                     </div>
-                    <!--end::Menu wrapper-->
                 </div>
-                <!--end::Chat-->
-                <!--begin::Quick links-->
                 <div class="d-flex align-items-center ms-1 ms-lg-3">
-                    <!--begin::Menu wrapper-->
                     <div class="btn btn-icon btn-icon-muted btn-active-light btn-active-color-primary w-30px h-30px w-md-40px h-md-40px"
                         data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-                        <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
                         <span class="svg-icon svg-icon-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none">
@@ -4290,28 +3693,17 @@
                                 <rect opacity="0.3" x="2" y="13" width="9" height="9" rx="2" fill="black" />
                             </svg>
                         </span>
-                        <!--end::Svg Icon-->
                     </div>
-                    <!--begin::Menu-->
                     <div class="menu menu-sub menu-sub-dropdown menu-column w-250px w-lg-325px" data-kt-menu="true">
-                        <!--begin::Heading-->
                         <div class="d-flex flex-column flex-center bgi-no-repeat rounded-top px-9 py-10"
                             style="background-image:url('assets/media/misc/pattern-1.jpg')">
-                            <!--begin::Title-->
                             <h3 class="text-white fw-bold mb-3">Quick Links</h3>
-                            <!--end::Title-->
-                            <!--begin::Status-->
                             <span class="badge bg-primary py-2 px-3">25 pending tasks</span>
-                            <!--end::Status-->
                         </div>
-                        <!--end::Heading-->
-                        <!--begin:Nav-->
                         <div class="row g-0">
-                            <!--begin:Item-->
                             <div class="col-6">
                                 <a href="../../demo1/dist/apps/projects/budget.html"
                                     class="d-flex flex-column flex-center h-100 p-6 bg-hover-light border-end border-bottom">
-                                    <!--begin::Svg Icon | path: icons/duotune/finance/fin009.svg-->
                                     <span class="svg-icon svg-icon-3x svg-icon-primary mb-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none">
@@ -4323,17 +3715,13 @@
                                                 fill="black" />
                                         </svg>
                                     </span>
-                                    <!--end::Svg Icon-->
                                     <span class="fs-5 fw-bold text-gray-800 mb-0">Accounting</span>
                                     <span class="fs-7 text-gray-400">eCommerce</span>
                                 </a>
                             </div>
-                            <!--end:Item-->
-                            <!--begin:Item-->
                             <div class="col-6">
                                 <a href="../../demo1/dist/apps/projects/settings.html"
                                     class="d-flex flex-column flex-center h-100 p-6 bg-hover-light border-bottom">
-                                    <!--begin::Svg Icon | path: icons/duotune/communication/com010.svg-->
                                     <span class="svg-icon svg-icon-3x svg-icon-primary mb-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none">
@@ -4345,17 +3733,13 @@
                                                 fill="black" />
                                         </svg>
                                     </span>
-                                    <!--end::Svg Icon-->
                                     <span class="fs-5 fw-bold text-gray-800 mb-0">Administration</span>
                                     <span class="fs-7 text-gray-400">Console</span>
                                 </a>
                             </div>
-                            <!--end:Item-->
-                            <!--begin:Item-->
                             <div class="col-6">
                                 <a href="../../demo1/dist/apps/projects/list.html"
                                     class="d-flex flex-column flex-center h-100 p-6 bg-hover-light border-end">
-                                    <!--begin::Svg Icon | path: icons/duotune/abstract/abs042.svg-->
                                     <span class="svg-icon svg-icon-3x svg-icon-primary mb-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none">
@@ -4367,17 +3751,13 @@
                                                 fill="black" />
                                         </svg>
                                     </span>
-                                    <!--end::Svg Icon-->
                                     <span class="fs-5 fw-bold text-gray-800 mb-0">Projects</span>
                                     <span class="fs-7 text-gray-400">Pending Tasks</span>
                                 </a>
                             </div>
-                            <!--end:Item-->
-                            <!--begin:Item-->
                             <div class="col-6">
                                 <a href="../../demo1/dist/apps/projects/users.html"
                                     class="d-flex flex-column flex-center h-100 p-6 bg-hover-light">
-                                    <!--begin::Svg Icon | path: icons/duotune/finance/fin006.svg-->
                                     <span class="svg-icon svg-icon-3x svg-icon-primary mb-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none">
@@ -4389,19 +3769,14 @@
                                                 fill="black" />
                                         </svg>
                                     </span>
-                                    <!--end::Svg Icon-->
                                     <span class="fs-5 fw-bold text-gray-800 mb-0">Customers</span>
                                     <span class="fs-7 text-gray-400">Latest cases</span>
                                 </a>
                             </div>
-                            <!--end:Item-->
                         </div>
-                        <!--end:Nav-->
-                        <!--begin::View more-->
                         <div class="py-2 text-center border-top">
                             <a href="../../demo1/dist/pages/user-profile/activity.html"
                                 class="btn btn-color-gray-600 btn-active-color-primary">View All
-                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                                 <span class="svg-icon svg-icon-5">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none">
@@ -4412,44 +3787,28 @@
                                             fill="black" />
                                     </svg>
                                 </span>
-                                <!--end::Svg Icon-->
                             </a>
                         </div>
-                        <!--end::View more-->
                     </div>
-                    <!--end::Menu-->
-                    <!--end::Menu wrapper-->
                 </div>
-                <!--end::Quick links-->
-                <!--begin::Theme mode-->
                 <div class="d-flex align-items-center ms-1 ms-lg-3">
-                    <!--begin::Theme mode docs-->
                     <a class="btn btn-icon btn-icon-muted btn-active-light btn-active-color-primary w-30px h-30px w-md-40px h-md-40px"
                         href="../../demo1/dist/documentation/getting-started/dark-mode.html">
                         <i class="fonticon-sun fs-2"></i>
                     </a>
-                    <!--end::Theme mode docs-->
                 </div>
-                <!--end::Theme mode-->
-                <!--begin::User menu-->
                 <div class="d-flex align-items-center ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
-                    <!--begin::Menu wrapper-->
                     <div class="cursor-pointer symbol symbol-30px symbol-md-40px" data-kt-menu-trigger="click"
                         data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
                         <img src="{{ asset('assets/admin/media/avatars/300-1.jpg') }}" alt="user" />
                     </div>
-                    <!--begin::User account menu-->
                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px"
                         data-kt-menu="true">
-                        <!--begin::Menu item-->
                         <div class="menu-item px-3">
                             <div class="menu-content d-flex align-items-center px-3">
-                                <!--begin::Avatar-->
                                 <div class="symbol symbol-50px me-5">
                                     <img alt="Logo" src="{{ asset('assets/admin/media/avatars/300-1.jpg') }}" />
                                 </div>
-                                <!--end::Avatar-->
-                                <!--begin::Username-->
                                 <div class="d-flex flex-column">
                                     <div class="fw-bolder d-flex align-items-center fs-5">Max Smith
                                         <span
@@ -4457,20 +3816,13 @@
                                     </div>
                                     <a href="#" class="fw-bold text-muted text-hover-primary fs-7">max@kt.com</a>
                                 </div>
-                                <!--end::Username-->
                             </div>
                         </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu separator-->
                         <div class="separator my-2"></div>
-                        <!--end::Menu separator-->
-                        <!--begin::Menu item-->
                         <div class="menu-item px-5">
                             <a href="../../demo1/dist/account/overview.html" class="menu-link px-5">My
                                 Profile</a>
                         </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu item-->
                         <div class="menu-item px-5">
                             <a href="../../demo1/dist/apps/projects/list.html" class="menu-link px-5">
                                 <span class="menu-text">My Projects</span>
@@ -4479,44 +3831,30 @@
                                 </span>
                             </a>
                         </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu item-->
                         <div class="menu-item px-5" data-kt-menu-trigger="hover" data-kt-menu-placement="left-start">
                             <a href="#" class="menu-link px-5">
                                 <span class="menu-title">My Subscription</span>
                                 <span class="menu-arrow"></span>
                             </a>
-                            <!--begin::Menu sub-->
                             <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                <!--begin::Menu item-->
                                 <div class="menu-item px-3">
                                     <a href="../../demo1/dist/account/referrals.html"
                                         class="menu-link px-5">Referrals</a>
                                 </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
                                 <div class="menu-item px-3">
                                     <a href="../../demo1/dist/account/billing.html" class="menu-link px-5">Billing</a>
                                 </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
                                 <div class="menu-item px-3">
                                     <a href="../../demo1/dist/account/statements.html"
                                         class="menu-link px-5">Payments</a>
                                 </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
                                 <div class="menu-item px-3">
                                     <a href="../../demo1/dist/account/statements.html"
                                         class="menu-link d-flex flex-stack px-5">Statements
                                         <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
                                             title="View your statements"></i></a>
                                 </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu separator-->
                                 <div class="separator my-2"></div>
-                                <!--end::Menu separator-->
-                                <!--begin::Menu item-->
                                 <div class="menu-item px-3">
                                     <div class="menu-content px-3">
                                         <label class="form-check form-switch form-check-custom form-check-solid">
@@ -4526,21 +3864,13 @@
                                         </label>
                                     </div>
                                 </div>
-                                <!--end::Menu item-->
                             </div>
-                            <!--end::Menu sub-->
                         </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu item-->
                         <div class="menu-item px-5">
                             <a href="../../demo1/dist/account/statements.html" class="menu-link px-5">My
                                 Statements</a>
                         </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu separator-->
                         <div class="separator my-2"></div>
-                        <!--end::Menu separator-->
-                        <!--begin::Menu item-->
                         <div class="menu-item px-5" data-kt-menu-trigger="hover" data-kt-menu-placement="left-start">
                             <a href="#" class="menu-link px-5">
                                 <span class="menu-title position-relative">Language
@@ -4550,19 +3880,16 @@
                                             src="{{ asset('assets/admin/media/flags/united-states.svg') }}"
                                             alt="" /></span></span>
                             </a>
-                            <!--begin::Menu sub-->
                             <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                <!--begin::Menu item-->
                                 <div class="menu-item px-3">
                                     <a href="../../demo1/dist/account/settings.html"
                                         class="menu-link d-flex px-5 active">
                                         <span class="symbol symbol-20px me-4">
                                             <img class="rounded-1"
-                                                src="{{ asset('assets/admin/media/flags/united-states.svg') }}" alt="" />
+                                                src="{{ asset('assets/admin/media/flags/united-states.svg') }}"
+                                                alt="" />
                                         </span>English</a>
                                 </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
                                 <div class="menu-item px-3">
                                     <a href="../../demo1/dist/account/settings.html" class="menu-link d-flex px-5">
                                         <span class="symbol symbol-20px me-4">
@@ -4570,8 +3897,6 @@
                                                 src="{{ asset('assets/admin/media/flags/spain.svg') }}" alt="" />
                                         </span>Spanish</a>
                                 </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
                                 <div class="menu-item px-3">
                                     <a href="../../demo1/dist/account/settings.html" class="menu-link d-flex px-5">
                                         <span class="symbol symbol-20px me-4">
@@ -4579,8 +3904,6 @@
                                                 src="{{ asset('assets/admin/media/flags/germany.svg') }}" alt="" />
                                         </span>German</a>
                                 </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
                                 <div class="menu-item px-3">
                                     <a href="../../demo1/dist/account/settings.html" class="menu-link d-flex px-5">
                                         <span class="symbol symbol-20px me-4">
@@ -4588,8 +3911,6 @@
                                                 src="{{ asset('assets/admin/media/flags/japan.svg') }}" alt="" />
                                         </span>Japanese</a>
                                 </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
                                 <div class="menu-item px-3">
                                     <a href="../../demo1/dist/account/settings.html" class="menu-link d-flex px-5">
                                         <span class="symbol symbol-20px me-4">
@@ -4597,26 +3918,16 @@
                                                 src="{{ asset('assets/admin/media/flags/france.svg') }}" alt="" />
                                         </span>French</a>
                                 </div>
-                                <!--end::Menu item-->
                             </div>
-                            <!--end::Menu sub-->
                         </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu item-->
                         <div class="menu-item px-5 my-1">
                             <a href="../../demo1/dist/account/settings.html" class="menu-link px-5">Account
                                 Settings</a>
                         </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu item-->
                         <div class="menu-item px-5">
                             <a href="{{ route('logout') }}" class="menu-link px-5">Sign Out</a>
                         </div>
-                        <!--end::Menu item-->
-                        <!--begin::Menu separator-->
                         <div class="separator my-2"></div>
-                        <!--end::Menu separator-->
-                        <!--begin::Menu item-->
                         <div class="menu-item px-5">
                             <div class="menu-content px-5">
                                 <label
@@ -4630,17 +3941,11 @@
                                 </label>
                             </div>
                         </div>
-                        <!--end::Menu item-->
                     </div>
-                    <!--end::User account menu-->
-                    <!--end::Menu wrapper-->
                 </div>
-                <!--end::User menu-->
-                <!--begin::Header menu toggle-->
                 <div class="d-flex align-items-center d-lg-none ms-2 me-n3" title="Show header menu">
                     <div class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-40px h-md-40px"
                         id="kt_header_menu_mobile_toggle">
-                        <!--begin::Svg Icon | path: icons/duotune/text/txt001.svg-->
                         <span class="svg-icon svg-icon-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none">
@@ -4652,14 +3957,9 @@
                                     fill="black" />
                             </svg>
                         </span>
-                        <!--end::Svg Icon-->
                     </div>
                 </div>
-                <!--end::Header menu toggle-->
             </div>
-            <!--end::Toolbar wrapper-->
         </div>
-        <!--end::Wrapper-->
     </div>
-    <!--end::Container-->
 </div>

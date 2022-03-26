@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Contracts\BannerInterface;
 use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\BannerRequest;
-use Illuminate\Http\Request;
+use App\Http\Requests\BannerRequest;
 use Illuminate\Support\Facades\DB;
 
 class BannerController extends Controller

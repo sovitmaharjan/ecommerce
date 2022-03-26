@@ -1,7 +1,5 @@
 @extends('admin.layouts.app')
-
 @section('content')
-
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
             <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
@@ -12,7 +10,7 @@
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
-                            <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">Bazar-Max</a>
+                            <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">Home</a>
                         </li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
@@ -26,72 +24,92 @@
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <div class="m-0">
-                        <a href="#" class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
-                            <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
+                        <a href="{{ route('banner.index') }}"
+                            class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
+                            <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none">
                                     <path
-                                        d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z"
+                                        d="M21 7H3C2.4 7 2 6.6 2 6V4C2 3.4 2.4 3 3 3H21C21.6 3 22 3.4 22 4V6C22 6.6 21.6 7 21 7Z"
+                                        fill="black"></path>
+                                    <path opacity="0.3"
+                                        d="M21 14H3C2.4 14 2 13.6 2 13V11C2 10.4 2.4 10 3 10H21C21.6 10 22 10.4 22 11V13C22 13.6 21.6 14 21 14ZM22 20V18C22 17.4 21.6 17 21 17H3C2.4 17 2 17.4 2 18V20C2 20.6 2.4 21 3 21H21C21.6 21 22 20.6 22 20Z"
                                         fill="black"></path>
                                 </svg>
                             </span>
-                            Filter
+                            List
                         </a>
                     </div>
-                    <!--begin::Secondary button-->
-                    <a href="/metronic8/demo1/../demo1/.html" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#kt_modal_create_app">Create</a>
+                    <a href="{{ route('banner.create') }}" class="btn btn-sm btn-primary">Create</a>
                 </div>
             </div>
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
-                <form id="banner_form" class="form d-flex flex-column flex-lg-row" method="POST" action="{{ route('banner.store') }}" enctype="multipart/form-data">
+                <form id="banner_form" class="form d-flex flex-column flex-lg-row" method="POST"
+                    action="{{ route('banner.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
                         <div class="card card-flush py-4">
                             <div class="card-header">
                                 <div class="card-title">
-                                    <h2>Image</h2>
+                                    <h2 class="required">Image</h2>
                                 </div>
                             </div>
                             <div class="card-body text-center pt-0">
-                                <div class="image-input image-input-outline image-input-empty" data-kt-image-input="true" style="background-image: url({{ asset('assets/admin/media/svg/files/blank-image.svg') }})">
+                                <div class="image-input image-input-outline image-input-empty" data-kt-image-input="true"
+                                    style="background-image: url({{ asset('assets/admin/media/svg/files/blank-image.svg') }})">
                                     <div class="image-input-wrapper w-225px h-125px"></div>
-                        
-                                    <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change image">
+                                    <label
+                                        class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                        data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change image">
                                         <i class="bi bi-pencil-fill fs-7"></i>
-                        
                                         <input type="file" name="image" accept=".png, .jpg, .jpeg" required/>
                                     </label>
-                        
-                                    <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel image">
+                                    <span
+                                        class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                        data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel image">
                                         <i class="bi bi-x fs-2"></i>
                                     </span>
-                        
-                                    <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove image">
+                                    <span
+                                        class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                        data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove image">
                                         <i class="bi bi-x fs-2"></i>
                                     </span>
                                 </div>
-                                <div class="text-muted fs-7">Set the Banner image. Only *.png, *.jpg and *.jpeg image files are accepted</div>
+                                <div class="text-muted fs-7">Set the banner image. Only *.png, *.jpg and *.jpeg image files
+                                    are accepted</div>
+                                @error('image')
+                                    <div class="fv-plugins-message-container invalid-feedback">
+                                        <div data-field="image" data-validator="notEmpty">{{ $message }}</div>
+                                    </div>
+                                @enderror
                             </div>
                         </div>
                         <div class="card card-flush py-4">
                             <div class="card-header">
                                 <div class="card-title">
-                                    <h2>Status</h2>
+                                    <h2 class="required">Status</h2>
                                 </div>
                                 <div class="card-toolbar">
-                                    <div class="rounded-circle bg-success w-15px h-15px" id="kt_ecommerce_add_banner_status"></div>
+                                    <div class="rounded-circle bg-success w-15px h-15px"
+                                        id="kt_ecommerce_add_banner_status"></div>
                                 </div>
                             </div>
                             <div class="card-body pt-0">
-                                <select class="form-select mb-2" data-control="select2" name="status" data-hide-search="true" data-placeholder="Select an option" id="kt_ecommerce_add_banner_status_select" required>
+                                <select class="form-select mb-2" data-control="select2" name="status"
+                                    data-hide-search="true" data-placeholder="Select an option"
+                                    id="kt_ecommerce_add_banner_status_select" required>
                                     <option></option>
                                     <option value="1" selected="selected">Active</option>
                                     <option value="0">Inactive</option>
                                 </select>
-                                <div class="text-muted fs-7">Set the Banner status.</div>
+                                <div class="text-muted fs-7">Set the banner status.</div>
+                                @error('status')
+                                    <div class="fv-plugins-message-container invalid-feedback">
+                                        <div data-field="status" data-validator="notEmpty">{{ $message }}</div>
+                                    </div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -105,22 +123,31 @@
                             <div class="card-body pt-0">
                                 <div class="mb-10 fv-row">
                                     <label class="required form-label">Banner Name</label>
-                                    <input type="text" name="title" class="form-control mb-2" placeholder="Banner name" value="" required/>
-                                    <div class="text-muted fs-7">A banner name is required and recommended to be unique.</div>
+                                    <input type="text" name="title" class="form-control mb-2" placeholder="Banner name"
+                                        value="{{ old('title') }}" required/>
+                                    <div class="text-muted fs-7">A banner name is required and recommended to be unique.
+                                    </div>
+                                    @error('title')
+                                        <div class="fv-plugins-message-container invalid-feedback">
+                                            <div data-field="title" data-validator="notEmpty">{{ $message }}</div>
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div>
                                     <label class="form-label">Description</label>
-                                    <textarea name="description" class="form-control mb-2" id="textarea_description" rows="5"></textarea>
+                                    <textarea name="description" class="form-control mb-2" id="description"
+                                        rows="5">{{ old('description') }}</textarea>
                                     <div class="text-muted fs-7">Set a description to the banner.</div>
                                 </div>
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route('banner.index') }}" id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5">Cancel</a>
+                            <a href="{{ route('banner.index') }}" id="kt_ecommerce_add_product_cancel"
+                                class="btn btn-light me-5">Cancel</a>
                             <button type="submit" id="kt_ecommerce_add_banner_submit" class="btn btn-primary">
                                 <span class="indicator-label">Save Changes</span>
                                 <span class="indicator-progress">Please wait...
-                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                             </button>
                         </div>
                     </div>
@@ -128,9 +155,7 @@
             </div>
         </div>
     </div>
-
 @endSection
-
 @section('script')
     <script src="{{ asset('assets/admin/js/custom/apps/ecommerce/catalog/save-banner.js') }}"></script>
 @endSection

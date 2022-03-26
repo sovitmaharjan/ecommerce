@@ -20,6 +20,7 @@ class Category extends Model
         'description',
         'meta_title',
         'meta_description',
+        'meta_keyword',
         'status',
     ];
 
@@ -28,5 +29,14 @@ class Category extends Model
         return SlugOptions::create()
             ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
+    }
+
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
+    public function parent(){
+        return $this->belongsTo(Category::class, 'parent_id');
     }
 }

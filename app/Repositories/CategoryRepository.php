@@ -41,7 +41,6 @@ class CategoryRepository implements CategoryInterface
         $banner = Category::find($id);
         if ($banner) {
             $data = $request->except('image', '_method', '_token');
-            // dd($data);
             $result = $banner->update($data);
             if ($file = $request->image) {
                 $this->image->upload($banner, $file, $banner->image->path ?? null);

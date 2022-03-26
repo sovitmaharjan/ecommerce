@@ -33,11 +33,6 @@ class BannerController extends Controller
         }
     }
 
-    public function create()
-    {
-        //
-    }
-
     public function store(BannerRequest $request)
     {
         try {
@@ -53,7 +48,7 @@ class BannerController extends Controller
     public function show($id)
     {
         try {
-            $result = $this->interface->show($id);
+            $result = $this->interface->find($id);
             if ($result == null) {
                 return $this->response->responseSuccessMsg('No Data', 200);
             }
@@ -63,11 +58,6 @@ class BannerController extends Controller
         } catch (\Exception $e) {
             return $e;
         }
-    }
-
-    public function edit($id)
-    {
-        //
     }
 
     public function update(BannerRequest $request, $id)

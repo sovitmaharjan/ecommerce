@@ -1,27 +1,26 @@
 <?php
 
-namespace App\Models\Admin;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Product extends Model
+class Category extends Model
 {
     use HasFactory, HasSlug;
 
     protected $fillable = [
         'title',
         'slug',
-        'category_id',
-        'video_url',
+        'order_level',
+        'featured',
+        'parent_id',
         'description',
-        'seo_title',
-        'seo_description',
-        'base_price',
+        'meta_title',
+        'meta_description',
         'status',
-        'user_id'
     ];
 
     public function getSlugOptions() : SlugOptions

@@ -1,21 +1,27 @@
 <?php
 
-namespace App\Models\Admin;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Banner extends Model
+class Product extends Model
 {
     use HasFactory, HasSlug;
 
     protected $fillable = [
         'title',
         'slug',
+        'category_id',
+        'video_url',
         'description',
-        'status'
+        'seo_title',
+        'seo_description',
+        'base_price',
+        'status',
+        'user_id'
     ];
 
     public function getSlugOptions() : SlugOptions
@@ -23,10 +29,5 @@ class Banner extends Model
         return SlugOptions::create()
             ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
-    }
-
-    public function image()
-    {
-        return $this->morphOne(Image::class, 'imageable');
     }
 }

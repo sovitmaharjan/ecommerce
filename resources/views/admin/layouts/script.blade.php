@@ -10,7 +10,7 @@
         "debug": false,
         "newestOnTop": true,
         "progressBar": true,
-        "positionClass": "toastr-top-right",
+        "positionClass": "toastr-bottom-right",
         "preventDuplicates": true,
         "onclick": null,
         "showDuration": "300",
@@ -23,4 +23,19 @@
         "hideMethod": "fadeOut"
     };
 </script>
+@if (Session::get('success'))
+    <script>
+        toastr.success('{{ Session::get('success') }}');
+    </script>
+@endif
+@if (Session::get('info'))
+    <script>
+        toastr.info('{{ Session::get('info') }}');
+    </script>
+@endif
+@if (Session::get('error'))
+    <script>
+        toastr.error('{{ Session::get('error') }}');
+    </script>
+@endif
 @yield('script')

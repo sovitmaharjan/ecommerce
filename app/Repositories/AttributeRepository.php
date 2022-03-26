@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use App\Contracts\AttributeInterface;
-use App\Models\Admin\Attribute;
+use App\Models\Attribute;
 
 class AttributeRepository implements AttributeInterface
 {

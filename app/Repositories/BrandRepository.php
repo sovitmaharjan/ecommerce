@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Contracts\BrandInterface;
 use App\Custom\ImageService;
-use App\Models\Admin\Brand;
+use App\Models\Brand;
 
 class BrandRepository implements BrandInterface
 {

@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Contracts\BannerInterface;
 use App\Custom\ImageService;
-use App\Models\Admin\Banner;
+use App\Models\Banner;
 
 class BannerRepository implements BannerInterface
 {
@@ -16,44 +16,37 @@ class BannerRepository implements BannerInterface
 
     public function index()
     {
-        $banner = Banner::all();
-        if ($banner) {
-            return $banner;
-        }
-        return null;
+        $result = Banner::orderBy('created_at', 'DESC')->get();
+        return $result;
     }
 
-    public function show($id)
+    public function find($id)
     {
-        $banner = Banner::where('id', $id)->first();
-        if ($banner) {
-            return $banner;
-        }
-        return null;
+        $result = Banner::where('id', $id)->first();
+        return $result;
     }
 
     public function store($request)
     {
-        $data = $request->except('image');
-        $banner = Banner::create($data);
+        $data = $request->except('image', '_token');
+        $result = Banner::create($data);
         if ($file = $request->image) {
-            $this->image->upload($banner, $file);
+            $this->image->upload($result, $file);
         }
-        return $banner;
+        return $result;
     }
 
     public function update($request, $id)
     {
         $banner = Banner::find($id);
         if ($banner) {
-            $data = $request->except('image', '_method');
-            $banner->update($data);
+            $data = $request->except('image', '_method', '_token');
+            $result = $banner->update($data);
             if ($file = $request->image) {
                 $this->image->upload($banner, $file, $banner->image->path ?? null);
             }
-            return $banner->refresh();
         }
-        return null;
+        return $result ?? 0;
     }
 
     public function destroy($id)
@@ -62,8 +55,7 @@ class BannerRepository implements BannerInterface
         if ($banner) {
             $result = $banner->delete();
             $this->image->delete($banner, $banner->image->path ?? null);
-            return $result;
         }
-        return null;
+        return $result ?? 0;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Custom;
 
-use App\Models\Admin\Image;
+use App\Models\Image;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;

@@ -1,8 +1,8 @@
 "use strict";
-var KTAppEcommerceSaveCategory = (function () {
+var KTAppEcommerceSaveBanner = (function () {
     // const 
     //     e = () => {
-    //         $("#kt_ecommerce_add_dcategory_conditions").repeater({
+    //         $("#kt_ecommerce_add_banner_conditions").repeater({
     //             initEmpty: !1,
     //             defaultValues: { "text-input": "foo" },
     //             show: function () {
@@ -16,7 +16,7 @@ var KTAppEcommerceSaveCategory = (function () {
     //     t = () => {
     //         document
     //             .querySelectorAll(
-    //                 '[data-kt-ecommerce-catalog-add-dcategory="condition_type"]'
+    //                 '[data-kt-ecommerce-catalog-add-banner="condition_type"]'
     //             )
     //             .forEach((e) => {
     //                 $(e).hasClass("select2-hidden-accessible") ||
@@ -24,7 +24,7 @@ var KTAppEcommerceSaveCategory = (function () {
     //             });
     //         document
     //             .querySelectorAll(
-    //                 '[data-kt-ecommerce-catalog-add-dcategory="condition_equals"]'
+    //                 '[data-kt-ecommerce-catalog-add-banner="condition_equals"]'
     //             )
     //             .forEach((e) => {
     //                 $(e).hasClass("select2-hidden-accessible") ||
@@ -34,8 +34,8 @@ var KTAppEcommerceSaveCategory = (function () {
     return {
         init: function () {
             [
-                "#kt_ecommerce_add_dcategory_description",
-                "#kt_ecommerce_add_dcategory_meta_description",
+                "#kt_ecommerce_add_banner_description",
+                "#kt_ecommerce_add_banner_meta_description",
             ].forEach((e) => {
                 let t = document.querySelector(e);
                 t &&
@@ -44,14 +44,14 @@ var KTAppEcommerceSaveCategory = (function () {
                             toolbar: [
                                 [{ header: [1, 2, !1] }],
                                 ["bold", "italic", "underline"],
-                                ["code-block"],
+                                // ["image", "code-block"],
                             ],
                         },
                         placeholder: "Type your text here...",
                         theme: "snow",
                     }));
             }),
-            // ["#kt_ecommerce_add_dcategory_meta_keywords"].forEach((e) => {
+            // ["#kt_ecommerce_add_banner_meta_keywords"].forEach((e) => {
             //     const t = document.querySelector(e);
             //     t && new Tagify(t);
             // }),
@@ -59,10 +59,10 @@ var KTAppEcommerceSaveCategory = (function () {
             // t(),
             (() => {
                 const e = document.getElementById(
-                        "kt_ecommerce_add_dcategory_status"
+                        "kt_ecommerce_add_banner_status"
                     ),
                     t = document.getElementById(
-                        "kt_ecommerce_add_dcategory_status_select"
+                        "kt_ecommerce_add_banner_status_select"
                     ),
                     o = ["bg-success", "bg-warning", "bg-danger"];
                 $(t).on("change", function (t) {
@@ -81,9 +81,9 @@ var KTAppEcommerceSaveCategory = (function () {
                     }
                 });
                 // const a = document.getElementById(
-                //     "kt_ecommerce_add_dcategory_status_datepicker"
+                //     "kt_ecommerce_add_banner_status_datepicker"
                 // );
-                // $("#kt_ecommerce_add_dcategory_status_datepicker").flatpickr(
+                // $("#kt_ecommerce_add_banner_status_datepicker").flatpickr(
                 //     { enableTime: !0, dateFormat: "Y-m-d H:i" }
                 // );
                 // const c = () => {
@@ -98,7 +98,7 @@ var KTAppEcommerceSaveCategory = (function () {
                         '[name="method"][type="radio"]'
                     ),
                     t = document.querySelector(
-                        '[data-kt-ecommerce-catalog-add-dcategory="auto-options"]'
+                        '[data-kt-ecommerce-catalog-add-banner="auto-options"]'
                     );
                 e.forEach((e) => {
                     e.addEventListener("change", (e) => {
@@ -111,15 +111,15 @@ var KTAppEcommerceSaveCategory = (function () {
             (() => {
                 let e;
                 const t = document.getElementById(
-                    "kt_ecommerce_add_dcategory_form"
+                    "kt_ecommerce_add_banner_form"
                 ),
                 o = document.getElementById(
-                    "kt_ecommerce_add_dcategory_submit"
+                    "kt_ecommerce_add_banner_submit"
                 );
                 console.log($(t));
                 (e = FormValidation.formValidation(t, {
                     fields: {
-                        'avatar': {
+                        'image': {
                             validators: {
                                 notEmpty: {
                                     message: 'Please select an image',
@@ -131,10 +131,10 @@ var KTAppEcommerceSaveCategory = (function () {
                                 },
                             }
                         },
-                        'dcategory_name': {
+                        'title': {
                             validators: {
                                 notEmpty: {
-                                    message: "Category name is required",
+                                    message: "Banner title is required",
                                 },
                             },
                         },
@@ -211,5 +211,5 @@ var KTAppEcommerceSaveCategory = (function () {
     };
 })();
 KTUtil.onDOMContentLoaded(function () {
-    KTAppEcommerceSaveCategory.init();
+    KTAppEcommerceSaveBanner.init();
 });

@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => [
-    // 'cors',
+    'cors',
     // 'json.response'
 ]], function () {
     // public routes
@@ -38,10 +38,10 @@ Route::group(['middleware' => [
             return $request->user();
         });
 
-        Route::resource('banner', BannerController::class);
-        Route::resource('category', CategoryController::class);
-        Route::resource('brand', BrandController::class);
-        Route::resource('attribute', AttributeController::class);
-        Route::resource('product', ProductController::class);
+        Route::apiResource('apiBanner', BannerController::class);
+        Route::apiResource('apiBategory', CategoryController::class);
+        Route::apiResource('apiBrand', BrandController::class);
+        Route::apiResource('apiBttribute', AttributeController::class);
+        Route::apiResource('apiBroduct', ProductController::class);
     });
 });

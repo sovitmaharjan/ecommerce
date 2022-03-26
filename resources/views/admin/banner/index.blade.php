@@ -3,54 +3,30 @@
 @section('content')
 
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-        <!--begin::Toolbar-->
         <div class="toolbar" id="kt_toolbar">
-            <!--begin::Container-->
             <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
-                <!--begin::Page title-->
                 <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
                     data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                     class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                    <!--begin::Title-->
                     <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Page Name</h1>
-                    <!--end::Title-->
-                    <!--begin::Separator-->
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
-                    <!--end::Separator-->
-                    <!--begin::Breadcrumb-->
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
-                        <!--begin::Item-->
                         <li class="breadcrumb-item text-muted">
                             <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">Home</a>
                         </li>
-                        <!--end::Item-->
-                        <!--begin::Item-->
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
-                        <!--end::Item-->
-                        <!--begin::Item-->
                         <li class="breadcrumb-item text-muted">Customers</li>
-                        <!--end::Item-->
-                        <!--begin::Item-->
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
-                        <!--end::Item-->
-                        <!--begin::Item-->
                         <li class="breadcrumb-item text-dark">Page Name</li>
-                        <!--end::Item-->
                     </ul>
-                    <!--end::Breadcrumb-->
                 </div>
-                <!--end::Page title-->
-                <!--begin::Actions-->
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    <!--begin::Filter menu-->
                     <div class="m-0">
-                        <!--begin::Menu toggle-->
                         <a href="#" class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
-                            <!--begin::Svg Icon | path: icons/duotune/general/gen031.svg-->
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none">
@@ -59,39 +35,24 @@
                                         fill="black"></path>
                                 </svg>
                             </span>
-                            <!--end::Svg Icon-->Filter
+                            Filter
                         </a>
-                        <!--end::Menu toggle-->
                     </div>
-                    <!--end::Filter menu-->
-                    <!--begin::Secondary button-->
-                    <!--end::Secondary button-->
-                    <!--begin::Primary button-->
                     <a href="/metronic8/demo1/../demo1/.html" class="btn btn-sm btn-primary" data-bs-toggle="modal"
                         data-bs-target="#kt_modal_create_app">Create</a>
-                    <!--end::Primary button-->
                 </div>
-                <!--end::Actions-->
             </div>
-            <!--end::Container-->
         </div>
-        <!--end::Toolbar-->
-        <!--begin::Post-->
         <div class="post d-flex flex-column-fluid" id="kt_post">
-            <!--begin::Container-->
             <div id="kt_content_container" class="container-xxl">
-                <!--begin::Card-->
                 <div class="card">
-                    <!--begin::Card header-->
                     <div class="card-header border-0 pt-6">
                         <h3 class="card-title align-items-start flex-column">
                             <span class="card-label fw-bolder fs-3 mb-1">Members Statistics</span>
                             <span class="text-muted mt-1 fw-bold fs-7">Over 500 members</span>
                         </h3>
-                        <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover"
-                            title="">
-                            <a href="{{ route('banner.create') }}" class="btn btn-sm btn-primary">
-                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
+                        <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="">
+                            <a href="{{ route('banner.create') }}" class="btn btn-primary">
                                 <span class="svg-icon svg-icon-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none">
@@ -100,14 +61,11 @@
                                         <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="black"></rect>
                                     </svg>
                                 </span>
-                                <!--end::Svg Icon-->New Member
+                                Add New 
                             </a>
                         </div>
                     </div>
-                    <!--end::Card header-->
-                    <!--begin::Card body-->
                     <div class="card-body pt-0">
-                        <!--begin::Table-->
                         <div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="table-responsive">
                                 <table id="kt_datatable_example_5"
@@ -126,27 +84,23 @@
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>
-                                                    <img class="card-rounded mh-50px" src="{{ asset('uploads/' . $banner->image) }}">
+                                                    <img class="bgi-position-center bgi-size-cover card-rounded card-rounded mh-100px me-3" src="{{ $banner->image ? $banner->image->getUrl() : asset('noimage.png') }}">
+                                                    {{-- <img class="card-rounded mh-50px" src="{{ asset('uploads/' . $banner->image) }}"> --}}
                                                 </td>
                                                 <td>
                                                     {{ $banner->title }}</a>
                                                 </td>
                                                 <td>
-                                                    <div class="form-check form-switch form-check-solid">
-                                                        <input class="form-check-input status" type="checkbox" value=""
-                                                            id="flexSwitchDefault{{ $key }}" data-name="{{ $banner->name }}" data-id="{{ $banner->id }}" 
-                                                            {{ $banner->status == 'inactive' ?: 'checked="checked"' }} 
-                                                            />
-                                                        <label class="form-check-label" for="flexSwitchDefault{{ $key }}">
-                                                            <span class="badge badge-{{ $banner->status == 'active' ? 'success' : 'danger' }}">{{ ucfirst($banner->status) }}</span>
-                                                        </label>
-                                                    </div>
+                                                    @if ($banner->status == 1)
+                                                        <div class="badge badge-light-success">Active</div>
+                                                    @else
+                                                    <div class="badge badge-light-danger">InActive</div>
+                                                    @endif
                                                 </td>
                                                 <td>
-                                                    <a href="#" class="btn btn-sm btn-light btn-active-primary"
+                                                    <a href="#" class="btn btn-light btn-active-light-primary btn-sm"
                                                         data-kt-menu-trigger="click"
                                                         data-kt-menu-placement="bottom-end">Actions
-                                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                                                         <span class="svg-icon svg-icon-5 m-0">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                                 viewBox="0 0 24 24" fill="none">
@@ -155,25 +109,20 @@
                                                                     fill="black" />
                                                             </svg>
                                                         </span>
-                                                        <!--end::Svg Icon-->
                                                     </a>
-                                                    <!--begin::Menu-->
                                                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
                                                         data-kt-menu="true">
-                                                        <!--begin::Menu item-->
                                                         <div class="menu-item px-3">
-                                                            <a href="{{ route('banner.show', $banner->id) }}"
-                                                                class="menu-link px-3">View</a>
+                                                            <a href="{{ route('banner.edit', $banner->id) }}" class="menu-link px-3">Edit</a>
                                                         </div>
-                                                        <!--end::Menu item-->
-                                                        <!--begin::Menu item-->
                                                         <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3 delete"
-                                                                data-kt-customer-table-filter="delete_row" data-id="{{ $banner->id }}" data-name="{{ $banner->name }}">Delete</a>
+                                                            <form id="form{{ $banner->id }}" action="{{ route('banner.destroy', $banner->id) }}" method="POST">
+                                                                @csrf
+                                                                @method('delete')
+                                                            </form>
+                                                            <a href="javascript:void(0)" class="menu-link px-3 delete" data-kt-customer-table-filter="delete_row" data-id="{{ $banner->id }}" data-name="{{ $banner->title }}">Delete</a>
                                                         </div>
-                                                        <!--end::Menu item-->
                                                     </div>
-                                                    <!--end::Menu-->
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -181,15 +130,10 @@
                                 </table>
                             </div>
                         </div>
-                        <!--end::Table-->
                     </div>
-                    <!--end::Card body-->
                 </div>
-                <!--end::Card-->
             </div>
-            <!--end::Container-->
         </div>
-        <!--end::Post-->
     </div>
 
 @endSection
@@ -216,46 +160,11 @@
                     ">"
             });
 
-            $('.status').on('click', function() {
-                event.preventDefault();
-                var name = $(this).data('name');
-                var id = $(this).data('id');
-                Swal.fire({
-                    text: 'You are about to update ' + name + ' status. Are you sure?',
-                    icon: "warning",
-                    buttonsStyling: false,
-                    showCancelButton: true,
-                    confirmButtonText: "Update",
-                    cancelButtonText: 'Cancel',
-                    customClass: {
-                        confirmButton: "btn btn-primary",
-                        cancelButton: 'btn btn-danger'
-                    }
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        var url = "{{ route('status.update', ":id") }}";
-                        url = url.replace(':id', id);
-                        $.ajax({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            type: "post",
-                            url: url,
-                            data: {table_name: 'banners'},
-                            success: function(response) {
-                                response == 'success' 
-                                    ? location.reload()
-                                    : toastr.error('Update Failed');
-                            }
-                        })
-                    }
-                })
-            });
-
             $('.delete').on('click', function() {
                 event.preventDefault();
-                var name = $(this).data('name');
-                var id = $(this).data('id');
+                var t = $(this);
+                var name = t.data('name');
+                var id = t.data('id');
                 Swal.fire({
                     text: 'You are about to delete ' + name + ' data. Are you sure?',
                     icon: "warning",
@@ -269,20 +178,23 @@
                     }
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        var url = "{{ route('banner.destroy', ":id") }}";
-                        url = url.replace(':id', id);
-                        $.ajax({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            type: "delete",
-                            url: url,
-                            success: function(response) {
-                                response == 'success' 
-                                    ? location.reload()
-                                    : toastr.error('Delete Failed');
-                            }
-                        })
+                        $('#form'+id).submit();
+                        // t.closest('form').submit();
+                        // var url = "{{ route('banner.destroy', ":id") }}";
+                        // url = url.replace(':id', id);
+                        // $.ajax({
+                        //     headers: {
+                        //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        //     },
+                        //     type: "delete",
+                        //     url: url,
+                        //     success: function(response) {
+                        //         console.log(responses);
+                        //         response == 'success' 
+                        //             ? location.reload()
+                        //             : toastr.error('Delete Failed');
+                        //     }
+                        // })
                     }
                 })
             });

@@ -84,7 +84,7 @@
                     </div>
                 </div>
                 <div data-kt-menu-trigger="click"
-                    class="menu-item   {{ request()->is('admin/category*') || request()->is('admin/attribute*') ? 'here show' : '' }} menu-accordion">
+                    class="menu-item   {{ request()->is('admin/category*') || request()->is('admin/attribute*') || request()->is('admin/brand*') ? 'here show' : '' }} menu-accordion">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">

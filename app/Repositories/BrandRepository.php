@@ -16,44 +16,37 @@ class BrandRepository implements BrandInterface
 
     public function index()
     {
-        $banner = Brand::all();
-        if ($banner) {
-            return $banner;
-        }
-        return null;
+        $result = Brand::orderBy('created_at', 'DESC')->get();
+        return $result;
     }
 
-    public function show($id)
+    public function find($id)
     {
-        $banner = Brand::where('id', $id)->first();
-        if ($banner) {
-            return $banner;
-        }
-        return null;
+        $result = Brand::where('id', $id)->first();
+        return $result;
     }
 
     public function store($request)
     {
-        $data = $request->except('image');
-        $banner = Brand::create($data);
+        $data = $request->except('image', '_token');
+        $result = Brand::create($data);
         if ($file = $request->image) {
-            $this->image->upload($banner, $file);
+            $this->image->upload($result, $file);
         }
-        return $banner;
+        return $result;
     }
 
     public function update($request, $id)
     {
         $banner = Brand::find($id);
         if ($banner) {
-            $data = $request->except('image', '_method');
-            $banner->update($data);
+            $data = $request->except('image', '_method', '_token');
+            $result = $banner->update($data);
             if ($file = $request->image) {
                 $this->image->upload($banner, $file, $banner->image->path ?? null);
             }
-            return $banner->refresh();
         }
-        return null;
+        return $result ?? 0;
     }
 
     public function destroy($id)
@@ -62,8 +55,7 @@ class BrandRepository implements BrandInterface
         if ($banner) {
             $result = $banner->delete();
             $this->image->delete($banner, $banner->image->path ?? null);
-            return $result;
         }
-        return null;
+        return $result ?? 0;
     }
 }

@@ -1,1 +1,0 @@
-resources/views/admin/attribute/show.blade.php

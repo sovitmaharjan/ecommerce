@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AttributeController;
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\HomeController;    
@@ -37,7 +38,7 @@ Route::group([
     Route::resource('banner', BannerController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('attribute', AttributeController::class);
+    Route::resource('brand', BrandController::class);
     // Route::post('/status/{id}', [HomeController::class, 'updateStatus'])->name('status.update');
     // Route::resource('user', UserController::class);
-    // Route::resource('brand', BrandController::class);
 });

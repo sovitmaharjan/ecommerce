@@ -51,16 +51,6 @@ class CategoryController extends Controller
         }
     }
 
-    // public function show($id)
-    // {
-    //     try {
-    //         $category = $this->interface->find($id);
-    //         return redirect()->route('category.show', compact('category'));
-    //     } catch (\Exception $e) {
-    //         return $e;
-    //     }
-    // }
-
     public function edit($id)
     {
         try {

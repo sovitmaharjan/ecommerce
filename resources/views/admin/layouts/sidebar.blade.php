@@ -81,28 +81,10 @@
                                 <span class="menu-title">Banner</span>
                             </a>
                         </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="#" data-bs-toggle="tooltip" data-bs-trigger="hover"
-                                data-bs-dismiss="click" data-bs-placement="right">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Reports</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="#" data-bs-toggle="tooltip" data-bs-trigger="hover"
-                                data-bs-dismiss="click" data-bs-placement="right">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Settings</span>
-                            </a>
-                        </div>
                     </div>
                 </div>
                 <div data-kt-menu-trigger="click"
-                    class="menu-item   {{ request()->is('admin/category*') ? 'here show' : '' }} menu-accordion">
+                    class="menu-item   {{ request()->is('admin/category*') || request()->is('admin/attribute*') ? 'here show' : '' }} menu-accordion">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -138,12 +120,21 @@
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="#" data-bs-toggle="tooltip" data-bs-trigger="hover"
+                            <a class="menu-link {{ request()->is('admin/attribute*') ? 'active' : '' }}" href="{{ route('attribute.index') }}" data-bs-toggle="tooltip" data-bs-trigger="hover"
                                 data-bs-dismiss="click" data-bs-placement="right">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Attribute</span>
+                            </a>
+                        </div>
+                        <div class="menu-item">
+                            <a class="menu-link {{ request()->is('admin/brand*') ? 'active' : '' }}" href="{{ route('brand.index') }}" data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                data-bs-dismiss="click" data-bs-placement="right">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Brand</span>
                             </a>
                         </div>
                         <div class="menu-item">

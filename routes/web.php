@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\HomeController;    
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,7 @@ Route::group([
     Route::resource('category', CategoryController::class);
     Route::resource('attribute', AttributeController::class);
     Route::resource('brand', BrandController::class);
+    Route::resource('product', ProductController::class);
     // Route::post('/status/{id}', [HomeController::class, 'updateStatus'])->name('status.update');
     // Route::resource('user', UserController::class);
 });

@@ -47,16 +47,6 @@ class BrandController extends Controller
         }
     }
 
-    // public function show($id)
-    // {
-    //     try {
-    //         $brand = $this->interface->find($id);
-    //         return redirect()->route('brand.show', compact('brand'));
-    //     } catch (\Exception $e) {
-    //         return $e;
-    //     }
-    // }
-
     public function edit($id)
     {
         try {

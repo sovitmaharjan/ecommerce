@@ -3,44 +3,50 @@
 namespace App\Repositories;
 
 use App\Contracts\ProductInterface;
+use App\Custom\ImageService;
 use App\Models\Product;
 
 class ProductRepository implements ProductInterface
 {
-    public function index()
+    protected $image;
+    public function __construct(ImageService $image)
     {
-        $banner = Product::all();
-        if ($banner) {
-            return $banner;
-        }
-        return null;
+        $this->image = $image;
     }
 
-    public function show($id)
+    public function index()
     {
-        $banner = Product::where('id', $id)->first();
-        if ($banner) {
-            return $banner;
-        }
-        return null;
+        $result = Product::orderBy('created_at', 'DESC')->get();
+        return $result;
+    }
+
+    public function find($id)
+    {
+        $result = Product::where('id', $id)->first();
+        return $result;
     }
 
     public function store($request)
     {
-        $data = $request->all();
-        $banner = Product::create($data);
-        return $banner;
+        $data = $request->except('image', '_token');
+        $result = Product::create($data);
+        if ($file = $request->image) {
+            $this->image->upload($result, $file);
+        }
+        return $result;
     }
 
     public function update($request, $id)
     {
         $banner = Product::find($id);
         if ($banner) {
-            $data = $request->except('_method');
-            $banner->update($data);
-            return $banner->refresh();
+            $data = $request->except('image', '_method', '_token');
+            $result = $banner->update($data);
+            if ($file = $request->image) {
+                $this->image->upload($banner, $file, $banner->image->path ?? null);
+            }
         }
-        return null;
+        return $result ?? 0;
     }
 
     public function destroy($id)
@@ -48,8 +54,8 @@ class ProductRepository implements ProductInterface
         $banner = Product::where('id', $id)->first();
         if ($banner) {
             $result = $banner->delete();
-            return $result;
+            $this->image->delete($banner, $banner->image->path ?? null);
         }
-        return null;
+        return $result ?? 0;
     }
 }

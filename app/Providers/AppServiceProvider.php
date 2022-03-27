@@ -7,11 +7,13 @@ use App\Contracts\BannerInterface;
 use App\Contracts\BrandInterface;
 use App\Contracts\CategoryInterface;
 use App\Contracts\ProductInterface;
+use App\Contracts\UserInterface;
 use App\Repositories\AttributeRepository;
 use App\Repositories\BannerRepository;
 use App\Repositories\BrandRepository;
 use App\Repositories\CategoryRepository;
 use App\Repositories\ProductRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(CategoryInterface::class, CategoryRepository::class);
         $this->app->bind(AttributeInterface::class, AttributeRepository::class);
         $this->app->bind(ProductInterface::class, ProductRepository::class);
+        $this->app->bind(UserInterface::class, UserRepository::class);
     }
 
     /**

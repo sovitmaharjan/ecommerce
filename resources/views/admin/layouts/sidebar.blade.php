@@ -46,7 +46,7 @@
                     </a>
                 </div>
                 <div data-kt-menu-trigger="click"
-                    class="menu-item  {{ request()->is('admin/banner*') ? 'here show' : '' }} menu-accordion">
+                    class="menu-item  {{ request()->is('admin/banner*') || request()->is('admin/user*') ? 'here show' : '' }} menu-accordion">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -79,6 +79,18 @@
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Banner</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="menu-sub menu-sub-accordion">
+                        <div class="menu-item">
+                            <a class="menu-link {{ request()->is('admin/user*') ? 'active' : '' }}"
+                                href="{{ route('user.index') }}" data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                data-bs-dismiss="click" data-bs-placement="right">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">User</span>
                             </a>
                         </div>
                     </div>

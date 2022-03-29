@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Auth::routes();
@@ -35,7 +35,6 @@ Route::group([
     'prefix' => '/admin',
     'middleware' => 'auth'
 ], function() {
-    
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::resource('banner', BannerController::class);

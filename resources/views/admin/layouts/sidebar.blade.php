@@ -84,6 +84,18 @@
                     </div>
                     <div class="menu-sub menu-sub-accordion">
                         <div class="menu-item">
+                            <a class="menu-link {{ request()->is('admin/general-setting*') ? 'active' : '' }}"
+                                href="{{ route('general-setting.index') }}" data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                data-bs-dismiss="click" data-bs-placement="right">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Banner</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="menu-sub menu-sub-accordion">
+                        <div class="menu-item">
                             <a class="menu-link {{ request()->is('admin/user*') ? 'active' : '' }}"
                                 href="{{ route('user.index') }}" data-bs-toggle="tooltip" data-bs-trigger="hover"
                                 data-bs-dismiss="click" data-bs-placement="right">

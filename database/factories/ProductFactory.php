@@ -1,10 +1,10 @@
 <?php
 
-namespace Database\Factories\Admin;
+namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ProductAttributeValueFactory extends Factory
+class ProductFactory extends Factory
 {
     /**
      * Define the model's default state.

@@ -3,7 +3,7 @@
     data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start"
     data-kt-drawer-toggle="#kt_aside_mobile_toggle">
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
-        <a href="../../demo1/dist/index.html">
+        <a href="{{ route('admin.dashboard') }}">
             <img alt="Logo" src="{{ asset('assets/admin/media/logos/logo-1-dark.svg') }}" class="h-25px logo" />
         </a>
         <div id="kt_aside_toggle" class="btn btn-icon w-auto px-0 btn-active-color-primary aside-toggle"
@@ -46,7 +46,7 @@
                     </a>
                 </div>
                 <div data-kt-menu-trigger="click"
-                    class="menu-item  {{ request()->is('admin/banner*') || request()->is('admin/user*') ? 'here show' : '' }} menu-accordion">
+                    class="menu-item  {{ request()->is('admin/banner*') || request()->is('admin/general-setting*') ? 'here show' : '' }} menu-accordion">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -78,7 +78,7 @@
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Banner</span>
+                                <span class="menu-title">Banner Setting</span>
                             </a>
                         </div>
                     </div>
@@ -90,7 +90,19 @@
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Banner</span>
+                                <span class="menu-title">General Setting</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="menu-sub menu-sub-accordion">
+                        <div class="menu-item">
+                            <a class="menu-link"
+                                href="{{ route('admin.under-construction') }}" data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                data-bs-dismiss="click" data-bs-placement="right">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Business Setting</span>
                             </a>
                         </div>
                     </div>

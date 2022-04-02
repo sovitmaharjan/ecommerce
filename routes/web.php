@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\GeneralSettingController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
@@ -40,6 +41,9 @@ Route::group([
     'prefix' => '/admin',
     'middleware' => 'auth'
 ], function() {
+    Route::get('/under-construction', function() {
+        return view('admin.under-construction');
+    })->name('admin.under-construction');
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::resource('banner', BannerController::class);
@@ -48,5 +52,8 @@ Route::group([
     Route::resource('brand', BrandController::class);
     Route::resource('product', ProductController::class);
     Route::resource('user', UserController::class);
+    Route::get('/general-setting', [GeneralSettingController::class, 'index'])->name('general-setting.index');
+    Route::post('/general-setting', [GeneralSettingController::class, 'store'])->name('general-setting.store');
+    Route::patch('/general-setting/{id}', [GeneralSettingController::class, 'update'])->name('general-setting.update');
     // Route::post('/status/{id}', [HomeController::class, 'updateStatus'])->name('status.update');
 });

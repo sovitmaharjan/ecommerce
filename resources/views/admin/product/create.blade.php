@@ -59,12 +59,13 @@
                             <div class="card-body text-center pt-0">
                                 <div class="image-input image-input-outline image-input-empty" data-kt-image-input="true"
                                     style="background-image: url({{ asset('assets/admin/media/svg/files/blank-image.svg') }})">
-                                    <div class="image-input-wrapper w-225px h-125px"></div>
+                                    <div class="image-input-wrapper w-200px h-200px bgi-position-center"
+                                        style="background-size: 95%;"></div>
                                     <label
                                         class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
                                         data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change image">
                                         <i class="bi bi-pencil-fill fs-7"></i>
-                                        <input type="file" name="image" accept=".png, .jpg, .jpeg" required/>
+                                        <input type="file" name="image" accept=".png, .jpg, .jpeg" id="image" />
                                     </label>
                                     <span
                                         class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
@@ -89,27 +90,61 @@
                         <div class="card card-flush py-4">
                             <div class="card-header">
                                 <div class="card-title">
-                                    <h2 class="required">Status</h2>
+                                    <h2>Status</h2>
                                 </div>
                                 <div class="card-toolbar">
-                                    <div class="rounded-circle bg-success w-15px h-15px"
-                                        id="kt_ecommerce_add_product_status"></div>
+                                    <div class="rounded-circle bg-primary w-15px h-15px" id="status_color"></div>
                                 </div>
                             </div>
                             <div class="card-body pt-0">
-                                <select class="form-select mb-2" data-control="select2" name="status"
-                                    data-hide-search="true" data-placeholder="Select an option"
-                                    id="kt_ecommerce_add_product_status_select" required>
+                                <select class="form-select mb-2" data-control="select2" data-hide-search="true"
+                                    data-placeholder="Select an option" id="status" name="status">
                                     <option></option>
-                                    <option value="1" selected="selected">Active</option>
-                                    <option value="0">Inactive</option>
+                                    <option value="draft" selected="selected">Draft</option>
+                                    <option value="published">Published</option>
+                                    <option value="inactive">Inactive</option>
                                 </select>
                                 <div class="text-muted fs-7">Set the product status.</div>
-                                @error('status')
-                                    <div class="fv-plugins-message-container invalid-feedback">
-                                        <div data-field="status" data-validator="notEmpty">{{ $message }}</div>
-                                    </div>
-                                @enderror
+                            </div>
+                        </div>
+                        <div class="card card-flush py-4">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h2>Product Details</h2>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0">
+                                <label class="form-label required">Category</label>
+                                <select class="form-select" data-hide-search="true" name="category_id" data-control="select2" data-placeholder="Select an option">
+                                    <option></option>
+                                    @foreach ($all_category as $category)
+                                        <option value="{{ $category->id }}"
+                                            {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                            {{ $category->title }}</option>
+                                    @endforeach
+                                </select>
+                                <div class="text-muted fs-7 mb-7">Add product to a category.</div>
+                                <a href="{{ route('category.create') }}" class="btn btn-light-primary btn-sm mb-10">
+                                    <span class="svg-icon svg-icon-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                            fill="none">
+                                            <rect opacity="0.5" x="11" y="18" width="12" height="2" rx="1"
+                                                transform="rotate(-90 11 18)" fill="black" />
+                                            <rect x="6" y="11" width="12" height="2" rx="1" fill="black" />
+                                        </svg>
+                                    </span>
+                                    Create new category
+                                </a>
+                                <label class="form-label d-block">Tags</label>
+                                <input id="tags" name="tags" class="form-control mb-2" value="" />
+                                <div class="text-muted fs-7">Add tags to a product.</div>
+                            </div>
+
+                            <div class="card-body pt-0">
+                                <label class="form-label d-block">Video url</label>
+                                <textarea name="video_url" placeholder="Video url" class="form-control mb-2" id="video_url"
+                                    rows="3">{{ old('video_url') }}</textarea>
+                                <div class="text-muted fs-7">Set a video url to the product.</div>
                             </div>
                         </div>
                     </div>
@@ -118,36 +153,151 @@
                             <div class="card-header">
                                 <div class="card-title">
                                     <h2>General</h2>
+
                                 </div>
                             </div>
                             <div class="card-body pt-0">
                                 <div class="mb-10 fv-row">
                                     <label class="required form-label">Product Name</label>
                                     <input type="text" name="title" class="form-control mb-2" placeholder="Product name"
-                                        value="{{ old('title') }}" required/>
-                                    <div class="text-muted fs-7">A product name is required and recommended to be unique.
-                                    </div>
-                                    @error('title')
-                                        <div class="fv-plugins-message-container invalid-feedback">
-                                            <div data-field="title" data-validator="notEmpty">{{ $message }}</div>
-                                        </div>
-                                    @enderror
+                                        value="" id="title" />
+                                    <div class="text-muted fs-7">A product name is required.</div>
                                 </div>
                                 <div>
                                     <label class="form-label">Description</label>
-                                    <textarea name="description" class="form-control mb-2" id="description"
-                                        rows="5">{{ old('description') }}</textarea>
+                                    <textarea name="description" placeholder="Type your text here..." class="form-control mb-2" id="description" rows="5">{{ old('description') }}</textarea>
                                     <div class="text-muted fs-7">Set a description to the product.</div>
                                 </div>
                             </div>
                         </div>
+                        <div class="card card-flush py-4">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h2>Pricing</h2>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="mb-10 fv-row">
+                                    <label class="required form-label">Base Price</label>
+                                    <input type="number" id="price" name="price" class="form-control mb-2" placeholder="Product price"
+                                        value="" />
+                                    <div class="text-muted fs-7">Set the product price.</div>
+                                </div>
+                                <div class="fv-row mb-10">
+                                    <label class="fs-6 fw-bold mb-2">Discount Type
+                                        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                            title="Select a discount type that will be applied to this product"></i></label>
+                                    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-1 row-cols-xl-3 g-9"
+                                        data-kt-buttons="true" data-kt-buttons-target="[data-kt-button='true']">
+                                        <div class="col">
+                                            <label
+                                                class="btn btn-outline btn-outline-dashed btn-outline-default active d-flex text-start p-6"
+                                                data-kt-button="true">
+                                                <span
+                                                    class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
+                                                    <input class="form-check-input" type="radio" name="discount_option"
+                                                        value="1" id="no_discount" checked="checked" />
+                                                </span>
+                                                <span class="ms-5">
+                                                    <span class="fs-4 fw-bolder text-gray-800 d-block">No
+                                                        Discount</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col">
+                                            <label
+                                                class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-6"
+                                                data-kt-button="true">
+                                                <span
+                                                    class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
+                                                    <input class="form-check-input" type="radio" name="discount_option"
+                                                        value="2" id="discount_percentage_radio" />
+                                                </span>
+                                                <span class="ms-5">
+                                                    <span class="fs-4 fw-bolder text-gray-800 d-block">Percentage
+                                                        %</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col">
+                                            <label
+                                                class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-6"
+                                                data-kt-button="true">
+                                                <span
+                                                    class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
+                                                    <input class="form-check-input" type="radio" name="discount_option"
+                                                        value="3" id="discounted_price_radio" />
+                                                </span>
+                                                <span class="ms-5">
+                                                    <span class="fs-4 fw-bolder text-gray-800 d-block">Fixed Discounted
+                                                        Price</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-none mb-10 fv-row" id="discount_percentage">
+                                    <label class="form-label">Set Discount Percentage</label>
+                                    <input type="text" name="discount" min="1" max="100" class="form-control mb-2" id="percentage"
+                                        placeholder="Discounted Percentage" />
+                                    <div class="text-muted fs-7">Set a percentage discount to be applied on
+                                        this product.</div>
+                                </div>
+                                <div class="d-none mb-10 fv-row" id="discounted_price">
+                                    <label class="form-label">Fixed Price</label>
+                                    <input type="number" name="discount" id="fixed" class="form-control mb-2"
+                                        placeholder="Discounted price" />
+                                    <div class="text-muted fs-7">Set the discounted product price. The product
+                                        will be reduced at the determined fixed price</div>
+                                </div>
+                                <div class="d-flex flex-wrap gap-5">
+                                    <div class="fv-row w-100 flex-md-root">
+                                        <label class="form-label">VAT (%)</label>
+                                        <input type="number" class="form-control mb-2" value="" name="vat" />
+                                        <div class="text-muted fs-7">Set the product VAT percentage.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-flush py-4">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h2>Meta Options</h2>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="mb-10">
+                                    <label class="form-label">Meta Tag Title</label>
+                                    <input type="text" class="form-control mb-2" name="meta_title" id="meta_title"
+                                        placeholder="Meta tag name" value="{{ old('meta_title') }}" />
+                                    <div class="text-muted fs-7">Set a meta tag title. Recommended to be simple and precise
+                                        keywords.</div>
+                                </div>
+                                <div class="mb-10">
+                                    <label class="form-label">Meta Tag Description</label>
+                                    <textarea name="meta_description" placeholder="Type your text here..." class="form-control mb-2" id="meta_description"
+                                        rows="5">{{ old('meta_description') }}</textarea>
+                                    <div class="text-muted fs-7">Set a meta tag description to the product for increased
+                                        SEO ranking.</div>
+                                </div>
+                                <div>
+                                    <label class="form-label">Meta Tag Keywords</label>
+                                    <input id="meta_keyword" name="meta_keyword" class="form-control mb-2"
+                                        value="{{ old('meta_keyword') }}" />
+                                    <div class="text-muted fs-7">Set a list of keywords that the product is related to.
+                                        Separate the keywords by adding a comma
+                                        <code>,</code>between each keyword.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route('product.index') }}" id="kt_ecommerce_add_product_cancel"
-                                class="btn btn-light me-5">Cancel</a>
-                            <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
+                            <a href="{{ route('product.index') }}" class="btn btn-light me-5">Cancel</a>
+                            <button type="submit" id="product_submit" class="btn btn-primary">
                                 <span class="indicator-label">Save Changes</span>
                                 <span class="indicator-progress">Please wait...
-                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                </span>
                             </button>
                         </div>
                     </div>

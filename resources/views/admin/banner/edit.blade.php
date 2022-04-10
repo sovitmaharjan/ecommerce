@@ -57,7 +57,7 @@
                             </div>
                             <div class="card-body text-center pt-0">
                                 <div class="image-input image-input-outline image-input-empty" data-kt-image-input="true">
-                                    <div class="image-input-wrapper w-225px h-125px bgi-position-center" style="background-size: 75%; background-image: url({{ $banner->image ? $banner->image->getUrl() : asset('assets/admin/media/svg/files/blank-image.svg') }})"></div>
+                                    <div class="image-input-wrapper w-200px h-200px bgi-position-center" style="background-size: 75%; background-image: url({{ $banner->image ? $banner->image->getUrl() : asset('assets/admin/media/svg/files/blank-image.svg') }})"></div>
                                     <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change image">
                                         <i class="bi bi-pencil-fill fs-7"></i>
                                         <input type="file" name="image" accept=".png, .jpg, .jpeg"/>

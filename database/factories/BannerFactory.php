@@ -14,11 +14,9 @@ class BannerFactory extends Factory
      */
     public function definition()
     {
-        $title = $this->faker->name();
+        $title = $this->faker->word();
         return [
             'title' => 'Banner ' . $title,
-            'slug' => Str::slug($title),
-            'image' => $title,
             'description' => $this->faker->realText(200, 3),
             'status' => 1,
         ];

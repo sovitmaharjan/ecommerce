@@ -14,14 +14,19 @@ class Product extends Model
     protected $fillable = [
         'title',
         'slug',
-        'category_id',
-        'video_url',
         'description',
-        'seo_title',
-        'seo_description',
-        'base_price',
         'status',
-        'user_id'
+        'category_id',
+        'tags',
+        'video_url',
+        'price',
+        'discount_option',
+        'discount',
+        'vat',
+        'meta_title',
+        'meta_description',
+        'meta_keyword',
+        'user_id',
     ];
 
     public function getSlugOptions() : SlugOptions
@@ -29,5 +34,10 @@ class Product extends Model
         return SlugOptions::create()
             ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
+    }
+
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
     }
 }

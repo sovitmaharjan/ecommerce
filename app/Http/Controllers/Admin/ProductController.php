@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Contracts\CategoryInterface;
 use App\Contracts\ProductInterface;
 use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
@@ -11,18 +12,19 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    protected $interface, $response;
+    protected $product, $category, $response;
 
-    public function __construct(ProductInterface $interface, ResponseService $response)
+    public function __construct(ProductInterface $product, CategoryInterface $category, ResponseService $response)
     {
-        $this->interface = $interface;
+        $this->product = $product;
+        $this->category = $category;
         $this->response = $response;
     }
 
     public function index()
     {
         try {
-            $product = $this->interface->index();
+            $product = $this->product->index();
             return view('admin.product.index', compact('product'));
         } catch (\Exception $e) {
             return $e;
@@ -31,14 +33,19 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('admin.product.create');
+        try {
+            $all_category = $this->category->index();
+            return view('admin.product.create', compact('all_category'));
+        } catch (\Exception $e) {
+            return $e;
+        }
     }
 
     public function store(ProductRequest $request)
     {
         try {
             DB::beginTransaction();
-            $result = $this->interface->store($request);
+            $result = $this->product->store($request);
             DB::commit();
             return redirect()->route('product.index')->with('success', 'Save successful');
         } catch (\Exception $e) {
@@ -50,7 +57,7 @@ class ProductController extends Controller
     // public function show($id)
     // {
     //     try {
-    //         $product = $this->interface->find($id);
+    //         $product = $this->product->find($id);
     //         return redirect()->route('product.show', compact('product'));
     //     } catch (\Exception $e) {
     //         return $e;
@@ -60,8 +67,9 @@ class ProductController extends Controller
     public function edit($id)
     {
         try {
-            $product = $this->interface->find($id);
-            return view('admin.product.edit', compact('product'));
+            $product = $this->product->find($id);
+            $all_category = $this->category->index();
+            return view('admin.product.edit', compact('product', 'all_category'));
         } catch (\Exception $e) {
             return $e;
         }
@@ -71,7 +79,7 @@ class ProductController extends Controller
     {
         try {
             DB::beginTransaction();
-            $product = $this->interface->update($request, $id);
+            $product = $this->product->update($request, $id);
             DB::commit();
             return $product
                 ? redirect()->route('product.index')->with('success', 'Update successful')
@@ -85,7 +93,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         try {
-            $product = $this->interface->destroy($id);
+            $product = $this->product->destroy($id);
             return $product
                 ? redirect()->route('product.index')->with('success', 'Delete successful')
                 : redirect()->route('product.index')->with('info', 'Detail fail');

@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Contracts\ProductInterface;
 use App\Custom\ImageService;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 
 class ProductRepository implements ProductInterface
 {
@@ -29,6 +30,7 @@ class ProductRepository implements ProductInterface
     public function store($request)
     {
         $data = $request->except('image', '_token');
+        $data['user_id'] = Auth::user()->id;
         $result = Product::create($data);
         if ($file = $request->image) {
             $this->image->upload($result, $file);

@@ -59,7 +59,7 @@
                             <div class="card-body text-center pt-0">
                                 <div class="image-input image-input-outline image-input-empty" data-kt-image-input="true"
                                     style="background-image: url({{ asset('assets/admin/media/svg/files/blank-image.svg') }})">
-                                    <div class="image-input-wrapper w-225px h-125px"></div>
+                                    <div class="image-input-wrapper w-200px h-200px bgi-position-center" style="background-size: 95%;"></div>
                                     <label
                                         class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
                                         data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change image">

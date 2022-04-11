@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GeneralSettingController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
@@ -51,8 +52,7 @@ Route::group([
     Route::resource('attribute', AttributeController::class);
     Route::resource('brand', BrandController::class);
     Route::resource('product', ProductController::class);
-
-    // Route::get();
+    Route::resource('order', OrderController::class);
     
     Route::resource('user', UserController::class);
     Route::get('/general-setting', [GeneralSettingController::class, 'index'])->name('general-setting.index');

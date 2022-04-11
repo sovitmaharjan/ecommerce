@@ -7,7 +7,6 @@ use App\Contracts\ProductInterface;
 use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller

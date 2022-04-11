@@ -120,7 +120,7 @@
                     </div>
                 </div>
                 <div data-kt-menu-trigger="click"
-                    class="menu-item   {{ request()->is('admin/category*') || request()->is('admin/attribute*') || request()->is('admin/brand*') || request()->is('admin/product*') ? 'here show' : '' }} menu-accordion">
+                    class="menu-item   {{ request()->is('admin/category*') || request()->is('admin/attribute*') || request()->is('admin/brand*') || request()->is('admin/product*') || request()->is('admin/order*') ? 'here show' : '' }} menu-accordion">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -182,7 +182,7 @@
                                 <span class="menu-title">Product</span>
                             </a>
                         </div>
-                        {{-- <div class="menu-item">
+                        <div class="menu-item">
                             <a class="menu-link {{ request()->is('admin/order*') ? 'active' : '' }}" href="{{ route('order.index') }}" data-bs-toggle="tooltip" data-bs-trigger="hover"
                                 data-bs-dismiss="click" data-bs-placement="right">
                                 <span class="menu-bullet">
@@ -190,7 +190,7 @@
                                 </span>
                                 <span class="menu-title">Order</span>
                             </a>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">

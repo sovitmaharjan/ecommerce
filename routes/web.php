@@ -51,6 +51,9 @@ Route::group([
     Route::resource('attribute', AttributeController::class);
     Route::resource('brand', BrandController::class);
     Route::resource('product', ProductController::class);
+
+    // Route::get();
+    
     Route::resource('user', UserController::class);
     Route::get('/general-setting', [GeneralSettingController::class, 'index'])->name('general-setting.index');
     Route::post('/general-setting', [GeneralSettingController::class, 'store'])->name('general-setting.store');

@@ -71,9 +71,9 @@
                         <div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="table-responsive">
                                 <table id="kt_datatable_example_5"
-                                    class="table table-striped table-row-bordered gy-5 gs-7 border rounded align-middle">
+                                    class="table table-row-bordered gy-5 gs-7 border rounded align-middle">
                                     <thead>
-                                        <tr class="fw-bolder fs-6 text-gray-800 px-7 text-uppercase">
+                                        <tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
                                             <th>#</th>
                                             <th>Title</th>
                                             <th>Status</th>

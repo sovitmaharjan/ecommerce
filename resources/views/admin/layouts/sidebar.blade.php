@@ -182,15 +182,15 @@
                                 <span class="menu-title">Product</span>
                             </a>
                         </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="#" data-bs-toggle="tooltip" data-bs-trigger="hover"
+                        {{-- <div class="menu-item">
+                            <a class="menu-link {{ request()->is('admin/order*') ? 'active' : '' }}" href="{{ route('order.index') }}" data-bs-toggle="tooltip" data-bs-trigger="hover"
                                 data-bs-dismiss="click" data-bs-placement="right">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Settings</span>
+                                <span class="menu-title">Order</span>
                             </a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">

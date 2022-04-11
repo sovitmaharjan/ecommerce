@@ -47,8 +47,9 @@
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
                 <form id="product_form" class="form d-flex flex-column flex-lg-row" method="POST"
-                    action="{{ route('product.store') }}" enctype="multipart/form-data">
+                    action="{{ route('product.update', $product->id) }}" enctype="multipart/form-data">
                     @csrf
+                    @method('patch')
                     <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
                         <div class="card card-flush py-4">
                             <div class="card-header">
@@ -200,12 +201,12 @@
                                         data-kt-buttons="true" data-kt-buttons-target="[data-kt-button='true']">
                                         <div class="col">
                                             <label
-                                                class="btn btn-outline btn-outline-dashed btn-outline-default active d-flex text-start p-6"
+                                                class="btn btn-outline btn-outline-dashed btn-outline-default {{ $product->discount_option == 1 ? 'active' : '' }} d-flex text-start p-6"
                                                 data-kt-button="true">
                                                 <span
                                                     class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
                                                     <input class="form-check-input" type="radio" name="discount_option"
-                                                        value="1" id="no_discount"{{ old() }} />
+                                                        value="1" id="no_discount" {{ $product->discount_option == 1 ? 'checked' : '' }} />
                                                 </span>
                                                 <span class="ms-5">
                                                     <span class="fs-4 fw-bolder text-gray-800 d-block">No
@@ -215,12 +216,12 @@
                                         </div>
                                         <div class="col">
                                             <label
-                                                class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-6"
+                                                class="btn btn-outline btn-outline-dashed btn-outline-default {{ $product->discount_option == 2 ? 'active' : '' }} d-flex text-start p-6"
                                                 data-kt-button="true">
                                                 <span
                                                     class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
                                                     <input class="form-check-input" type="radio" name="discount_option"
-                                                        value="2" id="discount_percentage_radio" />
+                                                        value="2" id="discount_percentage_radio" {{ $product->discount_option == 2 ? 'checked' : '' }} />
                                                 </span>
                                                 <span class="ms-5">
                                                     <span class="fs-4 fw-bolder text-gray-800 d-block">Percentage
@@ -230,12 +231,12 @@
                                         </div>
                                         <div class="col">
                                             <label
-                                                class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-6"
+                                                class="btn btn-outline btn-outline-dashed btn-outline-default {{ $product->discount_option == 3 ? 'active' : '' }} d-flex text-start p-6"
                                                 data-kt-button="true">
                                                 <span
                                                     class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
                                                     <input class="form-check-input" type="radio" name="discount_option"
-                                                        value="3" id="discounted_price_radio" />
+                                                        value="3" id="discounted_price_radio" {{ $product->discount_option == 3 ? 'checked' : '' }} />
                                                 </span>
                                                 <span class="ms-5">
                                                     <span class="fs-4 fw-bolder text-gray-800 d-block">Fixed Discounted
@@ -245,24 +246,25 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="d-none mb-10 fv-row" id="discount_percentage">
+                                {{-- {{ dd($product->discount_option, $product->discount_option == 3, $product->discount) }} --}}
+                                <div class="{{ $product->discount_option == 2 ? '' : 'd-none' }} mb-10 fv-row" id="discount_percentage">
                                     <label class="form-label">Set Discount Percentage</label>
                                     <input type="text" name="discount" min="1" max="100" class="form-control mb-2"
-                                        id="percentage" placeholder="Discounted Percentage" />
+                                        id="percentage" placeholder="Discounted Percentage" value="{{ $product->discount_option == 2 ? $product->discount : '' }}" />
                                     <div class="text-muted fs-7">Set a percentage discount to be applied on
                                         this product.</div>
                                 </div>
-                                <div class="d-none mb-10 fv-row" id="discounted_price">
+                                <div class="{{ $product->discount_option == 3 ? '' : 'd-none' }} mb-10 fv-row" id="discounted_price">
                                     <label class="form-label">Fixed Price</label>
                                     <input type="number" name="discount" id="fixed" class="form-control mb-2"
-                                        placeholder="Discounted price" />
+                                        placeholder="Discounted price" {{ $product->discount_option == 3 ? $product->discount : $product->discount }} />
                                     <div class="text-muted fs-7">Set the discounted product price. The product
                                         will be reduced at the determined fixed price</div>
                                 </div>
                                 <div class="d-flex flex-wrap gap-5">
                                     <div class="fv-row w-100 flex-md-root">
                                         <label class="form-label">VAT (%)</label>
-                                        <input type="number" class="form-control mb-2" value="" name="vat" />
+                                        <input type="number" class="form-control mb-2" value="{{ old('vat') ?? $product->vat }}" name="vat" />
                                         <div class="text-muted fs-7">Set the product VAT percentage.</div>
                                     </div>
                                 </div>
@@ -278,21 +280,21 @@
                                 <div class="mb-10">
                                     <label class="form-label">Meta Tag Title</label>
                                     <input type="text" class="form-control mb-2" name="meta_title" id="meta_title"
-                                        placeholder="Meta tag name" value="{{ old('meta_title') }}" />
+                                        placeholder="Meta tag name" value="{{ old('meta_title') ?? $product->meta_title }}" />
                                     <div class="text-muted fs-7">Set a meta tag title. Recommended to be simple and precise
                                         keywords.</div>
                                 </div>
                                 <div class="mb-10">
                                     <label class="form-label">Meta Tag Description</label>
                                     <textarea name="meta_description" placeholder="Type your text here..." class="form-control mb-2" id="meta_description"
-                                        rows="5">{{ old('meta_description') }}</textarea>
+                                        rows="5">{{ old('meta_description') ?? $product->meta_description }}</textarea>
                                     <div class="text-muted fs-7">Set a meta tag description to the product for increased
                                         SEO ranking.</div>
                                 </div>
                                 <div>
                                     <label class="form-label">Meta Tag Keywords</label>
                                     <input id="meta_keyword" name="meta_keyword" class="form-control mb-2"
-                                        value="{{ old('meta_keyword') }}" />
+                                        value="{{ old('meta_keyword') ?? $product->meta_keyword }}" />
                                     <div class="text-muted fs-7">Set a list of keywords that the product is related to.
                                         Separate the keywords by adding a comma
                                         <code>,</code>between each keyword.

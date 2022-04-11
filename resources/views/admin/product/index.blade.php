@@ -27,7 +27,8 @@
                         <a href="{{ route('product.index') }}"
                             class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none">
                                     <path
                                         d="M21 7H3C2.4 7 2 6.6 2 6V4C2 3.4 2.4 3 3 3H21C21.6 3 22 3.4 22 4V6C22 6.6 21.6 7 21 7Z"
                                         fill="black"></path>
@@ -71,9 +72,9 @@
                         <div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="table-responsive">
                                 <table id="kt_datatable_example_5"
-                                    class="table table-striped table-row-bordered gy-5 gs-7 border rounded align-middle">
+                                    class="table table-row-bordered gy-5 gs-7 border rounded align-middle">
                                     <thead>
-                                        <tr class="fw-bolder fs-6 text-gray-800 px-7 text-uppercase">
+                                        <tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
                                             <th>#</th>
                                             <th>Image</th>
                                             <th>Title</th>
@@ -93,8 +94,12 @@
                                                     {{ $product->title }}</a>
                                                 </td>
                                                 <td>
-                                                    @if ($product->status == 1)
-                                                        <div class="badge badge-light-success">Active</div>
+                                                    @if ($product->status == 'published')
+                                                        <div class="badge badge-light-success">Published</div>
+                                                    @elseif($product->status == 'draft')
+                                                        <div class="badge badge-light-primary">Draft</div>
+                                                    @elseif($product->status == 'suspended')
+                                                        <div class="badge badge-light-warning">Suspended</div>
                                                     @else
                                                         <div class="badge badge-light-danger">InActive</div>
                                                     @endif

@@ -2,86 +2,102 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Contracts\CategoryInterface;
+use App\Contracts\ProductInterface;
+use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\UpdateProductRequest;
-use App\Models\Admin\Product;
+use App\Http\Requests\ProductRequest;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $product, $category, $response;
+
+    public function __construct(ProductInterface $product, CategoryInterface $category, ResponseService $response)
+    {
+        $this->product = $product;
+        $this->category = $category;
+        $this->response = $response;
+    }
+
     public function index()
     {
-        //
+        try {
+            $product = $this->product->index();
+            return view('admin.product.index', compact('product'));
+        } catch (\Exception $e) {
+            return $e;
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        try {
+            $all_category = $this->category->index();
+            return view('admin.product.create', compact('all_category'));
+        } catch (\Exception $e) {
+            return $e;
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreProductRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreProductRequest $request)
+    public function store(ProductRequest $request)
     {
-        //
+        try {
+            DB::beginTransaction();
+            $result = $this->product->store($request);
+            DB::commit();
+            return redirect()->route('product.index')->with('success', 'Save successful');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $e;
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Admin\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Product $product)
+    // public function show($id)
+    // {
+    //     try {
+    //         $product = $this->product->find($id);
+    //         return redirect()->route('product.show', compact('product'));
+    //     } catch (\Exception $e) {
+    //         return $e;
+    //     }
+    // }
+
+    public function edit($id)
     {
-        //
+        try {
+            $product = $this->product->find($id);
+            $all_category = $this->category->index();
+            return view('admin.product.edit', compact('product', 'all_category'));
+        } catch (\Exception $e) {
+            return $e;
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Admin\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Product $product)
+    public function update(ProductRequest $request, $id)
     {
-        //
+        try {
+            DB::beginTransaction();
+            $product = $this->product->update($request, $id);
+            DB::commit();
+            return $product
+                ? redirect()->route('product.index')->with('success', 'Update successful')
+                : redirect()->route('product.index')->with('error', 'Update fail');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $e;
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateProductRequest  $request
-     * @param  \App\Models\Admin\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Admin\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Product $product)
-    {
-        //
+        try {
+            $product = $this->product->destroy($id);
+            return $product
+                ? redirect()->route('product.index')->with('success', 'Delete successful')
+                : redirect()->route('product.index')->with('info', 'Detail fail');
+        } catch (\Exception $e) {
+            return $e;
+        }
     }
 }

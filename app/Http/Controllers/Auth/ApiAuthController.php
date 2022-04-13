@@ -35,15 +35,15 @@ class ApiAuthController extends Controller
             'email' => 'required|string|email|max:255',
             'password' => 'required|string',
         ]);
-        if ($validator->fails())
-        {
+        if ($validator->fails()) {
             return response(['errors'=>$validator->errors()->all()], 422);
         }
         $user = User::where('email', $request->email)->first();
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
                 $token = $user->createToken('Laravel Password Grant Client')->accessToken;
-                $response = ['token' => $token];
+                // $response = ['token' => $token];
+                $response = $token;
                 return response($response, 200);
             } else {
                 $response = ["message" => "Password mismatch"];

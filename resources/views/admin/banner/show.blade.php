@@ -1,1 +1,0 @@
-resources/views/admin/banner/show.blade.php

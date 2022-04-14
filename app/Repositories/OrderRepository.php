@@ -15,7 +15,7 @@ class OrderRepository implements OrderInterface
 
     public function find($id)
     {
-        $result = Order::where('id', $id)->first();
+        $result = Order::where('id', $id)->with('user')->first();
         return $result;
     }
 

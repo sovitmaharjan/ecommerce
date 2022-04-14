@@ -8,6 +8,7 @@ use App\Contracts\BrandInterface;
 use App\Contracts\CategoryInterface;
 use App\Contracts\GeneralSettingInterface;
 use App\Contracts\OrderInterface;
+use App\Contracts\PaymentInterface;
 use App\Contracts\ProductInterface;
 use App\Contracts\UserInterface;
 use App\Repositories\AttributeRepository;
@@ -16,6 +17,7 @@ use App\Repositories\BrandRepository;
 use App\Repositories\CategoryRepository;
 use App\Repositories\GeneralSettingRepository;
 use App\Repositories\OrderRepository;
+use App\Repositories\PaymentRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
@@ -37,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(UserInterface::class, UserRepository::class);
         $this->app->bind(GeneralSettingInterface::class, GeneralSettingRepository::class);
         $this->app->bind(OrderInterface::class, OrderRepository::class);
+        $this->app->bind(PaymentInterface::class, PaymentRepository::class);
     }
 
     /**

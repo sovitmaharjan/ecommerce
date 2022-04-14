@@ -8,12 +8,6 @@ use App\Models\Attribute;
 
 class AttributeRepository implements AttributeInterface
 {
-    protected $image;
-    public function __construct(ImageService $image)
-    {
-        $this->image = $image;
-    }
-
     public function index()
     {
         $result = Attribute::orderBy('created_at', 'DESC')->get();

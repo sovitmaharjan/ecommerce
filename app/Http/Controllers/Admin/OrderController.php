@@ -28,58 +28,58 @@ class OrderController extends Controller
         }
     }
 
-    public function create()
-    {
-        return view('admin.order.create');
-    }
+    // public function create()
+    // {
+    //     return view('admin.order.create');
+    // }
 
-    public function store(OrderRequest $request)
-    {
-        try {
-            DB::beginTransaction();
-            $result = $this->order->store($request);
-            DB::commit();
-            return redirect()->route('order.index')->with('success', 'Save successful');
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return $e;
-        }
-    }
+    // public function store(OrderRequest $request)
+    // {
+    //     try {
+    //         DB::beginTransaction();
+    //         $result = $this->order->store($request);
+    //         DB::commit();
+    //         return redirect()->route('order.index')->with('success', 'Save successful');
+    //     } catch (\Exception $e) {
+    //         DB::rollBack();
+    //         return $e;
+    //     }
+    // }
 
-    public function edit($id)
+    public function show($id)
     {
         try {
             $order = $this->order->find($id);
-            return view('admin.order.edit', compact('order'));
+            return view('admin.order.show', compact('order'));
         } catch (\Exception $e) {
             return $e;
         }
     }
 
-    public function update(OrderRequest $request, $id)
-    {
-        try {
-            DB::beginTransaction();
-            $order = $this->order->update($request, $id);
-            DB::commit();
-            return $order
-                ? redirect()->route('order.index')->with('success', 'Update successful')
-                : redirect()->route('order.index')->with('error', 'Update fail');
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return $e;
-        }
-    }
+//     public function update(OrderRequest $request, $id)
+//     {
+//         try {
+//             DB::beginTransaction();
+//             $order = $this->order->update($request, $id);
+//             DB::commit();
+//             return $order
+//                 ? redirect()->route('order.index')->with('success', 'Update successful')
+//                 : redirect()->route('order.index')->with('error', 'Update fail');
+//         } catch (\Exception $e) {
+//             DB::rollBack();
+//             return $e;
+//         }
+//     }
 
-    public function destroy($id)
-    {
-        try {
-            $order = $this->order->destroy($id);
-            return $order
-                ? redirect()->route('order.index')->with('success', 'Delete successful')
-                : redirect()->route('order.index')->with('info', 'Detail fail');
-        } catch (\Exception $e) {
-            return $e;
-        }
-    }
+//     public function destroy($id)
+//     {
+//         try {
+//             $order = $this->order->destroy($id);
+//             return $order
+//                 ? redirect()->route('order.index')->with('success', 'Delete successful')
+//                 : redirect()->route('order.index')->with('info', 'Detail fail');
+//         } catch (\Exception $e) {
+//             return $e;
+//         }
+//     }
 }

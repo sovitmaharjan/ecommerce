@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Contracts\UserInterface;
 use App\Custom\ImageService;
 use App\Models\User;
+use Exception;
 
 class UserRepository implements UserInterface
 {
@@ -23,6 +24,9 @@ class UserRepository implements UserInterface
     public function find($id)
     {
         $result = User::where('id', $id)->first();
+        if (!$result) {
+            throw new Exception('No Data');
+        }
         return $result;
     }
 
@@ -38,24 +42,26 @@ class UserRepository implements UserInterface
 
     public function update($request, $id)
     {
-        $banner = User::find($id);
-        if ($banner) {
-            $data = $request->except('image', '_method', '_token');
-            $result = $banner->update($data);
-            if ($file = $request->image) {
-                $this->image->upload($banner, $file, $banner->image->path ?? null);
-            }
+        $user = User::find($id);
+        if (!$user) {
+            throw new Exception('No Data');
         }
-        return $result ?? 0;
+        $data = $request->except('image', '_method', '_token');
+        $result = $user->update($data);
+        if ($file = $request->image) {
+            $this->image->upload($user, $file, $user->image->path ?? null);
+        }
+        return $result;
     }
 
     public function destroy($id)
     {
-        $banner = User::where('id', $id)->first();
-        if ($banner) {
-            $result = $banner->delete();
-            $this->image->delete($banner, $banner->image->path ?? null);
+        $user = User::where('id', $id)->first();
+        if (!$user) {
+            throw new Exception('No Data');
         }
-        return $result ?? 0;
+        $result = $user->delete();
+        $this->image->delete($user, $user->image->path ?? null);
+        return $result;
     }
 }

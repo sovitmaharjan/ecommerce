@@ -6,27 +6,24 @@ use App\Contracts\UserInterface;
 use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    protected $interface, $response;
+    protected $user_interface, $response;
 
-    public function __construct(UserInterface $interface, ResponseService $response)
+    public function __construct(UserInterface $user_interface, ResponseService $response)
     {
-        $this->interface = $interface;
+        $this->user_interface = $user_interface;
         $this->response = $response;
     }
 
     public function index()
     {
-        try {
-            $user = $this->interface->index();
-            return view('admin.user.index', compact('user'));
-        } catch (\Exception $e) {
-            return $e;
-        }
+        $user = $this->user_interface->index();
+        return view('admin.user.index', compact('user'));
     }
 
     public function create()
@@ -38,21 +35,21 @@ class UserController extends Controller
     {
         try {
             DB::beginTransaction();
-            $result = $this->interface->store($request);
+            $this->user_interface->store($request);
             DB::commit();
             return redirect()->route('user.index')->with('success', 'Save successful');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
-            return $e;
+            return redirect()->route('product.index')->with('error', $e->getMessage());
         }
     }
 
     // public function show($id)
     // {
     //     try {
-    //         $user = $this->interface->find($id);
+    //         $user = $this->user_interface->find($id);
     //         return redirect()->route('user.show', compact('user'));
-    //     } catch (\Exception $e) {
+    //     } catch (Exception $e) {
     //         return $e;
     //     }
     // }
@@ -60,10 +57,10 @@ class UserController extends Controller
     public function edit($id)
     {
         try {
-            $user = $this->interface->find($id);
+            $user = $this->user_interface->find($id);
             return view('admin.user.edit', compact('user'));
-        } catch (\Exception $e) {
-            return $e;
+        } catch (Exception $e) {
+            return redirect()->route('product.index')->with('error', $e->getMessage());
         }
     }
 
@@ -71,26 +68,26 @@ class UserController extends Controller
     {
         try {
             DB::beginTransaction();
-            $user = $this->interface->update($request, $id);
+            $user = $this->user_interface->update($request, $id);
             DB::commit();
             return $user
                 ? redirect()->route('user.index')->with('success', 'Update successful')
                 : redirect()->route('user.index')->with('error', 'Update fail');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
-            return $e;
+            return redirect()->route('product.index')->with('error', $e->getMessage());
         }
     }
 
     public function destroy($id)
     {
         try {
-            $user = $this->interface->destroy($id);
+            $user = $this->user_interface->destroy($id);
             return $user
                 ? redirect()->route('user.index')->with('success', 'Delete successful')
                 : redirect()->route('user.index')->with('info', 'Detail fail');
-        } catch (\Exception $e) {
-            return $e;
+        } catch (Exception $e) {
+            return redirect()->route('product.index')->with('error', $e->getMessage());
         }
     }
 }

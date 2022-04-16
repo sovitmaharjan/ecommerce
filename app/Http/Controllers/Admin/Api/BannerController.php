@@ -7,6 +7,7 @@ use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\BannerRequest;
 use App\Http\Resources\BannerResource;
+use Exception;
 
 class BannerController extends Controller
 {
@@ -28,7 +29,7 @@ class BannerController extends Controller
             return $this->response->responseSuccess([
                 'banner' => BannerResource::collection($result),
             ], '', 200);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e;
         }
     }
@@ -40,7 +41,7 @@ class BannerController extends Controller
             return $this->response->responseSuccess([
                 'banner' => new BannerResource($result),
             ], 'Saved Successful', 200);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e;
         }
     }
@@ -55,7 +56,7 @@ class BannerController extends Controller
             return $this->response->responseSuccess([
                 'banner' => new BannerResource($result),
             ], '', 200);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e;
         }
     }
@@ -70,7 +71,7 @@ class BannerController extends Controller
             return $this->response->responseSuccess([
                 'banner' => new BannerResource($result),
             ], 'Update Successful', 200);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e;
         }
     }
@@ -83,7 +84,7 @@ class BannerController extends Controller
                 return $this->response->responseSuccessMsg('No Data', 200);
             }
             return $this->response->responseSuccessMsg('Delete Successful', 200);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e;
         }
     }

@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Contracts\PaymentInterface;
 use App\Models\Payment;
+use Exception;
 
 class PaymentRepository implements PaymentInterface
 {
@@ -17,6 +18,9 @@ class PaymentRepository implements PaymentInterface
     public function find($id)
     {
         $result = Payment::where('id', $id)->first();
+        if (!$result) {
+            throw new Exception('No Data');
+        }
         return $result;
     }
 
@@ -30,21 +34,23 @@ class PaymentRepository implements PaymentInterface
 
     public function update($request, $id)
     {
-        $banner = Payment::find($id);
-        if ($banner) {
-            $data = $request->except('_method', '_token', 'key');
-            $data['key'] = json_encode($request->key);
-            $result = $banner->update($data);
+        $payment = Payment::find($id);
+        if (!$payment) {
+            throw new Exception('No Data');
         }
-        return $result ?? 0;
+        $data = $request->except('_method', '_token', 'key');
+        $data['key'] = json_encode($request->key);
+        $result = $payment->update($data);
+        return $result;
     }
 
     public function destroy($id)
     {
-        $banner = Payment::where('id', $id)->first();
-        if ($banner) {
-            $result = $banner->delete();
+        $payment = Payment::find($id);
+        if (!$payment) {
+            throw new Exception('No Data');
         }
-        return $result ?? 0;
+        $result = $payment->delete();
+        return $result;
     }
 }

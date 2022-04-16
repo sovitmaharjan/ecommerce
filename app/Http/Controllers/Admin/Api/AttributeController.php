@@ -7,6 +7,7 @@ use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\AttributeRequest;
 use App\Http\Resources\AttributeResource;
+use Exception;
 
 class AttributeController extends Controller
 {
@@ -28,7 +29,7 @@ class AttributeController extends Controller
             return $this->response->responseSuccess([
                 'category' => AttributeResource::collection($result),
             ], '', 200);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e;
         }
     }
@@ -45,7 +46,7 @@ class AttributeController extends Controller
             return $this->response->responseSuccess([
                 'category' => new AttributeResource($result),
             ], 'Saved Successful', 200);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e;
         }
     }
@@ -60,7 +61,7 @@ class AttributeController extends Controller
             return $this->response->responseSuccess([
                 'category' => new AttributeResource($result),
             ], '', 200);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e;
         }
     }
@@ -80,7 +81,7 @@ class AttributeController extends Controller
             return $this->response->responseSuccess([
                 'category' => new AttributeResource($result),
             ], 'Update Successful', 200);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e;
         }
     }
@@ -93,7 +94,7 @@ class AttributeController extends Controller
                 return $this->response->responseSuccessMsg('No Data', 200);
             }
             return $this->response->responseSuccessMsg('Delete Successful', 200);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e;
         }
     }

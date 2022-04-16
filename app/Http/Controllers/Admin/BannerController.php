@@ -6,26 +6,23 @@ use App\Contracts\BannerInterface;
 use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BannerRequest;
+use Exception;
 use Illuminate\Support\Facades\DB;
 
 class BannerController extends Controller
 {
-    protected $interface, $response;
+    protected $banner_interface, $response;
 
-    public function __construct(BannerInterface $interface, ResponseService $response)
+    public function __construct(BannerInterface $banner_interface, ResponseService $response)
     {
-        $this->interface = $interface;
+        $this->banner_interface = $banner_interface;
         $this->response = $response;
     }
 
     public function index()
     {
-        try {
-            $banner = $this->interface->index();
-            return view('admin.banner.index', compact('banner'));
-        } catch (\Exception $e) {
-            return $e;
-        }
+        $banner = $this->banner_interface->index();
+        return view('admin.banner.index', compact('banner'));
     }
 
     public function create()
@@ -37,32 +34,32 @@ class BannerController extends Controller
     {
         try {
             DB::beginTransaction();
-            $result = $this->interface->store($request);
+            $this->banner_interface->store($request);
             DB::commit();
             return redirect()->route('banner.index')->with('success', 'Save successful');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
-            return $e;
+            return redirect()->route('banner.index')->with('error', $e->getMessage());
         }
     }
 
     // public function show($id)
     // {
     //     try {
-    //         $banner = $this->interface->find($id);
+    //         $banner = $this->banner_interface->find($id);
     //         return redirect()->route('banner.show', compact('banner'));
-    //     } catch (\Exception $e) {
-    //         return $e;
+    //     } catch (Exception $e) {
+    //         return redirect()->route('banner.index')->with('error', $e->getMessage());
     //     }
     // }
 
     public function edit($id)
     {
         try {
-            $banner = $this->interface->find($id);
+            $banner = $this->banner_interface->find($id);
             return view('admin.banner.edit', compact('banner'));
-        } catch (\Exception $e) {
-            return $e;
+        } catch (Exception $e) {
+            return redirect()->route('banner.index')->with('error', $e->getMessage());
         }
     }
 
@@ -70,26 +67,22 @@ class BannerController extends Controller
     {
         try {
             DB::beginTransaction();
-            $banner = $this->interface->update($request, $id);
+            $this->banner_interface->update($request, $id);
             DB::commit();
-            return $banner
-                ? redirect()->route('banner.index')->with('success', 'Update successful')
-                : redirect()->route('banner.index')->with('error', 'Update fail');
-        } catch (\Exception $e) {
+            return redirect()->route('banner.index')->with('success', 'Update successful');
+        } catch (Exception $e) {
             DB::rollBack();
-            return $e;
+            return redirect()->route('banner.index')->with('error', $e->getMessage());
         }
     }
 
     public function destroy($id)
     {
         try {
-            $banner = $this->interface->destroy($id);
-            return $banner
-                ? redirect()->route('banner.index')->with('success', 'Delete successful')
-                : redirect()->route('banner.index')->with('info', 'Detail fail');
-        } catch (\Exception $e) {
-            return $e;
+            $this->banner_interface->destroy($id);
+            return redirect()->route('banner.index')->with('success', 'Delete successful');
+        } catch (Exception $e) {
+            return redirect()->route('banner.index')->with('error', $e->getMessage());
         }
     }
 }

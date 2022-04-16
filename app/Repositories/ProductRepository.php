@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Contracts\ProductInterface;
 use App\Custom\ImageService;
 use App\Models\Product;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 
 class ProductRepository implements ProductInterface
@@ -24,6 +25,9 @@ class ProductRepository implements ProductInterface
     public function find($id)
     {
         $result = Product::where('id', $id)->first();
+        if (!$result) {
+            throw new Exception('No Data');
+        }
         return $result;
     }
 
@@ -40,24 +44,26 @@ class ProductRepository implements ProductInterface
 
     public function update($request, $id)
     {
-        $banner = Product::find($id);
-        if ($banner) {
-            $data = $request->except('image', '_method', '_token');
-            $result = $banner->update($data);
-            if ($file = $request->image) {
-                $this->image->upload($banner, $file, $banner->image->path ?? null);
-            }
+        $product = Product::find($id);
+        if (!$product) {
+            throw new Exception('No Data');
         }
-        return $result ?? 0;
+        $data = $request->except('image', '_method', '_token');
+        $result = $product->update($data);
+        if ($file = $request->image) {
+            $this->image->upload($product, $file, $product->image->path ?? null);
+        }
+        return $result;
     }
 
     public function destroy($id)
     {
-        $banner = Product::where('id', $id)->first();
-        if ($banner) {
-            $result = $banner->delete();
-            $this->image->delete($banner, $banner->image->path ?? null);
+        $product = Product::find($id);
+        if (!$product) {
+            throw new Exception('No Data');
         }
-        return $result ?? 0;
+        $result = $product->delete();
+        $this->image->delete($product, $product->image->path ?? null);
+        return $result;
     }
 }

@@ -7,6 +7,7 @@ use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\ProductRequest;
 use App\Http\Resources\ProductResource;
+use Exception;
 
 class ProductController extends Controller
 {
@@ -28,7 +29,7 @@ class ProductController extends Controller
             return $this->response->responseSuccess([
                 'banner' => ProductResource::collection($result),
             ], '', 200);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e;
         }
     }
@@ -45,7 +46,7 @@ class ProductController extends Controller
             return $this->response->responseSuccess([
                 'banner' => new ProductResource($result),
             ], 'Saved Successful', 200);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e;
         }
     }
@@ -60,7 +61,7 @@ class ProductController extends Controller
             return $this->response->responseSuccess([
                 'banner' => new ProductResource($result),
             ], '', 200);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e;
         }
     }
@@ -80,7 +81,7 @@ class ProductController extends Controller
             return $this->response->responseSuccess([
                 'banner' => new ProductResource($result),
             ], 'Update Successful', 200);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e;
         }
     }
@@ -93,7 +94,7 @@ class ProductController extends Controller
                 return $this->response->responseSuccessMsg('No Data', 200);
             }
             return $this->response->responseSuccessMsg('Delete Successful', 200);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e;
         }
     }

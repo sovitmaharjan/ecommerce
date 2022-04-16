@@ -6,29 +6,26 @@ use App\Contracts\GeneralSettingInterface;
 use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GeneralSettingRequest;
+use Exception;
 use Illuminate\Support\Facades\DB;
 
 class GeneralSettingController extends Controller
 {
-    protected $interface, $response;
+    protected $general_setting_interface, $response;
 
-    public function __construct(GeneralSettingInterface $interface, ResponseService $response)
+    public function __construct(GeneralSettingInterface $general_setting_interface, ResponseService $response)
     {
-        $this->interface = $interface;
+        $this->general_setting_interface = $general_setting_interface;
         $this->response = $response;
     }
     
     public function index()
     {
-        try {
-            $general_setting = $this->interface->index();
-            if($general_setting != null){
-                return view('admin.general-setting.edit', compact('general_setting'));
-            }
-            return view('admin.general-setting.create');
-        } catch (\Exception $e) {
-            return $e;
+        $general_setting = $this->general_setting_interface->index();
+        if($general_setting != null){
+            return view('admin.general-setting.edit', compact('general_setting'));
         }
+        return view('admin.general-setting.create');
     }
 
     public function create()
@@ -40,12 +37,12 @@ class GeneralSettingController extends Controller
     {
         try {
             DB::beginTransaction();
-            $result = $this->interface->store($request);
+            $this->general_setting_interface->store($request);
             DB::commit();
             return redirect()->route('general-setting.index')->with('success', 'Save successful');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
-            return $e;
+            return redirect()->route('general-setting.index')->with('error', $e->getMessage());
         }
     }
 
@@ -53,14 +50,12 @@ class GeneralSettingController extends Controller
     {
         try {
             DB::beginTransaction();
-            $general_setting = $this->interface->update($request, $id);
+            $this->general_setting_interface->update($request, $id);
             DB::commit();
-            return $general_setting
-                ? redirect()->route('general-setting.index')->with('success', 'Update successful')
-                : redirect()->route('general-setting.index')->with('error', 'Update fail');
-        } catch (\Exception $e) {
+            return redirect()->route('general-setting.index')->with('success', 'Update successful');
+        } catch (Exception $e) {
             DB::rollBack();
-            return $e;
+            return redirect()->route('general-setting.index')->with('error', $e->getMessage());
         }
     }
 }

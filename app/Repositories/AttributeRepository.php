@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Contracts\AttributeInterface;
 use App\Custom\ImageService;
 use App\Models\Attribute;
+use Exception;
 
 class AttributeRepository implements AttributeInterface
 {
@@ -17,6 +18,9 @@ class AttributeRepository implements AttributeInterface
     public function find($id)
     {
         $result = Attribute::where('id', $id)->first();
+        if (!$result) {
+            throw new Exception('No Data');
+        }
         return $result;
     }
 
@@ -29,20 +33,22 @@ class AttributeRepository implements AttributeInterface
 
     public function update($request, $id)
     {
-        $banner = Attribute::find($id);
-        if ($banner) {
-            $data = $request->except('_method', '_token');
-            $result = $banner->update($data);
+        $attribute = Attribute::find($id);
+        if (!$attribute) {
+            throw new Exception('No Data');
         }
-        return $result ?? 0;
+        $data = $request->except('_method', '_token');
+        $result = $attribute->update($data);
+        return $result;
     }
 
     public function destroy($id)
     {
-        $banner = Attribute::where('id', $id)->first();
-        if ($banner) {
-            $result = $banner->delete();
+        $attribute = Attribute::find($id);
+        if (!$attribute) {
+            throw new Exception('No Data');
         }
-        return $result ?? 0;
+        $result = $attribute->delete();
+        return $result;
     }
 }

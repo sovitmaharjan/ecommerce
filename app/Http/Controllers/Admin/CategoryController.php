@@ -6,35 +6,32 @@ use App\Contracts\CategoryInterface;
 use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
+use Exception;
 use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
-    protected $interface, $response;
+    protected $category_interface, $response;
 
-    public function __construct(CategoryInterface $interface, ResponseService $response)
+    public function __construct(CategoryInterface $category_interface, ResponseService $response)
     {
-        $this->interface = $interface;
+        $this->category_interface = $category_interface;
         $this->response = $response;
     }
 
     public function index()
     {
-        try {
-            $category = $this->interface->index();
-            return view('admin.category.index', compact('category'));
-        } catch (\Exception $e) {
-            return $e;
-        }
+        $category = $this->category_interface->index();
+        return view('admin.category.index', compact('category'));
     }
 
     public function create()
     {
         try {
-            $all_category = $this->interface->index();
+            $all_category = $this->category_interface->index();
             return view('admin.category.create', compact('all_category'));
-        } catch (\Exception $e) {
-            return $e;
+        } catch (Exception $e) {
+            return redirect()->route('category.index')->with('error', $e->getMessage());
         }
     }
 
@@ -42,23 +39,23 @@ class CategoryController extends Controller
     {
         try {
             DB::beginTransaction();
-            $result = $this->interface->store($request);
+            $result = $this->category_interface->store($request);
             DB::commit();
             return redirect()->route('category.index')->with('success', 'Save successful');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
-            return $e;
+            return redirect()->route('category.index')->with('error', $e->getMessage());
         }
     }
 
     public function edit($id)
     {
         try {
-            $category = $this->interface->find($id);
-            $all_category = $this->interface->index();
+            $category = $this->category_interface->find($id);
+            $all_category = $this->category_interface->index();
             return view('admin.category.edit', compact('category', 'all_category'));
-        } catch (\Exception $e) {
-            return $e;
+        } catch (Exception $e) {
+            return redirect()->route('category.index')->with('error', $e->getMessage());
         }
     }
 
@@ -66,26 +63,22 @@ class CategoryController extends Controller
     {
         try {
             DB::beginTransaction();
-            $category = $this->interface->update($request, $id);
+            $this->category_interface->update($request, $id);
             DB::commit();
-            return $category
-                ? redirect()->route('category.index')->with('success', 'Update successful')
-                : redirect()->route('category.index')->with('error', 'Update fail');
-        } catch (\Exception $e) {
+            return redirect()->route('category.index')->with('success', 'Update successful');
+        } catch (Exception $e) {
             DB::rollBack();
-            return $e;
+            return redirect()->route('category.index')->with('error', $e->getMessage());
         }
     }
 
     public function destroy($id)
     {
         try {
-            $category = $this->interface->destroy($id);
-            return $category
-                ? redirect()->route('category.index')->with('success', 'Delete successful')
-                : redirect()->route('category.index')->with('info', 'Detail fail');
-        } catch (\Exception $e) {
-            return $e;
+            $this->category_interface->destroy($id);
+            return redirect()->route('category.index')->with('success', 'Delete successful');
+        } catch (Exception $e) {
+            return redirect()->route('category.index')->with('error', $e->getMessage());
         }
     }
 }

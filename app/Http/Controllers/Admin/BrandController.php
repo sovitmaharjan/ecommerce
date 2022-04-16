@@ -6,27 +6,24 @@ use App\Contracts\BrandInterface;
 use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BrandRequest;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class BrandController extends Controller
 {
-    protected $interface, $response;
+    protected $brand_interface, $response;
 
-    public function __construct(BrandInterface $interface, ResponseService $response)
+    public function __construct(BrandInterface $brand_interface, ResponseService $response)
     {
-        $this->interface = $interface;
+        $this->brand_interface = $brand_interface;
         $this->response = $response;
     }
 
     public function index()
     {
-        try {
-            $brand = $this->interface->index();
-            return view('admin.brand.index', compact('brand'));
-        } catch (\Exception $e) {
-            return $e;
-        }
+        $brand = $this->brand_interface->index();
+        return view('admin.brand.index', compact('brand'));
     }
 
     public function create()
@@ -38,22 +35,22 @@ class BrandController extends Controller
     {
         try {
             DB::beginTransaction();
-            $result = $this->interface->store($request);
+            $this->brand_interface->store($request);
             DB::commit();
             return redirect()->route('brand.index')->with('success', 'Save successful');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
-            return $e;
+            return redirect()->route('brand.index')->with('error', $e->getMessage());
         }
     }
 
     public function edit($id)
     {
         try {
-            $brand = $this->interface->find($id);
+            $brand = $this->brand_interface->find($id);
             return view('admin.brand.edit', compact('brand'));
-        } catch (\Exception $e) {
-            return $e;
+        } catch (Exception $e) {
+            return redirect()->route('brand.index')->with('error', $e->getMessage());
         }
     }
 
@@ -61,26 +58,22 @@ class BrandController extends Controller
     {
         try {
             DB::beginTransaction();
-            $brand = $this->interface->update($request, $id);
+            $this->brand_interface->update($request, $id);
             DB::commit();
-            return $brand
-                ? redirect()->route('brand.index')->with('success', 'Update successful')
-                : redirect()->route('brand.index')->with('error', 'Update fail');
-        } catch (\Exception $e) {
+            return redirect()->route('brand.index')->with('success', 'Update successful');
+        } catch (Exception $e) {
             DB::rollBack();
-            return $e;
+            return redirect()->route('brand.index')->with('error', $e->getMessage());
         }
     }
 
     public function destroy($id)
     {
         try {
-            $brand = $this->interface->destroy($id);
-            return $brand
-                ? redirect()->route('brand.index')->with('success', 'Delete successful')
-                : redirect()->route('brand.index')->with('info', 'Detail fail');
-        } catch (\Exception $e) {
-            return $e;
+            $this->brand_interface->destroy($id);
+            return redirect()->route('brand.index')->with('success', 'Delete successful');
+        } catch (Exception $e) {
+            return redirect()->route('brand.index')->with('error', $e->getMessage());
         }
     }
 }

@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Contracts\CategoryInterface;
 use App\Custom\ImageService;
 use App\Models\Category;
+use Exception;
 
 class CategoryRepository implements CategoryInterface
 {
@@ -23,6 +24,9 @@ class CategoryRepository implements CategoryInterface
     public function find($id)
     {
         $result = Category::where('id', $id)->first();
+        if (!$result) {
+            throw new Exception('No Data');
+        }
         return $result;
     }
 
@@ -38,24 +42,26 @@ class CategoryRepository implements CategoryInterface
 
     public function update($request, $id)
     {
-        $banner = Category::find($id);
-        if ($banner) {
-            $data = $request->except('image', '_method', '_token');
-            $result = $banner->update($data);
-            if ($file = $request->image) {
-                $this->image->upload($banner, $file, $banner->image->path ?? null);
-            }
+        $category = Category::find($id);
+        if (!$category) {
+            throw new Exception('No Data');
         }
-        return $result ?? 0;
+        $data = $request->except('image', '_method', '_token');
+        $result = $category->update($data);
+        if ($file = $request->image) {
+            $this->image->upload($category, $file, $category->image->path ?? null);
+        }
+        return $result;
     }
 
     public function destroy($id)
     {
-        $banner = Category::where('id', $id)->first();
-        if ($banner) {
-            $result = $banner->delete();
-            $this->image->delete($banner, $banner->image->path ?? null);
+        $category = Category::find($id);
+        if (!$category) {
+            throw new Exception('No Data');
         }
-        return $result ?? 0;
+        $result = $category->delete();
+        $this->image->delete($category, $category->image->path ?? null);
+        return $result;
     }
 }

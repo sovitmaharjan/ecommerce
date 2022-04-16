@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Contracts\BannerInterface;
 use App\Custom\ImageService;
 use App\Models\Banner;
+use Exception;
 
 class BannerRepository implements BannerInterface
 {
@@ -23,6 +24,9 @@ class BannerRepository implements BannerInterface
     public function find($id)
     {
         $result = Banner::where('id', $id)->first();
+        if (!$result) {
+            throw new Exception('No Data');
+        }
         return $result;
     }
 
@@ -39,23 +43,25 @@ class BannerRepository implements BannerInterface
     public function update($request, $id)
     {
         $banner = Banner::find($id);
-        if ($banner) {
-            $data = $request->except('image', '_method', '_token');
-            $result = $banner->update($data);
-            if ($file = $request->image) {
-                $this->image->upload($banner, $file, $banner->image->path ?? null);
-            }
+        if (!$banner) {
+            throw new Exception('No Data');
         }
-        return $result ?? 0;
+        $data = $request->except('image', '_method', '_token');
+        $result = $banner->update($data);
+        if ($file = $request->image) {
+            $this->image->upload($banner, $file, $banner->image->path ?? null);
+        }
+        return $result;
     }
 
     public function destroy($id)
     {
-        $banner = Banner::where('id', $id)->first();
-        if ($banner) {
-            $result = $banner->delete();
-            $this->image->delete($banner, $banner->image->path ?? null);
+        $banner = Banner::find($id);
+        if (!$banner) {
+            throw new Exception('No Data');
         }
-        return $result ?? 0;
+        $result = $banner->delete();
+        $this->image->delete($banner, $banner->image->path ?? null);
+        return $result;
     }
 }

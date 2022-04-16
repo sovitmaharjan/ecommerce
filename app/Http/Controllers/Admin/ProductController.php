@@ -7,36 +7,33 @@ use App\Contracts\ProductInterface;
 use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use Exception;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    protected $product, $category, $response;
+    protected $product_interface, $category_interface, $response;
 
-    public function __construct(ProductInterface $product, CategoryInterface $category, ResponseService $response)
+    public function __construct(ProductInterface $product_interface, CategoryInterface $category_interface, ResponseService $response)
     {
-        $this->product = $product;
-        $this->category = $category;
+        $this->product_interface = $product_interface;
+        $this->category_interface = $category_interface;
         $this->response = $response;
     }
 
     public function index()
     {
-        try {
-            $product = $this->product->index();
-            return view('admin.product.index', compact('product'));
-        } catch (\Exception $e) {
-            return $e;
-        }
+        $product = $this->product_interface->index();
+        return view('admin.product.index', compact('product'));
     }
 
     public function create()
     {
         try {
-            $all_category = $this->category->index();
+            $all_category = $this->category_interface->index();
             return view('admin.product.create', compact('all_category'));
-        } catch (\Exception $e) {
-            return $e;
+        } catch (Exception $e) {
+            return redirect()->route('product.index')->with('error', $e->getMessage());
         }
     }
 
@@ -44,21 +41,21 @@ class ProductController extends Controller
     {
         try {
             DB::beginTransaction();
-            $result = $this->product->store($request);
+            $this->product_interface->store($request);
             DB::commit();
             return redirect()->route('product.index')->with('success', 'Save successful');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
-            return $e;
+            return redirect()->route('product.index')->with('error', $e->getMessage());
         }
     }
 
     // public function show($id)
     // {
     //     try {
-    //         $product = $this->product->find($id);
+    //         $product = $this->product_interface->find($id);
     //         return redirect()->route('product.show', compact('product'));
-    //     } catch (\Exception $e) {
+    //     } catch (Exception $e) {
     //         return $e;
     //     }
     // }
@@ -66,11 +63,11 @@ class ProductController extends Controller
     public function edit($id)
     {
         try {
-            $product = $this->product->find($id);
-            $all_category = $this->category->index();
+            $product = $this->product_interface->find($id);
+            $all_category = $this->category_interface->index();
             return view('admin.product.edit', compact('product', 'all_category'));
-        } catch (\Exception $e) {
-            return $e;
+        } catch (Exception $e) {
+            return redirect()->route('product.index')->with('error', $e->getMessage());
         }
     }
 
@@ -78,26 +75,22 @@ class ProductController extends Controller
     {
         try {
             DB::beginTransaction();
-            $product = $this->product->update($request, $id);
+            $this->product_interface->update($request, $id);
             DB::commit();
-            return $product
-                ? redirect()->route('product.index')->with('success', 'Update successful')
-                : redirect()->route('product.index')->with('error', 'Update fail');
-        } catch (\Exception $e) {
+            return redirect()->route('product.index')->with('success', 'Update successful');
+        } catch (Exception $e) {
             DB::rollBack();
-            return $e;
+            return redirect()->route('product.index')->with('error', $e->getMessage());
         }
     }
 
     public function destroy($id)
     {
         try {
-            $product = $this->product->destroy($id);
-            return $product
-                ? redirect()->route('product.index')->with('success', 'Delete successful')
-                : redirect()->route('product.index')->with('info', 'Detail fail');
-        } catch (\Exception $e) {
-            return $e;
+            $this->product_interface->destroy($id);
+            return redirect()->route('product.index')->with('success', 'Delete successful');
+        } catch (Exception $e) {
+            return redirect()->route('product.index')->with('error', $e->getMessage());
         }
     }
 }

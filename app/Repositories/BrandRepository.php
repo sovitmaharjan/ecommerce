@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Contracts\BrandInterface;
 use App\Custom\ImageService;
 use App\Models\Brand;
+use Exception;
 
 class BrandRepository implements BrandInterface
 {
@@ -23,6 +24,9 @@ class BrandRepository implements BrandInterface
     public function find($id)
     {
         $result = Brand::where('id', $id)->first();
+        if (!$result) {
+            throw new Exception('No Data');
+        }
         return $result;
     }
 
@@ -38,24 +42,26 @@ class BrandRepository implements BrandInterface
 
     public function update($request, $id)
     {
-        $banner = Brand::find($id);
-        if ($banner) {
-            $data = $request->except('image', '_method', '_token');
-            $result = $banner->update($data);
-            if ($file = $request->image) {
-                $this->image->upload($banner, $file, $banner->image->path ?? null);
-            }
+        $brand = Brand::find($id);
+        if (!$brand) {
+            throw new Exception('No Data');
         }
-        return $result ?? 0;
+        $data = $request->except('image', '_method', '_token');
+        $result = $brand->update($data);
+        if ($file = $request->image) {
+            $this->image->upload($brand, $file, $brand->image->path ?? null);
+        }
+        return $result;
     }
 
     public function destroy($id)
     {
-        $banner = Brand::where('id', $id)->first();
-        if ($banner) {
-            $result = $banner->delete();
-            $this->image->delete($banner, $banner->image->path ?? null);
+        $brand = Brand::find($id);
+        if (!$brand) {
+            throw new Exception('No Data');
         }
-        return $result ?? 0;
+        $result = $brand->delete();
+        $this->image->delete($brand, $brand->image->path ?? null);
+        return $result;
     }
 }

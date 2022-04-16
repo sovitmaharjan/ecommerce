@@ -189,7 +189,7 @@
                                 <div class="d-flex flex-center flex-column mb-5">
                                     <!--begin::Avatar-->
                                     <div class="symbol symbol-100px symbol-circle mb-7">
-                                        <img src="{{ asset('assets/media/avatars/300-1.jpg') }}" alt="image" />
+                                        <img src="{{ asset('assets/admin/media/avatars/300-1.jpg') }}" alt="image" />
                                     </div>
                                     <!--end::Avatar-->
                                     <!--begin::Name-->
@@ -380,7 +380,7 @@
                                     <!--begin::Item-->
                                     <div class="d-flex flex-stack">
                                         <div class="d-flex">
-                                            <img src="{{ asset('assets/media/svg/brand-logos/google-icon.svg') }}" class="w-30px me-6"
+                                            <img src="{{ asset('assets/admin/media/svg/brand-logos/google-icon.svg') }}" class="w-30px me-6"
                                                 alt="" />
                                             <div class="d-flex flex-column">
                                                 <a href="#" class="fs-5 text-dark text-hover-primary fw-bolder">Google</a>
@@ -408,7 +408,7 @@
                                     <!--begin::Item-->
                                     <div class="d-flex flex-stack">
                                         <div class="d-flex">
-                                            <img src="{{ asset('assets/media/svg/brand-logos/github.svg') }}" class="w-30px me-6"
+                                            <img src="{{ asset('assets/admin/media/svg/brand-logos/github.svg') }}" class="w-30px me-6"
                                                 alt="" />
                                             <div class="d-flex flex-column">
                                                 <a href="#" class="fs-5 text-dark text-hover-primary fw-bolder">Github</a>
@@ -436,7 +436,7 @@
                                     <!--begin::Item-->
                                     <div class="d-flex flex-stack">
                                         <div class="d-flex">
-                                            <img src="{{ asset('assets/media/svg/brand-logos/slack-icon.svg') }}" class="w-30px me-6"
+                                            <img src="{{ asset('assets/admin/media/svg/brand-logos/slack-icon.svg') }}" class="w-30px me-6"
                                                 alt="" />
                                             <div class="d-flex flex-column">
                                                 <a href="#" class="fs-5 text-dark text-hover-primary fw-bolder">Slack</a>
@@ -1232,7 +1232,7 @@
                                                     </div>
                                                     <!--end::Arrow-->
                                                     <!--begin::Logo-->
-                                                    <img src="{{ asset('assets/media/svg/card-logos/mastercard.svg') }}"
+                                                    <img src="{{ asset('assets/admin/media/svg/card-logos/mastercard.svg') }}"
                                                         class="w-40px me-3" alt="" />
                                                     <!--end::Logo-->
                                                     <!--begin::Summary-->
@@ -1385,7 +1385,7 @@
                                                                 <td class="text-muted min-w-125px w-125px">Origin</td>
                                                                 <td class="text-gray-800">Australia
                                                                     <div class="symbol symbol-20px symbol-circle ms-2">
-                                                                        <img src="{{ asset('assets/media/flags/australia.svg') }}" />
+                                                                        <img src="{{ asset('assets/admin/media/flags/australia.svg') }}" />
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -1440,7 +1440,7 @@
                                                     </div>
                                                     <!--end::Arrow-->
                                                     <!--begin::Logo-->
-                                                    <img src="{{ asset('assets/media/svg/card-logos/visa.svg') }}" class="w-40px me-3"
+                                                    <img src="{{ asset('assets/admin/media/svg/card-logos/visa.svg') }}" class="w-40px me-3"
                                                         alt="" />
                                                     <!--end::Logo-->
                                                     <!--begin::Summary-->
@@ -1592,7 +1592,7 @@
                                                                 <td class="text-muted min-w-125px w-125px">Origin</td>
                                                                 <td class="text-gray-800">United Kingdom
                                                                     <div class="symbol symbol-20px symbol-circle ms-2">
-                                                                        <img src="{{ asset('assets/media/flags/united-kingdom.svg') }}" />
+                                                                        <img src="{{ asset('assets/admin/media/flags/united-kingdom.svg') }}" />
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -1648,7 +1648,7 @@
                                                     </div>
                                                     <!--end::Arrow-->
                                                     <!--begin::Logo-->
-                                                    <img src="{{ asset('assets/media/svg/card-logos/american-express.svg') }}"
+                                                    <img src="{{ asset('assets/admin/media/svg/card-logos/american-express.svg') }}"
                                                         class="w-40px me-3" alt="" />
                                                     <!--end::Logo-->
                                                     <!--begin::Summary-->
@@ -1802,7 +1802,7 @@
                                                                 <td class="text-muted min-w-125px w-125px">Origin</td>
                                                                 <td class="text-gray-800">United States of America
                                                                     <div class="symbol symbol-20px symbol-circle ms-2">
-                                                                        <img src="{{ asset('assets/media/flags/united-states.svg') }}" />
+                                                                        <img src="{{ asset('assets/admin/media/flags/united-states.svg') }}" />
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -5046,11 +5046,11 @@
                                             <!--end::Input-->
                                             <!--begin::Card logos-->
                                             <div class="position-absolute translate-middle-y top-50 end-0 me-5">
-                                                <img src="{{ asset('assets/media/svg/card-logos/visa.svg') }}" alt=""
+                                                <img src="{{ asset('assets/admin/media/svg/card-logos/visa.svg') }}" alt=""
                                                     class="h-25px" />
-                                                <img src="{{ asset('assets/media/svg/card-logos/mastercard.svg') }}" alt=""
+                                                <img src="{{ asset('assets/admin/media/svg/card-logos/mastercard.svg') }}" alt=""
                                                     class="h-25px" />
-                                                <img src="{{ asset('assets/media/svg/card-logos/american-express.svg') }}" alt=""
+                                                <img src="{{ asset('assets/admin/media/svg/card-logos/american-express.svg') }}" alt=""
                                                     class="h-25px" />
                                             </div>
                                             <!--end::Card logos-->
@@ -5200,20 +5200,20 @@
 @section('script')
 
     <!--begin::Page Custom Javascript(used by this page)-->
-    <script src="{{ asset('assets/js/custom/apps/customers/view/add-payment.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/apps/customers/view/adjust-balance.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/apps/customers/view/invoices.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/apps/customers/view/payment-method.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/apps/customers/view/payment-table.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/apps/customers/view/statement.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/apps/customers/update.js') }}"></script>
-    <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/apps/chat/chat.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/utilities/modals/create-app.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/utilities/modals/new-card.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/utilities/modals/users-search.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/custom/apps/customers/view/add-payment.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/custom/apps/customers/view/adjust-balance.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/custom/apps/customers/view/invoices.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/custom/apps/customers/view/payment-method.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/custom/apps/customers/view/payment-table.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/custom/apps/customers/view/statement.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/custom/apps/customers/update.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/widgets.bundle.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/custom/widgets.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/custom/apps/chat/chat.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/custom/utilities/modals/create-app.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/custom/utilities/modals/new-card.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/custom/utilities/modals/users-search.js') }}"></script>
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
 

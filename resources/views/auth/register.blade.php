@@ -112,7 +112,7 @@
 @section('script')
 
     <!--begin::Page Custom Javascript(used by this page)-->
-    <script src="{{ asset('assets/js/custom/authentication/sign-up/general.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/custom/authentication/sign-up/general.js') }}"></script>
     <!--end::Page Custom Javascript-->
 
 @endsection

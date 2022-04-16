@@ -2,86 +2,78 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Contracts\BrandInterface;
+use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreBrandRequest;
-use App\Http\Requests\UpdateBrandRequest;
-use App\Models\Admin\Brand;
+use App\Http\Requests\BrandRequest;
+use Exception;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BrandController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $brand_interface, $response;
+
+    public function __construct(BrandInterface $brand_interface, ResponseService $response)
+    {
+        $this->brand_interface = $brand_interface;
+        $this->response = $response;
+    }
+
     public function index()
     {
-        //
+        $brand = $this->brand_interface->index();
+        return view('admin.brand.index', compact('brand'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('admin.brand.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreBrandRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreBrandRequest $request)
+    public function store(BrandRequest $request)
     {
-        //
+        try {
+            DB::beginTransaction();
+            $this->brand_interface->store($request);
+            DB::commit();
+            return redirect()->route('brand.index')->with('success', 'Save successful');
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect()->route('brand.index')->with('error', $e->getMessage());
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Admin\Brand  $brand
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Brand $brand)
+    public function edit($id)
     {
-        //
+        try {
+            $brand = $this->brand_interface->find($id);
+            return view('admin.brand.edit', compact('brand'));
+        } catch (Exception $e) {
+            return redirect()->route('brand.index')->with('error', $e->getMessage());
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Admin\Brand  $brand
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Brand $brand)
+    public function update(BrandRequest $request, $id)
     {
-        //
+        try {
+            DB::beginTransaction();
+            $this->brand_interface->update($request, $id);
+            DB::commit();
+            return redirect()->route('brand.index')->with('success', 'Update successful');
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect()->route('brand.index')->with('error', $e->getMessage());
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateBrandRequest  $request
-     * @param  \App\Models\Admin\Brand  $brand
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateBrandRequest $request, Brand $brand)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Admin\Brand  $brand
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Brand $brand)
-    {
-        //
+        try {
+            $this->brand_interface->destroy($id);
+            return redirect()->route('brand.index')->with('success', 'Delete successful');
+        } catch (Exception $e) {
+            return redirect()->route('brand.index')->with('error', $e->getMessage());
+        }
     }
 }

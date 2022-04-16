@@ -2,86 +2,83 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Contracts\CategoryInterface;
+use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCategoryRequest;
-use App\Http\Requests\UpdateCategoryRequest;
-use App\Models\Admin\Category;
+use App\Http\Requests\CategoryRequest;
+use Exception;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $category_interface, $response;
+
+    public function __construct(CategoryInterface $category_interface, ResponseService $response)
+    {
+        $this->category_interface = $category_interface;
+        $this->response = $response;
+    }
+
     public function index()
     {
-        //
+        $category = $this->category_interface->index();
+        return view('admin.category.index', compact('category'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        try {
+            $all_category = $this->category_interface->index();
+            return view('admin.category.create', compact('all_category'));
+        } catch (Exception $e) {
+            return redirect()->route('category.index')->with('error', $e->getMessage());
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreCategoryRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreCategoryRequest $request)
+    public function store(CategoryRequest $request)
     {
-        //
+        try {
+            DB::beginTransaction();
+            $result = $this->category_interface->store($request);
+            DB::commit();
+            return redirect()->route('category.index')->with('success', 'Save successful');
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect()->route('category.index')->with('error', $e->getMessage());
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Admin\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
+    public function edit($id)
     {
-        //
+        try {
+            $category = $this->category_interface->find($id);
+            $all_category = $this->category_interface->index();
+            return view('admin.category.edit', compact('category', 'all_category'));
+        } catch (Exception $e) {
+            return redirect()->route('category.index')->with('error', $e->getMessage());
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Admin\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
+    public function update(CategoryRequest $request, $id)
     {
-        //
+        try {
+            DB::beginTransaction();
+            $this->category_interface->update($request, $id);
+            DB::commit();
+            return redirect()->route('category.index')->with('success', 'Update successful');
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect()->route('category.index')->with('error', $e->getMessage());
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateCategoryRequest  $request
-     * @param  \App\Models\Admin\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Admin\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Category $category)
-    {
-        //
+        try {
+            $this->category_interface->destroy($id);
+            return redirect()->route('category.index')->with('success', 'Delete successful');
+        } catch (Exception $e) {
+            return redirect()->route('category.index')->with('error', $e->getMessage());
+        }
     }
 }

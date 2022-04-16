@@ -2,86 +2,87 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Contracts\AttributeInterface;
+use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreAttributeRequest;
-use App\Http\Requests\UpdateAttributeRequest;
-use App\Models\Admin\Attribute;
+use App\Http\Requests\AttributeRequest;
+use Exception;
+use Illuminate\Support\Facades\DB;
 
 class AttributeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $attribute_interface, $response;
+
+    public function __construct(AttributeInterface $attribute_interface, ResponseService $response)
+    {
+        $this->attribute_interface = $attribute_interface;
+        $this->response = $response;
+    }
+
     public function index()
     {
-        //
+        $attribute = $this->attribute_interface->index();
+        return view('admin.attribute.index', compact('attribute'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('admin.attribute.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreAttributeRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreAttributeRequest $request)
+    public function store(AttributeRequest $request)
     {
-        //
+        try {
+            DB::beginTransaction();
+            $this->attribute_interface->store($request);
+            DB::commit();
+            return redirect()->route('attribute.index')->with('success', 'Save successful');
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect()->route('attribute.index')->with('error', $e->getMessage());
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Admin\Attribute  $attribute
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Attribute $attribute)
+    // public function show($id)
+    // {
+    //     try {
+    //         $banner = $this->attribute_interface->find($id);
+    //         return redirect()->route('banner.show', compact('banner'));
+    //     } catch (Exception $e) {
+    //         return redirect()->route('attribute.index')->with('error', $e->getMessage());
+    //     }
+    // }
+
+    public function edit($id)
     {
-        //
+        try {
+            $attribute = $this->attribute_interface->find($id);
+            return view('admin.attribute.edit', compact('attribute'));
+        } catch (Exception $e) {
+            return redirect()->route('attribute.index')->with('error', $e->getMessage());
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Admin\Attribute  $attribute
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Attribute $attribute)
+    public function update(AttributeRequest $request, $id)
     {
-        //
+        try {
+            DB::beginTransaction();
+            $this->attribute_interface->update($request, $id);
+            DB::commit();
+            return redirect()->route('attribute.index')->with('success', 'Update successful');
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect()->route('attribute.index')->with('error', $e->getMessage());
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateAttributeRequest  $request
-     * @param  \App\Models\Admin\Attribute  $attribute
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateAttributeRequest $request, Attribute $attribute)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Admin\Attribute  $attribute
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Attribute $attribute)
-    {
-        //
+        try {
+            $this->attribute_interface->destroy($id);
+            return redirect()->route('attribute.index')->with('success', 'Delete successful');
+        } catch (Exception $e) {
+            return redirect()->route('attribute.index')->with('error', $e->getMessage());
+        }
     }
 }

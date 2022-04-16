@@ -2,147 +2,87 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Contracts\BannerInterface;
+use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreBannerRequest;
-use App\Http\Requests\UpdateBannerRequest;
-use App\Models\Admin\Banner;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
+use App\Http\Requests\BannerRequest;
+use Exception;
+use Illuminate\Support\Facades\DB;
 
 class BannerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $banner_interface, $response;
+
+    public function __construct(BannerInterface $banner_interface, ResponseService $response)
+    {
+        $this->banner_interface = $banner_interface;
+        $this->response = $response;
+    }
+
     public function index()
     {
-        $banner = Banner::all();
-        dd($banner);
+        $banner = $this->banner_interface->index();
         return view('admin.banner.index', compact('banner'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('admin.banner.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreBannerRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreBannerRequest $request)
+    public function store(BannerRequest $request)
     {
-        $data = $request->except('image');
-        $slug = Str::slug($data['title']);
-        if (Banner::where('slug', $slug)->first()) {
-            $slug = $slug . '-' . rand() . time();
-        }
-        $data['slug'] = $slug;
-        if ($file = $request->image) {
-            $filename = rand() . time() . '.' . $file->extension();
-            $path = $path = 'uploads/' . Carbon::now()->format('Y') . '/' . Carbon::now()->format('M') . '/';
-            $file->move(storage_path($path), $filename);
-            $data['image'] = $filename;
-        } else {
-            $data['image'] = '';
-        }
         try {
-            $result = Banner::create($data);
-            dd('success');
-        } catch (\Exception $e) {
-            dd($e);
+            DB::beginTransaction();
+            $this->banner_interface->store($request);
+            DB::commit();
+            return redirect()->route('banner.index')->with('success', 'Save successful');
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect()->route('banner.index')->with('error', $e->getMessage());
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Admin\Banner  $banner
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Banner $banner)
-    {
-        dd($banner);
-    }
-    
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Admin\Banner  $banner
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Banner $banner)
-    {
-        dd('here');
-        dd($banner);
-    }
+    // public function show($id)
+    // {
+    //     try {
+    //         $banner = $this->banner_interface->find($id);
+    //         return redirect()->route('banner.show', compact('banner'));
+    //     } catch (Exception $e) {
+    //         return redirect()->route('banner.index')->with('error', $e->getMessage());
+    //     }
+    // }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateBannerRequest  $request
-     * @param  \App\Models\Admin\Banner  $banner
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateBannerRequest $request, Banner $banner)
+    public function edit($id)
     {
-        $data = $request->except('image', '_method');
-        $slug = Str::slug($data['title']);
-        if (Banner::where('slug', $slug)->first()) {
-            $slug = $slug . '-' . rand() . time();
-        }
-        $data['slug'] = $slug;
-        if ($file = $request->image) {
-            $filename = rand() . time() . '.' . $file->extension();
-            $file->move(storage_path('uploads/'), $filename);
-            $data['image'] = $filename;
-        } else {
-            $data['image'] = '';
-        }
         try {
-            $result = Banner::where('id', $banner->id)->update($data);
-            if ($banner->image) {
-                $file_path = storage_path('uploads/' . $banner->image);
-                if (File::exists($file_path)) {
-                    unlink($file_path);
-                }
-            }
-            dd('success');
-        } catch (\Exception $e) {
-            dd($e);
+            $banner = $this->banner_interface->find($id);
+            return view('admin.banner.edit', compact('banner'));
+        } catch (Exception $e) {
+            return redirect()->route('banner.index')->with('error', $e->getMessage());
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Admin\Banner  $banner
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Banner $banner)
+    public function update(BannerRequest $request, $id)
     {
         try {
-            $result = $banner->delete();
-            if ($banner->image) {
-                $file_path = storage_path('uploads/' . $banner->image);
-                if (File::exists($file_path)) {
-                    unlink($file_path);
-                }
-            }
-            return 'success';
-        } catch (\Exception $e) {
-            return $e;
+            DB::beginTransaction();
+            $this->banner_interface->update($request, $id);
+            DB::commit();
+            return redirect()->route('banner.index')->with('success', 'Update successful');
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect()->route('banner.index')->with('error', $e->getMessage());
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $this->banner_interface->destroy($id);
+            return redirect()->route('banner.index')->with('success', 'Delete successful');
+        } catch (Exception $e) {
+            return redirect()->route('banner.index')->with('error', $e->getMessage());
         }
     }
 }

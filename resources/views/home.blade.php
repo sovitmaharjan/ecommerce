@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Home')
+
 @section('content')
 <!-- slider-area-start -->
 <div class="slider-area">
@@ -7,7 +9,7 @@
         <div class="slider-wrapper swiper-wrapper">
             <div class="single-slider swiper-slide slider-height d-flex align-items-center"
                 data-background="{{ asset('assets/img/slider/01-slide-1.jpg') }}">
-                <div class="container">
+                {{-- <div class="container">
                     <div class="row">
                         <div class="col-xl-5">
                             <div class="slider-content">
@@ -26,7 +28,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div><!-- /single-slider -->
             <div class="single-slider swiper-slide slider-height d-flex align-items-center"
                 data-background="{{ asset('assets/img/slider/01-slide-2.jpg') }}">

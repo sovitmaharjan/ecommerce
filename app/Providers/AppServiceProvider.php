@@ -11,6 +11,7 @@ use App\Contracts\OrderInterface;
 use App\Contracts\PaymentInterface;
 use App\Contracts\ProductInterface;
 use App\Contracts\UserInterface;
+use App\Models\GeneralSetting;
 use App\Repositories\AttributeRepository;
 use App\Repositories\BannerRepository;
 use App\Repositories\BrandRepository;
@@ -49,6 +50,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $general_setting = GeneralSetting::first();
+        config(['general_setting' => $general_setting]);
     }
 }

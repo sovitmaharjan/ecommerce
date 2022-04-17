@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Metronic - the world's #1 selling Bootstrap Admin Theme Ecosystem for HTML, Vue, React, Angular &amp; Laravel by Keenthemes</title>
+		<title>{{ config('general_setting')->website_name ?? 'Ecommerce' }}</title>
 		@include('admin.layouts.meta')
 		@include('admin.layouts.style')
 	</head>

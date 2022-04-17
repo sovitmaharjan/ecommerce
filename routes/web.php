@@ -9,23 +9,12 @@ use App\Http\Controllers\Admin\GeneralSettingController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     return view('home');
@@ -43,6 +32,9 @@ Route::group([
     'prefix' => '/admin',
     'middleware' => 'auth'
 ], function() {
+    Route::resource('role', RoleController::class);
+    Route::resource('user', UserController::class);
+
     Route::get('/under-construction', function() {
         return view('admin.under-construction');
     })->name('admin.under-construction');
@@ -56,7 +48,6 @@ Route::group([
     Route::resource('payment', PaymentController::class);
     Route::resource('order', OrderController::class);
     
-    Route::resource('user', UserController::class);
     Route::get('/general-setting', [GeneralSettingController::class, 'index'])->name('general-setting.index');
     Route::post('/general-setting', [GeneralSettingController::class, 'store'])->name('general-setting.store');
     Route::patch('/general-setting/{id}', [GeneralSettingController::class, 'update'])->name('general-setting.update');

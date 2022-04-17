@@ -9,6 +9,7 @@ use App\Http\Requests\UserRequest;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -23,11 +24,14 @@ class UserController extends Controller
     public function index()
     {
         $user = $this->user_interface->index();
+        // dd($user);
         return view('admin.user.index', compact('user'));
     }
 
     public function create()
     {
+        $roles = Role::pluck('name','name')->all();
+        dd($roles);
         return view('admin.user.create');
     }
 

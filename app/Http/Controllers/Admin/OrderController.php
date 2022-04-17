@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Contracts\OrderInterface;
+use App\Contracts\Admin\OrderInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
 use Exception;

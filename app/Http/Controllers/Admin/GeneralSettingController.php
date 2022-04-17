@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Contracts\GeneralSettingInterface;
+use App\Contracts\Admin\GeneralSettingInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GeneralSettingRequest;
 use Exception;

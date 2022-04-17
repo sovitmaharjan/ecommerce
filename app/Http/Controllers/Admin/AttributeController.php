@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Contracts\AttributeInterface;
+use App\Contracts\Admin\AttributeInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AttributeRequest;
 use Exception;

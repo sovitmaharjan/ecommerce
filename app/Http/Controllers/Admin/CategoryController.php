@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Contracts\CategoryInterface;
+use App\Contracts\Admin\CategoryInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use Exception;

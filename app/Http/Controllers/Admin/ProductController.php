@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Contracts\CategoryInterface;
-use App\Contracts\ProductInterface;
+use App\Contracts\Admin\CategoryInterface;
+use App\Contracts\Admin\ProductInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use Exception;
@@ -17,7 +17,6 @@ class ProductController extends Controller
     {
         $this->product_interface = $product_interface;
         $this->category_interface = $category_interface;
-        $this->response = $response;
     }
 
     public function index()

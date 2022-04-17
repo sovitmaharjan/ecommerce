@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Admin;
 
-use App\Contracts\BannerInterface;
+use App\Contracts\Admin\CategoryInterface;
 use App\Custom\ImageService;
-use App\Models\Banner;
+use App\Models\Category;
 use Exception;
 
-class BannerRepository implements BannerInterface
+class CategoryRepository implements CategoryInterface
 {
     protected $image;
     public function __construct(ImageService $image)
@@ -17,13 +17,13 @@ class BannerRepository implements BannerInterface
 
     public function index()
     {
-        $result = Banner::orderBy('created_at', 'DESC')->get();
+        $result = Category::orderBy('created_at', 'DESC')->get();
         return $result;
     }
 
     public function find($id)
     {
-        $result = Banner::where('id', $id)->first();
+        $result = Category::where('id', $id)->first();
         if (!$result) {
             throw new Exception('No Data');
         }
@@ -33,7 +33,7 @@ class BannerRepository implements BannerInterface
     public function store($request)
     {
         $data = $request->except('image', '_token');
-        $result = Banner::create($data);
+        $result = Category::create($data);
         if ($file = $request->image) {
             $this->image->upload($result, $file);
         }
@@ -42,26 +42,26 @@ class BannerRepository implements BannerInterface
 
     public function update($request, $id)
     {
-        $banner = Banner::find($id);
-        if (!$banner) {
+        $category = Category::find($id);
+        if (!$category) {
             throw new Exception('No Data');
         }
         $data = $request->except('image', '_method', '_token');
-        $result = $banner->update($data);
+        $result = $category->update($data);
         if ($file = $request->image) {
-            $this->image->upload($banner, $file, $banner->image->path ?? null);
+            $this->image->upload($category, $file, $category->image->path ?? null);
         }
         return $result;
     }
 
     public function destroy($id)
     {
-        $banner = Banner::find($id);
-        if (!$banner) {
+        $category = Category::find($id);
+        if (!$category) {
             throw new Exception('No Data');
         }
-        $result = $banner->delete();
-        $this->image->delete($banner, $banner->image->path ?? null);
+        $result = $category->delete();
+        $this->image->delete($category, $category->image->path ?? null);
         return $result;
     }
 }

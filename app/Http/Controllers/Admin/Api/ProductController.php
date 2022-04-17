@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Api;
 
-use App\Contracts\ProductInterface;
+use App\Contracts\Admin\ProductInterface;
 use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\ProductRequest;

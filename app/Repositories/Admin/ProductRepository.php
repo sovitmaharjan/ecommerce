@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Admin;
 
-use App\Contracts\CategoryInterface;
+use App\Contracts\Admin\ProductInterface;
 use App\Custom\ImageService;
-use App\Models\Category;
+use App\Models\Product;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 
-class CategoryRepository implements CategoryInterface
+class ProductRepository implements ProductInterface
 {
     protected $image;
     public function __construct(ImageService $image)
@@ -17,13 +18,13 @@ class CategoryRepository implements CategoryInterface
 
     public function index()
     {
-        $result = Category::orderBy('created_at', 'DESC')->get();
+        $result = Product::orderBy('created_at', 'DESC')->get();
         return $result;
     }
 
     public function find($id)
     {
-        $result = Category::where('id', $id)->first();
+        $result = Product::where('id', $id)->first();
         if (!$result) {
             throw new Exception('No Data');
         }
@@ -33,7 +34,8 @@ class CategoryRepository implements CategoryInterface
     public function store($request)
     {
         $data = $request->except('image', '_token');
-        $result = Category::create($data);
+        $data['user_id'] = Auth::user()->id;
+        $result = Product::create($data);
         if ($file = $request->image) {
             $this->image->upload($result, $file);
         }
@@ -42,26 +44,26 @@ class CategoryRepository implements CategoryInterface
 
     public function update($request, $id)
     {
-        $category = Category::find($id);
-        if (!$category) {
+        $product = Product::find($id);
+        if (!$product) {
             throw new Exception('No Data');
         }
         $data = $request->except('image', '_method', '_token');
-        $result = $category->update($data);
+        $result = $product->update($data);
         if ($file = $request->image) {
-            $this->image->upload($category, $file, $category->image->path ?? null);
+            $this->image->upload($product, $file, $product->image->path ?? null);
         }
         return $result;
     }
 
     public function destroy($id)
     {
-        $category = Category::find($id);
-        if (!$category) {
+        $product = Product::find($id);
+        if (!$product) {
             throw new Exception('No Data');
         }
-        $result = $category->delete();
-        $this->image->delete($category, $category->image->path ?? null);
+        $result = $product->delete();
+        $this->image->delete($product, $product->image->path ?? null);
         return $result;
     }
 }

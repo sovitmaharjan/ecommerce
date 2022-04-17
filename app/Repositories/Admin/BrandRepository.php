@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Admin;
 
-use App\Contracts\UserInterface;
+use App\Contracts\Admin\BrandInterface;
 use App\Custom\ImageService;
-use App\Models\User;
+use App\Models\Brand;
 use Exception;
 
-class UserRepository implements UserInterface
+class BrandRepository implements BrandInterface
 {
     protected $image;
     public function __construct(ImageService $image)
@@ -17,13 +17,13 @@ class UserRepository implements UserInterface
 
     public function index()
     {
-        $result = User::orderBy('created_at', 'DESC')->get();
+        $result = Brand::orderBy('created_at', 'DESC')->get();
         return $result;
     }
 
     public function find($id)
     {
-        $result = User::where('id', $id)->first();
+        $result = Brand::where('id', $id)->first();
         if (!$result) {
             throw new Exception('No Data');
         }
@@ -33,7 +33,7 @@ class UserRepository implements UserInterface
     public function store($request)
     {
         $data = $request->except('image', '_token');
-        $result = User::create($data);
+        $result = Brand::create($data);
         if ($file = $request->image) {
             $this->image->upload($result, $file);
         }
@@ -42,26 +42,26 @@ class UserRepository implements UserInterface
 
     public function update($request, $id)
     {
-        $user = User::find($id);
-        if (!$user) {
+        $brand = Brand::find($id);
+        if (!$brand) {
             throw new Exception('No Data');
         }
         $data = $request->except('image', '_method', '_token');
-        $result = $user->update($data);
+        $result = $brand->update($data);
         if ($file = $request->image) {
-            $this->image->upload($user, $file, $user->image->path ?? null);
+            $this->image->upload($brand, $file, $brand->image->path ?? null);
         }
         return $result;
     }
 
     public function destroy($id)
     {
-        $user = User::where('id', $id)->first();
-        if (!$user) {
+        $brand = Brand::find($id);
+        if (!$brand) {
             throw new Exception('No Data');
         }
-        $result = $user->delete();
-        $this->image->delete($user, $user->image->path ?? null);
+        $result = $brand->delete();
+        $this->image->delete($brand, $brand->image->path ?? null);
         return $result;
     }
 }

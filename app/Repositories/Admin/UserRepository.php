@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Admin;
 
-use App\Contracts\ProductInterface;
+use App\Contracts\Admin\UserInterface;
 use App\Custom\ImageService;
-use App\Models\Product;
+use App\Models\User;
 use Exception;
-use Illuminate\Support\Facades\Auth;
 
-class ProductRepository implements ProductInterface
+class UserRepository implements UserInterface
 {
     protected $image;
     public function __construct(ImageService $image)
@@ -18,13 +17,13 @@ class ProductRepository implements ProductInterface
 
     public function index()
     {
-        $result = Product::orderBy('created_at', 'DESC')->get();
+        $result = User::orderBy('created_at', 'DESC')->get();
         return $result;
     }
 
     public function find($id)
     {
-        $result = Product::where('id', $id)->first();
+        $result = User::where('id', $id)->first();
         if (!$result) {
             throw new Exception('No Data');
         }
@@ -34,8 +33,7 @@ class ProductRepository implements ProductInterface
     public function store($request)
     {
         $data = $request->except('image', '_token');
-        $data['user_id'] = Auth::user()->id;
-        $result = Product::create($data);
+        $result = User::create($data);
         if ($file = $request->image) {
             $this->image->upload($result, $file);
         }
@@ -44,26 +42,26 @@ class ProductRepository implements ProductInterface
 
     public function update($request, $id)
     {
-        $product = Product::find($id);
-        if (!$product) {
+        $user = User::find($id);
+        if (!$user) {
             throw new Exception('No Data');
         }
         $data = $request->except('image', '_method', '_token');
-        $result = $product->update($data);
+        $result = $user->update($data);
         if ($file = $request->image) {
-            $this->image->upload($product, $file, $product->image->path ?? null);
+            $this->image->upload($user, $file, $user->image->path ?? null);
         }
         return $result;
     }
 
     public function destroy($id)
     {
-        $product = Product::find($id);
-        if (!$product) {
+        $user = User::where('id', $id)->first();
+        if (!$user) {
             throw new Exception('No Data');
         }
-        $result = $product->delete();
-        $this->image->delete($product, $product->image->path ?? null);
+        $result = $user->delete();
+        $this->image->delete($user, $user->image->path ?? null);
         return $result;
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Admin;
 
-use App\Contracts\GeneralSettingInterface;
+use App\Contracts\Admin\GeneralSettingInterface;
 use App\Custom\ImageService;
 use App\Models\GeneralSetting;
 use Exception;

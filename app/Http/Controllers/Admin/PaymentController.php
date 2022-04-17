@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Contracts\PaymentInterface;
+use App\Contracts\Admin\PaymentInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PaymentRequest;
 use Exception;

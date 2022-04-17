@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Contracts\BannerInterface;
+use App\Contracts\Admin\BannerInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BannerRequest;
 use Exception;

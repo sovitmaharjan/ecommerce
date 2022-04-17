@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Admin;
 
-use App\Contracts\OrderInterface;
+use App\Contracts\Admin\OrderInterface;
 use App\Models\Order;
 use Exception;
 

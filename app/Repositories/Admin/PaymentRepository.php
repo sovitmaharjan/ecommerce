@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Admin;
 
-use App\Contracts\PaymentInterface;
+use App\Contracts\Admin\PaymentInterface;
 use App\Models\Payment;
 use Exception;
 

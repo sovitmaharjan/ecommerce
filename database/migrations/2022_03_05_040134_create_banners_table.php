@@ -18,6 +18,8 @@ class CreateBannersTable extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('description');
+            $table->string('type');
+            $table->text('url');
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });

@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Admin;
 
-use App\Contracts\AttributeInterface;
-use App\Custom\ImageService;
+use App\Contracts\Admin\AttributeInterface;
 use App\Models\Attribute;
 use Exception;
 

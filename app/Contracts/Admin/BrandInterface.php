@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Contracts;
+namespace App\Contracts\Admin;
 
-interface ProductInterface
+interface BrandInterface
 {
     public function index();
     public function find($id);

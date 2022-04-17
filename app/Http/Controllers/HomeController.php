@@ -2,40 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\HomeInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    protected $home_interface;
+
+    public function __construct(HomeInterface $home_interface)
     {
-        $this->middleware('auth');
+        $this->home_interface = $home_interface;
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        return view('home');
-    }
-
-    public function updateStatus(Request $request, $id) {
-        $status = DB::table($request->table_name)->where('id', $id)->pluck('status')->first();
-        $status = $status != 'active' ? : 'inactive';
-        $result = DB::table($request->table_name)
-            ->where('id', $id)
-            ->update(['status' => $status]);
-        if($result){
-            return response('success');
-        }
-        return response('fail');
+        $banner = $this->home_interface->index();
+        return view('home', compact('banner'));
     }
 }

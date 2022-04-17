@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Contracts\BrandInterface;
+use App\Contracts\Admin\BrandInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BrandRequest;
 use Exception;

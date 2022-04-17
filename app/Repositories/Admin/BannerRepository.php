@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Admin;
 
-use App\Contracts\BrandInterface;
+use App\Contracts\Admin\BannerInterface;
 use App\Custom\ImageService;
-use App\Models\Brand;
+use App\Models\Banner;
 use Exception;
 
-class BrandRepository implements BrandInterface
+class BannerRepository implements BannerInterface
 {
     protected $image;
     public function __construct(ImageService $image)
@@ -17,13 +17,13 @@ class BrandRepository implements BrandInterface
 
     public function index()
     {
-        $result = Brand::orderBy('created_at', 'DESC')->get();
+        $result = Banner::orderBy('created_at', 'DESC')->get();
         return $result;
     }
 
     public function find($id)
     {
-        $result = Brand::where('id', $id)->first();
+        $result = Banner::where('id', $id)->first();
         if (!$result) {
             throw new Exception('No Data');
         }
@@ -33,7 +33,7 @@ class BrandRepository implements BrandInterface
     public function store($request)
     {
         $data = $request->except('image', '_token');
-        $result = Brand::create($data);
+        $result = Banner::create($data);
         if ($file = $request->image) {
             $this->image->upload($result, $file);
         }
@@ -42,26 +42,26 @@ class BrandRepository implements BrandInterface
 
     public function update($request, $id)
     {
-        $brand = Brand::find($id);
-        if (!$brand) {
+        $banner = Banner::find($id);
+        if (!$banner) {
             throw new Exception('No Data');
         }
         $data = $request->except('image', '_method', '_token');
-        $result = $brand->update($data);
+        $result = $banner->update($data);
         if ($file = $request->image) {
-            $this->image->upload($brand, $file, $brand->image->path ?? null);
+            $this->image->upload($banner, $file, $banner->image->path ?? null);
         }
         return $result;
     }
 
     public function destroy($id)
     {
-        $brand = Brand::find($id);
-        if (!$brand) {
+        $banner = Banner::find($id);
+        if (!$banner) {
             throw new Exception('No Data');
         }
-        $result = $brand->delete();
-        $this->image->delete($brand, $brand->image->path ?? null);
+        $result = $banner->delete();
+        $this->image->delete($banner, $banner->image->path ?? null);
         return $result;
     }
 }

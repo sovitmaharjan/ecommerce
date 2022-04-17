@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Contracts\UserInterface;
+use App\Contracts\Admin\UserInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use Exception;

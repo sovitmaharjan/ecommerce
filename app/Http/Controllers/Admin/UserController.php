@@ -3,21 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Contracts\UserInterface;
-use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    protected $user_interface, $response;
+    protected $user_interface;
 
-    public function __construct(UserInterface $user_interface, ResponseService $response)
+    public function __construct(UserInterface $user_interface)
     {
         $this->user_interface = $user_interface;
-        $this->response = $response;
     }
 
     public function index()

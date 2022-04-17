@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Contracts\GeneralSettingInterface;
-use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GeneralSettingRequest;
 use Exception;
@@ -11,12 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class GeneralSettingController extends Controller
 {
-    protected $general_setting_interface, $response;
+    protected $general_setting_interface;
 
-    public function __construct(GeneralSettingInterface $general_setting_interface, ResponseService $response)
+    public function __construct(GeneralSettingInterface $general_setting_interface)
     {
         $this->general_setting_interface = $general_setting_interface;
-        $this->response = $response;
     }
     
     public function index()

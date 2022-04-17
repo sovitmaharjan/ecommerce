@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Contracts\BannerInterface;
-use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BannerRequest;
 use Exception;
@@ -11,12 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class BannerController extends Controller
 {
-    protected $banner_interface, $response;
+    protected $banner_interface;
 
-    public function __construct(BannerInterface $banner_interface, ResponseService $response)
+    public function __construct(BannerInterface $banner_interface)
     {
         $this->banner_interface = $banner_interface;
-        $this->response = $response;
     }
 
     public function index()

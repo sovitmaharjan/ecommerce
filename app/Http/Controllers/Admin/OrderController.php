@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Contracts\OrderInterface;
-use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
 use Exception;
@@ -11,12 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
-    protected $order_interface, $response;
+    protected $order_interface;
 
-    public function __construct(OrderInterface $order_interface, ResponseService $response)
+    public function __construct(OrderInterface $order_interface)
     {
         $this->order_interface = $order_interface;
-        $this->response = $response;
     }
 
     public function index()

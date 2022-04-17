@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Contracts\CategoryInterface;
-use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use Exception;
@@ -11,12 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
-    protected $category_interface, $response;
+    protected $category_interface;
 
-    public function __construct(CategoryInterface $category_interface, ResponseService $response)
+    public function __construct(CategoryInterface $category_interface)
     {
         $this->category_interface = $category_interface;
-        $this->response = $response;
     }
 
     public function index()

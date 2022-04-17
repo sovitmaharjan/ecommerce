@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Contracts\AttributeInterface;
-use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AttributeRequest;
 use Exception;
@@ -11,12 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class AttributeController extends Controller
 {
-    protected $attribute_interface, $response;
+    protected $attribute_interface;
 
-    public function __construct(AttributeInterface $attribute_interface, ResponseService $response)
+    public function __construct(AttributeInterface $attribute_interface)
     {
         $this->attribute_interface = $attribute_interface;
-        $this->response = $response;
     }
 
     public function index()

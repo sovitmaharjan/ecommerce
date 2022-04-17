@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Contracts\CategoryInterface;
 use App\Contracts\ProductInterface;
-use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use Exception;
@@ -12,9 +11,9 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    protected $product_interface, $category_interface, $response;
+    protected $product_interface, $category_interface;
 
-    public function __construct(ProductInterface $product_interface, CategoryInterface $category_interface, ResponseService $response)
+    public function __construct(ProductInterface $product_interface, CategoryInterface $category_interface)
     {
         $this->product_interface = $product_interface;
         $this->category_interface = $category_interface;

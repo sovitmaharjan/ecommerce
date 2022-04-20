@@ -7,27 +7,28 @@
 <div class="slider-area">
     <div class="swiper-container slider__active">
         <div class="slider-wrapper swiper-wrapper">
-            
-            <div class="single-slider swiper-slide slider-height d-flex align-items-center"
-                data-background="{{ asset('assets/img/slider/01-slide-1.jpg') }}">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-5">
-                            <div class="slider-content">
-                                <h2 data-animation="fadeInLeft" data-delay="1.7s"
-                                    class="pt-15 slider-title pb-5">Banner 1
-                                </h2>
-                                <p class="pr-20 slider_text" data-animation="fadeInLeft" data-delay="1.9s">
-                                    This is the description part</p>
-                                <div class="slider-bottom-btn mt-75">
-                                    <a data-animation="fadeInUp" data-delay="1.15s" href="vendor.html"
-                                        class="st-btn-b b-radius">Discover now</a>
+            @foreach ($data['slider'] as $slider)
+                <div class="single-slider swiper-slide slider-height d-flex align-items-center"
+                    data-background="{{ $slider->image ? $slider->image->getUrl() : asset('noimage.png') }}">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-5">
+                                <div class="slider-content">
+                                    <h2 data-animation="fadeInLeft" data-delay="1.7s"
+                                        class="pt-15 slider-title pb-5">{{ $slider->title }}
+                                    </h2>
+                                    <p class="pr-20 slider_text" data-animation="fadeInLeft" data-delay="1.9s">
+                                        {{ $slider->description }}</p>
+                                    <div class="slider-bottom-btn mt-75">
+                                        <a data-animation="fadeInUp" data-delay="1.15s" href="{{ $slider->url }}"
+                                            class="st-btn-b b-radius">Discover now</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div><!-- /single-slider -->
+                </div><!-- /single-slider -->
+            @endforeach
             <div class="main-slider-paginations"></div>
         </div>
     </div>
@@ -45,8 +46,8 @@
                         <i class="fal fa-truck"></i>
                     </div>
                     <div class="features__content">
-                        <h6>FREE DELIVERY</h6>
-                        <p>For all orders over Rs 120</p>
+                        <h6>DELIVERY</h6>
+                        <p>For all orders over</p>
                     </div>
                 </div>
             </div>
@@ -92,42 +93,20 @@
 <section class="banner__area pt-20 pb-10">
     <div class="container">
         <div class="row">
-            <div class="col-xl-4 col-lg-4 col-md-6">
-                <div class="banner__item p-relative w-img mb-30">
-                    <div class="banner__img">
-                        <a href="vendor.html"><img src="{{ asset('assets/img/banner/cosmetics1.png') }}"
-                                alt=""></a>
-                    </div>
-                    <div class="banner__content">
-                        <h6><a href="vendor.html">Cosmetics <br></a></h6>
-                        <p>Discount 20% On Products</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-6">
-                <div class="banner__item p-relative mb-30 w-img">
-                    <div class="banner__img">
-                        <a href="vendor.html"><img src="{{ asset('assets/img/banner/groceries1.jpg') }}"
-                                alt=""></a>
-                    </div>
-                    <div class="banner__content">
-                        <h6><a href="vendor.html">Groceries <br></a></h6>
-                        <p>Limited Time: Online Only!</p>
+            @foreach ($data['first_category_section'] as $key => $category)
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="banner__item p-relative w-img mb-30">
+                        <div class=" ">
+                            <a href="vendor.html"><img src="{{ $category->image ? $category->image->getUrl() : asset('noimage.png') }}"
+                                    alt=""></a>
+                        </div>
+                        <div class="banner__content">
+                            <h6><a href="vendor.html">{{ $category->title }} <br></a></h6>
+                            <p>{{ $category->description }}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-6">
-                <div class="banner__item p-relative mb-30 w-img">
-                    <div class="banner__img">
-                        <a href="vendor.html"><img src="{{ asset('assets/img/banner/shoes1.jpg') }}"
-                                alt=""></a>
-                    </div>
-                    <div class="banner__content">
-                        <h6><a href="vendor.html">Shoes Shop <br> </a></h6>
-                        <p>Free Shipping All Order</p>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -514,32 +493,20 @@
 <section class="banner__area banner__area-d pb-10">
     <div class="container">
         <div class="row">
-            <div class="col-xl-6 col-lg-6 col-md-12">
-                <div class="banner__item p-relative w-img mb-30">
-                    <div class="banner__img">
-                        <a href="vendor.html"><img src="{{ asset('assets/img/banner/cosmetics4.jpg') }}"
-                                alt=""></a>
-                    </div>
-                    <div class="banner__content">
-                        <span>Bestseller Products</span>
-                        <h6><a href="vendor.html">Cosmetics Products</a></h6>
-                        <p>Discount 20% Off, Top Quality Products</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-6 col-lg-6 col-md-12">
-                <div class="banner__item p-relative mb-30 w-img">
-                    <div class="banner__img">
-                        <a href="vendor.html"><img src="{{ asset('assets/img/banner/shoes3.jpg') }}"
-                                alt=""></a>
-                    </div>
-                    <div class="banner__content">
-                        <span>Featured Products</span>
-                        <h6><a href="vendor.html">Shoes Accessories</a></h6>
-                        <p>Free Shipping All Order Over Rs 99</p>
+            @foreach ($data['second_category_section'] as $category)
+                <div class="col-xl-6 col-lg-6 col-md-12">
+                    <div class="banner__item p-relative w-img mb-30">
+                        <div class="banner__img">
+                            <a href="vendor.html"><img src="{{ $category->image ? $category->image->getUrl() : asset('noimage.png') }}"
+                                    alt=""></a>
+                        </div>
+                        <div class="banner__content">
+                            <span>{{ $category->title }}</span>
+                            <p>{{ $category->description }}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>

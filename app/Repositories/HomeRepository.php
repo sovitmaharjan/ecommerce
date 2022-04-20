@@ -15,9 +15,9 @@ class HomeRepository implements HomeInterface
         $this->image = $image;
     }
 
-    public function index()
+    public function banner($type)
     {
-        $result = Banner::orderBy('created_at', 'DESC')->get();
+        $result = Banner::where('type', $type)->orderBy('created_at', 'DESC')->get();
         return $result;
     }
 

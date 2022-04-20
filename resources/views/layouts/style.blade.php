@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="{{ asset('assets/css/owl-carousel.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/swiper-bundle.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/backtotop.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/ui-range-slider.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/nice-select.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/flaticon/flaticon.css') }}">

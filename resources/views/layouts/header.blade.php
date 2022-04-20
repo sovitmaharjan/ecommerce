@@ -294,10 +294,10 @@
                             <nav>
                                 <ul>
                                     <li>
-                                        <a href="index.html" class="active">Home </a>
+                                        <a href="{{ url('') }}" class="active">Home </a>
                                     </li>
                                     <li><a href="about.html">About Us</a></li>
-                                    <li class="has-mega"><a href="shop.html">Shop </a>
+                                    <li class="has-mega"><a href="{{ route('shop') }}">Shop </a>
                                     </li>
                                     <li><a href="#">Blog</a>
                                     </li>

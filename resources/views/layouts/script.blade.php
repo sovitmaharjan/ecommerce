@@ -12,6 +12,7 @@
 <script src="{{ asset('assets/js/nice-select.js') }}"></script>
 <script src="{{ asset('assets/js/countdown.min.js') }}"></script>
 <script src="{{ asset('assets/js/counterup.js') }}"></script>
+<script src="{{ asset('assets/js/ui-slider-range.js') }}"></script>
 <script src="{{ asset('assets/js/wow.js') }}"></script>
 <script src="{{ asset('assets/js/isotope-pkgd.js') }}"></script>
 <script src="{{ asset('assets/js/imagesloaded-pkgd.js') }}"></script>

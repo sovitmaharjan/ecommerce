@@ -2,12 +2,15 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
-class UserSeeder extends Seeder
+class UserTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,11 +19,27 @@ class UserSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        DB::table('users')->where('id', 1)->update([
-            'name' => 'Admin',
+        // DB::table('users')->where('id', 1)->update([
+        //     'name' => 'Admin',
+        //     'email' => 'admin@email.com',
+        //     'password' => Hash::make('123'),
+        // ]);
+
+        $user = User::create([
+        	'name' => 'Admin',
             'email' => 'admin@email.com',
             'password' => Hash::make('123'),
         ]);
+
+        $role = Role::create(['name' => 'Admin']);
+        // $role = Role::create(['name' => 'Admin', 'name' => 'Customer']);
+   
+        $permissions = Permission::pluck('id','id')->all();
+  
+        $role->syncPermissions($permissions);
+   
+        $user->assignRole([$role->id]);
+        
         // DB::table('users')->insert([
         //     [
         //         'name' => 'Admin',

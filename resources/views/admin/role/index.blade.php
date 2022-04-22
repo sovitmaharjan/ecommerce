@@ -6,7 +6,7 @@
                 <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
                     data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                     class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">User</h1>
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Attribute</h1>
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
@@ -15,16 +15,19 @@
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
-                        <li class="breadcrumb-item text-dark">User</li>
+                        <li class="breadcrumb-item text-muted">Catalog</li>
+                        <li class="breadcrumb-item">
+                            <span class="bullet bg-gray-300 w-5px h-2px"></span>
+                        </li>
+                        <li class="breadcrumb-item text-dark">Attribute</li>
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <div class="m-0">
-                        <a href="{{ route('user.index') }}"
+                        <a href="{{ route('attribute.index') }}"
                             class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                     <path
                                         d="M21 7H3C2.4 7 2 6.6 2 6V4C2 3.4 2.4 3 3 3H21C21.6 3 22 3.4 22 4V6C22 6.6 21.6 7 21 7Z"
                                         fill="black"></path>
@@ -36,7 +39,7 @@
                             List
                         </a>
                     </div>
-                    <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary">Create</a>
+                    <a href="{{ route('attribute.create') }}" class="btn btn-sm btn-primary">Create</a>
                 </div>
             </div>
         </div>
@@ -45,13 +48,13 @@
                 <div class="card">
                     <div class="card-header border-0 pt-6">
                         <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label fw-bolder fs-3 mb-1">User Statistics</span>
-                            <span class="text-muted mt-1 fw-bold fs-7">Over {{ count($user) }}
-                                user{{ count($user) > 1 ? 's' : '' }}</span>
+                            <span class="card-label fw-bolder fs-3 mb-1">Attribute Statistics</span>
+                            {{-- <span class="text-muted mt-1 fw-bold fs-7">Over {{ count($attribute) }}
+                                attribute{{ count($attribute) > 1 ? 's' : '' }}</span> --}}
                         </h3>
                         <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover"
                             title="">
-                            <a href="{{ route('user.create') }}" class="btn btn-primary">
+                            <a href="{{ route('attribute.create') }}" class="btn btn-primary">
                                 <span class="svg-icon svg-icon-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none">
@@ -70,27 +73,23 @@
                                 <table id="kt_datatable_example_5"
                                     class="table table-row-bordered gy-5 gs-7 border rounded align-middle">
                                     <thead>
+                                        {{ $attribute = 1 }}
                                         <tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
                                             <th>#</th>
-                                            <th>Image</th>
-                                            <th>Name</th>
+                                            <th>Title</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($user as $key => $user)
+                                        {{-- @foreach ($attribute as $key => $attribute)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>
-                                                    <img class="bgi-position-center bgi-size-cover card-rounded card-rounded mh-100px me-3"
-                                                        src="{{ $user->image ? $user->image->getUrl() : asset('noimage.png') }}">
+                                                    {{ $attribute->title }}</a>
                                                 </td>
                                                 <td>
-                                                    {{ $user->name }}</a>
-                                                </td>
-                                                <td>
-                                                    @if ($user->email_verified_at)
+                                                    @if ($attribute->status == 1)
                                                         <div class="badge badge-light-success">Active</div>
                                                     @else
                                                         <div class="badge badge-light-danger">InActive</div>
@@ -112,25 +111,25 @@
                                                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
                                                         data-kt-menu="true">
                                                         <div class="menu-item px-3">
-                                                            <a href="{{ route('user.edit', $user->id) }}"
+                                                            <a href="{{ route('attribute.edit', $attribute->id) }}"
                                                                 class="menu-link px-3">Edit</a>
                                                         </div>
                                                         <div class="menu-item px-3">
-                                                            <form id="form{{ $user->id }}"
-                                                                action="{{ route('user.destroy', $user->id) }}"
+                                                            <form id="form{{ $attribute->id }}"
+                                                                action="{{ route('attribute.destroy', $attribute->id) }}"
                                                                 method="POST">
                                                                 @csrf
                                                                 @method('delete')
                                                             </form>
                                                             <a href="javascript:void(0)" class="menu-link px-3 delete"
                                                                 data-kt-customer-table-filter="delete_row"
-                                                                data-id="{{ $user->id }}"
-                                                                data-name="{{ $user->title }}">Delete</a>
+                                                                data-id="{{ $attribute->id }}"
+                                                                data-name="{{ $attribute->title }}">Delete</a>
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @endforeach --}}
                                     </tbody>
                                 </table>
                             </div>

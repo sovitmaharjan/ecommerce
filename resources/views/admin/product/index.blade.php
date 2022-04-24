@@ -91,7 +91,7 @@
                                                         src="{{ $product->image ? $product->image->getUrl() : asset('noimage.png') }}">
                                                 </td>
                                                 <td>
-                                                    {{ $product->title }}</a>
+                                                    {{ $product->title }}
                                                 </td>
                                                 <td>
                                                     @if ($product->status == 'published')

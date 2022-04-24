@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AccountRequestController;
 use App\Http\Controllers\Admin\AttributeController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\BrandController;
@@ -12,16 +13,13 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
-<<<<<<< HEAD
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
-=======
->>>>>>> role-permission
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-<<<<<<< HEAD
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,11 +33,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');
-=======
-Route::get('/', function () {
-    return view('home');
-});
->>>>>>> role-permission
 
 Route::get('/artisan-call', function () {
     Artisan::call('migrate');
@@ -47,6 +40,7 @@ Route::get('/artisan-call', function () {
 
 Auth::routes();
 
+Route::post('/account-request', [AccountRequestController::class, 'store'])->name('account-request.store');
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group([
@@ -72,6 +66,9 @@ Route::group([
     Route::resource('product', ProductController::class);
     Route::resource('payment', PaymentController::class);
     Route::resource('order', OrderController::class);
+    Route::get('/account-request', [AccountRequestController::class, 'index'])->name('account-request.index');
+    Route::get('/account-request/{id}/create-account', [AccountRequestController::class, 'edit'])->name('account-request.edit');
+    Route::delete('/account-request/{id}', [AccountRequestController::class, 'destroy'])->name('account-request.destroy');
     
     Route::get('/general-setting', [GeneralSettingController::class, 'index'])->name('general-setting.index');
     Route::post('/general-setting', [GeneralSettingController::class, 'store'])->name('general-setting.store');

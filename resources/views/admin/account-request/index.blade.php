@@ -6,7 +6,7 @@
                 <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
                     data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                     class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Attribute</h1>
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Account Request</h1>
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
@@ -19,12 +19,12 @@
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
-                        <li class="breadcrumb-item text-dark">Attribute</li>
+                        <li class="breadcrumb-item text-dark">Account Request</li>
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <div class="m-0">
-                        <a href="{{ route('attribute.index') }}"
+                        <a href="{{ route('account-request.index') }}"
                             class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -39,7 +39,7 @@
                             List
                         </a>
                     </div>
-                    <a href="{{ route('attribute.create') }}" class="btn btn-sm btn-primary">Create</a>
+                    {{-- <a href="{{ route('account-request.create') }}" class="btn btn-sm btn-primary">Create</a> --}}
                 </div>
             </div>
         </div>
@@ -48,13 +48,13 @@
                 <div class="card">
                     <div class="card-header border-0 pt-6">
                         <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label fw-bolder fs-3 mb-1">Attribute Statistics</span>
-                            <span class="text-muted mt-1 fw-bold fs-7">Over {{ count($attribute) }}
-                                attribute{{ count($attribute) > 1 ? 's' : '' }}</span>
+                            <span class="card-label fw-bolder fs-3 mb-1">Account Request Statistics</span>
+                            <span class="text-muted mt-1 fw-bold fs-7">Over {{ count($account_request) }}
+                                attribute{{ count($account_request) > 1 ? 's' : '' }}</span>
                         </h3>
-                        <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover"
+                        {{-- <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover"
                             title="">
-                            <a href="{{ route('attribute.create') }}" class="btn btn-primary">
+                            <a href="{{ route('account-request.create') }}" class="btn btn-primary">
                                 <span class="svg-icon svg-icon-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none">
@@ -65,7 +65,7 @@
                                 </span>
                                 Add New
                             </a>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="card-body pt-0">
                         <div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -75,21 +75,27 @@
                                     <thead>
                                         <tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
                                             <th>#</th>
-                                            <th>Title</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Number</th>
+                                            <th>Shop Name</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($attribute as $key => $attribute)
+                                        @foreach ($account_request as $key => $value)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
-                                                <td>{{ $attribute->title }}</td>
+                                                <td>{{ $value->name }}</td>
+                                                <td>{{ $value->email }}</td>
+                                                <td>{{ $value->contact_number }}</td>
+                                                <td>{{ $value->shop_name }}</td>
                                                 <td>
-                                                    @if ($attribute->status == 1)
+                                                    @if ($value->status == 1)
                                                         <div class="badge badge-light-success">Active</div>
                                                     @else
-                                                        <div class="badge badge-light-danger">InActive</div>
+                                                        <div class="badge badge-light-primary">New User</div>
                                                     @endif
                                                 </td>
                                                 <td>
@@ -107,21 +113,21 @@
                                                     </a>
                                                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
                                                         data-kt-menu="true">
-                                                        <div class="menu-item px-3">
-                                                            <a href="{{ route('attribute.edit', $attribute->id) }}"
-                                                                class="menu-link px-3">Edit</a>
+                                                        <div class="menu-item px-2">
+                                                            <a href="{{ route('account-request.edit', $value->id) }}"
+                                                                class="menu-link px-2">Create Account</a>
                                                         </div>
-                                                        <div class="menu-item px-3">
-                                                            <form id="form{{ $attribute->id }}"
-                                                                action="{{ route('attribute.destroy', $attribute->id) }}"
+                                                        <div class="menu-item px-2">
+                                                            <form id="form{{ $value->id }}"
+                                                                action="{{ route('account-request.destroy', $value->id) }}"
                                                                 method="POST">
                                                                 @csrf
                                                                 @method('delete')
                                                             </form>
-                                                            <a href="javascript:void(0)" class="menu-link px-3 delete"
+                                                            <a href="javascript:void(0)" class="menu-link px-2 delete"
                                                                 data-kt-customer-table-filter="delete_row"
-                                                                data-id="{{ $attribute->id }}"
-                                                                data-name="{{ $attribute->title }}">Delete</a>
+                                                                data-id="{{ $value->id }}"
+                                                                data-name="{{ $value->title }}">Delete Request</a>
                                                         </div>
                                                     </div>
                                                 </td>

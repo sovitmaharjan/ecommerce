@@ -90,7 +90,7 @@
                                                         src="{{ $banner->image ? $banner->image->getUrl() : asset('noimage.png') }}">
                                                 </td>
                                                 <td>
-                                                    {{ $banner->title }}</a>
+                                                    {{ $banner->title }}
                                                 </td>
                                                 <td>
                                                     @if ($banner->status == 1)

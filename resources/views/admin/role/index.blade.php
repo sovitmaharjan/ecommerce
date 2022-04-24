@@ -86,7 +86,7 @@
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>
-                                                    {{ $attribute->title }}</a>
+                                                    {{ $attribute->title }}
                                                 </td>
                                                 <td>
                                                     @if ($attribute->status == 1)

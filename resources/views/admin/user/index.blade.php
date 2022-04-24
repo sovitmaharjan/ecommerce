@@ -87,7 +87,7 @@
                                                         src="{{ $user->image ? $user->image->getUrl() : asset('noimage.png') }}">
                                                 </td>
                                                 <td>
-                                                    {{ $user->name }}</a>
+                                                    {{ $user->name }}
                                                 </td>
                                                 <td>
                                                     @if ($user->email_verified_at)

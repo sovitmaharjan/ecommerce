@@ -92,10 +92,10 @@
                                                         src="{{ $category->image ? $category->image->getUrl() : asset('noimage.png') }}">
                                                 </td>
                                                 <td>
-                                                    {{ $category->title }}</a>
+                                                    {{ $category->title }}
                                                 </td>
                                                 <td>
-                                                    {{ $category->parent_id == 0 ? 'Main' : $category->parent->title  }}</a>
+                                                    {{ $category->parent_id == 0 ? 'Main' : $category->parent->title  }}
                                                 </td>
                                                 <td>
                                                     @if ($category->status == 1)

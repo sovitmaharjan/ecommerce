@@ -4,7 +4,7 @@
     <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" method="POST" action="{{ route('login') }}">
         @csrf
         <div class="text-center mb-10">
-            <h1 class="text-dark mb-3">Sign In to {{ Metronic }}</h1>
+            <h1 class="text-dark mb-3">Sign In to {{ config('general_setting')->website_name ?? 'Ecommerce' }}</h1>
             <div class="text-gray-400 fw-bold fs-4">New Here?
                 <a href="{{ route('register') }}" class="link-primary fw-bolder">Send us your detail</a>
             </div>

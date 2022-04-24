@@ -85,7 +85,7 @@
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>
-                                                    {{ $payment->title }}</a>
+                                                    {{ $payment->title }}
                                                 </td>
                                                 <td>
                                                     @if ($payment->status == 1)

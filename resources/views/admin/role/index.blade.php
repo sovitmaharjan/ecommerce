@@ -73,27 +73,18 @@
                                 <table id="kt_datatable_example_5"
                                     class="table table-row-bordered gy-5 gs-7 border rounded align-middle">
                                     <thead>
-                                        {{ $role = 1 }}
                                         <tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
                                             <th>#</th>
                                             <th>Title</th>
-                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($role as $key => $value)
+                                        @foreach ($role  as $key => $value)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>
-                                                    {{ $value->title }}
-                                                </td>
-                                                <td>
-                                                    @if ($value->status == 1)
-                                                        <div class="badge badge-light-success">Active</div>
-                                                    @else
-                                                        <div class="badge badge-light-danger">InActive</div>
-                                                    @endif
+                                                    {{ $value->name }}
                                                 </td>
                                                 <td>
                                                     <a href="#" class="btn btn-light btn-active-light-primary btn-sm"

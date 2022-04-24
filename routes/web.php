@@ -56,11 +56,7 @@ Route::group([
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::resource('banner', BannerController::class);
-    Route::resource('category', CategoryController::class)
-        ->middleware('permission:role-list|role-create|role-edit|role-delete', ['only' => ['index']])
-        ->middleware('permission:role-create', ['only' => ['create','store']])
-        ->middleware('permission:role-edit', ['only' => ['edit','update']])
-        ->middleware('permission:role-delete', ['only' => ['destroy']]);
+    Route::resource('category', CategoryController::class);
     Route::resource('attribute', AttributeController::class);
     Route::resource('brand', BrandController::class);
     Route::resource('product', ProductController::class);

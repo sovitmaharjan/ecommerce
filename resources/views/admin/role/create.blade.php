@@ -1,57 +1,362 @@
 @extends('admin.layouts.app')
 @section('content')
-<div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2>Create New Role</h2>
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+        <div class="toolbar" id="kt_toolbar">
+            <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
+                    data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                    class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Role</h1>
+                    <span class="h-20px border-gray-300 border-start mx-4"></span>
+                    <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                        <li class="breadcrumb-item text-muted">
+                            <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">Home</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <span class="bullet bg-gray-300 w-5px h-2px"></span>
+                        </li>
+                        <li class="breadcrumb-item text-muted">Catalog</li>
+                        <li class="breadcrumb-item">
+                            <span class="bullet bg-gray-300 w-5px h-2px"></span>
+                        </li>
+                        <li class="breadcrumb-item text-dark">Role</li>
+                    </ul>
+                </div>
+                <div class="d-flex align-items-center gap-2 gap-lg-3">
+                    <div class="m-0">
+                        <a href="{{ route('role.index') }}"
+                            class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
+                            <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none">
+                                    <path
+                                        d="M21 7H3C2.4 7 2 6.6 2 6V4C2 3.4 2.4 3 3 3H21C21.6 3 22 3.4 22 4V6C22 6.6 21.6 7 21 7Z"
+                                        fill="black"></path>
+                                    <path opacity="0.3"
+                                        d="M21 14H3C2.4 14 2 13.6 2 13V11C2 10.4 2.4 10 3 10H21C21.6 10 22 10.4 22 11V13C22 13.6 21.6 14 21 14ZM22 20V18C22 17.4 21.6 17 21 17H3C2.4 17 2 17.4 2 18V20C2 20.6 2.4 21 3 21H21C21.6 21 22 20.6 22 20Z"
+                                        fill="black"></path>
+                                </svg>
+                            </span>
+                            List
+                        </a>
+                    </div>
+                    <a href="{{ route('role.create') }}" class="btn btn-sm btn-primary">Create</a>
+                </div>
+            </div>
         </div>
-        <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('role.index') }}"> Back</a>
+        <div class="post d-flex flex-column-fluid" id="kt_post">
+            <div id="kt_content_container" class="container-xxl">
+                <form id="attribute_form" class="form d-flex flex-column flex-lg-row" method="POST"
+                    action="{{ route('role.store') }}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                        <div class="card card-flush py-4">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h2>General</h2>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="mb-10 fv-row">
+                                    <label class="required form-label">Role Name</label>
+                                    <input type="text" name="title" class="form-control mb-2" placeholder="Role name"
+                                        value="{{ old('title') }}" required />
+                                    <div class="text-muted fs-7">A role name is required and recommended to be unique.
+                                    </div>
+                                    @error('title')
+                                        <div class="fv-plugins-message-container invalid-feedback">
+                                            <div data-field="title" data-validator="notEmpty">{{ $message }}</div>
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="card-body pt-0">
+                                <div class="table-responsive">
+                                    <table id="kt_datatable_example_5"
+                                        class="table table-row-bordered gy-5 gs-7 border rounded align-middle">
+                                        <thead>
+                                            <tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
+                                                <th>Permission</th>
+                                                <th>View</th>
+                                                <th>Create</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Role</td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="role_list" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="role_create" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="role_edit" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="role_delete" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>User</td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_list" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_create" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_edit" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_delete" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Account Request</td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_list" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_create" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_edit" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_delete" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Banner</td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_list" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_create" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_edit" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_delete" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Category</td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_list" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_create" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_edit" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_delete" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Attribute</td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_list" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_create" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_edit" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_delete" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Brand</td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_list" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_create" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_edit" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_delete" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Product</td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_list" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_create" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_edit" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_delete" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Payment</td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_list" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_create" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_edit" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_delete" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Order</td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_list" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_create" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_edit" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_delete" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>General Setting</td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_list" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_create" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_edit" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                        <input class="form-check-input" name="user_delete" type="checkbox" value="1">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <a href="{{ route('role.index') }}" id="kt_ecommerce_add_product_cancel"
+                                class="btn btn-light me-5">Cancel</a>
+                            <button type="submit" id="kt_ecommerce_add_attribute_submit" class="btn btn-primary">
+                                <span class="indicator-label">Save Changes</span>
+                                <span class="indicator-progress">Please wait...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-
-
-@if (count($errors) > 0)
-    <div class="alert alert-danger">
-        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-        <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-        </ul>
-    </div>
-@endif
-
-
-<form action='{{ route('admin.role.store') }}' method='POST'>
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Name:</strong>
-            <input type="text" name='name' class='form-control'>
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Permission:</strong>
-            <br/>
-            @foreach($permission as $value)
-                <label>
-                    <input text="checkbox" name='permission[]' value="{{ $value->id }}" class='form-control'>{{ $value->name }}
-                </label>
-            <br/>
-            @endforeach
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
-</div>
-</form>
-
-
-<p class="text-center text-primary"><small>Tutorial by ItSolutionStuff.com</small></p>
 @endSection
 @section('script')
     <script src="{{ asset('assets/admin/js/custom/apps/ecommerce/catalog/save-attribute.js') }}"></script>

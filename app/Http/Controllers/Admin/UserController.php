@@ -21,7 +21,6 @@ class UserController extends Controller
     public function index()
     {
         $user = $this->user_interface->index();
-        // dd($user);
         return view('admin.user.index', compact('user'));
     }
 

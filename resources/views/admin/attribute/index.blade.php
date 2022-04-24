@@ -81,12 +81,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($attribute as $key => $attribute)
+                                        @foreach ($attribute as $key => $value)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
-                                                <td>{{ $attribute->title }}</td>
+                                                <td>{{ $value->title }}</td>
                                                 <td>
-                                                    @if ($attribute->status == 1)
+                                                    @if ($value->status == 1)
                                                         <div class="badge badge-light-success">Active</div>
                                                     @else
                                                         <div class="badge badge-light-danger">InActive</div>
@@ -108,20 +108,20 @@
                                                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
                                                         data-kt-menu="true">
                                                         <div class="menu-item px-3">
-                                                            <a href="{{ route('attribute.edit', $attribute->id) }}"
+                                                            <a href="{{ route('attribute.edit', $value->id) }}"
                                                                 class="menu-link px-3">Edit</a>
                                                         </div>
                                                         <div class="menu-item px-3">
-                                                            <form id="form{{ $attribute->id }}"
-                                                                action="{{ route('attribute.destroy', $attribute->id) }}"
+                                                            <form id="form{{ $value->id }}"
+                                                                action="{{ route('attribute.destroy', $value->id) }}"
                                                                 method="POST">
                                                                 @csrf
                                                                 @method('delete')
                                                             </form>
                                                             <a href="javascript:void(0)" class="menu-link px-3 delete"
                                                                 data-kt-customer-table-filter="delete_row"
-                                                                data-id="{{ $attribute->id }}"
-                                                                data-name="{{ $attribute->title }}">Delete</a>
+                                                                data-id="{{ $value->id }}"
+                                                                data-name="{{ $value->title }}">Delete</a>
                                                         </div>
                                                     </div>
                                                 </td>

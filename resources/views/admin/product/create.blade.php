@@ -115,7 +115,8 @@
                             </div>
                             <div class="card-body pt-0">
                                 <label class="form-label required">Category</label>
-                                <select class="form-select" data-hide-search="true" name="category_id" data-control="select2" data-placeholder="Select an option">
+                                <select class="form-select" data-hide-search="true" name="category_id"
+                                    data-control="select2" data-placeholder="Select an option">
                                     <option></option>
                                     @foreach ($all_category as $category)
                                         <option value="{{ $category->id }}"
@@ -149,144 +150,313 @@
                         </div>
                     </div>
                     <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
-                        <div class="card card-flush py-4">
-                            <div class="card-header">
-                                <div class="card-title">
-                                    <h2>General</h2>
+                        <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-bold mb-n2">
+                            <li class="nav-item">
+                                <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab"
+                                    href="#kt_ecommerce_add_product_general">General</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-active-primary pb-4" data-bs-toggle="tab"
+                                    href="#kt_ecommerce_add_product_advanced">Advanced</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="kt_ecommerce_add_product_general" role="tab-panel">
+                                <div class="d-flex flex-column gap-7 gap-lg-10">
+                                    <div class="card card-flush py-4">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h2>General</h2>
 
-                                </div>
-                            </div>
-                            <div class="card-body pt-0">
-                                <div class="mb-10 fv-row">
-                                    <label class="required form-label">Product Name</label>
-                                    <input type="text" name="title" class="form-control mb-2" placeholder="Product name"
-                                        value="" id="title" />
-                                    <div class="text-muted fs-7">A product name is required.</div>
-                                </div>
-                                <div>
-                                    <label class="form-label">Description</label>
-                                    <textarea name="description" placeholder="Type your text here..." class="form-control mb-2" id="description" rows="5">{{ old('description') }}</textarea>
-                                    <div class="text-muted fs-7">Set a description to the product.</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card card-flush py-4">
-                            <div class="card-header">
-                                <div class="card-title">
-                                    <h2>Pricing</h2>
-                                </div>
-                            </div>
-                            <div class="card-body pt-0">
-                                <div class="mb-10 fv-row">
-                                    <label class="required form-label">Base Price</label>
-                                    <input type="number" id="price" name="price" class="form-control mb-2" placeholder="Product price"
-                                        value="" />
-                                    <div class="text-muted fs-7">Set the product price.</div>
-                                </div>
-                                <div class="fv-row mb-10">
-                                    <label class="fs-6 fw-bold mb-2">Discount Type
-                                        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                            title="Select a discount type that will be applied to this product"></i></label>
-                                    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-1 row-cols-xl-3 g-9"
-                                        data-kt-buttons="true" data-kt-buttons-target="[data-kt-button='true']">
-                                        <div class="col">
-                                            <label
-                                                class="btn btn-outline btn-outline-dashed btn-outline-default active d-flex text-start p-6"
-                                                data-kt-button="true">
-                                                <span
-                                                    class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
-                                                    <input class="form-check-input" type="radio" name="discount_option"
-                                                        value="1" id="no_discount" checked="checked" />
-                                                </span>
-                                                <span class="ms-5">
-                                                    <span class="fs-4 fw-bolder text-gray-800 d-block">No
-                                                        Discount</span>
-                                                </span>
-                                            </label>
+                                            </div>
                                         </div>
-                                        <div class="col">
-                                            <label
-                                                class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-6"
-                                                data-kt-button="true">
-                                                <span
-                                                    class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
-                                                    <input class="form-check-input" type="radio" name="discount_option"
-                                                        value="2" id="discount_percentage_radio" />
-                                                </span>
-                                                <span class="ms-5">
-                                                    <span class="fs-4 fw-bolder text-gray-800 d-block">Percentage
-                                                        %</span>
-                                                </span>
-                                            </label>
+                                        <div class="card-body pt-0">
+                                            <div class="mb-10 fv-row">
+                                                <label class="required form-label">Product Name</label>
+                                                <input type="text" name="title" class="form-control mb-2"
+                                                    placeholder="Product name" value="" id="title" />
+                                                <div class="text-muted fs-7">A product name is required.</div>
+                                            </div>
+                                            <div>
+                                                <label class="form-label">Description</label>
+                                                <textarea name="description" placeholder="Type your text here..." class="form-control mb-2" id="description"
+                                                    rows="5">{{ old('description') }}</textarea>
+                                                <div class="text-muted fs-7">Set a description to the product.</div>
+                                            </div>
                                         </div>
-                                        <div class="col">
-                                            <label
-                                                class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-6"
-                                                data-kt-button="true">
-                                                <span
-                                                    class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
-                                                    <input class="form-check-input" type="radio" name="discount_option"
-                                                        value="3" id="discounted_price_radio" />
-                                                </span>
-                                                <span class="ms-5">
-                                                    <span class="fs-4 fw-bolder text-gray-800 d-block">Fixed Discounted
-                                                        Price</span>
-                                                </span>
-                                            </label>
+                                    </div>
+                                    <div class="card card-flush py-4">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h2>Pricing</h2>
+                                            </div>
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="mb-10 fv-row">
+                                                <label class="required form-label">Base Price</label>
+                                                <input type="number" id="price" name="price" class="form-control mb-2"
+                                                    placeholder="Product price" value="" />
+                                                <div class="text-muted fs-7">Set the product price.</div>
+                                            </div>
+                                            <div class="fv-row mb-10">
+                                                <label class="fs-6 fw-bold mb-2">Discount Type
+                                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                        title="Select a discount type that will be applied to this product"></i></label>
+                                                <div class="row row-cols-1 row-cols-md-3 row-cols-lg-1 row-cols-xl-3 g-9"
+                                                    data-kt-buttons="true" data-kt-buttons-target="[data-kt-button='true']">
+                                                    <div class="col">
+                                                        <label
+                                                            class="btn btn-outline btn-outline-dashed btn-outline-default active d-flex text-start p-6"
+                                                            data-kt-button="true">
+                                                            <span
+                                                                class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="discount_option" value="1" id="no_discount"
+                                                                    checked="checked" />
+                                                            </span>
+                                                            <span class="ms-5">
+                                                                <span class="fs-4 fw-bolder text-gray-800 d-block">No
+                                                                    Discount</span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col">
+                                                        <label
+                                                            class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-6"
+                                                            data-kt-button="true">
+                                                            <span
+                                                                class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="discount_option" value="2"
+                                                                    id="discount_percentage_radio" />
+                                                            </span>
+                                                            <span class="ms-5">
+                                                                <span
+                                                                    class="fs-4 fw-bolder text-gray-800 d-block">Percentage
+                                                                    %</span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col">
+                                                        <label
+                                                            class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-6"
+                                                            data-kt-button="true">
+                                                            <span
+                                                                class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="discount_option" value="3"
+                                                                    id="discounted_price_radio" />
+                                                            </span>
+                                                            <span class="ms-5">
+                                                                <span class="fs-4 fw-bolder text-gray-800 d-block">Fixed
+                                                                    Discounted
+                                                                    Price</span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-none mb-10 fv-row" id="discount_percentage">
+                                                <label class="form-label">Set Discount Percentage</label>
+                                                <input type="text" name="discount" min="1" max="100"
+                                                    class="form-control mb-2" id="percentage"
+                                                    placeholder="Discounted Percentage" />
+                                                <div class="text-muted fs-7">Set a percentage discount to be applied on
+                                                    this product.</div>
+                                            </div>
+                                            <div class="d-none mb-10 fv-row" id="discounted_price">
+                                                <label class="form-label">Fixed Price</label>
+                                                <input type="number" name="discount" id="fixed" class="form-control mb-2"
+                                                    placeholder="Discounted price" />
+                                                <div class="text-muted fs-7">Set the discounted product price. The product
+                                                    will be reduced at the determined fixed price</div>
+                                            </div>
+                                            <div class="d-flex flex-wrap gap-5">
+                                                <div class="fv-row w-100 flex-md-root">
+                                                    <label class="form-label">VAT (%)</label>
+                                                    <input type="number" class="form-control mb-2" value="" name="vat" />
+                                                    <div class="text-muted fs-7">Set the product VAT percentage.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card card-flush py-4">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h2>Meta Options</h2>
+                                            </div>
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="mb-10">
+                                                <label class="form-label">Meta Tag Title</label>
+                                                <input type="text" class="form-control mb-2" name="meta_title"
+                                                    id="meta_title" placeholder="Meta tag name"
+                                                    value="{{ old('meta_title') }}" />
+                                                <div class="text-muted fs-7">Set a meta tag title. Recommended to be simple
+                                                    and precise
+                                                    keywords.</div>
+                                            </div>
+                                            <div class="mb-10">
+                                                <label class="form-label">Meta Tag Description</label>
+                                                <textarea name="meta_description" placeholder="Type your text here..." class="form-control mb-2" id="meta_description"
+                                                    rows="5">{{ old('meta_description') }}</textarea>
+                                                <div class="text-muted fs-7">Set a meta tag description to the product for
+                                                    increased
+                                                    SEO ranking.</div>
+                                            </div>
+                                            <div>
+                                                <label class="form-label">Meta Tag Keywords</label>
+                                                <input id="meta_keyword" name="meta_keyword" class="form-control mb-2"
+                                                    value="{{ old('meta_keyword') }}" />
+                                                <div class="text-muted fs-7">Set a list of keywords that the product is
+                                                    related to.
+                                                    Separate the keywords by adding a comma
+                                                    <code>,</code>between each keyword.
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="d-none mb-10 fv-row" id="discount_percentage">
-                                    <label class="form-label">Set Discount Percentage</label>
-                                    <input type="text" name="discount" min="1" max="100" class="form-control mb-2" id="percentage"
-                                        placeholder="Discounted Percentage" />
-                                    <div class="text-muted fs-7">Set a percentage discount to be applied on
-                                        this product.</div>
-                                </div>
-                                <div class="d-none mb-10 fv-row" id="discounted_price">
-                                    <label class="form-label">Fixed Price</label>
-                                    <input type="number" name="discount" id="fixed" class="form-control mb-2"
-                                        placeholder="Discounted price" />
-                                    <div class="text-muted fs-7">Set the discounted product price. The product
-                                        will be reduced at the determined fixed price</div>
-                                </div>
-                                <div class="d-flex flex-wrap gap-5">
-                                    <div class="fv-row w-100 flex-md-root">
-                                        <label class="form-label">VAT (%)</label>
-                                        <input type="number" class="form-control mb-2" value="" name="vat" />
-                                        <div class="text-muted fs-7">Set the product VAT percentage.</div>
+                            </div>
+                            <div class="tab-pane fade" id="kt_ecommerce_add_product_advanced" role="tab-panel">
+                                <div class="d-flex flex-column gap-7 gap-lg-10">
+                                    <div class="card card-flush py-4">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h2>Inventory</h2>
+                                            </div>
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="mb-10 fv-row">
+                                                <label class="required form-label">SKU</label>
+                                                <input type="text" name="sku" class="form-control mb-2"
+                                                    placeholder="SKU Number" value="" />
+                                                <div class="text-muted fs-7">Enter the product SKU.</div>
+                                            </div>
+                                            <div class="mb-10 fv-row">
+                                                <label class="required form-label">Quantity</label>
+                                                <div class="d-flex gap-3">
+                                                    <input type="number" name="quantity" class="form-control mb-2"
+                                                        placeholder="On quantity" value="" />
+                                                </div>
+                                                <div class="text-muted fs-7">Enter the product quantity.</div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card card-flush py-4">
-                            <div class="card-header">
-                                <div class="card-title">
-                                    <h2>Meta Options</h2>
-                                </div>
-                            </div>
-                            <div class="card-body pt-0">
-                                <div class="mb-10">
-                                    <label class="form-label">Meta Tag Title</label>
-                                    <input type="text" class="form-control mb-2" name="meta_title" id="meta_title"
-                                        placeholder="Meta tag name" value="{{ old('meta_title') }}" />
-                                    <div class="text-muted fs-7">Set a meta tag title. Recommended to be simple and precise
-                                        keywords.</div>
-                                </div>
-                                <div class="mb-10">
-                                    <label class="form-label">Meta Tag Description</label>
-                                    <textarea name="meta_description" placeholder="Type your text here..." class="form-control mb-2" id="meta_description"
-                                        rows="5">{{ old('meta_description') }}</textarea>
-                                    <div class="text-muted fs-7">Set a meta tag description to the product for increased
-                                        SEO ranking.</div>
-                                </div>
-                                <div>
-                                    <label class="form-label">Meta Tag Keywords</label>
-                                    <input id="meta_keyword" name="meta_keyword" class="form-control mb-2"
-                                        value="{{ old('meta_keyword') }}" />
-                                    <div class="text-muted fs-7">Set a list of keywords that the product is related to.
-                                        Separate the keywords by adding a comma
-                                        <code>,</code>between each keyword.
+                                    <div class="card card-flush py-4">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h2>Variations</h2>
+                                            </div>
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class=""
+                                                data-kt-ecommerce-catalog-add-product="auto-options">
+                                                <label class="form-label">Add Product Variations</label>
+                                                <!--begin::Repeater-->
+                                                <div id="variant">
+                                                    <!--begin::Form group-->
+                                                    <div class="form-group">
+                                                        <div data-repeater-list="variant">
+                                                            <div data-repeater-item>
+                                                                <div class="form-group row mb-5">
+                                                                    <div class="col-md-3">
+                                                                        <label class="form-label">Select Options:</label>
+                                                                        <select class="form-select" data-hide-search="true" data-kt-repeater="select2" data-placeholder="Select an option">
+                                                                            <option></option>
+                                                                            <option value="1">Option 1</option>
+                                                                            <option value="2">Option 2</option>
+                                                                            <option value="3">Option 3</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <label class="form-label">Datepicker:</label>
+                                                                        <input class="form-control"
+                                                                            data-kt-repeater="datepicker"
+                                                                            placeholder="Pick a date" />
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label class="form-label">Tags:</label>
+                                                                        <input class="form-control"
+                                                                            data-kt-repeater="tagify"
+                                                                            value="tag1, tag2, tag3" />
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <a href="javascript:;" data-repeater-delete
+                                                                            class="btn btn-sm btn-light-danger mt-3 mt-md-9">
+                                                                            <i class="la la-trash-o fs-3"></i>Delete
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Form group-->
+
+                                                    <!--begin::Form group-->
+                                                    <div class="form-group">
+                                                        <a href="javascript:;" data-repeater-create
+                                                            class="btn btn-light-primary">
+                                                            <i class="la la-plus"></i>Add
+                                                        </a>
+                                                    </div>
+                                                    <!--end::Form group-->
+                                                </div>
+                                                <!--end::Repeater-->
+                                                <div id="variant">
+                                                    <div class="form-group">
+                                                        <div data-repeater-list="variant" class="d-flex flex-column gap-3">
+                                                            <div data-repeater-item=""
+                                                                class="form-group d-flex flex-wrap gap-5">
+                                                                <div class="w-100 w-md-200px">
+                                                                    <select class="form-select" data-hide-search="true"
+                                                                        name="variant_attribute" data-control="select2"
+                                                                        data-placeholder="Select an option">
+                                                                        <option></option>
+                                                                        <option value="color">Color</option>
+                                                                        <option value="size">Size</option>
+                                                                        <option value="material">Material</option>
+                                                                        <option value="style">Style</option>
+                                                                    </select>
+                                                                </div>
+                                                                <input type="text" class="form-control mw-100 w-200px"
+                                                                    name="product_option_value" placeholder="Variation" />
+                                                                <button type="button" data-repeater-delete=""
+                                                                    class="btn btn-sm btn-icon btn-light-danger">
+                                                                    <span class="svg-icon svg-icon-2">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                            height="24" viewBox="0 0 24 24" fill="none">
+                                                                            <rect opacity="0.5" x="7.05025" y="15.5356"
+                                                                                width="12" height="2" rx="1"
+                                                                                transform="rotate(-45 7.05025 15.5356)"
+                                                                                fill="black" />
+                                                                            <rect x="8.46447" y="7.05029" width="12"
+                                                                                height="2" rx="1"
+                                                                                transform="rotate(45 8.46447 7.05029)"
+                                                                                fill="black" />
+                                                                        </svg>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group mt-5">
+                                                        <button type="button" data-repeater-create=""
+                                                            class="btn btn-sm btn-light-primary">
+                                                            <span class="svg-icon svg-icon-2">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                    height="24" viewBox="0 0 24 24" fill="none">
+                                                                    <rect opacity="0.5" x="11" y="18" width="12" height="2"
+                                                                        rx="1" transform="rotate(-90 11 18)" fill="black" />
+                                                                    <rect x="6" y="11" width="12" height="2" rx="1"
+                                                                        fill="black" />
+                                                                </svg>
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -308,4 +478,22 @@
 @endSection
 @section('script')
     <script src="{{ asset('assets/admin/js/custom/apps/ecommerce/catalog/save-product.js') }}"></script>
+    <script src="{{ asset('assets/admin/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
+    <script>
+        $('#variant').repeater({
+            initEmpty: false,
+
+            defaultValues: {
+                'text-input': 'foo'
+            },
+
+            show: function() {
+                $(this).slideDown();
+            },
+
+            hide: function(deleteElement) {
+                $(this).slideUp(deleteElement);
+            }
+        });
+    </script>
 @endSection

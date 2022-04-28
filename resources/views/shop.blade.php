@@ -154,7 +154,7 @@
                                         <div class="product__item product__item-d">
                                             <div class="product__thumb fix">
                                                 <div class="product-image w-img">
-                                                    <a href="product-details.html">
+                                                    <a href="{{ route('product-detail', $value->slug) }}">
                                                         <img src="{{ $value->image ? $value->image->getUrl() : asset('no-image.png') }}" alt="product">
                                                     </a>
                                                 </div>
@@ -175,7 +175,7 @@
                                                 </div>
                                             </div>
                                             <div class="product__content-3">
-                                                <h6><a href="product-details.html">{{ $value->title }}</a>
+                                                <h6><a href="{{ route('product-detail', $value->slug) }}">{{ $value->title }}</a>
                                                 </h6>
                                                 <div class="rating mb-5">
                                                     <ul>
@@ -209,9 +209,6 @@
                         </div>
                     </div>
                     <div class="tp-pagination text-center">
-                        {{-- {{ dd($product) }} --}}
-                        {{-- {{ dd($product->path()) }} --}}
-                        {{-- {{ dd($product->path() . '?page=' . $product->currentPage()) }} --}}
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="basic-pagination pt-30 pb-30">
@@ -320,7 +317,7 @@
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="product__modal-content">
-                                <h4><a href="product-details.html">Samsung C49J89: £875, Debenhams Plus</a></h4>
+                                <h4><a href="{{ route('product-detail', $value->slug) }}">Samsung C49J89: £875, Debenhams Plus</a></h4>
                                 <div class="product__review d-sm-flex">
                                     <div class="rating rating__shop mb-10 mr-30">
                                     <ul>

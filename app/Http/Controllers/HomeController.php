@@ -25,4 +25,8 @@ class HomeController extends Controller
         $category = $this->category_interface->index();
         return view('home', compact('data'));
     }
+
+    public function about() {
+        return view('about-us');
+    }
 }

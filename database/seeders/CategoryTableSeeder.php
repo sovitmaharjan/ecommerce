@@ -34,5 +34,44 @@ class CategoryTableSeeder extends Seeder
                 'order_level' => 3,
             ]
         ]);
+
+        DB::table('attribute_category')->insert([
+            [
+                'category_id' => 1,
+                'attribute_id' => 1
+            ],
+            [
+                'category_id' => 1,
+                'attribute_id' => 2
+            ],
+            [
+                'category_id' => 1,
+                'attribute_id' => 3
+            ],
+            [
+                'category_id' => 2,
+                'attribute_id' => 1
+            ],
+            [
+                'category_id' => 2,
+                'attribute_id' => 2
+            ],
+            [
+                'category_id' => 2,
+                'attribute_id' => 3
+            ],
+            [
+                'category_id' => 3,
+                'attribute_id' => 1
+            ],
+            [
+                'category_id' => 3,
+                'attribute_id' => 2
+            ],
+            [
+                'category_id' => 3,
+                'attribute_id' => 3
+            ],
+        ]);
     }
 }

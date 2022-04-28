@@ -3,6 +3,7 @@
 @section('title', 'Home')
 
 @section('content')
+
 <!-- slider-area-start -->
 <div class="slider-area">
     <div class="swiper-container slider__active">

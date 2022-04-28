@@ -24,7 +24,7 @@ class Category extends Model
         'status',
     ];
 
-    public function getSlugOptions() : SlugOptions
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('title')
@@ -36,7 +36,17 @@ class Category extends Model
         return $this->morphOne(Image::class, 'imageable');
     }
 
-    public function parent(){
+    public function parent()
+    {
         return $this->belongsTo(Category::class, 'parent_id');
+    }
+
+    public function attributes()
+    {
+        return $this->belongsToMany(Attribute::class);
+    }
+
+    public function attributeId($id) {
+        return $this->attributes()->where('category_id', $id)->get();
     }
 }

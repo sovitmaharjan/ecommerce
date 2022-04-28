@@ -192,12 +192,32 @@
                                         </div>
                                     @enderror
                                 </div>
-                                <div>
+                                <div class="mb-10 fv-row">
                                     <label class="form-label">Description</label>
                                     <textarea name="description" placeholder="Type your text here..." class="form-control mb-2" id="description"
                                         rows="5">{{ old('description') }}</textarea>
                                     <div class="text-muted fs-7">Set a description to the category.</div>
                                 </div>
+                                <div class="mb-10 fv-row">
+                                    <label class="form-label d-block">Attribute</label>
+                                    <select class="form-select mb-2" data-control="select2" data-placeholder="Select an option" data-allow-clear="true" multiple="multiple" name="attribute[]" id="attribute" required>
+                                        @foreach ($attribute as $value)
+                                            <option value="{{ $value->id }}">{{ $value->title }}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="text-muted fs-7 mb-7">Select attribute for this category.</div>
+                                </div>
+                                <a href="{{ route('attribute.create') }}" class="btn btn-light-primary btn-sm mb-10">
+                                    <span class="svg-icon svg-icon-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                            fill="none">
+                                            <rect opacity="0.5" x="11" y="18" width="12" height="2" rx="1"
+                                                transform="rotate(-90 11 18)" fill="black" />
+                                            <rect x="6" y="11" width="12" height="2" rx="1" fill="black" />
+                                        </svg>
+                                    </span>
+                                    Create new Attribute
+                                </a>
                             </div>
                         </div>
                         <div class="card card-flush py-4">

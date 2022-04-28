@@ -172,7 +172,7 @@
                                         value="{{ old('title') ?? $product->title }}" id="title" />
                                     <div class="text-muted fs-7">A product name is required.</div>
                                 </div>
-                                <div>
+                                <div class="mb-10 fv-row">
                                     <label class="form-label">Description</label>
                                     <textarea name="description" placeholder="Type your text here..." class="form-control mb-2" id="description"
                                         rows="5">{{ old('description') ?? $product->description }}</textarea>

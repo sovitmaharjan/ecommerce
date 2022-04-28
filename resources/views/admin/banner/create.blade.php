@@ -154,7 +154,7 @@
                                         </div>
                                     @enderror
                                 </div>
-                                <div>
+                                <div class="mb-10 fv-row">
                                     <label class="form-label">Description</label>
                                     <textarea name="description" class="form-control mb-2" id="description"
                                         rows="5">{{ old('description') }}</textarea>

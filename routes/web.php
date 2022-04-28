@@ -33,6 +33,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');
+Route::get('/product-detail/{slug}', [ShopController::class, 'productDetail'])->name('product-detail');
 
 Route::get('/artisan-call', function () {
     Artisan::call('migrate');

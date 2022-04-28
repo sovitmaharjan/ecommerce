@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             PermissionTableSeeder::class,
             UserTableSeeder::class,
-            CategoryTableSeeder::class,
             AttributeTableSeeder::class,
+            CategoryTableSeeder::class,
             BrandTableSeeder::class
         ]);
         // \App\Models\Category::factory(5)->create();

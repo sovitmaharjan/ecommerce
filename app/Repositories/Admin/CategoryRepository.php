@@ -32,8 +32,11 @@ class CategoryRepository implements CategoryInterface
 
     public function store($request)
     {
-        $data = $request->except('image', '_token');
+        $data = $request->except('image', '_token', 'attribute');
         $result = Category::create($data);
+        if (isset($request->attribute) && count($request->attribute) > 0) {
+            $this->saveAttribute($result);
+        }
         if ($file = $request->image) {
             $this->image->upload($result, $file);
         }
@@ -46,8 +49,11 @@ class CategoryRepository implements CategoryInterface
         if (!$category) {
             throw new Exception('No Data');
         }
-        $data = $request->except('image', '_method', '_token');
+        $data = $request->except('image', '_method', '_token', 'attribute');
         $result = $category->update($data);
+        if (isset($request->attribute) && count($request->attribute) > 0) {
+            $this->saveAttribute($category->refresh());
+        }
         if ($file = $request->image) {
             $this->image->upload($category, $file, $category->image->path ?? null);
         }
@@ -63,5 +69,13 @@ class CategoryRepository implements CategoryInterface
         $result = $category->delete();
         $this->image->delete($category, $category->image->path ?? null);
         return $result;
+    }
+
+    protected function saveAttribute($result) {
+        if ($result->wasRecentlyCreated == true) {
+            $result->attributes()->attach(request()->attribute);
+        } else {
+            $result->attributes()->sync(request()->attribute);
+        }
     }
 }

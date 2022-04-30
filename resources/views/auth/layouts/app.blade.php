@@ -32,7 +32,7 @@ License: For each use you must have a valid license purchased only from above li
             <!--begin::Content-->
             <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
                 <!--begin::Logo-->
-                <a href="{{ route('admin.dashboard') }}" class="mb-12">
+                <a href="{{ route('dashboard') }}" class="mb-12">
                     <img alt="Logo" src="{{ asset('assets/admin/media/logos/logo-2.svg') }}" class="h-40px" />
                 </a>
                 <!--end::Logo-->

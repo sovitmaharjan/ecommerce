@@ -3,7 +3,7 @@
     data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start"
     data-kt-drawer-toggle="#kt_aside_mobile_toggle">
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
-        <a href="{{ route('admin.dashboard') }}">
+        <a href="{{ route('dashboard') }}">
             <img alt="Logo" src="{{ asset('assets/admin/media/logos/logo-1-dark.svg') }}" class="h-25px logo" />
         </a>
         <div id="kt_aside_toggle" class="btn btn-icon w-auto px-0 btn-active-color-primary aside-toggle"
@@ -30,7 +30,7 @@
                 id="#kt_aside_menu" data-kt-menu="true">
                 <div class="menu-item">
                     <a class="menu-link {{ request()->is('admin') ? 'active' : '' }}"
-                        href="{{ route('admin.dashboard') }}">
+                        href="{{ route('dashboard') }}">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -192,7 +192,7 @@
                             <div class="menu-sub menu-sub-accordion">
                                 <div class="menu-item">
                                     <a class="menu-link"
-                                        href="{{ route('admin.under-construction') }}">
+                                        href="{{ route('under-construction') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
@@ -201,7 +201,7 @@
                                 </div>
                                 <div class="menu-item">
                                     <a class="menu-link"
-                                        href="{{ route('admin.under-construction') }}">
+                                        href="{{ route('under-construction') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
@@ -210,7 +210,7 @@
                                 </div>
                                 <div class="menu-item">
                                     <a class="menu-link"
-                                        href="{{ route('admin.under-construction') }}.html">
+                                        href="{{ route('under-construction') }}.html">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
@@ -219,7 +219,7 @@
                                 </div>
                                 <div class="menu-item">
                                     <a class="menu-link"
-                                        href="{{ route('admin.under-construction') }}.html">
+                                        href="{{ route('under-construction') }}.html">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
@@ -229,7 +229,7 @@
                             </div>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="{{ route('admin.under-construction') }}" data-bs-toggle="tooltip" data-bs-trigger="hover"
+                            <a class="menu-link" href="{{ route('under-construction') }}" data-bs-toggle="tooltip" data-bs-trigger="hover"
                                 data-bs-dismiss="click" data-bs-placement="right">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
@@ -414,7 +414,7 @@
                             <div class="menu-sub menu-sub-accordion">
                                 <div class="menu-item">
                                     <a class="menu-link"
-                                        href="{{ route('admin.under-construction') }}">
+                                        href="{{ route('under-construction') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
@@ -423,7 +423,7 @@
                                 </div>
                                 <div class="menu-item">
                                     <a class="menu-link"
-                                        href="{{ route('admin.under-construction') }}">
+                                        href="{{ route('under-construction') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
@@ -432,7 +432,7 @@
                                 </div>
                                 <div class="menu-item">
                                     <a class="menu-link"
-                                        href="{{ route('admin.under-construction') }}.html">
+                                        href="{{ route('under-construction') }}.html">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
@@ -441,7 +441,7 @@
                                 </div>
                                 <div class="menu-item">
                                     <a class="menu-link"
-                                        href="{{ route('admin.under-construction') }}.html">
+                                        href="{{ route('under-construction') }}.html">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>

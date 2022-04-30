@@ -10,7 +10,7 @@
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
-                            <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">Home</a>
+                            <a href="{{ route('dashboard') }}" class="text-muted text-hover-primary">Home</a>
                         </li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
@@ -36,7 +36,6 @@
                             List
                         </a>
                     </div>
-                    <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary">Create</a>
                 </div>
             </div>
         </div>
@@ -49,20 +48,6 @@
                             <span class="text-muted mt-1 fw-bold fs-7">Over {{ count($user) }}
                                 user{{ count($user) > 1 ? 's' : '' }}</span>
                         </h3>
-                        <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover"
-                            title="">
-                            <a href="{{ route('user.create') }}" class="btn btn-primary">
-                                <span class="svg-icon svg-icon-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                        fill="none">
-                                        <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1"
-                                            transform="rotate(-90 11.364 20.364)" fill="black"></rect>
-                                        <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="black"></rect>
-                                    </svg>
-                                </span>
-                                Add New
-                            </a>
-                        </div>
                     </div>
                     <div class="card-body pt-0">
                         <div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -72,10 +57,11 @@
                                     <thead>
                                         <tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
                                             <th>#</th>
-                                            <th>Image</th>
                                             <th>Name</th>
+                                            <th>Email</th>
                                             <th>Status</th>
                                             <th>Action</th>
+                                            <th>Login as</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -83,11 +69,25 @@
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>
-                                                    <img class="bgi-position-center bgi-size-cover card-rounded card-rounded mh-100px me-3"
-                                                        src="{{ $value->image ? $value->image->getUrl() : asset('noimage.png') }}">
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="symbol symbol-50px">
+                                                            <span class="symbol-label" style="background-image:url({{
+                                                                $value->profile ? 
+                                                                    $value->profile->image ?
+                                                                        $value->profile->image->getUrl()
+                                                                        : asset('no-image.png')
+                                                                    : asset('no-image.png')
+                                                                }});">
+                                                            </span>
+                                                        </span>
+                                                        <div class="ms-5">
+                                                            <span
+                                                                class="text-gray-800 fs-5 fw-bolder">{{ $value->name }}</span>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                                 <td>
-                                                    {{ $value->name }}
+                                                    {{ $value->email }}
                                                 </td>
                                                 <td>
                                                     @if ($value->email_verified_at)
@@ -128,6 +128,12 @@
                                                                 data-name="{{ $value->title }}">Delete</a>
                                                         </div>
                                                     </div>
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('user.loginWithId', $value->id) }}" class="btn btn-sm btn-primary">
+                                                        <i class="bi bi-box-arrow-in-right fs-1x"></i>
+                                                        Login
+                                                    </a>
                                                 </td>
                                             </tr>
                                         @endforeach

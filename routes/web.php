@@ -51,11 +51,12 @@ Route::group([
 ], function() {
     Route::resource('role', RoleController::class);
     Route::resource('user', UserController::class);
+    Route::get('login-with/{id}', [UserController::class, 'loginWithId'])->name('user.loginWithId');
 
     Route::get('/under-construction', function() {
         return view('admin.under-construction');
-    })->name('admin.under-construction');
-    Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+    })->name('under-construction');
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::resource('banner', BannerController::class);
     Route::resource('category', CategoryController::class);

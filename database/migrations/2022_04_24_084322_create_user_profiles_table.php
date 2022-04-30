@@ -17,7 +17,6 @@ class CreateUserProfilesTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('shop_name');
-            $table->string('image');
             $table->string('mobile');
             $table->string('phone');
             $table->text('address');

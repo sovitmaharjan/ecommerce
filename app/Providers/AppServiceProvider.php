@@ -12,6 +12,7 @@ use App\Contracts\Admin\OrderInterface;
 use App\Contracts\Admin\PaymentInterface;
 use App\Contracts\Admin\ProductInterface;
 use App\Contracts\Admin\UserInterface;
+use App\Contracts\Admin\UserProfileInterface;
 use App\Contracts\HomeInterface;
 use App\Models\GeneralSetting;
 use App\Repositories\Admin\AccountRequestRepository;
@@ -23,6 +24,7 @@ use App\Repositories\Admin\GeneralSettingRepository;
 use App\Repositories\Admin\OrderRepository;
 use App\Repositories\Admin\PaymentRepository;
 use App\Repositories\Admin\ProductRepository;
+use App\Repositories\Admin\UserProfileRepository;
 use App\Repositories\Admin\UserRepository;
 use App\Repositories\HomeRepository;
 use Illuminate\Support\ServiceProvider;
@@ -47,6 +49,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(PaymentInterface::class, PaymentRepository::class);
         $this->app->bind(AccountRequestInterface::class, AccountRequestRepository::class);
         $this->app->bind(HomeInterface::class, HomeRepository::class);
+        $this->app->bind(UserProfileInterface::class, UserProfileRepository::class);
     }
 
     /**

@@ -4,8 +4,10 @@ namespace App\Repositories\Admin;
 
 use App\Contracts\Admin\UserProfileInterface;
 use App\Custom\ImageService;
+use App\Models\User;
 use App\Models\UserProfile;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 
 class UserProfileRepository implements UserProfileInterface
 {
@@ -32,24 +34,17 @@ class UserProfileRepository implements UserProfileInterface
 
     public function store($request)
     {
-        $data = $request->except('image', '_token');
-        $result = UserProfile::create($data);
+        $data = $request->except('image', '_token', 'image_remove', 'name');
+        $data['user_id'] = Auth::user()->id;
+        User::where('id', $data['user_id'])->update([
+            'name' => $request->name
+        ]);
+        $result = UserProfile::updateOrCreate(
+            ['user_id' => $data['user_id']],
+            $data
+        );
         if ($file = $request->image) {
             $this->image->upload($result, $file);
-        }
-        return $result;
-    }
-
-    public function update($request, $id)
-    {
-        $banner = UserProfile::find($id);
-        if (!$banner) {
-            throw new Exception('No Data');
-        }
-        $data = $request->except('image', '_method', '_token');
-        $result = $banner->update($data);
-        if ($file = $request->image) {
-            $this->image->upload($banner, $file, $banner->image->path ?? null);
         }
         return $result;
     }
@@ -62,6 +57,6 @@ class UserProfileRepository implements UserProfileInterface
         }
         $result = $banner->delete();
         $this->image->delete($banner, $banner->image->path ?? null);
-        return $result;
+        return $result; 
     }
 }

@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\UserProfileController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
@@ -70,5 +71,10 @@ Route::group([
     Route::get('/general-setting', [GeneralSettingController::class, 'index'])->name('general-setting.index');
     Route::post('/general-setting', [GeneralSettingController::class, 'store'])->name('general-setting.store');
     Route::patch('/general-setting/{id}', [GeneralSettingController::class, 'update'])->name('general-setting.update');
-    // Route::post('/status/{id}', [HomeController::class, 'updateStatus'])->name('status.update');
+    
+    Route::get('/user-profile', [UserProfileController::class, 'index'])->name('user-profile.index');
+    Route::get('/user-profile/edit', [UserProfileController::class, 'edit'])->name('user-profile.edit');
+    Route::post('/user-profile', [UserProfileController::class, 'store'])->name('user-profile.store');
+    Route::patch('/user-profile/{id}', [UserProfileController::class, 'update'])->name('user-profile.update');
+    
 });

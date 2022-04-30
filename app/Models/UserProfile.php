@@ -21,4 +21,9 @@ class UserProfile extends Model
         'account_number',
         'status'
     ];
+
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
 }

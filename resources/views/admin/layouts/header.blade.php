@@ -1318,8 +1318,8 @@
                             Auth::user()->profile ?
                                 Auth::user()->profile->image ?
                                     Auth::user()->profile->image->getUrl() 
-                                    : asset('no-image.png')
-                                : asset('no-image.png') 
+                                    : asset('assets/admin/media/svg/files/blank-image.svg')
+                                : asset('assets/admin/media/svg/files/blank-image.svg') 
                             }}"
                         alt="user"/>
                     </div>
@@ -1332,8 +1332,8 @@
                                         Auth::user()->profile ?
                                             Auth::user()->profile->image ?
                                                 Auth::user()->profile->image->getUrl() 
-                                                : asset('no-image.png')
-                                            : asset('no-image.png') 
+                                                : asset('assets/admin/media/svg/files/blank-image.svg')
+                                            : asset('assets/admin/media/svg/files/blank-image.svg') 
                                         }}"
                                     />
                                 </div>
@@ -1341,19 +1341,19 @@
                                     <div class="fw-bolder d-flex align-items-center fs-5">
                                         {{ Auth::user()->name }}
                                     </div>
-                                    <a href="#" class="fw-bold text-muted text-hover-primary fs-7">{{ Auth::user()->email }}</a>
+                                    <a href="{{ route('user-profile.index') }}" class="fw-bold text-muted text-hover-primary fs-7">{{ Auth::user()->email }}</a>
                                 </div>
                             </div>
                         </div>
                         <div class="separator my-2"></div>
                         <div class="menu-item px-5">
-                            <a href="#" class="menu-link px-5">My Profile</a>
+                            <a href="{{ route('user-profile.index') }}" class="menu-link px-5">My Profile</a>
                         </div>
                         <div class="menu-item px-5">
                             <a href="#" class="menu-link px-5">Change Password</a>
                         </div>
                         <div class="menu-item px-5 my-1">
-                            <a href="#" class="menu-link px-5">Site Settings</a>
+                            <a href="{{ route('general-setting.index') }}" class="menu-link px-5">Site Settings</a>
                         </div>
                         <div class="separator my-2"></div>
                         <div class="menu-item px-5">

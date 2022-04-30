@@ -57,7 +57,14 @@
                         <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
                             <div class="me-7 mb-4">
                                 <div class="symbol symbol-100px symbol-lg-150px symbol-fixed position-relative">
-                                    <img src="{{ Auth::user()->profile->image ? Auth::user()->profile->image->getUrl() : asset('assets/admin/media/svg/files/blank-image.svg') }}" alt="image" />
+                                    <img src="{{
+                                        Auth::user()->profile ?
+                                            Auth::user()->profile->image ?
+                                                Auth::user()->profile->image->getUrl() 
+                                                : asset('assets/admin/media/svg/files/blank-image.svg')
+                                            : asset('assets/admin/media/svg/files/blank-image.svg') 
+                                        }}"
+                                    alt="image" />
                                 </div>
                             </div>
                             <div class="flex-grow-1">

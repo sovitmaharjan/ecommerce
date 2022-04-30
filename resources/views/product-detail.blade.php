@@ -35,7 +35,7 @@
                                 <button class="nav-link active" id="thumbOne-tab" data-bs-toggle="tab"
                                     data-bs-target="#thumbOne" type="button" role="tab" aria-controls="thumbOne"
                                     aria-selected="true">
-                                    <img style="height: 85px; width: 85px;" src="{{ $product_detail->image ? $product_detail->image->getUrl() : asset('no-image.png') }}" alt="">
+                                    <img style="height: 85px; width: 85px;" src="{{ $product_detail->image ? $product_detail->image->getUrl() : asset('assets/admin/media/svg/files/blank-image.svg') }}" alt="">
                                 </button>
                             </li>
                             {{-- <li class="nav-item" role="presentation">
@@ -58,7 +58,7 @@
                                 <div class="tab-pane fade show active" id="thumbOne" role="tabpanel"
                                     aria-labelledby="thumbOne-tab">
                                     <div class="product__details-nav-thumb w-img">
-                                        <img src="{{ $product_detail->image ? $product_detail->image->getUrl() : asset('no-image.png') }}" alt="">
+                                        <img src="{{ $product_detail->image ? $product_detail->image->getUrl() : asset('assets/admin/media/svg/files/blank-image.svg') }}" alt="">
                                     </div>
                                 </div>
                                 {{-- <div class="tab-pane fade" id="thumbTwo" role="tabpanel" aria-labelledby="thumbTwo-tab">

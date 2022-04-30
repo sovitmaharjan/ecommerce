@@ -64,7 +64,7 @@
                     @if($banner)
                     <div class="shop-banner mb-30">
                         <div class="banner-image">
-                            <img class="banner-l" src="{{  asset('noimage.png') }}" alt="">
+                            <img class="banner-l" src="{{  asset('assets/admin/media/svg/files/blank-image.svg') }}" alt="">
                             {{-- <img class="banner-sm" src="assets/img/banner/sl-banner-sm.png" alt=""> --}}
                             <div class="banner-content text-center">
                                 <p class="banner-text mb-30">{{ $banner->title }}</p>
@@ -155,7 +155,7 @@
                                             <div class="product__thumb fix">
                                                 <div class="product-image w-img">
                                                     <a href="{{ route('product-detail', $value->slug) }}">
-                                                        <img src="{{ $value->image ? $value->image->getUrl() : asset('no-image.png') }}" alt="product">
+                                                        <img src="{{ $value->image ? $value->image->getUrl() : asset('assets/admin/media/svg/files/blank-image.svg') }}" alt="product">
                                                     </a>
                                                 </div>
                                                 <div class="product-action">

@@ -75,8 +75,8 @@
                                                                 $value->profile ? 
                                                                     $value->profile->image ?
                                                                         $value->profile->image->getUrl()
-                                                                        : asset('no-image.png')
-                                                                    : asset('no-image.png')
+                                                                        : asset('assets/admin/media/svg/files/blank-image.svg')
+                                                                    : asset('assets/admin/media/svg/files/blank-image.svg')
                                                                 }});">
                                                             </span>
                                                         </span>

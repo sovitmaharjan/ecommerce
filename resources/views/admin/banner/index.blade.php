@@ -87,7 +87,7 @@
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>
                                                     <img class="bgi-position-center bgi-size-cover card-rounded card-rounded mh-100px me-3"
-                                                        src="{{ $value->image ? $value->image->getUrl() : asset('noimage.png') }}">
+                                                        src="{{ $value->image ? $value->image->getUrl() : asset('assets/admin/media/svg/files/blank-image.svg') }}">
                                                 </td>
                                                 <td>
                                                     {{ $value->title }}

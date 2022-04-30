@@ -10,7 +10,7 @@
         <div class="slider-wrapper swiper-wrapper">
             @foreach ($data['slider'] as $slider)
                 <div class="single-slider swiper-slide slider-height d-flex align-items-center"
-                    data-background="{{ $slider->image ? $slider->image->getUrl() : asset('noimage.png') }}">
+                    data-background="{{ $slider->image ? $slider->image->getUrl() : asset('assets/admin/media/svg/files/blank-image.svg') }}">
                     <div class="container">
                         <div class="row">
                             <div class="col-xl-5">
@@ -98,7 +98,7 @@
                 <div class="col-xl-4 col-lg-4 col-md-6">
                     <div class="banner__item p-relative w-img mb-30">
                         <div class=" ">
-                            <a href="vendor.html"><img src="{{ $category->image ? $category->image->getUrl() : asset('noimage.png') }}"
+                            <a href="vendor.html"><img src="{{ $category->image ? $category->image->getUrl() : asset('assets/admin/media/svg/files/blank-image.svg') }}"
                                     alt=""></a>
                         </div>
                         <div class="banner__content">
@@ -498,7 +498,7 @@
                 <div class="col-xl-6 col-lg-6 col-md-12">
                     <div class="banner__item p-relative w-img mb-30">
                         <div class="banner__img">
-                            <a href="vendor.html"><img src="{{ $category->image ? $category->image->getUrl() : asset('noimage.png') }}"
+                            <a href="vendor.html"><img src="{{ $category->image ? $category->image->getUrl() : asset('assets/admin/media/svg/files/blank-image.svg') }}"
                                     alt=""></a>
                         </div>
                         <div class="banner__content">

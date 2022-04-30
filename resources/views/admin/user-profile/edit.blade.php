@@ -63,8 +63,14 @@
                                     <div class="col-lg-8">
                                         <div class="image-input image-input-outline image-input-empty"
                                             data-kt-image-input="true">
-                                            <div class="image-input-wrapper w-125px h-125px bgi-position-center"
-                                                style="background-size: 90%; background-image: url({{ Auth::user()->profile->image ? Auth::user()->profile->image->getUrl() : asset('assets/admin/media/svg/files/blank-image.svg') }})">
+                                            <div class="image-input-wrapper w-125px h-125px bgi-position-center" style="background-size: 90%; background-image: url({{
+                                                Auth::user()->profile ?
+                                                    Auth::user()->profile->image ?
+                                                        Auth::user()->profile->image->getUrl() 
+                                                        : asset('assets/admin/media/svg/files/blank-image.svg')
+                                                    : asset('assets/admin/media/svg/files/blank-image.svg') 
+                                                }})
+                                            ">
                                             </div>
                                             <label
                                                 class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"

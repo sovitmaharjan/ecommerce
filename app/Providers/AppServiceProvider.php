@@ -59,7 +59,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $general_setting = GeneralSetting::first();
-        config(['general_setting' => $general_setting]);
+        // $general_setting = GeneralSetting::first();
+        // config(['general_setting' => $general_setting]);
     }
 }

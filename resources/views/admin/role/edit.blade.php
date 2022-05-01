@@ -99,7 +99,6 @@
                                                                         checked
                                                                     @endif
                                                                 >
-                                                                {{ $item->id }}
                                                             </div>
                                                         </td>
                                                     @endforeach

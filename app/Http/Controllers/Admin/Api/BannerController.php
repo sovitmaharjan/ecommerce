@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Api;
 
-use App\Contracts\BannerInterface;
+use App\Contracts\Admin\BannerInterface;
 use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\BannerRequest;

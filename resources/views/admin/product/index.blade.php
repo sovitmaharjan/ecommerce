@@ -10,7 +10,7 @@
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
-                            <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">Home</a>
+                            <a href="{{ route('dashboard') }}" class="text-muted text-hover-primary">Home</a>
                         </li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
@@ -83,22 +83,38 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($product as $key => $product)
+                                        @foreach ($product as $key => $value)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
-                                                <td>
+                                                {{-- <td>
                                                     <img class="bgi-position-center bgi-size-cover card-rounded card-rounded mh-100px me-3"
-                                                        src="{{ $product->image ? $product->image->getUrl() : asset('noimage.png') }}">
+                                                        src="{{ $value->image ? $value->image->getUrl() : asset('assets/admin/media/svg/files/blank-image.svg') }}">
+                                                </td> --}}
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="symbol symbol-50px">
+                                                            <span class="symbol-label" style="background-image:url({{
+                                                                $value->image ? 
+                                                                    $value->image->getUrl()
+                                                                    : asset('assets/admin/media/svg/files/blank-image.svg')
+                                                                }});">
+                                                            </span>
+                                                        </span>
+                                                        <div class="ms-5">
+                                                            <span
+                                                                class="text-gray-800 fs-5 fw-bolder">{{ $value->title }}</span>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                                 <td>
-                                                    {{ $product->title }}</a>
+                                                    {{ $value->title }}
                                                 </td>
                                                 <td>
-                                                    @if ($product->status == 'published')
+                                                    @if ($value->status == 'published')
                                                         <div class="badge badge-light-success">Published</div>
-                                                    @elseif($product->status == 'draft')
+                                                    @elseif($value->status == 'draft')
                                                         <div class="badge badge-light-primary">Draft</div>
-                                                    @elseif($product->status == 'suspended')
+                                                    @elseif($value->status == 'suspended')
                                                         <div class="badge badge-light-warning">Suspended</div>
                                                     @else
                                                         <div class="badge badge-light-danger">InActive</div>
@@ -120,20 +136,20 @@
                                                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
                                                         data-kt-menu="true">
                                                         <div class="menu-item px-3">
-                                                            <a href="{{ route('product.edit', $product->id) }}"
+                                                            <a href="{{ route('product.edit', $value->id) }}"
                                                                 class="menu-link px-3">Edit</a>
                                                         </div>
                                                         <div class="menu-item px-3">
-                                                            <form id="form{{ $product->id }}"
-                                                                action="{{ route('product.destroy', $product->id) }}"
+                                                            <form id="form{{ $value->id }}"
+                                                                action="{{ route('product.destroy', $value->id) }}"
                                                                 method="POST">
                                                                 @csrf
                                                                 @method('delete')
                                                             </form>
                                                             <a href="javascript:void(0)" class="menu-link px-3 delete"
                                                                 data-kt-customer-table-filter="delete_row"
-                                                                data-id="{{ $product->id }}"
-                                                                data-name="{{ $product->title }}">Delete</a>
+                                                                data-id="{{ $value->id }}"
+                                                                data-name="{{ $value->title }}">Delete</a>
                                                         </div>
                                                     </div>
                                                 </td>

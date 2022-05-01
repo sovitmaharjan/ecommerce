@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Contracts\BannerInterface;
-use App\Custom\ResponseService;
+use App\Contracts\Admin\BannerInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BannerRequest;
 use Exception;
@@ -11,12 +10,15 @@ use Illuminate\Support\Facades\DB;
 
 class BannerController extends Controller
 {
-    protected $banner_interface, $response;
+    protected $banner_interface;
 
-    public function __construct(BannerInterface $banner_interface, ResponseService $response)
+    public function __construct(BannerInterface $banner_interface)
     {
+        $this->middleware('permission:banner-list|banner-create|banner-edit|banner-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:banner-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:banner-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:banner-delete', ['only' => ['destroy']]);
         $this->banner_interface = $banner_interface;
-        $this->response = $response;
     }
 
     public function index()

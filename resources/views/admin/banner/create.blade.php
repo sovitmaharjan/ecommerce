@@ -10,7 +10,7 @@
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
-                            <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">Home</a>
+                            <a href="{{ route('dashboard') }}" class="text-muted text-hover-primary">Home</a>
                         </li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
@@ -89,6 +89,27 @@
                         <div class="card card-flush py-4">
                             <div class="card-header">
                                 <div class="card-title">
+                                    <h2 class="required">Type</h2>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0">
+                                <select class="form-select form-select-solid" data-control="select2" data-placeholder="Select an option" data-hide-search="true" name="type">
+                                    <option></option>
+                                    <option value="slider">Slider</option>
+                                    <option value="first_category_section">First category section</option>
+                                    <option value="second_category_section">Second category section</option>
+                                </select>
+                                <div class="text-muted fs-7">Set the banner status.</div>
+                                @error('status')
+                                    <div class="fv-plugins-message-container invalid-feedback">
+                                        <div data-field="status" data-validator="notEmpty">{{ $message }}</div>
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="card card-flush py-4">
+                            <div class="card-header">
+                                <div class="card-title">
                                     <h2 class="required">Status</h2>
                                 </div>
                                 <div class="card-toolbar">
@@ -133,11 +154,17 @@
                                         </div>
                                     @enderror
                                 </div>
-                                <div>
+                                <div class="mb-10 fv-row">
                                     <label class="form-label">Description</label>
                                     <textarea name="description" class="form-control mb-2" id="description"
                                         rows="5">{{ old('description') }}</textarea>
                                     <div class="text-muted fs-7">Set a description to the banner.</div>
+                                </div>
+                                <div class="mb-10 fv-row">
+                                    <label class="form-label">Url</label>
+                                    <textarea name="url" class="form-control mb-2" id="url"
+                                        rows="5">{{ old('url') }}</textarea>
+                                    <div class="text-muted fs-7">Url to the banner.</div>
                                 </div>
                             </div>
                         </div>

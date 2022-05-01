@@ -2,22 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Contracts\BrandInterface;
-use App\Custom\ResponseService;
+use App\Contracts\Admin\BrandInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BrandRequest;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class BrandController extends Controller
 {
-    protected $brand_interface, $response;
+    protected $brand_interface;
 
-    public function __construct(BrandInterface $brand_interface, ResponseService $response)
+    public function __construct(BrandInterface $brand_interface)
     {
         $this->brand_interface = $brand_interface;
-        $this->response = $response;
     }
 
     public function index()

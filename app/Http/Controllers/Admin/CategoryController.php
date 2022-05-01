@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Contracts\CategoryInterface;
-use App\Custom\ResponseService;
+use App\Contracts\Admin\AttributeInterface;
+use App\Contracts\Admin\CategoryInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use Exception;
@@ -11,12 +11,12 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
-    protected $category_interface, $response;
+    protected $category_interface, $attribute_interface;
 
-    public function __construct(CategoryInterface $category_interface, ResponseService $response)
+    public function __construct(CategoryInterface $category_interface, AttributeInterface $attribute_interface)
     {
         $this->category_interface = $category_interface;
-        $this->response = $response;
+        $this->attribute_interface = $attribute_interface;
     }
 
     public function index()
@@ -29,7 +29,8 @@ class CategoryController extends Controller
     {
         try {
             $all_category = $this->category_interface->index();
-            return view('admin.category.create', compact('all_category'));
+            $attribute = $this->attribute_interface->index();
+            return view('admin.category.create', compact('all_category', 'attribute'));
         } catch (Exception $e) {
             return redirect()->route('category.index')->with('error', $e->getMessage());
         }
@@ -53,7 +54,8 @@ class CategoryController extends Controller
         try {
             $category = $this->category_interface->find($id);
             $all_category = $this->category_interface->index();
-            return view('admin.category.edit', compact('category', 'all_category'));
+            $attribute = $this->attribute_interface->index();
+            return view('admin.category.edit', compact('category', 'all_category', 'attribute'));
         } catch (Exception $e) {
             return redirect()->route('category.index')->with('error', $e->getMessage());
         }

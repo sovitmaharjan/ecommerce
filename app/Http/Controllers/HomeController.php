@@ -2,40 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Admin\CategoryInterface;
+use App\Contracts\HomeInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    protected $home_interface, $category_interface;
+
+    public function __construct(HomeInterface $home_interface, CategoryInterface $category_interface)
     {
-        $this->middleware('auth');
+        $this->home_interface = $home_interface;
+        $this->category_interface = $category_interface;
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        return view('home');
+        // dd(Auth::user()->can('user-list'));
+        $data['slider'] = $this->home_interface->banner('slider');
+        $data['category'] = $this->category_interface->index();
+        $data['second_category_section'] = $this->home_interface->banner('second_category_section');
+        $category = $this->category_interface->index();
+        return view('home', compact('data'));
     }
 
-    public function updateStatus(Request $request, $id) {
-        $status = DB::table($request->table_name)->where('id', $id)->pluck('status')->first();
-        $status = $status != 'active' ? : 'inactive';
-        $result = DB::table($request->table_name)
-            ->where('id', $id)
-            ->update(['status' => $status]);
-        if($result){
-            return response('success');
-        }
-        return response('fail');
+    public function about()
+    {
+        return view('about-us');
     }
 }

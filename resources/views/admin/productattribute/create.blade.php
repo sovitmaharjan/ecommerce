@@ -1,1 +1,0 @@
-resources/views/admin/productattribute/create.blade.php

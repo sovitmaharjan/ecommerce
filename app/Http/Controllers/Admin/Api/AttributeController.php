@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Api;
 
-use App\Contracts\AttributeInterface;
+use App\Contracts\Admin\AttributeInterface;
 use App\Custom\ResponseService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\AttributeRequest;

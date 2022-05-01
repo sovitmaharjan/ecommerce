@@ -10,7 +10,7 @@
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
-                            <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">Home</a>
+                            <a href="{{ route('dashboard') }}" class="text-muted text-hover-primary">Home</a>
                         </li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
@@ -82,18 +82,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($brand as $key => $brand)
+                                        @foreach ($brand as $key => $value)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>
                                                     <img class="bgi-position-center bgi-size-cover card-rounded card-rounded mh-100px me-3"
-                                                        src="{{ $brand->image ? $brand->image->getUrl() : asset('noimage.png') }}">
+                                                        src="{{ $value->image ? $value->image->getUrl() : asset('assets/admin/media/svg/files/blank-image.svg') }}">
                                                 </td>
                                                 <td>
-                                                    {{ $brand->title }}</a>
+                                                    {{ $value->title }}
                                                 </td>
                                                 <td>
-                                                    @if ($brand->status == 1)
+                                                    @if ($value->status == 1)
                                                         <div class="badge badge-light-success">Active</div>
                                                     @else
                                                         <div class="badge badge-light-danger">InActive</div>
@@ -115,20 +115,20 @@
                                                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
                                                         data-kt-menu="true">
                                                         <div class="menu-item px-3">
-                                                            <a href="{{ route('brand.edit', $brand->id) }}"
+                                                            <a href="{{ route('brand.edit', $value->id) }}"
                                                                 class="menu-link px-3">Edit</a>
                                                         </div>
                                                         <div class="menu-item px-3">
-                                                            <form id="form{{ $brand->id }}"
-                                                                action="{{ route('brand.destroy', $brand->id) }}"
+                                                            <form id="form{{ $value->id }}"
+                                                                action="{{ route('brand.destroy', $value->id) }}"
                                                                 method="POST">
                                                                 @csrf
                                                                 @method('delete')
                                                             </form>
                                                             <a href="javascript:void(0)" class="menu-link px-3 delete"
                                                                 data-kt-customer-table-filter="delete_row"
-                                                                data-id="{{ $brand->id }}"
-                                                                data-name="{{ $brand->title }}">Delete</a>
+                                                                data-id="{{ $value->id }}"
+                                                                data-name="{{ $value->title }}">Delete</a>
                                                         </div>
                                                     </div>
                                                 </td>

@@ -10,7 +10,7 @@
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
-                            <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">Home</a>
+                            <a href="{{ route('dashboard') }}" class="text-muted text-hover-primary">Home</a>
                         </li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
@@ -119,7 +119,7 @@
                                         </div>
                                     @enderror
                                 </div>
-                                <div>
+                                <div class="mb-10 fv-row">
                                     <label class="form-label">Description</label>
                                     <textarea name="description" class="form-control mb-2" id="description" rows="5">{!! old('description') ?? $brand->description !!}</textarea>
                                     <div class="text-muted fs-7">Set a description to the brand.</div>

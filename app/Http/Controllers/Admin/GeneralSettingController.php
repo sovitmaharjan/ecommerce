@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Contracts\GeneralSettingInterface;
-use App\Custom\ResponseService;
+use App\Contracts\Admin\GeneralSettingInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GeneralSettingRequest;
 use Exception;
@@ -11,18 +10,21 @@ use Illuminate\Support\Facades\DB;
 
 class GeneralSettingController extends Controller
 {
-    protected $general_setting_interface, $response;
+    protected $general_setting_interface;
 
-    public function __construct(GeneralSettingInterface $general_setting_interface, ResponseService $response)
+    public function __construct(GeneralSettingInterface $general_setting_interface)
     {
+        $this->middleware('permission:general-setting-list|general-setting-create|general-setting-edit|general-setting-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:general-setting-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:general-setting-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:general-setting-delete', ['only' => ['destroy']]);
         $this->general_setting_interface = $general_setting_interface;
-        $this->response = $response;
     }
-    
+
     public function index()
     {
         $general_setting = $this->general_setting_interface->index();
-        if($general_setting != null){
+        if ($general_setting != null) {
             return view('admin.general-setting.edit', compact('general_setting'));
         }
         return view('admin.general-setting.create');

@@ -10,7 +10,7 @@
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
-                            <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">Home</a>
+                            <a href="{{ route('dashboard') }}" class="text-muted text-hover-primary">Home</a>
                         </li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
@@ -85,31 +85,31 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($order as $key => $order)
+                                        @foreach ($order as $key => $value)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>
-                                                    {{ $order->order_number }}
+                                                    {{ $value->order_number }}
                                                 </td>
                                                 <td>
                                                     customer customer
                                                 </td>
                                                 <td>
-                                                    @if ($order->status == 'processing')
+                                                    @if ($value->status == 'processing')
                                                         <div class="badge badge-light-info">Processing</div>
-                                                    @elseif($order->status == 'placed')
+                                                    @elseif($value->status == 'placed')
                                                         <div class="badge badge-light-primary">Placed</div>
-                                                    @elseif($order->status == 'shipped')
+                                                    @elseif($value->status == 'shipped')
                                                         <div class="badge badge-light-warning">Shipped</div>
                                                     @else
                                                         <div class="badge badge-light-success">Delivered</div>
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    {{ $order->grand_total }}
+                                                    {{ $value->grand_total }}
                                                 </td>
                                                 <td>
-                                                    {{ $order->created_at }}
+                                                    {{ $value->created_at }}
                                                 </td>
                                                 <td>
                                                     <a href="#" class="btn btn-light btn-active-light-primary btn-sm"
@@ -127,20 +127,20 @@
                                                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
                                                         data-kt-menu="true">
                                                         <div class="menu-item px-3">
-                                                            <a href="{{ route('order.show', $order->id) }}"
+                                                            <a href="{{ route('order.show', $value->id) }}"
                                                                 class="menu-link px-3">View</a>
                                                         </div>
                                                         {{-- <div class="menu-item px-3">
-                                                            <form id="form{{ $order->id }}"
-                                                                action="{{ route('order.destroy', $order->id) }}"
+                                                            <form id="form{{ $value->id }}"
+                                                                action="{{ route('order.destroy', $value->id) }}"
                                                                 method="POST">
                                                                 @csrf
                                                                 @method('delete')
                                                             </form>
                                                             <a href="javascript:void(0)" class="menu-link px-3 delete"
                                                                 data-kt-customer-table-filter="delete_row"
-                                                                data-id="{{ $order->id }}"
-                                                                data-name="{{ $order->title }}">Delete</a>
+                                                                data-id="{{ $value->id }}"
+                                                                data-name="{{ $value->title }}">Delete</a>
                                                         </div> --}}
                                                     </div>
                                                 </td>

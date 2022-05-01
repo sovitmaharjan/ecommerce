@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-            <a href="../../demo1/dist/index.html" class="d-lg-none">
+            <a href="{{ route('dashboard') }}" class="d-lg-none">
                 <img alt="Logo" src="{{ asset('assets/admin/media/logos/logo-2.svg') }}" class="h-30px" />
             </a>
         </div>
@@ -29,10 +29,11 @@
                     data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav'}">
                     <div class="menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-700 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-400 fw-bold my-5 my-lg-0 align-items-stretch"
                         id="#kt_header_menu" data-kt-menu="true">
-                        <a href="{{ route('admin.dashboard') }}" class="menu-item menu-lg-down-accordion me-lg-1">
+                        <a href="{{ route('dashboard') }}" class="menu-item menu-lg-down-accordion me-lg-1">
                             <span class="menu-link py-3">
-                                <span class="menu-title">Dashboard</span>
-                                <span class="menu-arrow d-lg-none"></span>
+                                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">{{ Auth::user()->profile ? Auth::user()->profile->shop_name : Auth::user()->name }} :: Dashboard</h1>
+                                {{-- <span class="menu-title">Dashboard</span>
+                                <span class="menu-arrow d-lg-none"></span> --}}
                             </span>
                         </a>
                         <a href="{{ url('/') }}" class="menu-item menu-lg-down-accordion me-lg-1">
@@ -699,7 +700,7 @@
                                     <button type="reset"
                                         class="btn btn-sm btn-light fw-bolder btn-active-light-primary me-2"
                                         data-kt-search-element="advanced-options-form-cancel">Cancel</button>
-                                    <a href="../../demo1/dist/pages/search/horizontal.html"
+                                    <a href="#"
                                         class="btn btn-sm fw-bolder btn-primary"
                                         data-kt-search-element="advanced-options-form-search">Search</a>
                                 </div>
@@ -796,7 +797,7 @@
                     </div>
                     <div class="menu menu-sub menu-sub-dropdown menu-column w-350px w-lg-375px" data-kt-menu="true">
                         <div class="d-flex flex-column bgi-no-repeat rounded-top"
-                            style="background-image:url('assets/media/misc/pattern-1.jpg')">
+                            style="background-image:url({{ asset('assets/admin/media/misc/pattern-1.jpg') }})">
                             <h3 class="text-white fw-bold px-9 mt-10 mb-6">Notifications
                                 <span class="fs-8 opacity-75 ps-3">24 reports</span>
                             </h3>
@@ -1021,7 +1022,7 @@
                                     </div>
                                 </div>
                                 <div class="py-3 text-center border-top">
-                                    <a href="../../demo1/dist/pages/user-profile/activity.html"
+                                    <a href="#"
                                         class="btn btn-color-gray-600 btn-active-color-primary">View
                                         All
                                         <span class="svg-icon svg-icon-5">
@@ -1169,7 +1170,7 @@
                                     </div>
                                 </div>
                                 <div class="py-3 text-center border-top">
-                                    <a href="../../demo1/dist/pages/user-profile/activity.html"
+                                    <a href="#"
                                         class="btn btn-color-gray-600 btn-active-color-primary">View
                                         All
                                         <span class="svg-icon svg-icon-5">
@@ -1187,24 +1188,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center ms-1 ms-lg-3">
-                    <div class="btn btn-icon btn-icon-muted btn-active-light btn-active-color-primary w-30px h-30px w-md-40px h-md-40px position-relative"
-                        id="kt_drawer_chat_toggle">
-                        <span class="svg-icon svg-icon-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none">
-                                <path opacity="0.3"
-                                    d="M20 3H4C2.89543 3 2 3.89543 2 5V16C2 17.1046 2.89543 18 4 18H4.5C5.05228 18 5.5 18.4477 5.5 19V21.5052C5.5 22.1441 6.21212 22.5253 6.74376 22.1708L11.4885 19.0077C12.4741 18.3506 13.6321 18 14.8167 18H20C21.1046 18 22 17.1046 22 16V5C22 3.89543 21.1046 3 20 3Z"
-                                    fill="black" />
-                                <rect x="6" y="12" width="7" height="2" rx="1" fill="black" />
-                                <rect x="6" y="7" width="12" height="2" rx="1" fill="black" />
-                            </svg>
-                        </span>
-                        
-                        <span
-                            class="bullet bullet-dot bg-success h-6px w-6px position-absolute translate-middle top-0 start-50 animation-blink"></span>
                     </div>
                 </div>
                 <div class="d-flex align-items-center ms-1 ms-lg-3">
@@ -1229,7 +1212,7 @@
                         </div>
                         <div class="row g-0">
                             <div class="col-6">
-                                <a href="../../demo1/dist/apps/projects/budget.html"
+                                <a href="#"
                                     class="d-flex flex-column flex-center h-100 p-6 bg-hover-light border-end border-bottom">
                                     <span class="svg-icon svg-icon-3x svg-icon-primary mb-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -1248,7 +1231,7 @@
                                 </a>
                             </div>
                             <div class="col-6">
-                                <a href="../../demo1/dist/apps/projects/settings.html"
+                                <a href="#"
                                     class="d-flex flex-column flex-center h-100 p-6 bg-hover-light border-bottom">
                                     <span class="svg-icon svg-icon-3x svg-icon-primary mb-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -1267,7 +1250,7 @@
                                 </a>
                             </div>
                             <div class="col-6">
-                                <a href="../../demo1/dist/apps/projects/list.html"
+                                <a href="#"
                                     class="d-flex flex-column flex-center h-100 p-6 bg-hover-light border-end">
                                     <span class="svg-icon svg-icon-3x svg-icon-primary mb-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -1286,7 +1269,7 @@
                                 </a>
                             </div>
                             <div class="col-6">
-                                <a href="../../demo1/dist/apps/projects/users.html"
+                                <a href="#"
                                     class="d-flex flex-column flex-center h-100 p-6 bg-hover-light">
                                     <span class="svg-icon svg-icon-3x svg-icon-primary mb-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -1306,7 +1289,7 @@
                             </div>
                         </div>
                         <div class="py-2 text-center border-top">
-                            <a href="../../demo1/dist/pages/user-profile/activity.html"
+                            <a href="#"
                                 class="btn btn-color-gray-600 btn-active-color-primary">View All
                                 <span class="svg-icon svg-icon-5">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -1325,152 +1308,57 @@
                 </div>
                 <div class="d-flex align-items-center ms-1 ms-lg-3">
                     <a class="btn btn-icon btn-icon-muted btn-active-light btn-active-color-primary w-30px h-30px w-md-40px h-md-40px"
-                        href="../../demo1/dist/documentation/getting-started/dark-mode.html">
+                        href="#">
                         <i class="fonticon-sun fs-2"></i>
                     </a>
                 </div>
                 <div class="d-flex align-items-center ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
                     <div class="cursor-pointer symbol symbol-30px symbol-md-40px" data-kt-menu-trigger="click"
                         data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-                        <img src="{{ asset('assets/admin/media/avatars/300-1.jpg') }}" alt="user" />
+                        <img src="{{
+                            Auth::user()->profile ?
+                                Auth::user()->profile->image ?
+                                    Auth::user()->profile->image->getUrl() 
+                                    : asset('assets/admin/media/svg/files/blank-image.svg')
+                                : asset('assets/admin/media/svg/files/blank-image.svg') 
+                            }}"
+                        alt="user"/>
                     </div>
                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px"
                         data-kt-menu="true">
                         <div class="menu-item px-3">
                             <div class="menu-content d-flex align-items-center px-3">
                                 <div class="symbol symbol-50px me-5">
-                                    <img alt="Logo" src="{{ asset('assets/admin/media/avatars/300-1.jpg') }}" />
+                                    <img alt="Logo" src="{{
+                                        Auth::user()->profile ?
+                                            Auth::user()->profile->image ?
+                                                Auth::user()->profile->image->getUrl() 
+                                                : asset('assets/admin/media/svg/files/blank-image.svg')
+                                            : asset('assets/admin/media/svg/files/blank-image.svg') 
+                                        }}"
+                                    />
                                 </div>
                                 <div class="d-flex flex-column">
-                                    <div class="fw-bolder d-flex align-items-center fs-5">Max Smith
-                                        <span
-                                            class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">Pro</span>
+                                    <div class="fw-bolder d-flex align-items-center fs-5">
+                                        {{ Auth::user()->name }}
                                     </div>
-                                    <a href="#" class="fw-bold text-muted text-hover-primary fs-7">max@kt.com</a>
+                                    <a href="{{ route('user-profile.index') }}" class="fw-bold text-muted text-hover-primary fs-7">{{ Auth::user()->email }}</a>
                                 </div>
                             </div>
                         </div>
                         <div class="separator my-2"></div>
                         <div class="menu-item px-5">
-                            <a href="../../demo1/dist/account/overview.html" class="menu-link px-5">My
-                                Profile</a>
+                            <a href="{{ route('user-profile.index') }}" class="menu-link px-5">Profile</a>
                         </div>
                         <div class="menu-item px-5">
-                            <a href="../../demo1/dist/apps/projects/list.html" class="menu-link px-5">
-                                <span class="menu-text">My Projects</span>
-                                <span class="menu-badge">
-                                    <span class="badge badge-light-danger badge-circle fw-bolder fs-7">3</span>
-                                </span>
-                            </a>
-                        </div>
-                        <div class="menu-item px-5" data-kt-menu-trigger="hover" data-kt-menu-placement="left-start">
-                            <a href="#" class="menu-link px-5">
-                                <span class="menu-title">My Subscription</span>
-                                <span class="menu-arrow"></span>
-                            </a>
-                            <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                <div class="menu-item px-3">
-                                    <a href="../../demo1/dist/account/referrals.html"
-                                        class="menu-link px-5">Referrals</a>
-                                </div>
-                                <div class="menu-item px-3">
-                                    <a href="../../demo1/dist/account/billing.html" class="menu-link px-5">Billing</a>
-                                </div>
-                                <div class="menu-item px-3">
-                                    <a href="../../demo1/dist/account/statements.html"
-                                        class="menu-link px-5">Payments</a>
-                                </div>
-                                <div class="menu-item px-3">
-                                    <a href="../../demo1/dist/account/statements.html"
-                                        class="menu-link d-flex flex-stack px-5">Statements
-                                        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                            title="View your statements"></i></a>
-                                </div>
-                                <div class="separator my-2"></div>
-                                <div class="menu-item px-3">
-                                    <div class="menu-content px-3">
-                                        <label class="form-check form-switch form-check-custom form-check-solid">
-                                            <input class="form-check-input w-30px h-20px" type="checkbox" value="1"
-                                                checked="checked" name="notifications" />
-                                            <span class="form-check-label text-muted fs-7">Notifications</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="menu-item px-5">
-                            <a href="../../demo1/dist/account/statements.html" class="menu-link px-5">My
-                                Statements</a>
-                        </div>
-                        <div class="separator my-2"></div>
-                        <div class="menu-item px-5" data-kt-menu-trigger="hover" data-kt-menu-placement="left-start">
-                            <a href="#" class="menu-link px-5">
-                                <span class="menu-title position-relative">Language
-                                    <span
-                                        class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">English
-                                        <img class="w-15px h-15px rounded-1 ms-2"
-                                            src="{{ asset('assets/admin/media/flags/united-states.svg') }}"
-                                            alt="" /></span></span>
-                            </a>
-                            <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                <div class="menu-item px-3">
-                                    <a href="../../demo1/dist/account/settings.html"
-                                        class="menu-link d-flex px-5 active">
-                                        <span class="symbol symbol-20px me-4">
-                                            <img class="rounded-1"
-                                                src="{{ asset('assets/admin/media/flags/united-states.svg') }}" alt="" />
-                                        </span>English</a>
-                                </div>
-                                <div class="menu-item px-3">
-                                    <a href="../../demo1/dist/account/settings.html" class="menu-link d-flex px-5">
-                                        <span class="symbol symbol-20px me-4">
-                                            <img class="rounded-1"
-                                                src="{{ asset('assets/admin/media/flags/spain.svg') }}" alt="" />
-                                        </span>Spanish</a>
-                                </div>
-                                <div class="menu-item px-3">
-                                    <a href="../../demo1/dist/account/settings.html" class="menu-link d-flex px-5">
-                                        <span class="symbol symbol-20px me-4">
-                                            <img class="rounded-1"
-                                                src="{{ asset('assets/admin/media/flags/germany.svg') }}" alt="" />
-                                        </span>German</a>
-                                </div>
-                                <div class="menu-item px-3">
-                                    <a href="../../demo1/dist/account/settings.html" class="menu-link d-flex px-5">
-                                        <span class="symbol symbol-20px me-4">
-                                            <img class="rounded-1"
-                                                src="{{ asset('assets/admin/media/flags/japan.svg') }}" alt="" />
-                                        </span>Japanese</a>
-                                </div>
-                                <div class="menu-item px-3">
-                                    <a href="../../demo1/dist/account/settings.html" class="menu-link d-flex px-5">
-                                        <span class="symbol symbol-20px me-4">
-                                            <img class="rounded-1"
-                                                src="{{ asset('assets/admin/media/flags/france.svg') }}" alt="" />
-                                        </span>French</a>
-                                </div>
-                            </div>
+                            <a href="#" class="menu-link px-5">Change Password</a>
                         </div>
                         <div class="menu-item px-5 my-1">
-                            <a href="../../demo1/dist/account/settings.html" class="menu-link px-5">Account
-                                Settings</a>
-                        </div>
-                        <div class="menu-item px-5">
-                            <a href="{{ route('logout') }}" class="menu-link px-5">Sign Out</a>
+                            <a href="{{ route('general-setting.index') }}" class="menu-link px-5">Site Settings</a>
                         </div>
                         <div class="separator my-2"></div>
                         <div class="menu-item px-5">
-                            <div class="menu-content px-5">
-                                <label
-                                    class="form-check form-switch form-check-custom form-check-solid pulse pulse-success"
-                                    for="kt_user_menu_dark_mode_toggle">
-                                    <input class="form-check-input w-30px h-20px" type="checkbox" value="1"
-                                        name="mode" id="kt_user_menu_dark_mode_toggle"
-                                        data-kt-url="../../demo1/dist/index.html" />
-                                    <span class="pulse-ring ms-n1"></span>
-                                    <span class="form-check-label text-gray-600 fs-7">Dark Mode</span>
-                                </label>
-                            </div>
+                            <a href="{{ route('logout') }}" class="menu-link px-5">Sign Out</a>
                         </div>
                     </div>
                 </div>

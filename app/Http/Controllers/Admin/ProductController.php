@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Contracts\CategoryInterface;
-use App\Contracts\ProductInterface;
-use App\Custom\ResponseService;
+use App\Contracts\Admin\AttributeInterface;
+use App\Contracts\Admin\CategoryInterface;
+use App\Contracts\Admin\ProductInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use Exception;
@@ -12,13 +12,13 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    protected $product_interface, $category_interface, $response;
+    protected $product_interface, $category_interface, $attribute_interface;
 
-    public function __construct(ProductInterface $product_interface, CategoryInterface $category_interface, ResponseService $response)
+    public function __construct(ProductInterface $product_interface, CategoryInterface $category_interface, AttributeInterface $attribute_interface)
     {
         $this->product_interface = $product_interface;
         $this->category_interface = $category_interface;
-        $this->response = $response;
+        $this->attribute_interface = $attribute_interface;
     }
 
     public function index()
@@ -31,7 +31,8 @@ class ProductController extends Controller
     {
         try {
             $all_category = $this->category_interface->index();
-            return view('admin.product.create', compact('all_category'));
+            $all_attribute = $this->attribute_interface->index();
+            return view('admin.product.create', compact('all_category', 'all_attribute'));
         } catch (Exception $e) {
             return redirect()->route('product.index')->with('error', $e->getMessage());
         }

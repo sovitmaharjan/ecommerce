@@ -8,4 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class ProductVariant extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'product_id',
+        'attribute_id',
+        'attribute_value',
+        'sku',
+        'price',
+        'quantity',
+    ];
+
+    public function product() {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function attribute() {
+        return $this->belongsTo(Attribute::class);
+    }
 }

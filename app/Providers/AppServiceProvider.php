@@ -2,24 +2,31 @@
 
 namespace App\Providers;
 
-use App\Contracts\AttributeInterface;
-use App\Contracts\BannerInterface;
-use App\Contracts\BrandInterface;
-use App\Contracts\CategoryInterface;
-use App\Contracts\GeneralSettingInterface;
-use App\Contracts\OrderInterface;
-use App\Contracts\PaymentInterface;
-use App\Contracts\ProductInterface;
-use App\Contracts\UserInterface;
-use App\Repositories\AttributeRepository;
-use App\Repositories\BannerRepository;
-use App\Repositories\BrandRepository;
-use App\Repositories\CategoryRepository;
-use App\Repositories\GeneralSettingRepository;
-use App\Repositories\OrderRepository;
-use App\Repositories\PaymentRepository;
-use App\Repositories\ProductRepository;
-use App\Repositories\UserRepository;
+use App\Contracts\Admin\AccountRequestInterface;
+use App\Contracts\Admin\AttributeInterface;
+use App\Contracts\Admin\BannerInterface;
+use App\Contracts\Admin\BrandInterface;
+use App\Contracts\Admin\CategoryInterface;
+use App\Contracts\Admin\GeneralSettingInterface;
+use App\Contracts\Admin\OrderInterface;
+use App\Contracts\Admin\PaymentInterface;
+use App\Contracts\Admin\ProductInterface;
+use App\Contracts\Admin\UserInterface;
+use App\Contracts\Admin\UserProfileInterface;
+use App\Contracts\HomeInterface;
+use App\Models\GeneralSetting;
+use App\Repositories\Admin\AccountRequestRepository;
+use App\Repositories\Admin\AttributeRepository;
+use App\Repositories\Admin\BannerRepository;
+use App\Repositories\Admin\BrandRepository;
+use App\Repositories\Admin\CategoryRepository;
+use App\Repositories\Admin\GeneralSettingRepository;
+use App\Repositories\Admin\OrderRepository;
+use App\Repositories\Admin\PaymentRepository;
+use App\Repositories\Admin\ProductRepository;
+use App\Repositories\Admin\UserProfileRepository;
+use App\Repositories\Admin\UserRepository;
+use App\Repositories\HomeRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -40,6 +47,9 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(GeneralSettingInterface::class, GeneralSettingRepository::class);
         $this->app->bind(OrderInterface::class, OrderRepository::class);
         $this->app->bind(PaymentInterface::class, PaymentRepository::class);
+        $this->app->bind(AccountRequestInterface::class, AccountRequestRepository::class);
+        $this->app->bind(HomeInterface::class, HomeRepository::class);
+        $this->app->bind(UserProfileInterface::class, UserProfileRepository::class);
     }
 
     /**
@@ -49,6 +59,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $general_setting = GeneralSetting::first();
+        config(['general_setting' => $general_setting]);
     }
 }

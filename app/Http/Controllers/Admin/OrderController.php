@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Contracts\OrderInterface;
-use App\Custom\ResponseService;
+use App\Contracts\Admin\OrderInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
 use Exception;
@@ -11,12 +10,15 @@ use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
-    protected $order_interface, $response;
+    protected $order_interface;
 
-    public function __construct(OrderInterface $order_interface, ResponseService $response)
+    public function __construct(OrderInterface $order_interface)
     {
+        $this->middleware('permission:order-list|order-create|order-edit|order-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:order-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:order-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:order-delete', ['only' => ['destroy']]);
         $this->order_interface = $order_interface;
-        $this->response = $response;
     }
 
     public function index()

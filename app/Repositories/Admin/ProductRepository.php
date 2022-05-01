@@ -5,6 +5,7 @@ namespace App\Repositories\Admin;
 use App\Contracts\Admin\ProductInterface;
 use App\Custom\ImageService;
 use App\Models\Product;
+use App\Models\ProductVariant;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,9 +34,10 @@ class ProductRepository implements ProductInterface
 
     public function store($request)
     {
-        $data = $request->except('image', '_token');
+        $data = $request->except('image', '_token', 'variation');
         $data['user_id'] = Auth::user()->id;
         $result = Product::create($data);
+        $this->saveVariant($result);
         if ($file = $request->image) {
             $this->image->upload($result, $file);
         }
@@ -65,5 +67,12 @@ class ProductRepository implements ProductInterface
         $result = $product->delete();
         $this->image->delete($product, $product->image->path ?? null);
         return $result;
+    }
+
+    public function saveVariant($result) {
+        foreach(request()->variation as $variant){
+            $variant['product_id'] = $result->id;
+            ProductVariant::create($variant);
+        }
     }
 }

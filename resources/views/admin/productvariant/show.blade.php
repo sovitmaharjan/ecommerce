@@ -1,1 +1,0 @@
-resources/views/admin/productvariant/show.blade.php

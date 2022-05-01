@@ -86,9 +86,25 @@
                                         @foreach ($product as $key => $value)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
-                                                <td>
+                                                {{-- <td>
                                                     <img class="bgi-position-center bgi-size-cover card-rounded card-rounded mh-100px me-3"
                                                         src="{{ $value->image ? $value->image->getUrl() : asset('assets/admin/media/svg/files/blank-image.svg') }}">
+                                                </td> --}}
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="symbol symbol-50px">
+                                                            <span class="symbol-label" style="background-image:url({{
+                                                                $value->image ? 
+                                                                    $value->image->getUrl()
+                                                                    : asset('assets/admin/media/svg/files/blank-image.svg')
+                                                                }});">
+                                                            </span>
+                                                        </span>
+                                                        <div class="ms-5">
+                                                            <span
+                                                                class="text-gray-800 fs-5 fw-bolder">{{ $value->title }}</span>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                                 <td>
                                                     {{ $value->title }}

@@ -1,1 +1,0 @@
-resources/views/admin/productattributevalue/show.blade.php

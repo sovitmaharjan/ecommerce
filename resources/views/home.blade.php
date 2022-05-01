@@ -98,11 +98,11 @@
                 <div class="col-xl-4 col-lg-4 col-md-6">
                     <div class="banner__item p-relative w-img mb-30">
                         <div class=" ">
-                            <a href="#"><img src="{{ $category->image ? $category->image->getUrl() : asset('assets/admin/media/svg/files/blank-image.svg') }}"
+                            <a href="{{ route('vendor') }}"><img src="{{ $category->image ? $category->image->getUrl() : asset('assets/admin/media/svg/files/blank-image.svg') }}"
                                     alt=""></a>
                         </div>
                         <div class="banner__content">
-                            <h6><a href="#">{{ $category->title }} <br></a></h6>
+                            <h6><a href="{{ route('vendor') }}">{{ $category->title }} <br></a></h6>
                             {{-- <p>{{ $category->description }}</p> --}}
                         </div>
                     </div>

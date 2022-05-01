@@ -306,9 +306,9 @@
                                                                         </label>
                                                                         <select class="form-select" name="attribute_id" data-kt-repeater="select2">
                                                                             <option value="">No Attribute</option>
-                                                                            <option value="1">Option 1</option>
-                                                                            <option value="2">Option 2</option>
-                                                                            <option value="3">Option 3</option>
+                                                                            @foreach ($all_attribute as $value)
+                                                                                <option value="{{ $value->id }}">{{ $value->title }}</option>
+                                                                            @endforeach
                                                                         </select>
                                                                     </div>
                                                                     <div class="col-md-2">

@@ -24,16 +24,12 @@ class PermissionTableSeeder extends Seeder
             'user-create',
             'user-edit',
             'user-delete',
+            'user-login-as',
             
             'account-request-list',
             'account-request-create',
             'account-request-edit',
             'account-request-delete',
-
-            'banner-list',
-            'banner-create',
-            'banner-edit',
-            'banner-delete',
 
             'category-list',
             'category-create',
@@ -54,21 +50,29 @@ class PermissionTableSeeder extends Seeder
             'product-create',
             'product-edit',
             'product-delete',
-
-            'payment-list',
-            'payment-create',
-            'payment-edit',
-            'payment-delete',
-
+            
             'order-list',
             'order-create',
             'order-edit',
             'order-delete',
 
+            'profile-list',
+            'profile-edit',
+
+            'banner-list',
+            'banner-create',
+            'banner-edit',
+            'banner-delete',
+
             'general-setting-list',
             'general-setting-create',
             'general-setting-edit',
             'general-setting-delete',
+
+            'payment-list',
+            'payment-create',
+            'payment-edit',
+            'payment-delete',
         ];
 
         foreach ($permissions as $permission) {

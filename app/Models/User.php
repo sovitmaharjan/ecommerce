@@ -12,6 +12,10 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
+    const ADMIN = 'admin';
+    const VENDOR = 'vendor';
+    const CUSTOMER = 'customer';
+
     use HasApiTokens, HasFactory, Notifiable, HasRoles, SoftDeletes;
 
     /**

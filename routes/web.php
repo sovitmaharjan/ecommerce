@@ -17,6 +17,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
+use App\Models\User;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,12 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/about-us', function() {
     return view('about-us');
 })->name('about-us');
+Route::get('/vendor', function() {
+    $vendor = User::whereHas('roles', function ($query) {
+        $query->where('name', 'vendor');
+    })->get();
+    return view('vendor',compact('vendor'));
+})->name('vendor');
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 Route::get('/product-detail/{slug}', [ShopController::class, 'productDetail'])->name('product-detail');
 

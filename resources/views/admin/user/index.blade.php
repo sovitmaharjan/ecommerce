@@ -60,8 +60,12 @@
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Status</th>
-                                            <th>Action</th>
-                                            <th>Login as</th>
+                                            @can(['user-edit', 'user-delete'])
+                                                <th>Action</th>
+                                            @endcan
+                                            @can('user-login-as')
+                                                <th>Login as</th>
+                                            @endcan
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -71,13 +75,12 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <span class="symbol symbol-50px">
-                                                            <span class="symbol-label" style="background-image:url({{
-                                                                $value->profile ? 
-                                                                    $value->profile->image ?
-                                                                        $value->profile->image->getUrl()
-                                                                        : asset('assets/admin/media/svg/files/blank-image.svg')
-                                                                    : asset('assets/admin/media/svg/files/blank-image.svg')
-                                                                }});">
+                                                            <span class="symbol-label"
+                                                                style="background-image:url({{ $value->profile
+                                                                    ? ($value->profile->image
+                                                                        ? $value->profile->image->getUrl()
+                                                                        : asset('assets/admin/media/svg/files/blank-image.svg'))
+                                                                    : asset('assets/admin/media/svg/files/blank-image.svg') }});">
                                                             </span>
                                                         </span>
                                                         <div class="ms-5">
@@ -96,45 +99,54 @@
                                                         <div class="badge badge-light-danger">InActive</div>
                                                     @endif
                                                 </td>
-                                                <td>
-                                                    <a href="#" class="btn btn-light btn-active-light-primary btn-sm"
-                                                        data-kt-menu-trigger="click"
-                                                        data-kt-menu-placement="bottom-end">Actions
-                                                        <span class="svg-icon svg-icon-5 m-0">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                                viewBox="0 0 24 24" fill="none">
-                                                                <path
-                                                                    d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
-                                                                    fill="black" />
-                                                            </svg>
-                                                        </span>
-                                                    </a>
-                                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
-                                                        data-kt-menu="true">
-                                                        <div class="menu-item px-3">
-                                                            <a href="{{ route('user.edit', $value->id) }}"
-                                                                class="menu-link px-3">Edit</a>
+                                                @can(['user-edit', 'user-delete'])
+                                                    <td>
+                                                        <a href="#" class="btn btn-light btn-active-light-primary btn-sm"
+                                                            data-kt-menu-trigger="click"
+                                                            data-kt-menu-placement="bottom-end">Actions
+                                                            <span class="svg-icon svg-icon-5 m-0">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                                    viewBox="0 0 24 24" fill="none">
+                                                                    <path
+                                                                        d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
+                                                                        fill="black" />
+                                                                </svg>
+                                                            </span>
+                                                        </a>
+                                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
+                                                            data-kt-menu="true">
+                                                            @can('user-edit')
+                                                                <div class="menu-item px-3">
+                                                                    <a href="{{ route('user.edit', $value->id) }}"
+                                                                        class="menu-link px-3">Edit</a>
+                                                                </div>
+                                                            @endcan
+                                                            @can('user-delete')
+                                                                <div class="menu-item px-3">
+                                                                    <form id="form{{ $value->id }}"
+                                                                        action="{{ route('user.destroy', $value->id) }}"
+                                                                        method="POST">
+                                                                        @csrf
+                                                                        @method('delete')
+                                                                    </form>
+                                                                    <a href="javascript:void(0)" class="menu-link px-3 delete"
+                                                                        data-kt-customer-table-filter="delete_row"
+                                                                        data-id="{{ $value->id }}"
+                                                                        data-name="{{ $value->title }}">Delete</a>
+                                                                </div>
+                                                            @endcan
                                                         </div>
-                                                        <div class="menu-item px-3">
-                                                            <form id="form{{ $value->id }}"
-                                                                action="{{ route('user.destroy', $value->id) }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                @method('delete')
-                                                            </form>
-                                                            <a href="javascript:void(0)" class="menu-link px-3 delete"
-                                                                data-kt-customer-table-filter="delete_row"
-                                                                data-id="{{ $value->id }}"
-                                                                data-name="{{ $value->title }}">Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <a href="{{ route('user.loginWithId', $value->id) }}" class="btn btn-sm btn-primary">
-                                                        <i class="bi bi-box-arrow-in-right fs-1x"></i>
-                                                        Login
-                                                    </a>
-                                                </td>
+                                                    </td>
+                                                @endcan
+                                                @can('user-login-as')
+                                                    <td>
+                                                        <a href="{{ route('user.loginWithId', $value->id) }}"
+                                                            class="btn btn-sm btn-primary">
+                                                            <i class="bi bi-box-arrow-in-right fs-1x"></i>
+                                                            Login
+                                                        </a>
+                                                    </td>
+                                                @endcan
                                             </tr>
                                         @endforeach
                                     </tbody>

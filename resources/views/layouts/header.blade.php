@@ -139,11 +139,11 @@
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4">
                         <div class="header__info">
                             <div class="logo">
-                                <a href="index.html" class="logo-image">
+                                <a href="{{ url('/') }}" class="logo-image">
                                     <h3>WholesaleBazar</h3>
                                 </a>
 
-                                <!-- <a href="index.html" class="logo-image"><img src="{{ asset('assets/img/logo/logo1.svg') }}" alt="logo"></a> -->
+                                <!-- <a href="{{ url('/') }}" class="logo-image"><img src="{{ asset('assets/img/logo/logo1.svg') }}" alt="logo"></a> -->
                             </div>
                         </div>
                     </div>
@@ -329,7 +329,7 @@
         </div>
         <div class="offcanvas__content">
             <div class="offcanvas__logo mb-40">
-                <a href="index.html">
+                <a href="{{ url('/') }}">
                     <!-- <img src="{{ asset('assets/img/logo/logo-white.png') }}" alt="logo"> -->
                 </a>
             </div>

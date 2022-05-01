@@ -17,6 +17,11 @@ class UserController extends Controller
 
     public function __construct(UserInterface $user_interface)
     {
+        $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index', 'show', 'customer']]);
+        $this->middleware('permission:user-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:user-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+
         $this->user_interface = $user_interface;
     }
 
@@ -29,7 +34,8 @@ class UserController extends Controller
         return view('admin.user.index', compact('user'));
     }
 
-    public function customer() {
+    public function customer()
+    {
         $user = User::role('customer')->get();
         return view('admin.user.index', compact('user'));
     }
@@ -95,7 +101,8 @@ class UserController extends Controller
         }
     }
 
-    public function loginWithId($id) {
+    public function loginWithId($id)
+    {
         Auth::loginUsingId($id, true);
         return redirect()->route('dashboard');
     }

@@ -6,7 +6,7 @@
                 <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
                     data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                     class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Attribute</h1>
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Role</h1>
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
@@ -19,15 +19,16 @@
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>
-                        <li class="breadcrumb-item text-dark">Attribute</li>
+                        <li class="breadcrumb-item text-dark">Role</li>
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <div class="m-0">
-                        <a href="{{ route('attribute.index') }}"
+                        <a href="{{ route('role.index') }}"
                             class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
                             <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none">
                                     <path
                                         d="M21 7H3C2.4 7 2 6.6 2 6V4C2 3.4 2.4 3 3 3H21C21.6 3 22 3.4 22 4V6C22 6.6 21.6 7 21 7Z"
                                         fill="black"></path>
@@ -39,40 +40,16 @@
                             List
                         </a>
                     </div>
-                    <a href="{{ route('attribute.create') }}" class="btn btn-sm btn-primary">Create</a>
+                    <a href="{{ route('role.create') }}" class="btn btn-sm btn-primary">Create</a>
                 </div>
             </div>
         </div>
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <div id="kt_content_container" class="container-xxl">
-                <form id="attribute_form" class="form d-flex flex-column flex-lg-row" method="POST" action="{{ route('attribute.update', $attribute->id) }}" enctype="multipart/form-data">
+                <form id="attribute_form" class="form d-flex flex-column flex-lg-row" method="POST"
+                    action="{{ route('role.update', $role->id) }}">
                     @csrf
                     @method('patch')
-                    <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
-                        <div class="card card-flush py-4">
-                            <div class="card-header">
-                                <div class="card-title">
-                                    <h2 class="required">Status</h2>
-                                </div>
-                                <div class="card-toolbar">
-                                    <div class="rounded-circle bg-{{ $attribute->status === 1 ? 'success' : 'danger' }} w-15px h-15px" id="kt_ecommerce_add_attribute_status"></div>
-                                </div>
-                            </div>
-                            <div class="card-body pt-0">
-                                <select class="form-select mb-2" name="status" data-control="select2" data-hide-search="true" data-placeholder="Select an option" id="kt_ecommerce_add_attribute_status_select" required>
-                                    <option></option>
-                                    <option value="1" {{ $attribute->status === 1 ? 'selected' : '' }}>Active</option>
-                                    <option value="0" {{ $attribute->status === 0 ? 'selected' : '' }}>Inactive</option>
-                                </select>
-                                <div class="text-muted fs-7">Set the attribute status.</div>
-                                @error('status')
-                                    <div class="fv-plugins-message-container invalid-feedback">
-                                        <div data-field="status" data-validator="notEmpty">{{ $message }}</div>
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
                     <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                         <div class="card card-flush py-4">
                             <div class="card-header">
@@ -82,23 +59,64 @@
                             </div>
                             <div class="card-body pt-0">
                                 <div class="mb-10 fv-row">
-                                    <label class="required form-label">Attribute Name</label>
-                                    <input type="text" name="title" class="form-control mb-2" placeholder="Attribute name" value="{{ old('title') ?? $attribute->title }}" required/>
-                                    <div class="text-muted fs-7">A attribute name is required and recommended to be unique.</div>
-                                    @error('title')
+                                    <label class="required form-label">Role Name</label>
+                                    <input type="text" name="name" class="form-control mb-2" placeholder="Role name"
+                                        value="{{ old('name') ?? $role->name }}" required readonly />
+                                    <div class="text-muted fs-7">A role name is required and recommended to be unique.
+                                    </div>
+                                    @error('name')
                                         <div class="fv-plugins-message-container invalid-feedback">
-                                            <div data-field="title" data-validator="notEmpty">{{ $message }}</div>
+                                            <div data-field="name" data-validator="notEmpty">{{ $message }}</div>
                                         </div>
                                     @enderror
                                 </div>
                             </div>
+
+                            <div class="card-body pt-0">
+                                <div class="table-responsive">
+                                    <table id="kt_datatable_example_5"
+                                        class="table table-row-bordered gy-5 gs-7 border rounded align-middle">
+                                        <thead>
+                                            <tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
+                                                <th>Permission</th>
+                                                <th>View</th>
+                                                <th>Create</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
+                                                <th>Login as Vendor</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($permission as $key => $value)
+                                                <tr>
+                                                    <td>{{ $key }}</td>
+                                                    @foreach ($value as $item)
+                                                        <td>
+                                                            <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                <input class="form-check-input" name="permission[]" type="checkbox"
+                                                                    value="{{ $item->id }}" 
+                                                                    @if (in_array($item->id, $rolePermissions))
+                                                                        checked
+                                                                    @endif
+                                                                >
+                                                                {{ $item->id }}
+                                                            </div>
+                                                        </td>
+                                                    @endforeach
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route('attribute.index') }}" id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5">Cancel</a>
+                            <a href="{{ route('role.index') }}" id="kt_ecommerce_add_product_cancel"
+                                class="btn btn-light me-5">Cancel</a>
                             <button type="submit" id="kt_ecommerce_add_attribute_submit" class="btn btn-primary">
                                 <span class="indicator-label">Save Changes</span>
                                 <span class="indicator-progress">Please wait...
-                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                             </button>
                         </div>
                     </div>

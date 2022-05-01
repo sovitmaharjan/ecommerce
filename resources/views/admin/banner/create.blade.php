@@ -160,8 +160,7 @@
                                         rows="5">{{ old('description') }}</textarea>
                                     <div class="text-muted fs-7">Set a description to the banner.</div>
                                 </div>
-                                <br>
-                                <div>
+                                <div class="mb-10 fv-row">
                                     <label class="form-label">Url</label>
                                     <textarea name="url" class="form-control mb-2" id="url"
                                         rows="5">{{ old('url') }}</textarea>

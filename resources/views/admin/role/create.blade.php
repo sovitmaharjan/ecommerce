@@ -11,7 +11,7 @@
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <li class="breadcrumb-item text-muted">
                             <a href="{{ route('dashboard') }}" class="text-muted text-hover-primary">Home</a>
-                        </li>
+                        </li>edit
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-300 w-5px h-2px"></span>
                         </li>

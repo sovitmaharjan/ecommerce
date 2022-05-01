@@ -31,8 +31,9 @@
                         id="#kt_header_menu" data-kt-menu="true">
                         <a href="{{ route('dashboard') }}" class="menu-item menu-lg-down-accordion me-lg-1">
                             <span class="menu-link py-3">
-                                <span class="menu-title">Dashboard</span>
-                                <span class="menu-arrow d-lg-none"></span>
+                                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">{{ Auth::user()->profile ? Auth::user()->profile->shop_name : Auth::user()->name }} :: Dashboard</h1>
+                                {{-- <span class="menu-title">Dashboard</span>
+                                <span class="menu-arrow d-lg-none"></span> --}}
                             </span>
                         </a>
                         <a href="{{ url('/') }}" class="menu-item menu-lg-down-accordion me-lg-1">
@@ -1347,7 +1348,7 @@
                         </div>
                         <div class="separator my-2"></div>
                         <div class="menu-item px-5">
-                            <a href="{{ route('user-profile.index') }}" class="menu-link px-5">My Profile</a>
+                            <a href="{{ route('user-profile.index') }}" class="menu-link px-5">Profile</a>
                         </div>
                         <div class="menu-item px-5">
                             <a href="#" class="menu-link px-5">Change Password</a>

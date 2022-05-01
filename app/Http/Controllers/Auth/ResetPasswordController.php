@@ -49,6 +49,7 @@ class ResetPasswordController extends Controller
         }
         User::where('email', $updatePassword->email)->update([
             'password' => Hash::make($request->password),
+            'email_verified_at' => Carbon::now(),
         ]);
 
         DB::table('password_resets')->where(['email' => $updatePassword->email])->delete();

@@ -296,13 +296,13 @@
                                     <li>
                                         <a href="{{ url('') }}" class="active">Home </a>
                                     </li>
-                                    <li><a href="about.html">About Us</a></li>
+                                    <li><a href="{{ route('about-us') }}">About Us</a></li>
                                     <li class="has-mega"><a href="{{ route('shop') }}">Shop </a>
                                     </li>
                                     <li><a href="#">Blog</a>
                                     </li>
                                     <li>
-                                        <a href="my-account.html">My Account</a>
+                                        <a href="#">My Account</a>
 
                                     </li>
                                 </ul>

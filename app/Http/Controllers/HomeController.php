@@ -20,7 +20,7 @@ class HomeController extends Controller
     public function index()
     {
         $data['slider'] = $this->home_interface->banner('slider');
-        $data['first_category_section'] = $this->home_interface->banner('first_category_section');
+        $data['category'] = $this->category_interface->index();
         $data['second_category_section'] = $this->home_interface->banner('second_category_section');
         $category = $this->category_interface->index();
         return view('home', compact('data'));

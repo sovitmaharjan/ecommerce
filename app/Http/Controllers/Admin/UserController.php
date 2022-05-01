@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Contracts\Admin\UserInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
+use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -21,7 +22,15 @@ class UserController extends Controller
 
     public function index()
     {
-        $user = $this->user_interface->index();
+        // $user = $this->user_interface->index();
+        $user = User::whereHas('roles', function ($query) {
+            $query->where('name', 'vendor');
+        })->get();
+        return view('admin.user.index', compact('user'));
+    }
+
+    public function customer() {
+        $user = User::role('customer')->get();
         return view('admin.user.index', compact('user'));
     }
 

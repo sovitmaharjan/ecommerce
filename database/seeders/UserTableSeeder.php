@@ -32,7 +32,6 @@ class UserTableSeeder extends Seeder
         ]);
 
         $role = Role::create(['name' => 'Admin']);
-        // $role = Role::create(['name' => 'Admin', 'name' => 'Customer']);
    
         $permissions = Permission::pluck('id','id')->all();
   

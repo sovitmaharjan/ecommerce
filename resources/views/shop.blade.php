@@ -227,16 +227,16 @@
                                                 </li>
                                             @endfor
                                             {{-- <li>
-                                                <a href="shop.html">2</a>
+                                                <a href="#">2</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html">3</a>
+                                                <a href="#">3</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html">5</a>
+                                                <a href="#">5</a>
                                             </li>
                                             <li>
-                                                <a href="shop.html">6</a>
+                                                <a href="#">6</a>
                                             </li> --}}
                                             @if ($product->currentPage() != $product->lastPage())
                                                 <li>
@@ -317,7 +317,7 @@
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="product__modal-content">
-                                <h4><a href="{{ route('product-detail', $value->slug) }}">Samsung C49J89: £875, Debenhams Plus</a></h4>
+                                <h4><a href="#">Samsung C49J89: £875, Debenhams Plus</a></h4>
                                 <div class="product__review d-sm-flex">
                                     <div class="rating rating__shop mb-10 mr-30">
                                     <ul>

@@ -33,6 +33,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/about-us', function() {
+    return view('about-us');
+})->name('about-us');
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 Route::get('/product-detail/{slug}', [ShopController::class, 'productDetail'])->name('product-detail');
 
@@ -51,6 +54,7 @@ Route::group([
 ], function() {
     Route::resource('role', RoleController::class);
     Route::resource('user', UserController::class);
+    Route::get('customer', [UserController::class, 'customer'])->name('customer.index');
     Route::get('login-with/{id}', [UserController::class, 'loginWithId'])->name('user.loginWithId');
 
     Route::get('/under-construction', function() {

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>{{ config('general_setting')->website_name ?? 'Test' }}</title>
+		<title>{{ config('general_setting')->website_name ?? 'Ecommerce' }}</title>
 		@include('admin.layouts.meta')
 		@include('admin.layouts.style')
 	</head>

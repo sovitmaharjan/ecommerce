@@ -14,7 +14,7 @@ License: For each use you must have a valid license purchased only from above li
 <!--begin::Head-->
 
 <head>
-    <title>{{ config('general_setting')->website_name ?? 'Test' }}</title>
+    <title>{{ config('general_setting')->website_name ?? 'Ecommerce' }}</title>
     @include('auth.layouts.meta')
     @include('auth.layouts.style')
     {{-- {{ dd(get_defined_vars()) }} --}}

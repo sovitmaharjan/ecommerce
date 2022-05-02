@@ -22,6 +22,6 @@ class Image extends Model
 
     public function getUrl()
     {
-        return url('storage/' . $this->path);
+        return url('public/storage/' . $this->path);
     }
 }

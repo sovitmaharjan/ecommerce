@@ -25,8 +25,9 @@ class AccountRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|email|unique:account_requests',
+            'email' => 'required|email|unique:account_requests|unique:users',
             'contact_number' => 'required',
+            'shop_name' => 'required'
         ];
     }
 }

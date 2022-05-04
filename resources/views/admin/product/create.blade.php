@@ -153,7 +153,7 @@
                                     Create new category
                                 </a>
                                 <label class="form-label d-block">Tags</label>
-                                <input id="tags" name="tags" class="form-control mb-2" value="" />
+                                <input id="tags" name="tags" class="form-control mb-2" value="{{ old('tag') }}" />
                                 <div class="text-muted fs-7">Add tags to a product.</div>
                             </div>
 

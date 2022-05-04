@@ -66,7 +66,8 @@
                                         class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
                                         data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change image">
                                         <i class="bi bi-pencil-fill fs-7"></i>
-                                        <input type="file" name="image" accept=".png, .jpg, .jpeg" id="image" />
+                                        <input type="file" name="image" accept=".png, .jpg, .jpeg" id="image"
+                                            value="{{ old('image') }}" />
                                     </label>
                                     <span
                                         class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
@@ -102,11 +103,15 @@
                                 <select class="form-select mb-2" data-control="select2" data-hide-search="true"
                                     data-placeholder="Select an option" id="status" name="status">
                                     <option></option>
-                                    <option value="draft" {{ $product->status == 'draft' ? 'selected' : '' }}>Draft
+                                    <option value="draft"
+                                        {{ old('status') ? (old('status') == 'draft' ? 'selected' : '') : ($product->status == 'draft' ? 'selected' : '') }}>
+                                        Draft
                                     </option>
-                                    <option value="published" {{ $product->status == 'published' ? 'selected' : '' }}>
+                                    <option value="published"
+                                    {{ old('status') ? (old('status') == 'published' ? 'selected' : '') : ($product->status == 'published' ? 'selected' : '') }}>
                                         Published</option>
-                                    <option value="inactive" {{ $product->status == 'inactive' ? 'selected' : '' }}>
+                                    <option value="inactive"
+                                    {{ old('status') ? (old('status') == 'inactive' ? 'selected' : '') : ($product->status == 'inactive' ? 'selected' : '') }}>
                                         Inactive</option>
                                 </select>
                                 <div class="text-muted fs-7">Set the product status.</div>
@@ -124,11 +129,9 @@
                                     data-control="select2" data-placeholder="Select an option">
                                     <option></option>
                                     @foreach ($all_category as $category)
-                                        <option value="{{ $category->id }}"
-                                            @if (old('category_id')) selected
-                                            @if (old('category_id') == $category->id) selected @endif
-                                        @elseif($product->category_id == $category->id) selected @endif>
-                                            {{ $category->title }}</option>
+                                        <option value="{{ $category->id }}" {{ old('category_id') ? (old('category_id') == $category->id ? 'selected' : '') : ($product->category_id == $category->id ? 'selected' : '') }}>
+                                            {{ $category->title }}
+                                        </option>
                                     @endforeach
                                 </select>
                                 <div class="text-muted fs-7 mb-7">Add product to a category.</div>
@@ -181,13 +184,13 @@
                                             <div class="mb-10 fv-row">
                                                 <label class="required form-label">Product Name</label>
                                                 <input type="text" name="title" class="form-control mb-2"
-                                                    placeholder="Product name" value="" id="title" />
+                                                    placeholder="Product name" value="{{ old('title') ?? $product->title }}" id="title" />
                                                 <div class="text-muted fs-7">A product name is required.</div>
                                             </div>
                                             <div>
                                                 <label class="form-label">Description</label>
                                                 <textarea name="description" placeholder="Type your text here..." class="form-control mb-2" id="description"
-                                                    rows="5">{{ old('description') }}</textarea>
+                                                    rows="5">{{ old('description') ?? $product->description }}</textarea>
                                                 <div class="text-muted fs-7">Set a description to the product.</div>
                                             </div>
                                         </div>
@@ -202,7 +205,7 @@
                                             <div class="mb-10 fv-row">
                                                 <label class="required form-label">Base Price</label>
                                                 <input type="number" id="price" name="price" class="form-control mb-2"
-                                                    placeholder="Product price" value="" />
+                                                    placeholder="Product price" value="{{ old('price') ?? $product->price }}" />
                                                 <div class="text-muted fs-7">Set the product price.</div>
                                             </div>
                                             <div class="fv-row mb-10">
@@ -213,13 +216,14 @@
                                                     data-kt-buttons="true" data-kt-buttons-target="[data-kt-button='true']">
                                                     <div class="col">
                                                         <label
-                                                            class="btn btn-outline btn-outline-dashed btn-outline-default active d-flex text-start p-6"
+                                                            class="btn btn-outline btn-outline-dashed btn-outline-default {{ old('discount_option') ? (old('discount_option') == 1 ? 'active' : '') : ($product->discount_option ? ($product->discount_option == 1 ? 'active' : '')
+                                                                : 'active') }} d-flex text-start p-6"
                                                             data-kt-button="true">
                                                             <span
                                                                 class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
                                                                 <input class="form-check-input" type="radio"
-                                                                    name="discount_option" value="1" id="no_discount"
-                                                                    checked="ch show activeecked" />
+                                                                    name="discount_option" value="1" id="no_discount" {{ old('discount_option') ? (old('discount_option') == 1 ? 'checked' : '') : ($product->discount_option ? ($product->discount_option == 1 ? 'checked' : '')
+                                                                    : 'checked') }} />
                                                             </span>
                                                             <span class="ms-5">
                                                                 <span class="fs-4 fw-bolder text-gray-800 d-block">No
@@ -229,13 +233,15 @@
                                                     </div>
                                                     <div class="col">
                                                         <label
-                                                            class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-6"
+                                                            class="btn btn-outline btn-outline-dashed btn-outline-default {{ old('discount_option') ? (old('discount_option') == 2 ? 'active' : '') : ($product->discount_option ? ($product->discount_option == 2 ? 'active' : '')
+                                                            : '') }} d-flex text-start p-6"
                                                             data-kt-button="true">
                                                             <span
                                                                 class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
                                                                 <input class="form-check-input" type="radio"
                                                                     name="discount_option" value="2"
-                                                                    id="discount_percentage_radio" />
+                                                                    id="discount_percentage_radio" {{ old('discount_option') ? (old('discount_option') == 2 ? 'checked' : '') : ($product->discount_option ? ($product->discount_option == 2 ? 'checked' : '')
+                                                                    : '') }} />
                                                             </span>
                                                             <span class="ms-5">
                                                                 <span
@@ -246,13 +252,15 @@
                                                     </div>
                                                     <div class="col">
                                                         <label
-                                                            class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-6"
+                                                            class="btn btn-outline btn-outline-dashed btn-outline-default {{ old('discount_option') ? (old('discount_option') == 3 ? 'active' : '') : ($product->discount_option ? ($product->discount_option == 3 ? 'active' : '')
+                                                            : '') }} d-flex text-start p-6"
                                                             data-kt-button="true">
                                                             <span
                                                                 class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
                                                                 <input class="form-check-input" type="radio"
                                                                     name="discount_option" value="3"
-                                                                    id="discounted_price_radio" />
+                                                                    id="discounted_price_radio" {{ old('discount_option') ? (old('discount_option') == 3 ? 'checked' : '') : ($product->discount_option ? ($product->discount_option == 3 ? 'checked' : '')
+                                                                    : '') }} />
                                                             </span>
                                                             <span class="ms-5">
                                                                 <span class="fs-4 fw-bolder text-gray-800 d-block">Fixed
@@ -263,25 +271,27 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="d-none mb-10 fv-row" id="discount_percentage">
+                                            <div class="{{ old('discount_option') ? (old('discount_option') == 2 ? '' : 'd-none') : ($product->discount_option ? ($product->discount_option == 2 ? '' : 'd-none')
+                                                : 'd-none') }} mb-10 fv-row" id="discount_percentage">
                                                 <label class="form-label">Set Discount Percentage</label>
-                                                <input type="text" name="discount" min="1" max="100"
+                                                <input type="number"  {{ old('discount_option') ? (old('discount_option') == 2 ? 'name=discount' : '') : ($product->discount_option ? ($product->discount_option == 2 ? 'name=discount' : '') : '') }} min="1" max="100"
                                                     class="form-control mb-2" id="percentage"
-                                                    placeholder="Discounted Percentage" />
+                                                    placeholder="Discounted Percentage" value="{{ old('discount_option') ? (old('discount_option') == 2 ? old('discount') : '') : ($product->discount ? ($product->discount_option == 2 ? $product->discount : '') : '') }}" />
                                                 <div class="text-muted fs-7">Set a percentage discount to be applied on
                                                     this product.</div>
                                             </div>
-                                            <div class="d-none mb-10 fv-row" id="discounted_price">
+                                            <div class="{{ old('discount_option') ? (old('discount_option') == 3 ? '' : 'd-none') : ($product->discount_option ? ($product->discount_option == 3 ? '' : 'd-none')
+                                                : 'd-none') }} mb-10 fv-row" id="discounted_price">
                                                 <label class="form-label">Fixed Price</label>
-                                                <input type="number" name="discount" id="fixed" class="form-control mb-2"
-                                                    placeholder="Discounted price" />
+                                                <input type="number"  {{ old('discount_option') ? (old('discount_option') == 3 ? 'name=discount' : '') : ($product->discount_option ? ($product->discount_option == 3 ? 'name=discount' : '') : '') }} id="fixed" class="form-control mb-2"
+                                                    placeholder="Discounted price" value="{{ old('discount_option') ? (old('discount_option') == 3 ? old('discount') : '') : ($product->discount ? ($product->discount_option == 3 ? $product->discount : '') : '') }}" />
                                                 <div class="text-muted fs-7">Set the discounted product price. The product
                                                     will be reduced at the determined fixed price</div>
                                             </div>
                                             <div class="d-flex flex-wrap gap-5">
                                                 <div class="fv-row w-100 flex-md-root">
                                                     <label class="form-label">VAT (%)</label>
-                                                    <input type="number" class="form-control mb-2" value="" name="vat" />
+                                                    <input type="number" class="form-control mb-2" min="1" max="100" value="{{ old('vat') ?? $product->vat }}" name="vat" />
                                                     <div class="text-muted fs-7">Set the product VAT percentage.</div>
                                                 </div>
                                             </div>

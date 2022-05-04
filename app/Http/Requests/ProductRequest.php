@@ -28,4 +28,15 @@ class ProductRequest extends FormRequest
             'variation.*.quantity' => 'required',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'variation.*.attribute_value.required_with' => 'The Attribute Value is required if Attribute is selected',
+            'variation.*.sku.required' => 'The SKU field is required.',
+            'variation.*.price.required' => 'The Price field is required.',
+            'variation.*.quantity.required' => 'The Quantity field is required.',
+
+        ];
+    }
 }

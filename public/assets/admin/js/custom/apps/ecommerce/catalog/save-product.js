@@ -20,8 +20,8 @@ $(t).on("change", function (t) {
     }
 });
 
-$("#discount_percentage").val('100');
-document.getElementById("discount_percentage").classList.remove("d-none");
+// $("#discount_percentage").val('100');
+// document.getElementById("discount_percentage").classList.remove("d-none");
 
 const ee = document.querySelectorAll('input[name="discount_option"]'),
     tt = document.getElementById("discount_percentage"),
@@ -37,13 +37,18 @@ ee.forEach((e) => {
             case "2":
                 tt.classList.remove("d-none"), oo.classList.add("d-none");
                 document.getElementById("fixed").value = '';
+                document.getElementById("fixed").removeAttribute("name");
+                document.getElementById("percentage").setAttribute("name", "discount");
+
                 break;
             case "3":
                 tt.classList.add("d-none"), oo.classList.remove("d-none");
                 document.getElementById("percentage").value = '';
+                document.getElementById("percentage").removeAttribute("name");
+                document.getElementById("fixed").setAttribute("name", "discount");
                 break;
-            default:
-                tt.classList.add("d-none"), oo.classList.add("d-none");
+            // default:
+                // tt.classList.add("d-none"), oo.classList.add("d-none");
         }
     });
 });

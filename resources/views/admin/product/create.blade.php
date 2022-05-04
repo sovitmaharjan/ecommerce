@@ -1,5 +1,6 @@
 @extends('admin.layouts.app')
 @section('content')
+    {{-- {{ dd(old()) }} --}}
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
             <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
@@ -65,7 +66,8 @@
                                         class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
                                         data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change image">
                                         <i class="bi bi-pencil-fill fs-7"></i>
-                                        <input type="file" name="image" accept=".png, .jpg, .jpeg" id="image" />
+                                        <input type="file" name="image" accept=".png, .jpg, .jpeg" id="image"
+                                            value="{{ old('image') }}" />
                                     </label>
                                     <span
                                         class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
@@ -100,11 +102,18 @@
                                 <select class="form-select mb-2" data-control="select2" data-hide-search="true"
                                     data-placeholder="Select an option" id="status" name="status">
                                     <option></option>
-                                    <option value="draft" selected="selected">Draft</option>
-                                    <option value="published">Published</option>
-                                    <option value="inactive">Inactive</option>
+                                    <option value="draft" {{ old('status') == 'draft' ? 'selected' : '' }}>Draft</option>
+                                    <option value="published" {{ old('status') == 'published' ? 'selected' : '' }}>
+                                        Published</option>
+                                    <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>Inactive
+                                    </option>
                                 </select>
                                 <div class="text-muted fs-7">Set the product status.</div>
+                                @error('status')
+                                    <div class="fv-plugins-message-container invalid-feedback">
+                                        <div data-field="status" data-validator="notEmpty">{{ $message }}</div>
+                                    </div>
+                                @enderror
                             </div>
                         </div>
                         <div class="card card-flush py-4">
@@ -125,6 +134,11 @@
                                     @endforeach
                                 </select>
                                 <div class="text-muted fs-7 mb-7">Add product to a category.</div>
+                                @error('category_id')
+                                    <div class="fv-plugins-message-container invalid-feedback mb-7">
+                                        <div data-field="category_id" data-validator="notEmpty">{{ $message }}</div>
+                                    </div>
+                                @enderror
                                 <a href="{{ route('category.create') }}" class="btn btn-light-primary btn-sm mb-10">
                                     <span class="svg-icon svg-icon-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -173,14 +187,26 @@
                                             <div class="mb-10 fv-row">
                                                 <label class="required form-label">Product Name</label>
                                                 <input type="text" name="title" class="form-control mb-2"
-                                                    placeholder="Product name" value="" id="title" />
+                                                    placeholder="Product name" value="{{ old('title') }}" id="title" />
                                                 <div class="text-muted fs-7">A product name is required.</div>
+                                                @error('title')
+                                                    <div class="fv-plugins-message-container invalid-feedback">
+                                                        <div data-field="title" data-validator="notEmpty">{{ $message }}
+                                                        </div>
+                                                    </div>
+                                                @enderror
                                             </div>
                                             <div>
                                                 <label class="form-label">Description</label>
                                                 <textarea name="description" placeholder="Type your text here..." class="form-control mb-2" id="description"
                                                     rows="5">{{ old('description') }}</textarea>
                                                 <div class="text-muted fs-7">Set a description to the product.</div>
+                                                @error('description')
+                                                    <div class="fv-plugins-message-container invalid-feedback">
+                                                        <div data-field="description" data-validator="notEmpty">
+                                                            {{ $message }}</div>
+                                                    </div>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -194,8 +220,14 @@
                                             <div class="mb-10 fv-row">
                                                 <label class="required form-label">Base Price</label>
                                                 <input type="number" id="price" name="price" class="form-control mb-2"
-                                                    placeholder="Product price" value="" />
+                                                    placeholder="Product price" value="{{ old('price') }}" />
                                                 <div class="text-muted fs-7">Set the product price.</div>
+                                                @error('price')
+                                                    <div class="fv-plugins-message-container invalid-feedback">
+                                                        <div data-field="price" data-validator="notEmpty">{{ $message }}
+                                                        </div>
+                                                    </div>
+                                                @enderror
                                             </div>
                                             <div class="fv-row mb-10">
                                                 <label class="fs-6 fw-bold mb-2">Discount Type
@@ -205,13 +237,13 @@
                                                     data-kt-buttons="true" data-kt-buttons-target="[data-kt-button='true']">
                                                     <div class="col">
                                                         <label
-                                                            class="btn btn-outline btn-outline-dashed btn-outline-default active d-flex text-start p-6"
+                                                            class="btn btn-outline btn-outline-dashed btn-outline-default {{ old('discount_option') ? (old('discount_option') == 1 ? 'active' : '') : 'active' }} d-flex text-start p-6"
                                                             data-kt-button="true">
                                                             <span
                                                                 class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
                                                                 <input class="form-check-input" type="radio"
                                                                     name="discount_option" value="1" id="no_discount"
-                                                                    checked="ch show activeecked" />
+                                                                    {{ old('discount_option') ? (old('discount_option') == 1 ? 'checked' : '') : 'checked' }} />
                                                             </span>
                                                             <span class="ms-5">
                                                                 <span class="fs-4 fw-bolder text-gray-800 d-block">No
@@ -221,13 +253,14 @@
                                                     </div>
                                                     <div class="col">
                                                         <label
-                                                            class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-6"
+                                                            class="btn btn-outline btn-outline-dashed btn-outline-default {{ old('discount_option') ? (old('discount_option') == 2 ? 'active' : '') : '' }} d-flex text-start p-6"
                                                             data-kt-button="true">
                                                             <span
                                                                 class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
                                                                 <input class="form-check-input" type="radio"
                                                                     name="discount_option" value="2"
-                                                                    id="discount_percentage_radio" />
+                                                                    id="discount_percentage_radio"
+                                                                    {{ old('discount_option') == 2 ? 'checked' : '' }} />
                                                             </span>
                                                             <span class="ms-5">
                                                                 <span
@@ -238,13 +271,14 @@
                                                     </div>
                                                     <div class="col">
                                                         <label
-                                                            class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-6"
+                                                            class="btn btn-outline btn-outline-dashed btn-outline-default {{ old('discount_option') ? (old('discount_option') == 3 ? 'active' : '') : '' }} d-flex text-start p-6"
                                                             data-kt-button="true">
                                                             <span
                                                                 class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
                                                                 <input class="form-check-input" type="radio"
                                                                     name="discount_option" value="3"
-                                                                    id="discounted_price_radio" />
+                                                                    id="discounted_price_radio"
+                                                                    {{ old('discount_option') == 3 ? 'checked' : '' }} />
                                                             </span>
                                                             <span class="ms-5">
                                                                 <span class="fs-4 fw-bolder text-gray-800 d-block">Fixed
@@ -254,26 +288,48 @@
                                                         </label>
                                                     </div>
                                                 </div>
+                                                @error('discount_option')
+                                                    <div class="fv-plugins-message-container invalid-feedback">
+                                                        <div data-field="discount_option" data-validator="notEmpty">
+                                                            {{ $message }}
+                                                        </div>
+                                                    </div>
+                                                @enderror
                                             </div>
-                                            <div class="d-none mb-10 fv-row" id="discount_percentage">
+                                            <div class="{{ old('discount_option') ? (old('discount_option') == 2 ? '' : 'd-none') : 'd-none' }} mb-10 fv-row"
+                                                id="discount_percentage">
                                                 <label class="form-label">Set Discount Percentage</label>
-                                                <input type="text" name="discount" min="1" max="100"
-                                                    class="form-control mb-2" id="percentage"
-                                                    placeholder="Discounted Percentage" />
-                                                <div class="text-muted fs-7">Set a percentage discount to be applied on
-                                                    this product.</div>
+                                                <input type="number" min="1" max="100" class="form-control mb-2"
+                                                    id="percentage" placeholder="Discounted Percentage" {{ old('discount_option') == 2 ? 'name=discount' : '' }} value="{{ old('discount_option') == 2 ? old('discount') : '' }}" />
+                                                <div class="text-muted fs-7">Set a percentage discount be applied on this
+                                                    product.</div>
+                                                @error('discount')
+                                                    <div class="fv-plugins-message-container invalid-feedback">
+                                                        <div data-field="discount" data-validator="notEmpty">
+                                                            {{ $message }}
+                                                        </div>
+                                                    </div>
+                                                @enderror
                                             </div>
-                                            <div class="d-none mb-10 fv-row" id="discounted_price">
+                                            <div class="{{ old('discount_option') ? (old('discount_option') == 3 ? '' : 'd-none') : 'd-none' }} mb-10 fv-row"
+                                                id="discounted_price">
                                                 <label class="form-label">Fixed Price</label>
-                                                <input type="number" name="discount" id="fixed" class="form-control mb-2"
-                                                    placeholder="Discounted price" />
+                                                <input type="number" id="fixed" class="form-control mb-2"
+                                                    placeholder="Discounted price" {{ old('discount_option') == 3 ? 'name=discount' : '' }} value="{{ old('discount_option') == 3 ? old('discount') : '' }}" />
                                                 <div class="text-muted fs-7">Set the discounted product price. The product
                                                     will be reduced at the determined fixed price</div>
+                                                @error('discount')
+                                                    <div class="fv-plugins-message-container invalid-feedback">
+                                                        <div data-field="discount" data-validator="notEmpty">
+                                                            {{ $message }}
+                                                        </div>
+                                                    </div>
+                                                @enderror
                                             </div>
                                             <div class="d-flex flex-wrap gap-5">
                                                 <div class="fv-row w-100 flex-md-root">
                                                     <label class="form-label">VAT (%)</label>
-                                                    <input type="number" class="form-control mb-2" value="" name="vat" />
+                                                    <input type="number" min="1" max="100" class="form-control mb-2" value="" name="vat" />
                                                     <div class="text-muted fs-7">Set the product VAT percentage.</div>
                                                 </div>
                                             </div>
@@ -290,68 +346,201 @@
                                             </div>
                                         </div>
                                         <div class="card-body pt-0">
-                                            <div class=""
-                                                data-kt-ecommerce-catalog-add-product="auto-options">
-                                                <!--begin::Repeater-->
+                                            <div data-kt-ecommerce-catalog-add-product="auto-options">
                                                 <div id="variation">
-                                                    <!--begin::Form group-->
                                                     <div class="form-group">
                                                         <div data-repeater-list="variation">
-                                                            <div data-repeater-item>
-                                                                <div class="form-group row mb-5">
-                                                                    <div class="col-md-2">
-                                                                        <label class="form-label">
-                                                                            Select Attribute
-                                                                            <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="Set empty if product is single variant" aria-label="Set empty if product is single variant"></i>
-                                                                        </label>
-                                                                        <select class="form-select" name="attribute_id" data-kt-repeater="select2">
-                                                                            <option value="">No Attribute</option>
-                                                                            @foreach ($all_attribute as $value)
-                                                                                <option value="{{ $value->id }}">{{ $value->title }}</option>
-                                                                            @endforeach
-                                                                        </select>
+                                                            @if (old('variation'))
+                                                                @foreach (old('variation') as $key => $variation)
+                                                                    <div data-repeater-item>
+                                                                        <div class="form-group row mb-5">
+                                                                            <div class="col-md-2">
+                                                                                <label class="form-label">
+                                                                                    Select Attribute
+                                                                                    <i class="fas fa-exclamation-circle ms-1 fs-7"
+                                                                                        data-bs-toggle="tooltip" title=""
+                                                                                        data-bs-original-title="Set empty if product is single variant"
+                                                                                        aria-label="Set empty if product is single variant"></i>
+                                                                                </label>
+                                                                                <select class="form-select"
+                                                                                    name="attribute_id"
+                                                                                    data-kt-repeater="select2">
+                                                                                    <option value="">No Attribute</option>
+                                                                                    @foreach ($all_attribute as $value)
+                                                                                        <option value="{{ $value->id }}"
+                                                                                            {{ $variation['attribute_id'] == $value->id ? 'selected' : '' }}>
+                                                                                            {{ $value->title }}</option>
+                                                                                    @endforeach
+                                                                                </select>
+                                                                                @error('variation.' . $key .
+                                                                                    '.attribute_id')
+                                                                                    <div
+                                                                                        class="fv-plugins-message-container invalid-feedback">
+                                                                                        <div data-field="attribute_id"
+                                                                                            data-validator="notEmpty">
+                                                                                            {{ $message }}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                            <div class="col-md-2">
+                                                                                <label class="form-label">
+                                                                                    Attribute Value
+                                                                                    <i class="fas fa-exclamation-circle ms-1 fs-7"
+                                                                                        data-bs-toggle="tooltip" title=""
+                                                                                        data-bs-original-title="Set empty if product is single variant"
+                                                                                        aria-label="Set empty if product is single variant"></i>
+                                                                                </label>
+                                                                                <input type="text" class="form-control"
+                                                                                    name="attribute_value"
+                                                                                    value="{{ $variation['attribute_value'] }}" />
+                                                                                @error('variation.' . $key .
+                                                                                    '.attribute_value')
+                                                                                    <div
+                                                                                        class="fv-plugins-message-container invalid-feedback">
+                                                                                        <div data-field="attribute_id"
+                                                                                            data-validator="notEmpty">
+                                                                                            {{ $message }}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <label
+                                                                                    class="form-label required">SKU</label>
+                                                                                <input type="text" class="form-control"
+                                                                                    name="sku"
+                                                                                    value="{{ $variation['sku'] }}" />
+                                                                                @error('variation.' . $key . '.sku')
+                                                                                    <div
+                                                                                        class="fv-plugins-message-container invalid-feedback">
+                                                                                        <div data-field="attribute_id"
+                                                                                            data-validator="notEmpty">
+                                                                                            {{ $message }}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                            <div class="col-md-2">
+                                                                                <label
+                                                                                    class="form-label required">Price</label>
+                                                                                <input type="number" class="form-control"
+                                                                                    name="price"
+                                                                                    value="{{ $variation['price'] }}" />
+                                                                                @error('variation.' . $key . '.price')
+                                                                                    <div
+                                                                                        class="fv-plugins-message-container invalid-feedback">
+                                                                                        <div data-field="attribute_id"
+                                                                                            data-validator="notEmpty">
+                                                                                            {{ $message }}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                            <div class="col-md-2">
+                                                                                <label
+                                                                                    class="form-label required">Quantity</label>
+                                                                                <input type="number" class="form-control"
+                                                                                    name="quantity"
+                                                                                    value="{{ $variation['quantity'] ?? 0 }}" />
+                                                                                @error('variation.' . $key . '.quantity')
+                                                                                    <div
+                                                                                        class="fv-plugins-message-container invalid-feedback">
+                                                                                        <div data-field="attribute_id"
+                                                                                            data-validator="notEmpty">
+                                                                                            {{ $message }}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                            <div class="col-md-1">
+                                                                                <a href="javascript:void(0);"
+                                                                                    data-repeater-delete
+                                                                                    class="btn btn-sm btn-light-danger mt-3 mt-md-9">
+                                                                                    <i class="la la-trash-o fs-3"></i>
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="col-md-2">
-                                                                        <label class="form-label">
-                                                                            Attribute Value
-                                                                            <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="Set empty if product is single variant" aria-label="Set empty if product is single variant"></i>
-                                                                        </label>
-                                                                        <input type="text" class="form-control" name="attribute_value" />
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        <label class="form-label required">SKU</label>
-                                                                        <input type="text" class="form-control" name="sku" />
-                                                                    </div>
-                                                                    <div class="col-md-2">
-                                                                        <label class="form-label required">Price</label>
-                                                                        <input type="number" class="form-control" name="price" />
-                                                                    </div>
-                                                                    <div class="col-md-2">
-                                                                        <label class="form-label required">Quantity</label>
-                                                                        <input type="number" class="form-control" name="quantity" value="0" />
-                                                                    </div>
-                                                                    <div class="col-md-1">
-                                                                        <a href="javascript:void(0);" data-repeater-delete
-                                                                            class="btn btn-sm btn-light-danger mt-3 mt-md-9">
-                                                                            <i class="la la-trash-o fs-3"></i>
-                                                                        </a>
+                                                                @endforeach
+                                                            @else
+                                                                <div data-repeater-item>
+                                                                    <div class="form-group row mb-5">
+                                                                        <div class="col-md-2">
+                                                                            <label class="form-label">
+                                                                                Select Attribute
+                                                                                <i class="fas fa-exclamation-circle ms-1 fs-7"
+                                                                                    data-bs-toggle="tooltip" title=""
+                                                                                    data-bs-original-title="Set empty if product is single variant"
+                                                                                    aria-label="Set empty if product is single variant"></i>
+                                                                            </label>
+                                                                            <select class="form-select"
+                                                                                name="attribute_id"
+                                                                                data-kt-repeater="select2">
+                                                                                <option value="">No Attribute</option>
+                                                                                @foreach ($all_attribute as $value)
+                                                                                    <option value="{{ $value->id }}">
+                                                                                        {{ $value->title }}</option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <label class="form-label">
+                                                                                Attribute Value
+                                                                                <i class="fas fa-exclamation-circle ms-1 fs-7"
+                                                                                    data-bs-toggle="tooltip" title=""
+                                                                                    data-bs-original-title="Set empty if product is single variant"
+                                                                                    aria-label="Set empty if product is single variant"></i>
+                                                                            </label>
+                                                                            <input type="text" class="form-control"
+                                                                                name="attribute_value" />
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <label class="form-label required">SKU</label>
+                                                                            <input type="text" class="form-control"
+                                                                                name="sku" />
+                                                                            @error('sku')
+                                                                                <div
+                                                                                    class="fv-plugins-message-container invalid-feedback">
+                                                                                    <div data-field="sku"
+                                                                                        data-validator="notEmpty">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                </div>
+                                                                            @enderror
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <label
+                                                                                class="form-label required">Price</label>
+                                                                            <input type="number" class="form-control"
+                                                                                name="price" />
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <label
+                                                                                class="form-label required">Quantity</label>
+                                                                            <input type="number" class="form-control"
+                                                                                name="quantity" value="0" />
+                                                                        </div>
+                                                                        <div class="col-md-1">
+                                                                            <a href="javascript:void(0);"
+                                                                                data-repeater-delete
+                                                                                class="btn btn-sm btn-light-danger mt-3 mt-md-9">
+                                                                                <i class="la la-trash-o fs-3"></i>
+                                                                            </a>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                            @endif
                                                         </div>
                                                     </div>
-                                                    <!--end::Form group-->
 
-                                                    <!--begin::Form group-->
                                                     <div class="form-group">
                                                         <a href="javascript:;" data-repeater-create
                                                             class="btn btn-light-primary">
                                                             <i class="la la-plus"></i>Add
                                                         </a>
                                                     </div>
-                                                    <!--end::Form group-->
                                                 </div>
-                                                <!--end::Repeater-->
                                             </div>
                                         </div>
                                     </div>

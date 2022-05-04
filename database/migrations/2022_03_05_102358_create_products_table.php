@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->longText('description');
-            $table->enum('status', ['draft', 'published', 'inactive', 'suspended'])->default('Draft');
+            $table->enum('status', ['draft', 'published', 'inactive', 'suspended'])->default('draft');
             $table->foreignId('category_id')->constrained();
             $table->json('tags')->nullable();
             $table->text('video_url')->nullable();

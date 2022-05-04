@@ -102,7 +102,9 @@
                                 <select class="form-select mb-2" data-control="select2" data-hide-search="true"
                                     data-placeholder="Select an option" id="status" name="status">
                                     <option></option>
-                                    <option value="draft" {{ old('status') == 'draft' ? 'selected' : '' }}>Draft</option>
+                                    <option value="draft"
+                                        {{ old('status') ? (old('status') == 'draft' ? 'selected' : '') : 'selected' }}>
+                                        Draft</option>
                                     <option value="published" {{ old('status') == 'published' ? 'selected' : '' }}>
                                         Published</option>
                                     <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>Inactive
@@ -300,7 +302,9 @@
                                                 id="discount_percentage">
                                                 <label class="form-label">Set Discount Percentage</label>
                                                 <input type="number" min="1" max="100" class="form-control mb-2"
-                                                    id="percentage" placeholder="Discounted Percentage" {{ old('discount_option') == 2 ? 'name=discount' : '' }} value="{{ old('discount_option') == 2 ? old('discount') : '' }}" />
+                                                    id="percentage" placeholder="Discounted Percentage"
+                                                    {{ old('discount_option') == 2 ? 'name=discount' : '' }}
+                                                    value="{{ old('discount_option') == 2 ? old('discount') : '' }}" />
                                                 <div class="text-muted fs-7">Set a percentage discount be applied on this
                                                     product.</div>
                                                 @error('discount')
@@ -315,7 +319,9 @@
                                                 id="discounted_price">
                                                 <label class="form-label">Fixed Price</label>
                                                 <input type="number" id="fixed" class="form-control mb-2"
-                                                    placeholder="Discounted price" {{ old('discount_option') == 3 ? 'name=discount' : '' }} value="{{ old('discount_option') == 3 ? old('discount') : '' }}" />
+                                                    placeholder="Discounted price"
+                                                    {{ old('discount_option') == 3 ? 'name=discount' : '' }}
+                                                    value="{{ old('discount_option') == 3 ? old('discount') : '' }}" />
                                                 <div class="text-muted fs-7">Set the discounted product price. The product
                                                     will be reduced at the determined fixed price</div>
                                                 @error('discount')
@@ -329,7 +335,8 @@
                                             <div class="d-flex flex-wrap gap-5">
                                                 <div class="fv-row w-100 flex-md-root">
                                                     <label class="form-label">VAT (%)</label>
-                                                    <input type="number" min="1" max="100" class="form-control mb-2" value="" name="vat" />
+                                                    <input type="number" min="1" max="100" class="form-control mb-2"
+                                                        value="" name="vat" />
                                                     <div class="text-muted fs-7">Set the product VAT percentage.</div>
                                                 </div>
                                             </div>

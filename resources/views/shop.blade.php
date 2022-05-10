@@ -154,7 +154,7 @@
                                         <div class="product__item product__item-d">
                                             <div class="product__thumb fix">
                                                 <div class="product-image w-img">
-                                                    <a href="{{ route('product-detail', $value->slug) }}">
+                                                    <a href="{{ route('product.detail', $value->slug) }}">
                                                         <img src="{{ $value->image ? $value->image->getUrl() : asset('assets/admin/media/svg/files/blank-image.svg') }}" alt="product">
                                                     </a>
                                                 </div>
@@ -175,7 +175,7 @@
                                                 </div>
                                             </div>
                                             <div class="product__content-3">
-                                                <h6><a href="{{ route('product-detail', $value->slug) }}">{{ $value->title }}</a>
+                                                <h6><a href="{{ route('product.detail', $value->slug) }}">{{ $value->title }}</a>
                                                 </h6>
                                                 <div class="rating mb-5">
                                                     <ul>

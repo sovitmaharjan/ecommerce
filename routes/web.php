@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserProfileController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CustomerLoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
 use App\Models\User;
@@ -33,19 +34,42 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// customer login
+Route::get('/customer/login', [CustomerLoginController::class, 'index'])->name('customer.login');
+Route::post('/customer/post-login', [CustomerLoginController::class, 'login'])->name('customer.post.login');
+Route::post('/customer/post-register', [CustomerLoginController::class, 'login'])->name('customer.post.register');
+Route::get('/customer/logout', [CustomerLoginController::class, 'logout'])->name('customer.logout');    
+
+// customer dashboard
+Route::group([
+    'middleware' => ['auth', 'customerOnly']
+], function() {
+    Route::get('/customer/dashboard', function() {
+        return view('dashboard');
+    })->name('customer.dashboard');
+});
+
+// home
 Route::get('/', [HomeController::class, 'index']);
+
+// about
 Route::get('/about-us', function() {
     return view('about-us');
 })->name('about-us');
+
+// vendor page
 Route::get('/vendor', function() {
     $vendor = User::whereHas('roles', function ($query) {
         $query->where('name', 'vendor');
     })->get();
     return view('vendor',compact('vendor'));
 })->name('vendor');
-Route::get('/shop', [ShopController::class, 'index'])->name('shop');
-Route::get('/product-detail/{slug}', [ShopController::class, 'productDetail'])->name('product-detail');
 
+// shop
+Route::get('/shop', [ShopController::class, 'index'])->name('shop');
+Route::get('/product-detail/{slug}', [ShopController::class, 'productDetail'])->name('product.detail');
+
+// artisan command
 Route::get('/artisan-call', function () {
     Artisan::call('migrate');
 });

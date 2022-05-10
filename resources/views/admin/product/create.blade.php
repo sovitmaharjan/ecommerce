@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @section('content')
-    {{-- {{ dd(old()) }} --}}
+    {{-- {{ dd($errors) }} --}}
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
             <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
@@ -336,7 +336,7 @@
                                                 <div class="fv-row w-100 flex-md-root">
                                                     <label class="form-label">VAT (%)</label>
                                                     <input type="number" min="1" max="100" class="form-control mb-2"
-                                                        value="" name="vat" />
+                                                        value="{{ old('vat') }}" name="vat" />
                                                     <div class="text-muted fs-7">Set the product VAT percentage.</div>
                                                 </div>
                                             </div>
@@ -361,57 +361,6 @@
                                                                 @foreach (old('variation') as $key => $variation)
                                                                     <div data-repeater-item>
                                                                         <div class="form-group row mb-5">
-                                                                            <div class="col-md-2">
-                                                                                <label class="form-label">
-                                                                                    Select Attribute
-                                                                                    <i class="fas fa-exclamation-circle ms-1 fs-7"
-                                                                                        data-bs-toggle="tooltip" title=""
-                                                                                        data-bs-original-title="Set empty if product is single variant"
-                                                                                        aria-label="Set empty if product is single variant"></i>
-                                                                                </label>
-                                                                                <select class="form-select"
-                                                                                    name="attribute_id"
-                                                                                    data-kt-repeater="select2">
-                                                                                    <option value="">No Attribute</option>
-                                                                                    @foreach ($all_attribute as $value)
-                                                                                        <option value="{{ $value->id }}"
-                                                                                            {{ $variation['attribute_id'] == $value->id ? 'selected' : '' }}>
-                                                                                            {{ $value->title }}</option>
-                                                                                    @endforeach
-                                                                                </select>
-                                                                                @error('variation.' . $key .
-                                                                                    '.attribute_id')
-                                                                                    <div
-                                                                                        class="fv-plugins-message-container invalid-feedback">
-                                                                                        <div data-field="attribute_id"
-                                                                                            data-validator="notEmpty">
-                                                                                            {{ $message }}
-                                                                                        </div>
-                                                                                    </div>
-                                                                                @enderror
-                                                                            </div>
-                                                                            <div class="col-md-2">
-                                                                                <label class="form-label">
-                                                                                    Attribute Value
-                                                                                    <i class="fas fa-exclamation-circle ms-1 fs-7"
-                                                                                        data-bs-toggle="tooltip" title=""
-                                                                                        data-bs-original-title="Set empty if product is single variant"
-                                                                                        aria-label="Set empty if product is single variant"></i>
-                                                                                </label>
-                                                                                <input type="text" class="form-control"
-                                                                                    name="attribute_value"
-                                                                                    value="{{ $variation['attribute_value'] }}" />
-                                                                                @error('variation.' . $key .
-                                                                                    '.attribute_value')
-                                                                                    <div
-                                                                                        class="fv-plugins-message-container invalid-feedback">
-                                                                                        <div data-field="attribute_id"
-                                                                                            data-validator="notEmpty">
-                                                                                            {{ $message }}
-                                                                                        </div>
-                                                                                    </div>
-                                                                                @enderror
-                                                                            </div>
                                                                             <div class="col-md-3">
                                                                                 <label
                                                                                     class="form-label required">SKU</label>
@@ -432,9 +381,9 @@
                                                                                 <label
                                                                                     class="form-label required">Price</label>
                                                                                 <input type="number" class="form-control"
-                                                                                    name="price"
-                                                                                    value="{{ $variation['price'] }}" />
-                                                                                @error('variation.' . $key . '.price')
+                                                                                    name="sku_price"
+                                                                                    value="{{ $variation['sku_price'] }}" />
+                                                                                @error('variation.' . $key . '.sku_price')
                                                                                     <div
                                                                                         class="fv-plugins-message-container invalid-feedback">
                                                                                         <div data-field="attribute_id"
@@ -460,11 +409,106 @@
                                                                                     </div>
                                                                                 @enderror
                                                                             </div>
-                                                                            <div class="col-md-1">
-                                                                                <a href="javascript:void(0);"
-                                                                                    data-repeater-delete
+                                                                            <div class="col-md-5">
+                                                                                <div class="inner-repeater">
+                                                                                    <div data-repeater-list="attribute"
+                                                                                        class="mb-5">
+                                                                                        @foreach ($variation['attribute'] as $key2 => $attribute)
+                                                                                            <div data-repeater-item>
+                                                                                                <div
+                                                                                                    class="form-group row mb-5">
+                                                                                                    <div
+                                                                                                        class="col-md-5">
+                                                                                                        <label
+                                                                                                            class="form-label">
+                                                                                                            Select Attribute
+                                                                                                            <i class="fas fa-exclamation-circle ms-1 fs-7"
+                                                                                                                data-bs-toggle="tooltip"
+                                                                                                                title=""
+                                                                                                                data-bs-original-title="Set empty if product is single variant"
+                                                                                                                aria-label="Set empty if product is single variant"></i>
+                                                                                                        </label>
+                                                                                                        <select
+                                                                                                            class="form-select"
+                                                                                                            name="attribute_id"
+                                                                                                            repeater="select2">
+                                                                                                            <option
+                                                                                                                value="">No
+                                                                                                                Attribute
+                                                                                                            </option>
+                                                                                                            @foreach ($all_attribute as $value)
+                                                                                                                <option
+                                                                                                                    value="{{ $value->id }}"
+                                                                                                                    {{ $attribute['attribute_id'] == $value->id ? 'selected' : '' }}>
+                                                                                                                    {{ $value->title }}
+                                                                                                                </option>
+                                                                                                            @endforeach
+                                                                                                        </select>
+                                                                                                        @error('variation.' . $key . '.attribute.' . $key2 . '.attribute_id')
+                                                                                                            <div
+                                                                                                                class="fv-plugins-message-container invalid-feedback">
+                                                                                                                <div data-field="attribute_id"
+                                                                                                                    data-validator="notEmpty">
+                                                                                                                    {{ $message }}
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        @enderror
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                        class="col-md-5">
+                                                                                                        <label
+                                                                                                            class="form-label">
+                                                                                                            Attribute Value
+                                                                                                            <i class="fas fa-exclamation-circle ms-1 fs-7"
+                                                                                                                data-bs-toggle="tooltip"
+                                                                                                                title=""
+                                                                                                                data-bs-original-title="Set empty if product is single variant"
+                                                                                                                aria-label="Set empty if product is single variant"></i>
+                                                                                                        </label>
+                                                                                                        <input type="text"
+                                                                                                            class="form-control"
+                                                                                                            name="attribute_value"
+                                                                                                            value="{{ $attribute['attribute_value'] }}" />
+                                                                                                        @error('variation.' . $key . '.attribute.' . $key2 . '.attribute_value')
+                                                                                                            <div
+                                                                                                                class="fv-plugins-message-container invalid-feedback">
+                                                                                                                <div data-field="attribute_id"
+                                                                                                                    data-validator="notEmpty">
+                                                                                                                    {{ $message }}
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        @enderror
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                        class="col-md-2">
+                                                                                                        <label
+                                                                                                            class="form-label">&nbsp;</label>
+                                                                                                        <button
+                                                                                                            class="border border-secondary btn btn-icon btn-light-danger"
+                                                                                                            data-repeater-delete
+                                                                                                            type="button">
+                                                                                                            <i
+                                                                                                                class="la la-trash-o fs-3"></i>
+                                                                                                        </button>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        @endforeach
+                                                                                    </div>
+                                                                                    <button
+                                                                                        class="btn btn-sm btn-light-primary"
+                                                                                        data-repeater-create type="button">
+                                                                                        <i class="la la-plus"></i> Add
+                                                                                        Number
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-4">
+                                                                                <a href="javascript:;" data-repeater-delete
                                                                                     class="btn btn-sm btn-light-danger mt-3 mt-md-9">
-                                                                                    <i class="la la-trash-o fs-3"></i>
+                                                                                    <i
+                                                                                        class="la la-trash-o fs-3"></i>Delete
+                                                                                    Row
                                                                                 </a>
                                                                             </div>
                                                                         </div>
@@ -473,66 +517,94 @@
                                                             @else
                                                                 <div data-repeater-item>
                                                                     <div class="form-group row mb-5">
-                                                                        <div class="col-md-2">
-                                                                            <label class="form-label">
-                                                                                Select Attribute
-                                                                                <i class="fas fa-exclamation-circle ms-1 fs-7"
-                                                                                    data-bs-toggle="tooltip" title=""
-                                                                                    data-bs-original-title="Set empty if product is single variant"
-                                                                                    aria-label="Set empty if product is single variant"></i>
-                                                                            </label>
-                                                                            <select class="form-select"
-                                                                                name="attribute_id"
-                                                                                data-kt-repeater="select2">
-                                                                                <option value="">No Attribute</option>
-                                                                                @foreach ($all_attribute as $value)
-                                                                                    <option value="{{ $value->id }}">
-                                                                                        {{ $value->title }}</option>
-                                                                                @endforeach
-                                                                            </select>
-                                                                        </div>
-                                                                        <div class="col-md-2">
-                                                                            <label class="form-label">
-                                                                                Attribute Value
-                                                                                <i class="fas fa-exclamation-circle ms-1 fs-7"
-                                                                                    data-bs-toggle="tooltip" title=""
-                                                                                    data-bs-original-title="Set empty if product is single variant"
-                                                                                    aria-label="Set empty if product is single variant"></i>
-                                                                            </label>
-                                                                            <input type="text" class="form-control"
-                                                                                name="attribute_value" />
-                                                                        </div>
                                                                         <div class="col-md-3">
                                                                             <label class="form-label required">SKU</label>
                                                                             <input type="text" class="form-control"
                                                                                 name="sku" />
-                                                                            @error('sku')
-                                                                                <div
-                                                                                    class="fv-plugins-message-container invalid-feedback">
-                                                                                    <div data-field="sku"
-                                                                                        data-validator="notEmpty">
-                                                                                        {{ $message }}
-                                                                                    </div>
-                                                                                </div>
-                                                                            @enderror
                                                                         </div>
                                                                         <div class="col-md-2">
                                                                             <label
                                                                                 class="form-label required">Price</label>
                                                                             <input type="number" class="form-control"
-                                                                                name="price" />
+                                                                                name="sku_price" />
                                                                         </div>
                                                                         <div class="col-md-2">
                                                                             <label
                                                                                 class="form-label required">Quantity</label>
                                                                             <input type="number" class="form-control"
-                                                                                name="quantity" value="0" />
+                                                                                name="quantity" />
                                                                         </div>
-                                                                        <div class="col-md-1">
-                                                                            <a href="javascript:void(0);"
-                                                                                data-repeater-delete
+                                                                        <div class="col-md-5">
+                                                                            <div class="inner-repeater">
+                                                                                <div data-repeater-list="attribute"
+                                                                                    class="mb-5">
+                                                                                    <div data-repeater-item>
+                                                                                        <div class="form-group row mb-5">
+                                                                                            <div class="col-md-5">
+                                                                                                <label
+                                                                                                    class="form-label">
+                                                                                                    Select Attribute
+                                                                                                    <i class="fas fa-exclamation-circle ms-1 fs-7"
+                                                                                                        data-bs-toggle="tooltip"
+                                                                                                        title=""
+                                                                                                        data-bs-original-title="Set empty if product is single variant"
+                                                                                                        aria-label="Set empty if product is single variant"></i>
+                                                                                                </label>
+                                                                                                <select
+                                                                                                    class="form-select"
+                                                                                                    name="attribute_id"
+                                                                                                    repeater="select2">
+                                                                                                    <option value="">No
+                                                                                                        Attribute</option>
+                                                                                                    @foreach ($all_attribute as $value)
+                                                                                                        <option
+                                                                                                            value="{{ $value->id }}">
+                                                                                                            {{ $value->title }}
+                                                                                                        </option>
+                                                                                                    @endforeach
+                                                                                                </select>
+                                                                                            </div>
+                                                                                            <div class="col-md-5">
+                                                                                                <label
+                                                                                                    class="form-label">
+                                                                                                    Attribute Value
+                                                                                                    <i class="fas fa-exclamation-circle ms-1 fs-7"
+                                                                                                        data-bs-toggle="tooltip"
+                                                                                                        title=""
+                                                                                                        data-bs-original-title="Set empty if product is single variant"
+                                                                                                        aria-label="Set empty if product is single variant"></i>
+                                                                                                </label>
+                                                                                                <input type="text"
+                                                                                                    class="form-control"
+                                                                                                    name="attribute_value" />
+                                                                                            </div>
+                                                                                            <div class="col-md-2">
+                                                                                                <label
+                                                                                                    class="form-label">&nbsp;</label>
+                                                                                                <button
+                                                                                                    class="border border-secondary btn btn-icon btn-light-danger"
+                                                                                                    data-repeater-delete
+                                                                                                    type="button">
+                                                                                                    <i
+                                                                                                        class="la la-trash-o fs-3"></i>
+                                                                                                </button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <button
+                                                                                    class="btn btn-sm btn-light-primary"
+                                                                                    data-repeater-create type="button">
+                                                                                    <i class="la la-plus"></i> Add
+                                                                                    Number
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <a href="javascript:;" data-repeater-delete
                                                                                 class="btn btn-sm btn-light-danger mt-3 mt-md-9">
-                                                                                <i class="la la-trash-o fs-3"></i>
+                                                                                <i class="la la-trash-o fs-3"></i>Delete
+                                                                                Row
                                                                             </a>
                                                                         </div>
                                                                     </div>
@@ -540,11 +612,10 @@
                                                             @endif
                                                         </div>
                                                     </div>
-
                                                     <div class="form-group">
                                                         <a href="javascript:;" data-repeater-create
                                                             class="btn btn-light-primary">
-                                                            <i class="la la-plus"></i>Add
+                                                            <i class="la la-plus"></i>Add Row
                                                         </a>
                                                     </div>
                                                 </div>
@@ -610,30 +681,33 @@
     <script src="{{ asset('assets/admin/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
     <script>
         $('#variation').repeater({
-            initEmpty: false,
+            repeaters: [{
+                selector: '.inner-repeater',
+                show: function() {
+                    $(this).slideDown();
+                    $(this).find('[repeater="select2"]').select2({
+                        minimumResultsForSearch: -1
+                    });
+                },
 
-            defaultValues: {
-                'text-input': 'foo'
-            },
+                hide: function(deleteElement) {
+                    $(this).slideUp(deleteElement);
+                },
+
+                ready: function() {
+                    // Init select2
+                    $('[repeater="select2"]').select2({
+                        minimumResultsForSearch: -1
+                    });
+                }
+            }],
 
             show: function() {
                 $(this).slideDown();
-
-                // Re-init select2
-                $(this).find('[data-kt-repeater="select2"]').select2({
-                    minimumResultsForSearch: -1
-                });
             },
 
             hide: function(deleteElement) {
                 $(this).slideUp(deleteElement);
-            },
-
-            ready: function() {
-                // Init select2
-                $('[data-kt-repeater="select2"]').select2({
-                    minimumResultsForSearch: -1
-                });
             }
         });
     </script>

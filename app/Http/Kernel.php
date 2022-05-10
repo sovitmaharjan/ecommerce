@@ -70,6 +70,9 @@ class Kernel extends HttpKernel
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
+        'adminOnly' => \App\Http\Middleware\AdminOnly::class,
+        'vendorOnly' => \App\Http\Middleware\VendorOnly::class,
+        'customerOnly' => \App\Http\Middleware\CustomerOnly::class,
 
     ];
 }

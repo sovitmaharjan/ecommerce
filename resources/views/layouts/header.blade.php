@@ -169,7 +169,7 @@
                     <div class="col-xl-4 col-lg-5 col-md-8 col-sm-8">
                         <div class="header-action">
                             <div class="block-userlink">
-                                <a class="icon-link" href="my-account.html">
+                                <a class="icon-link" href="{{ route('customer.login') }}">
                                     <i class="flaticon-user"></i>
                                     <span class="text">
                                         <span class="sub">Login </span>

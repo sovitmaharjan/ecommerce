@@ -16,6 +16,7 @@ class CategoryRequest extends FormRequest
         return [
             'title' => 'required',
             'image' => $this->method() == 'POST' ? 'required|mimes:jpg,jpeg,png|max:4096' : 'nullable|mimes:jpg,jpeg,png|max:4096',
+            'attribute' => 'required'
         ];
     }
 
@@ -24,6 +25,7 @@ class CategoryRequest extends FormRequest
         return [
             'title.required' => 'Category name is required.',
             'image.required' => 'Image is required.',
+            'attribute.required' => 'Attribute is required.'
         ];
     }
 }

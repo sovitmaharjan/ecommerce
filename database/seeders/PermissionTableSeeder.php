@@ -14,69 +14,69 @@ class PermissionTableSeeder extends Seeder
      */
     public function run()
     {
-        $permissions = [
-            'role-list',
-            'role-create',
-            'role-edit',
-            'role-delete',
+        // $permissions = [
+        //     'role-list',
+        //     'role-create',
+        //     'role-edit',
+        //     'role-delete',
 
-            'user-list',
-            'user-create',
-            'user-edit',
-            'user-delete',
-            'user-login-as',
+        //     'user-list',
+        //     'user-create',
+        //     'user-edit',
+        //     'user-delete',
+        //     'user-login-as',
             
-            'account-request-list',
-            'account-request-create',
-            'account-request-edit',
-            'account-request-delete',
+        //     'account-request-list',
+        //     'account-request-create',
+        //     'account-request-edit',
+        //     'account-request-delete',
 
-            'category-list',
-            'category-create',
-            'category-edit',
-            'category-delete',
+        //     'category-list',
+        //     'category-create',
+        //     'category-edit',
+        //     'category-delete',
 
-            'attribute-list',
-            'attribute-create',
-            'attribute-edit',
-            'attribute-delete',
+        //     'attribute-list',
+        //     'attribute-create',
+        //     'attribute-edit',
+        //     'attribute-delete',
 
-            'brand-list',
-            'brand-create',
-            'brand-edit',
-            'brand-delete',
+        //     'brand-list',
+        //     'brand-create',
+        //     'brand-edit',
+        //     'brand-delete',
 
-            'product-list',
-            'product-create',
-            'product-edit',
-            'product-delete',
+        //     'product-list',
+        //     'product-create',
+        //     'product-edit',
+        //     'product-delete',
             
-            'order-list',
-            'order-create',
-            'order-edit',
-            'order-delete',
+        //     'order-list',
+        //     'order-create',
+        //     'order-edit',
+        //     'order-delete',
 
-            'profile-list',
-            'profile-edit',
+        //     'profile-list',
+        //     'profile-edit',
 
-            'banner-list',
-            'banner-create',
-            'banner-edit',
-            'banner-delete',
+        //     'banner-list',
+        //     'banner-create',
+        //     'banner-edit',
+        //     'banner-delete',
 
-            'general-setting-list',
-            'general-setting-create',
-            'general-setting-edit',
-            'general-setting-delete',
+        //     'general-setting-list',
+        //     'general-setting-create',
+        //     'general-setting-edit',
+        //     'general-setting-delete',
 
-            'payment-list',
-            'payment-create',
-            'payment-edit',
-            'payment-delete',
-        ];
+        //     'payment-list',
+        //     'payment-create',
+        //     'payment-edit',
+        //     'payment-delete',
+        // ];
 
-        foreach ($permissions as $permission) {
-            Permission::create(['name' => $permission]);
-        }
+        // foreach ($permissions as $permission) {
+        //     Permission::create(['name' => $permission]);
+        // }
     }
 }

@@ -16,6 +16,7 @@ class ProductController extends Controller
 
     public function __construct(ProductInterface $product_interface, CategoryInterface $category_interface, AttributeInterface $attribute_interface)
     {
+        $this->middleware('role:admin|vendor');
         $this->product_interface = $product_interface;
         $this->category_interface = $category_interface;
         $this->attribute_interface = $attribute_interface;

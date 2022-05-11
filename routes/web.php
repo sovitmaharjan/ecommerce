@@ -34,6 +34,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/test', function() {
+    return view('test');
+})->name('test');
+
 // customer login
 Route::get('/customer/login', [CustomerLoginController::class, 'index'])->name('customer.login');
 Route::post('/customer/post-login', [CustomerLoginController::class, 'login'])->name('customer.post.login');

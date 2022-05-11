@@ -64,7 +64,7 @@
                                         class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
                                         data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change image">
                                         <i class="bi bi-pencil-fill fs-7"></i>
-                                        <input type="file" name="image" accept=".png, .jpg, .jpeg" required />
+                                        <input type="file" name="image" accept=".png, .jpg, .jpeg" />
                                     </label>
                                     <span
                                         class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
@@ -100,7 +100,7 @@
                             <div class="card-body pt-0">
                                 <select class="form-select mb-2" data-control="select2" name="status"
                                     data-hide-search="true" data-placeholder="Select an option"
-                                    id="kt_ecommerce_add_category_status_select" required>
+                                    id="kt_ecommerce_add_category_status_select" >
                                     <option></option>
                                     <option value="1" selected="selected">Active</option>
                                     <option value="0">Inactive</option>
@@ -121,7 +121,7 @@
                             </div>
                             <div class="card-body pt-0">
                                 <select class="form-select mb-2" data-control="select2" name="parent_id"
-                                    data-hide-search="true" data-placeholder="Select an option" id="parent_id" required>
+                                    data-hide-search="true" data-placeholder="Select an option" id="parent_id" >
                                     <option value="0" selected>Main</option>
                                     @foreach ($all_category as $category)
                                         <option value="{{ $category->id }}"
@@ -200,7 +200,7 @@
                                 </div>
                                 <div class="mb-10 fv-row">
                                     <label class="form-label d-block">Attribute</label>
-                                    <select class="form-select mb-2" data-control="select2" data-placeholder="Select an option" data-allow-clear="true" multiple="multiple" name="attribute[]" id="attribute" required>
+                                    <select class="form-select mb-2" data-control="select2" data-placeholder="Select an option" data-allow-clear="true" multiple="multiple" name="attribute[]" id="attribute" >
                                         @foreach ($attribute as $value)
                                             <option value="{{ $value->id }}">{{ $value->title }}</option>
                                         @endforeach

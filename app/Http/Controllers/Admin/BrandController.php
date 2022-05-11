@@ -14,6 +14,7 @@ class BrandController extends Controller
 
     public function __construct(BrandInterface $brand_interface)
     {
+        $this->middleware('role:admin|vendor');
         $this->brand_interface = $brand_interface;
     }
 

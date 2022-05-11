@@ -14,11 +14,7 @@ class AccountRequestController extends Controller
 
     public function __construct(AccountRequestInterface $account_request_interface)
     {
-        $this->middleware('permission:account-request-list|account-request-create|account-request-edit|account-request-delete', ['only' => ['index', 'show']]);
-        // $this->middleware('permission:account-request-create', ['only' => ['create','store']]);
-        $this->middleware('permission:account-request-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:account-request-delete', ['only' => ['destroy']]);
-
+        $this->middleware('role:admin');
         $this->account_request_interface = $account_request_interface;
     }
 

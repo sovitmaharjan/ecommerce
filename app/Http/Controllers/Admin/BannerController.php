@@ -14,10 +14,7 @@ class BannerController extends Controller
 
     public function __construct(BannerInterface $banner_interface)
     {
-        $this->middleware('permission:banner-list|banner-create|banner-edit|banner-delete', ['only' => ['index', 'show']]);
-        $this->middleware('permission:banner-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:banner-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:banner-delete', ['only' => ['destroy']]);
+        $this->middleware('role:admin');
         $this->banner_interface = $banner_interface;
     }
 

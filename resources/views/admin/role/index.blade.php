@@ -23,27 +23,23 @@
                     </ul>
                 </div>
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    @can('role-list')
-                        <div class="m-0">
-                            <a href="{{ route('role.index') }}"
-                                class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
-                                <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                        <path
-                                            d="M21 7H3C2.4 7 2 6.6 2 6V4C2 3.4 2.4 3 3 3H21C21.6 3 22 3.4 22 4V6C22 6.6 21.6 7 21 7Z"
-                                            fill="black"></path>
-                                        <path opacity="0.3"
-                                            d="M21 14H3C2.4 14 2 13.6 2 13V11C2 10.4 2.4 10 3 10H21C21.6 10 22 10.4 22 11V13C22 13.6 21.6 14 21 14ZM22 20V18C22 17.4 21.6 17 21 17H3C2.4 17 2 17.4 2 18V20C2 20.6 2.4 21 3 21H21C21.6 21 22 20.6 22 20Z"
-                                            fill="black"></path>
-                                    </svg>
-                                </span>
-                                List
-                            </a>
-                        </div>
-                    @endcan
-                    @can('role-create')
-                        <a href="{{ route('role.create') }}" class="btn btn-sm btn-primary">Create</a>
-                    @endcan
+                    <div class="m-0">
+                        <a href="{{ route('role.index') }}"
+                            class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder">
+                            <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path
+                                        d="M21 7H3C2.4 7 2 6.6 2 6V4C2 3.4 2.4 3 3 3H21C21.6 3 22 3.4 22 4V6C22 6.6 21.6 7 21 7Z"
+                                        fill="black"></path>
+                                    <path opacity="0.3"
+                                        d="M21 14H3C2.4 14 2 13.6 2 13V11C2 10.4 2.4 10 3 10H21C21.6 10 22 10.4 22 11V13C22 13.6 21.6 14 21 14ZM22 20V18C22 17.4 21.6 17 21 17H3C2.4 17 2 17.4 2 18V20C2 20.6 2.4 21 3 21H21C21.6 21 22 20.6 22 20Z"
+                                        fill="black"></path>
+                                </svg>
+                            </span>
+                            List
+                        </a>
+                    </div>
+                    <a href="{{ route('role.create') }}" class="btn btn-sm btn-primary">Create</a>
                 </div>
             </div>
         </div>
@@ -56,22 +52,20 @@
                             {{-- <span class="text-muted mt-1 fw-bold fs-7">Over {{ count($role) }}
                                 attribute{{ count($role) > 1 ? 's' : '' }}</span> --}}
                         </h3>
-                        @can('role-create')
-                            <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover"
-                                title="">
-                                <a href="{{ route('role.create') }}" class="btn btn-primary">
-                                    <span class="svg-icon svg-icon-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                            fill="none">
-                                            <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1"
-                                                transform="rotate(-90 11.364 20.364)" fill="black"></rect>
-                                            <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="black"></rect>
-                                        </svg>
-                                    </span>
-                                    Add New
-                                </a>
-                            </div>
-                        @endcan
+                        <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover"
+                            title="">
+                            <a href="{{ route('role.create') }}" class="btn btn-primary">
+                                <span class="svg-icon svg-icon-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none">
+                                        <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1"
+                                            transform="rotate(-90 11.364 20.364)" fill="black"></rect>
+                                        <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="black"></rect>
+                                    </svg>
+                                </span>
+                                Add New
+                            </a>
+                        </div>
                     </div>
                     <div class="card-body pt-0">
                         <div id="kt_customers_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -105,31 +99,25 @@
                                                             </svg>
                                                         </span>
                                                     </a>
-                                                    @can(['role-edit', 'role-delete'])
-                                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
-                                                            data-kt-menu="true">
-                                                            @can('role-edit')
-                                                                <div class="menu-item px-3">
-                                                                    <a href="{{ route('role.edit', $value->id) }}"
-                                                                        class="menu-link px-3">Edit</a>
-                                                                </div>
-                                                            @endcan
-                                                            @can('role-delete')
-                                                                <div class="menu-item px-3">
-                                                                    <form id="form{{ $value->id }}"
-                                                                        action="{{ route('role.destroy', $value->id) }}"
-                                                                        method="POST">
-                                                                        @csrf
-                                                                        @method('delete')
-                                                                    </form>
-                                                                    <a href="javascript:void(0)" class="menu-link px-3 delete"
-                                                                        data-kt-customer-table-filter="delete_row"
-                                                                        data-id="{{ $value->id }}"
-                                                                        data-name="{{ $value->title }}">Delete</a>
-                                                                </div>
-                                                            @endcan
+                                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
+                                                        data-kt-menu="true">
+                                                        <div class="menu-item px-3">
+                                                            <a href="{{ route('role.edit', $value->id) }}"
+                                                                class="menu-link px-3">Edit</a>
                                                         </div>
-                                                    @endcan
+                                                        <div class="menu-item px-3">
+                                                            <form id="form{{ $value->id }}"
+                                                                action="{{ route('role.destroy', $value->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('delete')
+                                                            </form>
+                                                            <a href="javascript:void(0)" class="menu-link px-3 delete"
+                                                                data-kt-customer-table-filter="delete_row"
+                                                                data-id="{{ $value->id }}"
+                                                                data-name="{{ $value->title }}">Delete</a>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach

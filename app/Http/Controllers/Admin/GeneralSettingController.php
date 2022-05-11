@@ -14,10 +14,7 @@ class GeneralSettingController extends Controller
 
     public function __construct(GeneralSettingInterface $general_setting_interface)
     {
-        $this->middleware('permission:general-setting-list|general-setting-create|general-setting-edit|general-setting-delete', ['only' => ['index', 'show']]);
-        $this->middleware('permission:general-setting-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:general-setting-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:general-setting-delete', ['only' => ['destroy']]);
+        $this->middleware('role:admin');
         $this->general_setting_interface = $general_setting_interface;
     }
 

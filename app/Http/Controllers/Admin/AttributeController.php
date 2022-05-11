@@ -14,6 +14,7 @@ class AttributeController extends Controller
 
     public function __construct(AttributeInterface $attribute_interface)
     {
+        $this->middleware('role:admin|vendor');
         $this->attribute_interface = $attribute_interface;
     }
 

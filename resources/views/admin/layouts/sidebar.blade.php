@@ -50,9 +50,9 @@
                         <span class="menu-section text-muted text-uppercase fs-8 ls-1">Navigation</span>
                     </div>
                 </div>
-                @canany(['role-list', 'user-list', 'account-request-list'])
+                @role('admin')
                     <div data-kt-menu-trigger="click"
-                        class="menu-item   {{ request()->is('admin/role*') ||request()->is('admin/user*') ||request()->is('admin/customer*') ||request()->is('admin/account-request*')? 'here show': '' }} menu-accordion">
+                        class="menu-item   {{ request()->is('admin/role*') || request()->is('admin/user*') || request()->is('admin/customer*') || request()->is('admin/account-request*') ? 'here show' : '' }} menu-accordion">
                         <span class="menu-link">
                             <span class="menu-icon">
                                 <span class="svg-icon svg-icon-2">
@@ -71,19 +71,7 @@
                             <span class="menu-arrow"></span>
                         </span>
                         <div class="menu-sub menu-sub-accordion">
-                            @can('role-list')
-                                <div class="menu-item">
-                                    <a class="menu-link {{ request()->is('admin/role*') ? 'active' : '' }}"
-                                        href="{{ route('role.index') }}" data-bs-toggle="tooltip" data-bs-trigger="hover"
-                                        data-bs-dismiss="click" data-bs-placement="right">
-                                        <span class="menu-bullet">
-                                            <span class="bullet bullet-dot"></span>
-                                        </span>
-                                        <span class="menu-title">Role</span>
-                                    </a>
-                                </div>
-                            @endcan
-                            @can('user-list')
+                            @role('admin')
                                 <div class="menu-item">
                                     <a class="menu-link {{ request()->is('admin/user*') ? 'active' : '' }}"
                                         href="{{ route('user.index') }}" data-bs-toggle="tooltip" data-bs-trigger="hover"
@@ -94,8 +82,8 @@
                                         <span class="menu-title">Vendor</span>
                                     </a>
                                 </div>
-                            @endcan
-                            @can('user-list')
+                            @endrole
+                            @role('admin')
                                 <div class="menu-item">
                                     <a class="menu-link {{ request()->is('admin/customer*') ? 'active' : '' }}"
                                         href="{{ route('customer.index') }}" data-bs-toggle="tooltip" data-bs-trigger="hover"
@@ -106,8 +94,8 @@
                                         <span class="menu-title">Customer</span>
                                     </a>
                                 </div>
-                            @endcan
-                            @can('account-request-list')
+                            @endrole
+                            @role('admin')
                                 <div class="menu-item">
                                     <a class="menu-link {{ request()->is('admin/account-request*') ? 'active' : '' }}"
                                         href="{{ route('account-request.index') }}" data-bs-toggle="tooltip"
@@ -118,79 +106,81 @@
                                         <span class="menu-title">Account Request</span>
                                     </a>
                                 </div>
-                            @endcan
+                            @endrole
                         </div>
                     </div>
-                @endcanany
-                <div data-kt-menu-trigger="click"
-                    class="menu-item   {{ request()->is('admin/category*') ||request()->is('admin/attribute*') ||request()->is('admin/brand*') ||request()->is('admin/product*')? 'here show': '' }} menu-accordion">
-                    <span class="menu-link">
-                        <span class="menu-icon">
-                            <span class="svg-icon svg-icon-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none">
-                                    <path opacity="0.3"
-                                        d="M18.041 22.041C18.5932 22.041 19.041 21.5932 19.041 21.041C19.041 20.4887 18.5932 20.041 18.041 20.041C17.4887 20.041 17.041 20.4887 17.041 21.041C17.041 21.5932 17.4887 22.041 18.041 22.041Z"
-                                        fill="black" />
-                                    <path opacity="0.3"
-                                        d="M6.04095 22.041C6.59324 22.041 7.04095 21.5932 7.04095 21.041C7.04095 20.4887 6.59324 20.041 6.04095 20.041C5.48867 20.041 5.04095 20.4887 5.04095 21.041C5.04095 21.5932 5.48867 22.041 6.04095 22.041Z"
-                                        fill="black" />
-                                    <path opacity="0.3"
-                                        d="M7.04095 16.041L19.1409 15.1409C19.7409 15.1409 20.141 14.7409 20.341 14.1409L21.7409 8.34094C21.9409 7.64094 21.4409 7.04095 20.7409 7.04095H5.44095L7.04095 16.041Z"
-                                        fill="black" />
-                                    <path
-                                        d="M19.041 20.041H5.04096C4.74096 20.041 4.34095 19.841 4.14095 19.541C3.94095 19.241 3.94095 18.841 4.14095 18.541L6.04096 14.841L4.14095 4.64095L2.54096 3.84096C2.04096 3.64096 1.84095 3.04097 2.14095 2.54097C2.34095 2.04097 2.94096 1.84095 3.44096 2.14095L5.44096 3.14095C5.74096 3.24095 5.94096 3.54096 5.94096 3.84096L7.94096 14.841C7.94096 15.041 7.94095 15.241 7.84095 15.441L6.54096 18.041H19.041C19.641 18.041 20.041 18.441 20.041 19.041C20.041 19.641 19.641 20.041 19.041 20.041Z"
-                                        fill="black" />
-                                </svg>
+                @endrole
+                @hasanyrole('admin|vendor')
+                    <div data-kt-menu-trigger="click"
+                        class="menu-item   {{ request()->is('admin/category*') || request()->is('admin/attribute*') || request()->is('admin/brand*') || request()->is('admin/product*') ? 'here show' : '' }} menu-accordion">
+                        <span class="menu-link">
+                            <span class="menu-icon">
+                                <span class="svg-icon svg-icon-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none">
+                                        <path opacity="0.3"
+                                            d="M18.041 22.041C18.5932 22.041 19.041 21.5932 19.041 21.041C19.041 20.4887 18.5932 20.041 18.041 20.041C17.4887 20.041 17.041 20.4887 17.041 21.041C17.041 21.5932 17.4887 22.041 18.041 22.041Z"
+                                            fill="black" />
+                                        <path opacity="0.3"
+                                            d="M6.04095 22.041C6.59324 22.041 7.04095 21.5932 7.04095 21.041C7.04095 20.4887 6.59324 20.041 6.04095 20.041C5.48867 20.041 5.04095 20.4887 5.04095 21.041C5.04095 21.5932 5.48867 22.041 6.04095 22.041Z"
+                                            fill="black" />
+                                        <path opacity="0.3"
+                                            d="M7.04095 16.041L19.1409 15.1409C19.7409 15.1409 20.141 14.7409 20.341 14.1409L21.7409 8.34094C21.9409 7.64094 21.4409 7.04095 20.7409 7.04095H5.44095L7.04095 16.041Z"
+                                            fill="black" />
+                                        <path
+                                            d="M19.041 20.041H5.04096C4.74096 20.041 4.34095 19.841 4.14095 19.541C3.94095 19.241 3.94095 18.841 4.14095 18.541L6.04096 14.841L4.14095 4.64095L2.54096 3.84096C2.04096 3.64096 1.84095 3.04097 2.14095 2.54097C2.34095 2.04097 2.94096 1.84095 3.44096 2.14095L5.44096 3.14095C5.74096 3.24095 5.94096 3.54096 5.94096 3.84096L7.94096 14.841C7.94096 15.041 7.94095 15.241 7.84095 15.441L6.54096 18.041H19.041C19.641 18.041 20.041 18.441 20.041 19.041C20.041 19.641 19.641 20.041 19.041 20.041Z"
+                                            fill="black" />
+                                    </svg>
+                                </span>
                             </span>
+                            <span class="menu-title">Catalog</span>
+                            <span class="menu-arrow"></span>
                         </span>
-                        <span class="menu-title">Catalog</span>
-                        <span class="menu-arrow"></span>
-                    </span>
-                    <div class="menu-sub menu-sub-accordion">
-                        <div class="menu-item">
-                            <a class="menu-link {{ request()->is('admin/category*') ? 'active' : '' }}"
-                                href="{{ route('category.index') }}" data-bs-toggle="tooltip" data-bs-trigger="hover"
-                                data-bs-dismiss="click" data-bs-placement="right">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Category</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link {{ request()->is('admin/attribute*') ? 'active' : '' }}"
-                                href="{{ route('attribute.index') }}" data-bs-toggle="tooltip"
-                                data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Attribute</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link {{ request()->is('admin/brand*') ? 'active' : '' }}"
-                                href="{{ route('brand.index') }}" data-bs-toggle="tooltip" data-bs-trigger="hover"
-                                data-bs-dismiss="click" data-bs-placement="right">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Brand</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link {{ request()->is('admin/product*') ? 'active' : '' }}"
-                                href="{{ route('product.index') }}" data-bs-toggle="tooltip" data-bs-trigger="hover"
-                                data-bs-dismiss="click" data-bs-placement="right">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Product</span>
-                            </a>
+                        <div class="menu-sub menu-sub-accordion">
+                            <div class="menu-item">
+                                <a class="menu-link {{ request()->is('admin/category*') ? 'active' : '' }}"
+                                    href="{{ route('category.index') }}" data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                    data-bs-dismiss="click" data-bs-placement="right">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Category</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a class="menu-link {{ request()->is('admin/attribute*') ? 'active' : '' }}"
+                                    href="{{ route('attribute.index') }}" data-bs-toggle="tooltip"
+                                    data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Attribute</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a class="menu-link {{ request()->is('admin/brand*') ? 'active' : '' }}"
+                                    href="{{ route('brand.index') }}" data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                    data-bs-dismiss="click" data-bs-placement="right">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Brand</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a class="menu-link {{ request()->is('admin/product*') ? 'active' : '' }}"
+                                    href="{{ route('product.index') }}" data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                    data-bs-dismiss="click" data-bs-placement="right">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Product</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                @canany(['order-list'])
+                @endhasanyrole
+                @hasanyrole('admin|vendor')
                     <div class="menu-item">
                         <a class="menu-link {{ request()->is('admin/order*') ? 'active' : '' }}"
                             href="{{ route('order.index') }}">
@@ -208,10 +198,10 @@
                             <span class="menu-title">Order</span>
                         </a>
                     </div>
-                @endcanany
-                @canany(['profile-list', 'banner-list', 'general-setting-list', 'payment-list'])
+                @endhasanyrole
+                @hasanyrole('admin|vendor')
                     <div data-kt-menu-trigger="click"
-                        class="menu-item   {{ request()->is('admin/user-profile*') ||request()->is('admin/banner*') ||request()->is('admin/general-setting*') ||request()->is('admin/payment*')? 'here show': '' }} menu-accordion">
+                        class="menu-item   {{ request()->is('admin/user-profile*') || request()->is('admin/banner*') || request()->is('admin/general-setting*') || request()->is('admin/payment*') ? 'here show' : '' }} menu-accordion">
                         <span class="menu-link">
                             <span class="menu-icon">
                                 <span class="svg-icon svg-icon-2">
@@ -230,62 +220,58 @@
                             <span class="menu-arrow"></span>
                         </span>
                         <div class="menu-sub menu-sub-accordion">
-                            <div class="menu-item">
-                                <a class="menu-link {{ request()->is('admin/user-profile*') ? 'active' : '' }}"
-                                    href="{{ route('user-profile.index') }}" data-bs-toggle="tooltip"
-                                    data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">Profile Setting</span>
-                                </a>
-                            </div>
-                            @can('banner-list')
+                            @hasanyrole('admin|vendor')
                                 <div class="menu-item">
-                                    <a class="menu-link {{ request()->is('admin/banner*') ? 'active' : '' }}"
-                                        href="{{ route('banner.index') }}" data-bs-toggle="tooltip" data-bs-trigger="hover"
-                                        data-bs-dismiss="click" data-bs-placement="right">
-                                        <span class="menu-bullet">
-                                            <span class="bullet bullet-dot"></span>
-                                        </span>
-                                        <span class="menu-title">Banner Setting</span>
-                                    </a>
-                                </div>
-                            @endcan
-                            @can('general-setting-list')
-                                <div class="menu-item">
-                                    <a class="menu-link {{ request()->is('admin/general-setting*') ? 'active' : '' }}"
-                                        href="{{ route('general-setting.index') }}" data-bs-toggle="tooltip"
+                                    <a class="menu-link {{ request()->is('admin/user-profile*') ? 'active' : '' }}"
+                                        href="{{ route('user-profile.index') }}" data-bs-toggle="tooltip"
                                         data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
-                                        <span class="menu-title">General Setting</span>
+                                        <span class="menu-title">Profile Setting</span>
                                     </a>
                                 </div>
-                            @endcan
-                            @can('payment-list')
-                                <div class="menu-item">
-                                    <a class="menu-link {{ request()->is('admin/payment*') ? 'active' : '' }}"
-                                        href="{{ route('payment.index') }}" data-bs-toggle="tooltip" data-bs-trigger="hover"
-                                        data-bs-dismiss="click" data-bs-placement="right">
-                                        <span class="menu-bullet">
-                                            <span class="bullet bullet-dot"></span>
-                                        </span>
-                                        <span class="menu-title">Payment Setting</span>
-                                    </a>
-                                </div>
-                            @endcan
+                            @endhasanyrole
+                            <div class="menu-item">
+                                <a class="menu-link {{ request()->is('admin/banner*') ? 'active' : '' }}"
+                                    href="{{ route('banner.index') }}" data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                    data-bs-dismiss="click" data-bs-placement="right">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Banner Setting</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a class="menu-link {{ request()->is('admin/general-setting*') ? 'active' : '' }}"
+                                    href="{{ route('general-setting.index') }}" data-bs-toggle="tooltip"
+                                    data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">General Setting</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a class="menu-link {{ request()->is('admin/payment*') ? 'active' : '' }}"
+                                    href="{{ route('payment.index') }}" data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                    data-bs-dismiss="click" data-bs-placement="right">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Payment Setting</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                @endcanany
+                @endhasanyrole
                 <div class="menu-item">
                     <div class="menu-content pt-8 pb-2">
                         <span class="menu-section text-muted text-uppercase fs-8 ls-1">Others</span>
                     </div>
                 </div>
                 <div data-kt-menu-trigger="click"
-                    class="menu-item   {{ request()->is('admin/report1*') || request()->is('admin/report2*') || request()->is('admin/report3*')? 'here show': '' }} menu-accordion">
+                    class="menu-item   {{ request()->is('admin/report1*') || request()->is('admin/report2*') || request()->is('admin/report3*') ? 'here show' : '' }} menu-accordion">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">

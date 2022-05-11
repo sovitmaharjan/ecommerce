@@ -17,10 +17,7 @@ class UserController extends Controller
 
     public function __construct(UserInterface $user_interface)
     {
-        $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index', 'show', 'customer']]);
-        $this->middleware('permission:user-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:user-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+        $this->middleware('role:admin');
 
         $this->user_interface = $user_interface;
     }

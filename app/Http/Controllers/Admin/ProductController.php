@@ -67,7 +67,8 @@ class ProductController extends Controller
         try {
             $product = $this->product_interface->find($id);
             $all_category = $this->category_interface->index();
-            return view('admin.product.edit', compact('product', 'all_category'));
+            $all_attribute = $this->attribute_interface->index();
+            return view('admin.product.edit', compact('product', 'all_category', 'all_attribute'));
         } catch (Exception $e) {
             return redirect()->route('product.index')->with('error', $e->getMessage());
         }

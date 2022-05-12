@@ -232,36 +232,42 @@
                                     </a>
                                 </div>
                             @endhasanyrole
-                            <div class="menu-item">
-                                <a class="menu-link {{ request()->is('admin/banner*') ? 'active' : '' }}"
-                                    href="{{ route('banner.index') }}" data-bs-toggle="tooltip" data-bs-trigger="hover"
-                                    data-bs-dismiss="click" data-bs-placement="right">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">Banner Setting</span>
-                                </a>
-                            </div>
-                            <div class="menu-item">
-                                <a class="menu-link {{ request()->is('admin/general-setting*') ? 'active' : '' }}"
-                                    href="{{ route('general-setting.index') }}" data-bs-toggle="tooltip"
-                                    data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">General Setting</span>
-                                </a>
-                            </div>
-                            <div class="menu-item">
-                                <a class="menu-link {{ request()->is('admin/payment*') ? 'active' : '' }}"
-                                    href="{{ route('payment.index') }}" data-bs-toggle="tooltip" data-bs-trigger="hover"
-                                    data-bs-dismiss="click" data-bs-placement="right">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">Payment Setting</span>
-                                </a>
-                            </div>
+                            @hasanyrole('admin')
+                                <div class="menu-item">
+                                    <a class="menu-link {{ request()->is('admin/banner*') ? 'active' : '' }}"
+                                        href="{{ route('banner.index') }}" data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                        data-bs-dismiss="click" data-bs-placement="right">
+                                        <span class="menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">Banner Setting</span>
+                                    </a>
+                                </div>
+                            @endhasanyrole
+                            @hasanyrole('admin')
+                                <div class="menu-item">
+                                    <a class="menu-link {{ request()->is('admin/general-setting*') ? 'active' : '' }}"
+                                        href="{{ route('general-setting.index') }}" data-bs-toggle="tooltip"
+                                        data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                                        <span class="menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">General Setting</span>
+                                    </a>
+                                </div>
+                            @endhasanyrole
+                            @hasanyrole('admin')
+                                <div class="menu-item">
+                                    <a class="menu-link {{ request()->is('admin/payment*') ? 'active' : '' }}"
+                                        href="{{ route('payment.index') }}" data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                        data-bs-dismiss="click" data-bs-placement="right">
+                                        <span class="menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">Payment Setting</span>
+                                    </a>
+                                </div>
+                            @endhasanyrole
                         </div>
                     </div>
                 @endhasanyrole

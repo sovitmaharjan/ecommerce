@@ -56,6 +56,8 @@ class RoleController extends Controller
     public function edit($id)
     {
         $role = Role::find($id);
+
+        // make everything accending with one query pachi garne lai 
         $permission['Role'] = Permission::where('name',  'like', 'role%')->orderBy('id', 'ASC')->get();
         $permission['User'] = Permission::where('name',  'like', 'user%')->orderBy('id', 'ASC')->get();
         $permission['Account Request'] = Permission::where('name',  'like', 'account-request%')->orderBy('id', 'ASC')->get();

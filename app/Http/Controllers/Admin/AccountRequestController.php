@@ -14,7 +14,7 @@ class AccountRequestController extends Controller
 
     public function __construct(AccountRequestInterface $account_request_interface)
     {
-        $this->middleware('role:admin');
+        $this->middleware('role:admin', ['except' => ['store']]);
         $this->account_request_interface = $account_request_interface;
     }
 

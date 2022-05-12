@@ -16,6 +16,7 @@ class ProductController extends Controller
 
     public function __construct(ProductInterface $product_interface, CategoryInterface $category_interface, AttributeInterface $attribute_interface)
     {
+        $this->middleware('role:admin|vendor');
         $this->product_interface = $product_interface;
         $this->category_interface = $category_interface;
         $this->attribute_interface = $attribute_interface;
@@ -66,7 +67,8 @@ class ProductController extends Controller
         try {
             $product = $this->product_interface->find($id);
             $all_category = $this->category_interface->index();
-            return view('admin.product.edit', compact('product', 'all_category'));
+            $all_attribute = $this->attribute_interface->index();
+            return view('admin.product.edit', compact('product', 'all_category', 'all_attribute'));
         } catch (Exception $e) {
             return redirect()->route('product.index')->with('error', $e->getMessage());
         }

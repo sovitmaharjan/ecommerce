@@ -13,10 +13,7 @@ class RoleController extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:role-list|role-create|role-edit|role-delete', ['only' => ['index', 'show']]);
-        $this->middleware('permission:role-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:role-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:role-delete', ['only' => ['destroy']]);
+        $this->middleware('role:admin');
     }
 
     public function index(Request $request)
@@ -59,6 +56,8 @@ class RoleController extends Controller
     public function edit($id)
     {
         $role = Role::find($id);
+
+        // make everything accending with one query pachi garne lai 
         $permission['Role'] = Permission::where('name',  'like', 'role%')->orderBy('id', 'ASC')->get();
         $permission['User'] = Permission::where('name',  'like', 'user%')->orderBy('id', 'ASC')->get();
         $permission['Account Request'] = Permission::where('name',  'like', 'account-request%')->orderBy('id', 'ASC')->get();

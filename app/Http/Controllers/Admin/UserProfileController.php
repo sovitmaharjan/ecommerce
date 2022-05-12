@@ -14,10 +14,8 @@ class UserProfileController extends Controller
 
     public function __construct(UserProfileInterface $user_profile_interface)
     {
-        $this->middleware('permission:profile-list|profile-create|profile-edit|profile-delete', ['only' => ['index', 'show']]);
+        $this->middleware('role:admin|vendor');
         // $this->middleware('permission:profile-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:profile-edit', ['only' => ['edit', 'update', 'create', 'store']]);
-        // $this->middleware('permission:profile-delete', ['only' => ['destroy']]);
         $this->user_profile_interface = $user_profile_interface;
     }
 

@@ -14,11 +14,7 @@ class PaymentController extends Controller
 
     public function __construct(PaymentInterface $payment_interface)
     {
-        $this->middleware('permission:payment-list|payment-create|payment-edit|payment-delete', ['only' => ['index', 'show']]);
-        $this->middleware('permission:payment-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:payment-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:payment-delete', ['only' => ['destroy']]);
-
+        $this->middleware('role:admin');
         $this->payment_interface = $payment_interface;
     }
 

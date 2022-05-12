@@ -15,6 +15,7 @@ class CategoryController extends Controller
 
     public function __construct(CategoryInterface $category_interface, AttributeInterface $attribute_interface)
     {
+        $this->middleware('role:admin|vendor');
         $this->category_interface = $category_interface;
         $this->attribute_interface = $attribute_interface;
     }

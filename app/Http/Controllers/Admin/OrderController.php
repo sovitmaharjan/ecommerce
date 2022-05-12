@@ -14,10 +14,7 @@ class OrderController extends Controller
 
     public function __construct(OrderInterface $order_interface)
     {
-        $this->middleware('permission:order-list|order-create|order-edit|order-delete', ['only' => ['index', 'show']]);
-        $this->middleware('permission:order-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:order-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:order-delete', ['only' => ['destroy']]);
+        $this->middleware('role:admin|vendor');
         $this->order_interface = $order_interface;
     }
 

@@ -217,6 +217,11 @@
                                         @endforeach
                                     </select>
                                     <div class="text-muted fs-7 mb-7">Select attribute for this category.</div>
+                                    @error('attribute')
+                                        <div class="fv-plugins-message-container invalid-feedback">
+                                            <div data-field="attribute" data-validator="notEmpty">{{ $message }}</div>
+                                        </div>
+                                    @enderror
                                 </div>
                                 <a href="{{ route('attribute.create') }}" class="btn btn-light-primary btn-sm mb-10">
                                     <span class="svg-icon svg-icon-2">

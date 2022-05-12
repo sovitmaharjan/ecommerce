@@ -6,6 +6,7 @@ use App\Contracts\Admin\ProductInterface;
 use App\Custom\ImageService;
 use App\Models\Product;
 use App\Models\ProductVariant;
+use App\Models\ProductVariantDetail;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 
@@ -71,8 +72,19 @@ class ProductRepository implements ProductInterface
 
     public function saveVariant($result) {
         foreach(request()->variation as $variant){
-            $variant['product_id'] = $result->id;
-            ProductVariant::create($variant);
+            $product_variant = ProductVariant::create([
+                'product_id' => $result->id,
+                'sku' => $variant['sku'],
+                'sku_price' => $variant['sku_price'],
+                'quantity' => $variant['quantity']
+            ]);
+            foreach($variant['attribute'] as $attribute) {
+                ProductVariantDetail::create([
+                    'product_variant_id' => $product_variant->id,
+                    'attribute_id' => $attribute['attribute_id'],
+                    'attribute_value' => $attribute['attribute_value']
+                ]);
+            }
         }
     }
 }

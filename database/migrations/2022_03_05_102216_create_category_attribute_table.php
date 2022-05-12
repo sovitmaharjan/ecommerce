@@ -15,7 +15,7 @@ class CreateCategoryAttributeTable extends Migration
     {
         Schema::create('category_attribute', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->constrained();
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->foreignId('attribute_id')->constrained();
             $table->timestamps();
         });

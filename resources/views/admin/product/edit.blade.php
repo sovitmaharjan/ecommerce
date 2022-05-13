@@ -381,6 +381,8 @@
                                                 <div id="variation">
                                                     <div class="form-group">
                                                         <div data-repeater-list="variation">
+                                                            <input type="hidden" name="variant_delete_input" value=""
+                                                                id="variant_delete_input">
                                                             @if (old('variation'))
                                                                 @foreach (old('variation') as $key => $variation)
                                                                     <div data-repeater-item>
@@ -547,100 +549,143 @@
                                                                     </div>
                                                                 @endforeach
                                                             @else
-                                                                <div data-repeater-item>
-                                                                    <div class="form-group row mb-5">
-                                                                        <div class="col-md-3">
-                                                                            <label class="form-label required">SKU</label>
-                                                                            <input type="text" class="form-control"
-                                                                                name="sku" />
-                                                                        </div>
-                                                                        <div class="col-md-2">
-                                                                            <label
-                                                                                class="form-label required">Price</label>
-                                                                            <input type="number" class="form-control"
-                                                                                name="sku_price" />
-                                                                        </div>
-                                                                        <div class="col-md-2">
-                                                                            <label
-                                                                                class="form-label required">Quantity</label>
-                                                                            <input type="number" class="form-control"
-                                                                                name="quantity" />
-                                                                        </div>
-                                                                        <div class="col-md-5">
-                                                                            <div class="inner-repeater">
-                                                                                <div data-repeater-list="attribute"
-                                                                                    class="mb-5">
-                                                                                    <div data-repeater-item>
-                                                                                        <div class="form-group row mb-5">
-                                                                                            <div class="col-md-5">
-                                                                                                <label
-                                                                                                    class="form-label">
-                                                                                                    Select Attribute
-                                                                                                    <i class="fas fa-exclamation-circle ms-1 fs-7"
-                                                                                                        data-bs-toggle="tooltip"
-                                                                                                        title=""
-                                                                                                        data-bs-original-title="Set empty if product is single variant"
-                                                                                                        aria-label="Set empty if product is single variant"></i>
-                                                                                                </label>
-                                                                                                <select
-                                                                                                    class="form-select"
-                                                                                                    name="attribute_id"
-                                                                                                    repeater="select2">
-                                                                                                    <option value="">No
-                                                                                                        Attribute</option>
-                                                                                                    @foreach ($all_attribute as $value)
-                                                                                                        <option
-                                                                                                            value="{{ $value->id }}">
-                                                                                                            {{ $value->title }}
-                                                                                                        </option>
-                                                                                                    @endforeach
-                                                                                                </select>
-                                                                                            </div>
-                                                                                            <div class="col-md-5">
-                                                                                                <label
-                                                                                                    class="form-label">
-                                                                                                    Attribute Value
-                                                                                                    <i class="fas fa-exclamation-circle ms-1 fs-7"
-                                                                                                        data-bs-toggle="tooltip"
-                                                                                                        title=""
-                                                                                                        data-bs-original-title="Set empty if product is single variant"
-                                                                                                        aria-label="Set empty if product is single variant"></i>
-                                                                                                </label>
-                                                                                                <input type="text"
-                                                                                                    class="form-control"
-                                                                                                    name="attribute_value" />
-                                                                                            </div>
-                                                                                            <div class="col-md-2">
-                                                                                                <label
-                                                                                                    class="form-label">&nbsp;</label>
-                                                                                                <button
-                                                                                                    class="border border-secondary btn btn-icon btn-light-danger"
-                                                                                                    data-repeater-delete
-                                                                                                    type="button">
-                                                                                                    <i
-                                                                                                        class="la la-trash-o fs-3"></i>
-                                                                                                </button>
-                                                                                            </div>
+                                                                @if ($product->variants)
+                                                                    @foreach ($product->variants as $variant)
+                                                                        <div data-repeater-item>
+                                                                            <div class="form-group row mb-5">
+                                                                                <input type="hidden" name="variant_id"
+                                                                                    value="{{ $variant->id }}">
+                                                                                <div class="col-md-3">
+                                                                                    <label
+                                                                                        class="form-label required">SKU</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control" name="sku"
+                                                                                        value="{{ $variant->sku }}" />
+                                                                                </div>
+                                                                                <div class="col-md-2">
+                                                                                    <label
+                                                                                        class="form-label required">Price</label>
+                                                                                    <input type="number"
+                                                                                        class="form-control"
+                                                                                        name="sku_price"
+                                                                                        value="{{ $variant->sku_price }}" />
+                                                                                </div>
+                                                                                <div class="col-md-2">
+                                                                                    <label
+                                                                                        class="form-label required">Quantity</label>
+                                                                                    <input type="number"
+                                                                                        class="form-control"
+                                                                                        name="quantity"
+                                                                                        value="{{ $variant->quantity }}" />
+                                                                                </div>
+                                                                                <div class="col-md-5">
+                                                                                    <div class="inner-repeater">
+                                                                                        <div data-repeater-list="attribute"
+                                                                                            class="mb-5">
+                                                                                            <input type="hidden"
+                                                                                                name="variant_detail_delete"
+                                                                                                value=""
+                                                                                                class="variant_detail_delete_input{{ $variant->id }}">
+                                                                                            @if ($variant->details)
+                                                                                                @foreach ($variant->details as $detail)
+                                                                                                    <div data-repeater-item>
+                                                                                                        <div
+                                                                                                            class="form-group row mb-5">
+                                                                                                            <input
+                                                                                                                type="hidden"
+                                                                                                                name="detail_id"
+                                                                                                                value="{{ $detail->id }}">
+                                                                                                            <div
+                                                                                                                class="col-md-5">
+                                                                                                                <label
+                                                                                                                    class="form-label">
+                                                                                                                    Select
+                                                                                                                    Attribute
+                                                                                                                    <i class="fas fa-exclamation-circle ms-1 fs-7"
+                                                                                                                        data-bs-toggle="tooltip"
+                                                                                                                        title=""
+                                                                                                                        data-bs-original-title="Set empty if product is single variant"
+                                                                                                                        aria-label="Set empty if product is single variant"></i>
+                                                                                                                </label>
+                                                                                                                <select
+                                                                                                                    class="form-select"
+                                                                                                                    name="attribute_id"
+                                                                                                                    repeater="select2">
+                                                                                                                    <option
+                                                                                                                        value="">
+                                                                                                                        No
+                                                                                                                        Attribute
+                                                                                                                    </option>
+                                                                                                                    @foreach ($all_attribute as $value)
+                                                                                                                        <option
+                                                                                                                            {{ $value->id == $detail->attribute_id ? 'selected' : '' }}
+                                                                                                                            value="{{ $value->id }}">
+                                                                                                                            {{ $value->title }}
+                                                                                                                        </option>
+                                                                                                                    @endforeach
+                                                                                                                </select>
+                                                                                                            </div>
+                                                                                                            <div
+                                                                                                                class="col-md-5">
+                                                                                                                <label
+                                                                                                                    class="form-label">
+                                                                                                                    Attribute
+                                                                                                                    Value
+                                                                                                                    <i class="fas fa-exclamation-circle ms-1 fs-7"
+                                                                                                                        data-bs-toggle="tooltip"
+                                                                                                                        title=""
+                                                                                                                        data-bs-original-title="Set empty if product is single variant"
+                                                                                                                        aria-label="Set empty if product is single variant"></i>
+                                                                                                                </label>
+                                                                                                                <input
+                                                                                                                    type="text"
+                                                                                                                    class="form-control"
+                                                                                                                    name="attribute_value"
+                                                                                                                    value="{{ $detail->attribute_id }}" />
+                                                                                                            </div>
+                                                                                                            <div
+                                                                                                                class="col-md-2">
+                                                                                                                <label
+                                                                                                                    class="form-label">&nbsp;</label>
+                                                                                                                <button
+                                                                                                                    class="border border-secondary btn btn-icon btn-light-danger variant_detail_delete"
+                                                                                                                    data-id="{{ $detail->id }}"
+                                                                                                                    data-variant-id="{{ $variant->id }}"
+                                                                                                                    data-repeater-delete
+                                                                                                                    type="button">
+                                                                                                                    <i
+                                                                                                                        class="la la-trash-o fs-3"></i>
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                @endforeach
+                                                                                            @endif
                                                                                         </div>
+                                                                                        <button
+                                                                                            class="btn btn-sm btn-light-primary"
+                                                                                            data-repeater-create
+                                                                                            type="button">
+                                                                                            <i class="la la-plus"></i>
+                                                                                            Add
+                                                                                            Number
+                                                                                        </button>
                                                                                     </div>
                                                                                 </div>
-                                                                                <button
-                                                                                    class="btn btn-sm btn-light-primary"
-                                                                                    data-repeater-create type="button">
-                                                                                    <i class="la la-plus"></i> Add
-                                                                                    Number
-                                                                                </button>
+                                                                                <div class="col-md-4">
+                                                                                    <a href="javascript:;"
+                                                                                        data-id="{{ $variant->id }}"
+                                                                                        data-repeater-delete
+                                                                                        class="btn btn-sm btn-light-danger mt-3 mt-md-9 variant_delete">
+                                                                                        <i
+                                                                                            class="la la-trash-o fs-3"></i>Delete
+                                                                                        Row
+                                                                                    </a>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-md-4">
-                                                                            <a href="javascript:;" data-repeater-delete
-                                                                                class="btn btn-sm btn-light-danger mt-3 mt-md-9">
-                                                                                <i class="la la-trash-o fs-3"></i>Delete
-                                                                                Row
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                                    @endforeach
+                                                                @endif
                                                             @endif
                                                         </div>
                                                     </div>
@@ -741,6 +786,18 @@
             hide: function(deleteElement) {
                 $(this).slideUp(deleteElement);
             }
+        });
+
+        $(document).on('click', '.variant_delete', function() {
+            $('#variant_delete_input').val($('#variant_delete_input').val() ? $('#variant_delete_input').val() +
+                ',' + $(this).data(
+                    'id') : $(this).data('id'));
+        });
+
+        $(document).on('click', '.variant_detail_delete', function() {
+            $('.variant_detail_delete_input' + $(this).data('variant-id')).val($('.variant_detail_delete_input' + $(this).data('variant-id')).val() ? $(
+                '.variant_detail_delete_input' + $(this).data('variant-id')).val() + ',' + $(this).data(
+                'id') : $(this).data('id'));
         });
     </script>
 @endSection

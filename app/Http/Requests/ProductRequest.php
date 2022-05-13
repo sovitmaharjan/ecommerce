@@ -15,7 +15,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'image' => 'mimes:jpeg,jpg,png,gif|required|max:4000',
+            'image' => $this->method() == 'POST' ? 'required|mimes:jpg,jpeg,png|max:4096' : 'nullable|mimes:jpg,jpeg,png|max:4096',
             'description' => 'required',
             'category_id' => 'required',
             'price' => 'required',

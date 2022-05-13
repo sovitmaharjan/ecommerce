@@ -90,17 +90,25 @@ class ProductRepository implements ProductInterface
                 }
             }
         } else {
-            ProductVariant::whereIn()->delete();
+            if(request()->variant_delete_input != null){
+                $variant_ids = explode(',', request()->variant_delete_input);
+                ProductVariant::whereIn('id', $variant_ids)->delete();
+            }
+            // dd(request()->all());
             foreach (request()->variation as $variant) {
-                $product_variant = ProductVariant::where('id', $variant->id)->update([
+                $product_variant = ProductVariant::find($variant['variant_id']);
+                ProductVariant::where('id', $variant['variant_id'])->update([
                     'product_id' => $result->id,
                     'sku' => $variant['sku'],
                     'sku_price' => $variant['sku_price'],
                     'quantity' => $variant['quantity']
                 ]);
-                ProductVariantDetail::whereIn()->delete();
+                if($variant['variant_detail_delete_input'] != null){
+                    $detail_ids = explode(',', $variant['variant_detail_delete_input']);
+                    ProductVariantDetail::whereIn('id', $detail_ids)->delete();
+                }
                 foreach ($variant['attribute'] as $attribute) {
-                    ProductVariantDetail::where('id', $attribute->id)->update([
+                    ProductVariantDetail::where('id', $attribute['detail_id'])->update([
                         'product_variant_id' => $product_variant->id,
                         'attribute_id' => $attribute['attribute_id'],
                         'attribute_value' => $attribute['attribute_value']

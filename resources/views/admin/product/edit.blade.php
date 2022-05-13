@@ -579,13 +579,13 @@
                                                                                         value="{{ $variant->quantity }}" />
                                                                                 </div>
                                                                                 <div class="col-md-5">
+                                                                                    <input type="hidden"
+                                                                                    name="variant_detail_delete_input"
+                                                                                    value=""
+                                                                                    class="variant_detail_delete_input{{ $variant->id }}">
                                                                                     <div class="inner-repeater">
                                                                                         <div data-repeater-list="attribute"
                                                                                             class="mb-5">
-                                                                                            <input type="hidden"
-                                                                                                name="variant_detail_delete"
-                                                                                                value=""
-                                                                                                class="variant_detail_delete_input{{ $variant->id }}">
                                                                                             @if ($variant->details)
                                                                                                 @foreach ($variant->details as $detail)
                                                                                                     <div data-repeater-item>

@@ -15,6 +15,8 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserProfileController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CustomerDashboard;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerLoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
@@ -41,16 +43,19 @@ Route::get('/test', function() {
 // customer login
 Route::get('/customer/login', [CustomerLoginController::class, 'index'])->name('customer.login');
 Route::post('/customer/post-login', [CustomerLoginController::class, 'login'])->name('customer.post.login');
-Route::post('/customer/post-register', [CustomerLoginController::class, 'login'])->name('customer.post.register');
+Route::post('/customer/post-register', [CustomerLoginController::class, 'register'])->name('customer.post.register');
 Route::get('/customer/logout', [CustomerLoginController::class, 'logout'])->name('customer.logout');    
 
 // customer dashboard
 Route::group([
     'middleware' => ['auth', 'customerOnly']
 ], function() {
-    Route::get('/customer/dashboard', function() {
-        return view('dashboard');
-    })->name('customer.dashboard');
+    Route::get('/customer/dashboard', [CustomerController::class, 'dashboard'])->name('customer.dashboard');
+    Route::get('/customer/profile', [CustomerController::class, 'profile'])->name('customer.profile');
+    Route::post('/customer/profile', [CustomerController::class, 'profileStore'])->name('customer.profile.store');
+    // Route::get('/customer/profile', function() {
+    //     return view('customer-profile');
+    // })->name('customer.profile');
 });
 
 // home
@@ -81,11 +86,10 @@ Route::get('/artisan-call', function () {
 Auth::routes();
 
 Route::post('/account-request', [AccountRequestController::class, 'store'])->name('account-request.store');
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group([
     'prefix' => '/admin',
-    'middleware' => 'auth'
+    'middleware' => ['auth', 'adminOnly']
 ], function() {
     Route::resource('role', RoleController::class);
     Route::resource('user', UserController::class);

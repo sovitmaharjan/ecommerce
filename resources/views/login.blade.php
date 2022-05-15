@@ -41,9 +41,15 @@
                         <form action="{{ route('customer.post.login') }}" method="POST">
                             @csrf
                             <label for="email">Email<span>*</span></label>
-                            <input id="email" type="text" placeholder="Enter Username" name="email">
+                            <input id="email" type="text" placeholder="Enter Username" name="email" value="{{ old('email') }}">
+                            @error('email')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
                             <label for="password">Password <span>*</span></label>
-                            <input id="password" type="password" name="password" placeholder="Enter password...">
+                            <input id="password" type="password" name="password" placeholder="Enter password..." value="{{ old('password') }}">
+                            @error('password')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
                             <div class="login-action mb-10 fix">
                                 {{-- <span class="log-rem f-left">
                                     <input id="remember" type="checkbox">
@@ -58,23 +64,42 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
+                    {{-- @dd($errors->all()) --}}
                     <div class="basic-login">
                         <h5>Register</h5>
                         <form action="{{ route('customer.post.register') }}" method="POST">
-                            <label for="name">Fullname <span>*</span></label>
-                            <input id="name" type="text" placeholder="Enter Name" name="name">
-                            <label for="email-id">Email Address <span>*</span></label>
-                            <input id="email-id" type="text" placeholder="Email address..." name="email">
-                            <label for="password">Password <span>*</span></label>
-                            <input id="password" type="password" placeholder="Enter password..." name="password">
-                            <label for="password">Confirm Password <span>*</span></label>
-                            <input id="password" type="password" placeholder="Enter password..." name="password">
-                            <div class="login-action mb-10 fix">
+                            @csrf
+                            <div>
+                                <label for="name">Fullname <span>*</span></label>
+                                <input id="name" type="text" placeholder="Enter Name" name="name" value="{{ old('name') }}">
+                                @error('name')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div>
+                                <label for="email-id">Email Address <span>*</span></label>
+                                <input id="email-id" type="text" placeholder="Email address..." name="email" value="{{ old('email') }}">
+                                @error('email')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div>
+                                <label for="password">Password <span>*</span></label>
+                                <input id="password" type="password" placeholder="Enter password..." name="password">
+                                @error('password')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div>
+                                <label for="password">Confirm Password <span>*</span></label>
+                                <input id="password" type="password" placeholder="Enter password..." name="password_confirmation">
+                            </div>
+                            {{-- <div class="login-action mb-10 fix">
                                 <p>Your personal data will be used to support your experience throughout this website, to
                                     manage access to your account, and for other purposes described in our <a
                                         href="#">privacy policy</a>.</p>
-                            </div>
-                            <a href="login.html" class="tp-in-btn w-100">Register</a>
+                            </div> --}}
+                            <button type="submit" href="login.html" class="tp-in-btn w-100">Register</button>
                         </form>
                     </div>
                 </div>

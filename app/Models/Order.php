@@ -7,11 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    const PLACED = 'placed';
+    const PROCESSING = 'processing';
+    const SHIPPED = 'shipped';
+    const DELIVERED = 'delivered';
+    const CANCELLED = 'cancelled';
+
     use HasFactory;
 
     protected $fillable = [
         'order_number',
-        'customer_id',
+        'user_id',
         'sub_total',
         'tax',
         'vat',
@@ -19,7 +25,6 @@ class Order extends Model
         'grand_total',
         'status',
         'user_address',
-        'delivery_date'
     ];
 
     public function details() {

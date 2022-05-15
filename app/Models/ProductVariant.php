@@ -23,4 +23,8 @@ class ProductVariant extends Model
     public function attribute() {
         return $this->belongsTo(Attribute::class);
     }
+
+    public function details() {
+        return $this->hasMany(ProductVariantDetail::class);
+    }
 }

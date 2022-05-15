@@ -19,7 +19,7 @@ class ImageService
         $filePath = $path . $fileName;
         $file->storeAs($path, $fileName);
         $user = Auth::user();
-        $image = Image::UpdateOrCreate(
+        $image = Image::updateOrCreate(
             [
                 'imageable_id' => $model->id,
                 'imageable_type' => get_class($model),

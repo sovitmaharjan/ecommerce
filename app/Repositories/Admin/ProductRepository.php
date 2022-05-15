@@ -51,8 +51,9 @@ class ProductRepository implements ProductInterface
         if (!$product) {
             throw new Exception('No Data');
         }
-        $data = $request->except('image', '_method', '_token');
+        $data = $request->except('image', '_method', '_token', 'variation');
         $result = $product->update($data);
+        $this->saveVariant($product);
         if ($file = $request->image) {
             $this->image->upload($product, $file, $product->image->path ?? null);
         }
@@ -70,20 +71,49 @@ class ProductRepository implements ProductInterface
         return $result;
     }
 
-    public function saveVariant($result) {
-        foreach(request()->variation as $variant){
-            $product_variant = ProductVariant::create([
-                'product_id' => $result->id,
-                'sku' => $variant['sku'],
-                'sku_price' => $variant['sku_price'],
-                'quantity' => $variant['quantity']
-            ]);
-            foreach($variant['attribute'] as $attribute) {
-                ProductVariantDetail::create([
-                    'product_variant_id' => $product_variant->id,
-                    'attribute_id' => $attribute['attribute_id'],
-                    'attribute_value' => $attribute['attribute_value']
+    public function saveVariant($result)
+    {
+        if ($result->wasRecentlyCreated == true) {
+            foreach (request()->variation as $variant) {
+                $product_variant = ProductVariant::create([
+                    'product_id' => $result->id,
+                    'sku' => $variant['sku'],
+                    'sku_price' => $variant['sku_price'],
+                    'quantity' => $variant['quantity']
                 ]);
+                foreach ($variant['attribute'] as $attribute) {
+                    ProductVariantDetail::create([
+                        'product_variant_id' => $product_variant->id,
+                        'attribute_id' => $attribute['attribute_id'],
+                        'attribute_value' => $attribute['attribute_value']
+                    ]);
+                }
+            }
+        } else {
+            if(request()->variant_delete_input != null){
+                $variant_ids = explode(',', request()->variant_delete_input);
+                ProductVariant::whereIn('id', $variant_ids)->delete();
+            }
+            // dd(request()->all());
+            foreach (request()->variation as $variant) {
+                $product_variant = ProductVariant::find($variant['variant_id']);
+                ProductVariant::where('id', $variant['variant_id'])->update([
+                    'product_id' => $result->id,
+                    'sku' => $variant['sku'],
+                    'sku_price' => $variant['sku_price'],
+                    'quantity' => $variant['quantity']
+                ]);
+                if($variant['variant_detail_delete_input'] != null){
+                    $detail_ids = explode(',', $variant['variant_detail_delete_input']);
+                    ProductVariantDetail::whereIn('id', $detail_ids)->delete();
+                }
+                foreach ($variant['attribute'] as $attribute) {
+                    ProductVariantDetail::where('id', $attribute['detail_id'])->update([
+                        'product_variant_id' => $product_variant->id,
+                        'attribute_id' => $attribute['attribute_id'],
+                        'attribute_value' => $attribute['attribute_value']
+                    ]);
+                }
             }
         }
     }

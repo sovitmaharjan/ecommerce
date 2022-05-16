@@ -120,7 +120,7 @@
                                                                 @csrf
                                                                 @method('delete')
                                                             </form>
-                                                            <a href="javascript:void(0)" class="menu-link px-3 delete"
+                                                            <a href="javascript:void(0);" class="menu-link px-3 delete"
                                                                 data-kt-customer-table-filter="delete_row"
                                                                 data-id="{{ $value->id }}"
                                                                 data-name="{{ $value->title }}">Delete</a>

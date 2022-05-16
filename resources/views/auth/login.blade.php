@@ -53,7 +53,5 @@
 @endsection
 
 @section('script')
-
     <script src="{{ asset('assets/admin/js/custom/authentication/sign-in/general.js') }}"></script>
-
 @endsection

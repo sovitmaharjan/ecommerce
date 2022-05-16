@@ -15,7 +15,7 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('customer.dashboard') }}">
+            <a href="{{ route('customer.wishlist') }}">
                 <div class="single-category p-relative mb-10">
                     Wishlist
                 </div>

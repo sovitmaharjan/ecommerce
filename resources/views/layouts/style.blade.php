@@ -13,4 +13,11 @@
 <link rel="stylesheet" href="{{ asset('assets/css/font-awesome-pro.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/default.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+<style>
+    .object-fit{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+</style>
 @yield('style')

@@ -35,11 +35,7 @@
                                     <div class="single-team text-center mb-30">
                                         <div class="team-image mb-35 w-img">
                                             <div class="inner-timg">
-                                                <img src="{{ Auth::user()->customerProfile->image ? Auth::user()->customerProfile->image->getUrl() : asset('no-image.png') }}" id="image_load" alt="" style="
-                                                height: 100%;
-                                                width: 100%;
-                                                object-fit: cover;
-                                                ">
+                                                <img class="object-fit" src="{{ Auth::user()->customerProfile->image ? Auth::user()->customerProfile->image->getUrl() : asset('no-image.png') }}" id="image_load" alt="">
                                             </div>
                                         </div>
                                         <div class="tauthor-degination mb-15">

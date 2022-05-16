@@ -61,7 +61,5 @@
 @endsection
 
 @section('script')
-
     <script src="{{ asset('assets/admin/js/custom/authentication/sign-up/general.js') }}"></script>
-
 @endsection

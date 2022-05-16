@@ -76,8 +76,6 @@
                                                 </td>
                                                 <td class="product-subtotal"><span class="amount">$130.00</span>
                                                 </td>
-                                                <td class="product-remove"><a href="#"><i class="fa fa-times"></i></a>
-                                                </td>
                                             </tr>
                                             <tr>
                                                 <td class="product-thumbnail"><a href="shop-details.html"><img
@@ -88,8 +86,6 @@
                                                 <td class="product-price"><span class="amount">$120.50</span>
                                                 </td>
                                                 <td class="product-subtotal"><span class="amount">$120.50</span>
-                                                </td>
-                                                <td class="product-remove"><a href="#"><i class="fa fa-times"></i></a>
                                                 </td>
                                             </tr>
                                         </tbody>

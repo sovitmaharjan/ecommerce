@@ -6,6 +6,7 @@ use App\Custom\ImageService;
 use App\Models\CustomerProfile;
 use App\Models\Order;
 use App\Models\User;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -62,5 +63,22 @@ class CustomerController extends Controller
             }
         });
         return back()->with('success', 'Data save successfully');
+    }
+
+    public function wishlist() {
+        $wishlist = Wishlist::where('user_id', Auth::user()->id)->get();
+        return view('customer-wishlist', compact('wishlist'));
+    }
+
+    public function wishlistStore(Request $request) {
+        dd($request->all());
+    }
+
+    public function wishlistDelete($id) {
+        $result = Wishlist::destroy($id);
+        if(!$result){
+            return back()->with('error', 'Something went wrong');
+        }
+        return back()->with('success', 'Product removed');
     }
 }

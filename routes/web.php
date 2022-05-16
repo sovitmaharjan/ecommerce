@@ -53,6 +53,9 @@ Route::group([
     Route::get('/customer/dashboard', [CustomerController::class, 'dashboard'])->name('customer.dashboard');
     Route::get('/customer/profile', [CustomerController::class, 'profile'])->name('customer.profile');
     Route::post('/customer/profile', [CustomerController::class, 'profileStore'])->name('customer.profile.store');
+    Route::get('/customer/wishlist', [CustomerController::class, 'wishlist'])->name('customer.wishlist');
+    Route::post('/customer/wishlist', [CustomerController::class, 'wishlistStore'])->name('customer.wishlist.store');
+    Route::delete('/customer/wishlist/{id}', [CustomerController::class, 'wishlistDelete'])->name('customer.wishlist.destroy');
     // Route::get('/customer/profile', function() {
     //     return view('customer-profile');
     // })->name('customer.profile');
